@@ -330,11 +330,11 @@ tile_map_data = PackedByteArray("AAANAB4AAAABAAEAAAAOAB4AAAABAAEAAAAPAB4AAAABAAE
 tile_set = SubResource("TileSet_ycib0")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_twxv3")]
-position = Vector2(339, 297)
+position = Vector2(331, 305)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(2, -4)
-zoom = Vector2(13.955, 13.955)
+zoom = Vector2(10.06, 10.06)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -0.505)

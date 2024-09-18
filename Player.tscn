@@ -189,7 +189,6 @@ collision_mask = 2
 script = ExtResource("1_ac4tx")
 
 [node name="Player_cutout" parent="." instance=ExtResource("2_10mar")]
-position = Vector2(-1, 7)
 scale = Vector2(1.395, 1.395)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

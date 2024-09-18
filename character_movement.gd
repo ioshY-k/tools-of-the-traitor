@@ -21,6 +21,7 @@ const WALL_JUMP_WIDTH = 1000
 @onready var p_speed_is_active = false
 @onready var direction
 @onready var player_cutout: Node2D = $Player_cutout
+@onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var caster_outer_right_ceiling: RayCast2D = $Caster_outer_right_ceiling
 @onready var caster_inner_right_ceiling: RayCast2D = $Caster_inner_right_ceiling
@@ -32,15 +33,16 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
 const BASE_X_SCALE = 1.395
 
+var jump_plays: String
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _physics_process(delta: float) -> void:
-	
+	jump_plays = animations.current_animation
 	var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
 	var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 	
@@ -48,7 +50,9 @@ func _physics_process(delta: float) -> void:
 	_gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall) #Player gravity
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
-	#_wall_jump() #Player sliding and jumping on wall
+	_animation_handler() #Player animations
+	
+	print(animations.current_animation)
 	
 	var was_on_floor = is_on_floor() #Save position before movement for coyote timer
 	
@@ -62,15 +66,13 @@ func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor() or coyote_timer.time_left > 0:
 			#Jump input on floor
-			player_cutout.get_node("AnimationPlayer").play("Jumpstart_anim", 1)
 			velocity.y = _current_jumpforce()
-			print("here")
 		elif sliding_on_left_wall:
-			print("jumpwall")
+			#Jump input on left Wall
 			p_speed_is_active = true
 			velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 		elif sliding_on_right_wall:
-			print("walljump")
+			#Jump input on right Wall
 			p_speed_is_active = true
 			velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 		else:
@@ -123,8 +125,6 @@ func _speed_manager(delta):
 		if is_on_floor():
 			#Keine Bewegung auf dem Boden
 			velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
-			if velocity.x == 0:
-				player_cutout.get_node("AnimationPlayer").play("Idle_anim", 1)
 		else:
 			#Keine Bewegung in der Luft
 			velocity.x = move_toward(velocity.x, 0, AIR_DECELERATION * delta)
@@ -138,28 +138,23 @@ func _current_max_speed():
 	if Input.is_action_pressed("run"):
 		if p_speed_is_active:
 			#print("P-SPEED")
-			player_cutout.get_node("AnimationPlayer").play("Run_anim", 1)
 			return MAX_P_SPEED
 		if p_speed_timer.is_stopped():
 			#print("time start")
 			p_speed_timer.start()
-			player_cutout.get_node("AnimationPlayer").play("Fastwalk_anim", 1)
 			return MAX_RUN_SPEED
 		else:
 			if p_speed_timer.time_left <= 0.1:
 				#print("timeout")
 				p_speed_is_active = true
-				player_cutout.get_node("AnimationPlayer").play("Run_anim", 1)
 				return MAX_P_SPEED
 			else:
 				#print("RUN")
-				player_cutout.get_node("AnimationPlayer").play("Fastwalk_anim", 1)
 				return MAX_RUN_SPEED
 	else:
 		#print("WALK")
 		p_speed_timer.stop()
 		p_speed_is_active = false
-		player_cutout.get_node("AnimationPlayer").play("Walking_anim", 1)
 		return MAX_WALK_SPEED
 		
 		
@@ -175,6 +170,20 @@ func _ledge_corrections():
 			global_position += Vector2(7,0)
 		if caster_outer_right_ceiling.is_colliding():
 			global_position += Vector2(-7,0)
-
-
-		
+ 
+enum states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
+func _animation_handler():
+	var current_state = states.GROUNDED
+	
+	match current_state:
+		states.GROUNDED:
+			if velocity == Vector2(0,0):
+				animations.play("Idle_anim", 1)
+			elif abs(velocity.x) < MAX_RUN_SPEED:
+				animations.play("Walking_anim", 1)
+			elif abs(velocity.x) < MAX_P_SPEED:
+				animations.play("Fastwalk_anim", 1)
+			else:
+				animations.play("Run_anim", 1)
+		states.TAKEOFF:
+			animations.play("Jumpstart_anim", 1)
