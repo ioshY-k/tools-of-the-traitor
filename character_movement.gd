@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	_gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall) #Player gravity
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
-	_animation_handler() #Player animations
+	_animation_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
 	
 	print(animations.current_animation)
 	
@@ -172,18 +172,52 @@ func _ledge_corrections():
 			global_position += Vector2(-7,0)
  
 enum states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
-func _animation_handler():
-	var current_state = states.GROUNDED
+var current_state = states.GROUNDED
+func _animation_handler(sliding_on_wall):
+	
+	if is_on_floor():
+		if current_state == states.AIRBORNE:
+			current_state = states.LANDING
+		else:
+			current_state = states.GROUNDED
+	elif sliding_on_wall:
+		current_state = states.WALLSLIDE
+	else:
+		if current_state == states.GROUNDED:
+			current_state = states.TAKEOFF
+		else:
+			if animations.current_animation != "Jumpstart_anim":
+				current_state = states.AIRBORNE
+			else:
+				current_state = states.TAKEOFF
+		
+			
 	
 	match current_state:
 		states.GROUNDED:
 			if velocity == Vector2(0,0):
-				animations.play("Idle_anim", 1)
+				animations.play("Idle_anim", 0.3)
 			elif abs(velocity.x) < MAX_RUN_SPEED:
-				animations.play("Walking_anim", 1)
+				animations.play("Walking_anim", 0.5)
 			elif abs(velocity.x) < MAX_P_SPEED:
-				animations.play("Fastwalk_anim", 1)
+				animations.play("Fastwalk_anim", 0.5)
 			else:
 				animations.play("Run_anim", 1)
 		states.TAKEOFF:
-			animations.play("Jumpstart_anim", 1)
+			animations.play("Jumpstart_anim", 0.1)
+		states.AIRBORNE:
+			if velocity.y < 0:
+				if abs(velocity.x) >= MAX_P_SPEED:
+					animations.play("Pjump_anim", 0.2)
+				else:
+					animations.play("Jump_anim", 0.2)
+			if velocity.y > 0:
+				if abs(velocity.x) >= MAX_P_SPEED:
+					animations.play("Pjump_anim", 0.1)
+				else:
+					animations.play("Fall_anim", 0.2)
+		states.LANDING:
+			animations.play("Landing_anim", 0)
+		states.WALLSLIDE:
+			if velocity.y >= 0:
+				animations.play("Wallslide_anim", 0.1)
