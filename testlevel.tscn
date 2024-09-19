@@ -302,7 +302,7 @@ sources/0 = SubResource("TileSetAtlasSource_rbq83")
 [node name="Testlevel" type="Node"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_twxv3")]
-position = Vector2(342, 135)
+position = Vector2(344, 98)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(4.405, 4.405)

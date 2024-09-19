@@ -31,7 +31,7 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
-const BASE_X_SCALE = 1.395
+const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
 
 var jump_plays: String
 
@@ -108,11 +108,13 @@ func _gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall):
 
 
 func _speed_manager(delta):
-	if velocity.x < 0:
-		player_cutout.scale.x = BASE_X_SCALE * -1
-	elif velocity.x > 0:
-		player_cutout.scale.x = BASE_X_SCALE * 1
 	direction = Input.get_axis("walk_left", "walk_right")
+	if direction < 0:
+		player_cutout.scale.x = -abs(player_cutout.scale.x)
+		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+	elif direction > 0:
+		player_cutout.scale.x = abs(player_cutout.scale.x)
+		player_cutout.position.x = 0
 	if direction:
 		if is_on_floor():
 			#Bewegung auf dem Boden
