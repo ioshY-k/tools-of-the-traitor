@@ -61,6 +61,7 @@ place_default_tool={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Wall"
+2d_physics/layer_3="Small_block"
 
 [rendering]
 

@@ -71,10 +71,9 @@ position = Vector2(2.5, -5.5)
 shape = SubResource("RectangleShape2D_o8e7j")
 
 [node name="Testsprite_small" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(0, 28)
-scale = Vector2(0.140625, 0.140625)
+scale = Vector2(0.276, 0.276)
 texture = ExtResource("3_unbga")
 
 [node name="Testsprite_big" type="Sprite2D" parent="."]

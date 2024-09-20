@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 const ACCELERATION = 2300 #How fast Player reaches run speed
-const DECELERATION = 1300 #How long until Player stops after moving
+const DECELERATION = 3000 #How long until Player stops after moving
 const AIR_ACCELERATION = 1700
-const AIR_DECELERATION = 700
+const AIR_DECELERATION = 0
 const GRAVITY_RISING = 1500 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 6500 #How much stronger  gravity pulls in falling state vs. rising state
 const MAX_FALLSPEED = 900 #The point where gravity doesn't accelerate fallspeed enymore
@@ -17,9 +17,8 @@ const WALL_JUMP_HEIGHT = 800
 const WALL_JUMP_WIDTH = 1000
 @onready var coyote_timer: Timer = $Coyote_timer #time after leaving ledge where jumpping is still allowed
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
+var p_speed_is_active = false
 @onready var jump_buffer_timer: Timer = $Jump_buffer_timer #time the jumpp button press gets buffered before landing on the ground
-@onready var p_speed_is_active = false
-@onready var direction
 @onready var player_cutout: Node2D = $Player_cutout
 @onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -31,6 +30,7 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
+const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
 const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
 @onready var testsprite_big: Sprite2D = $Testsprite_big
 @onready var testsprite_small: Sprite2D = $Testsprite_small
@@ -114,7 +114,7 @@ func _gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall):
 
 
 func _speed_manager(delta):
-	direction = Input.get_axis("walk_left", "walk_right")
+	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	if direction < 0:
 		player_cutout.scale.x = -abs(player_cutout.scale.x)
 		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
@@ -236,10 +236,15 @@ func _tool_preview():
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		var controllerangle = Vector2(xAxis, yAxis).angle()
+		print(str(controllerangle))
 		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
-			testsprite_small.position = Vector2(0,-10) + 40 * Vector2.RIGHT.rotated(controllerangle)
+			testsprite_small.position = PREVIEW_PATH_OFFSET + _calc_preview_path_shape(controllerangle) * Vector2.RIGHT.rotated(controllerangle)
 		#print(str(controllerangle))
 	else:
 		if testsprite_small.visible:
 			testsprite_small.visible = false
 			get_parent().get_node("%Small_block").position = testsprite_small.global_position
+
+func _calc_preview_path_shape(angle) -> int :
+	var weight = sin(2 * angle)
+	return 47 + (60 - 47) * pow(weight, 2)
