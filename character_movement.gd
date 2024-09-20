@@ -31,7 +31,15 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
+<<<<<<< Updated upstream
 const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
+=======
+@onready var testsprite_big: Sprite2D = $Testsprite_big
+@onready var testsprite_small: Sprite2D = $Testsprite_small
+
+
+const BASE_X_SCALE = 1.395
+>>>>>>> Stashed changes
 
 var jump_plays: String
 
@@ -51,8 +59,9 @@ func _physics_process(delta: float) -> void:
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
 	_animation_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
+	_tool_preview()
 	
-	print(animations.current_animation)
+	#print(animations.current_animation)
 	
 	var was_on_floor = is_on_floor() #Save position before movement for coyote timer
 	
@@ -223,3 +232,17 @@ func _animation_handler(sliding_on_wall):
 		states.WALLSLIDE:
 			if velocity.y >= 0:
 				animations.play("Wallslide_anim", 0.1)
+
+func _tool_preview():
+	if Input.is_action_pressed("place_default_tool"):
+		testsprite_small.visible = true
+		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		var controllerangle = Vector2(xAxis, yAxis).angle()
+		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
+			testsprite_small.position = Vector2(0,-10) + 40 * Vector2.RIGHT.rotated(controllerangle)
+		#print(str(controllerangle))
+	else:
+		if testsprite_small.visible:
+			testsprite_small.visible = false
+			get_parent().get_node("%Small_block").position = testsprite_small.global_position
