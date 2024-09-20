@@ -31,15 +31,12 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
-<<<<<<< Updated upstream
 const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
-=======
 @onready var testsprite_big: Sprite2D = $Testsprite_big
 @onready var testsprite_small: Sprite2D = $Testsprite_small
 
 
 const BASE_X_SCALE = 1.395
->>>>>>> Stashed changes
 
 var jump_plays: String
 
