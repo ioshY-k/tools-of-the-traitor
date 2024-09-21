@@ -34,6 +34,7 @@ const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of
 const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
 @onready var testsprite_big: Sprite2D = $Testsprite_big
 @onready var testsprite_small: Sprite2D = $Testsprite_small
+enum tools {L_BLOCK, S_BLOCK, WALL, ROPE, SPRING, FIELD}
 
 
 const BASE_X_SCALE = 1.395
@@ -231,19 +232,45 @@ func _animation_handler(sliding_on_wall):
 				animations.play("Wallslide_anim", 0.1)
 
 func _tool_preview():
-	if Input.is_action_pressed("place_default_tool"):
-		testsprite_small.visible = true
-		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-		var controllerangle = Vector2(xAxis, yAxis).angle()
-		print(str(controllerangle))
-		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
-			testsprite_small.position = PREVIEW_PATH_OFFSET + _calc_preview_path_shape(controllerangle) * Vector2.RIGHT.rotated(controllerangle)
-		#print(str(controllerangle))
+	if Input.is_action_pressed("place_simple_tool"):
+		if is_on_floor() and false:
+			pass
+		else:
+			testsprite_small.visible = true
+			var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+			var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+			determine_sblock_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		
 	else:
 		if testsprite_small.visible:
 			testsprite_small.visible = false
 			get_parent().get_node("%Small_block").position = testsprite_small.global_position
+
+func determine_sblock_position(inputstrength, controllerangle):
+	
+	if inputstrength > Vector2(0.3,0.3).abs().length():
+		#Snap behaviour when placing below PLayer
+		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
+			testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
+		elif player_cutout.scale.x > 0:
+			#Snap behaviour when facing right
+			if controllerangle > (-PI/8) and controllerangle < (PI/8):
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
+			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(PI/4)
+			else:
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+		else:
+			#Snap behaviour when facing left
+			print(str(controllerangle))
+			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.LEFT
+			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(3*PI/4)
+			else:
+				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+
+			#print("here not")
 
 func _calc_preview_path_shape(angle) -> int :
 	var weight = sin(2 * angle)
