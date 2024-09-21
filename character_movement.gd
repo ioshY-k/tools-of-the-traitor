@@ -32,8 +32,13 @@ var p_speed_is_active = false
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
 const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
 const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
-@onready var testsprite_big: Sprite2D = $Testsprite_big
-@onready var testsprite_small: Sprite2D = $Testsprite_small
+@onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
+@onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
+@onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
+@onready var floor_typecheck: Area2D = $Floor_typecheck
+var is_on_tool = false
+var jump_enabled = true
+var walking_enabled = true
 enum tools {L_BLOCK, S_BLOCK, WALL, ROPE, SPRING, FIELD}
 
 
@@ -57,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
 	_animation_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
-	_tool_preview()
+	_tool_preview(delta)
 	
 	#print(animations.current_animation)
 	
@@ -70,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and jump_enabled:
 		if is_on_floor() or coyote_timer.time_left > 0:
 			#Jump input on floor
 			velocity.y = _current_jumpforce()
@@ -115,32 +120,33 @@ func _gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall):
 
 
 func _speed_manager(delta):
-	var direction = sign(Input.get_axis("walk_left", "walk_right"))
-	if direction < 0:
-		player_cutout.scale.x = -abs(player_cutout.scale.x)
-		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
-	elif direction > 0:
-		player_cutout.scale.x = abs(player_cutout.scale.x)
-		player_cutout.position.x = 0
-	if direction:
-		if is_on_floor():
-			#Bewegung auf dem Boden
-			velocity.x = move_toward(velocity.x, direction * _current_max_speed(), ACCELERATION * delta)				
+	if walking_enabled:
+		var direction = sign(Input.get_axis("walk_left", "walk_right"))
+		if direction < 0:
+			player_cutout.scale.x = -abs(player_cutout.scale.x)
+			player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+		elif direction > 0:
+			player_cutout.scale.x = abs(player_cutout.scale.x)
+			player_cutout.position.x = 0
+		if direction:
+			if is_on_floor():
+				#Bewegung auf dem Boden
+				velocity.x = move_toward(velocity.x, direction * _current_max_speed(), ACCELERATION * delta)				
+			else:
+				#Bewegung in der Luft
+				#TODO: current_max_speed mit parameter is_on_floor, damit kein P speed geht
+				velocity.x = move_toward(velocity.x, direction * _current_max_speed(), AIR_ACCELERATION * delta)
 		else:
-			#Bewegung in der Luft
-			#TODO: current_max_speed mit parameter is_on_floor, damit kein P speed geht
-			velocity.x = move_toward(velocity.x, direction * _current_max_speed(), AIR_ACCELERATION * delta)
-	else:
-		if is_on_floor():
-			#Keine Bewegung auf dem Boden
-			velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
-		else:
-			#Keine Bewegung in der Luft
-			velocity.x = move_toward(velocity.x, 0, AIR_DECELERATION * delta)
+			if is_on_floor():
+				#Keine Bewegung auf dem Boden
+				velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
+			else:
+				#Keine Bewegung in der Luft
+				velocity.x = move_toward(velocity.x, 0, AIR_DECELERATION * delta)
 
-	if p_speed_is_active and abs(velocity.x) <= MAX_RUN_SPEED:
-		p_speed_timer.stop()
-		p_speed_is_active = false
+		if p_speed_is_active and abs(velocity.x) <= MAX_RUN_SPEED:
+			p_speed_timer.stop()
+			p_speed_is_active = false
 
 
 func _current_max_speed():
@@ -231,47 +237,70 @@ func _animation_handler(sliding_on_wall):
 			if velocity.y >= 0:
 				animations.play("Wallslide_anim", 0.1)
 
-func _tool_preview():
+func _tool_preview(delta):
 	if Input.is_action_pressed("place_simple_tool"):
-		if is_on_floor() and false:
-			pass
+		if is_on_floor():
+			sprite_block_tool.visible = false
+			if !is_on_tool:
+				#Floor Tool Preview
+				sprite_floor_tool.visible = true
+				var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+				var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+				determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle(), delta)
 		else:
-			testsprite_small.visible = true
+			#Block Tool Preview
+			sprite_block_tool.visible = true
 			var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 			var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-			determine_sblock_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
-		
+			determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 	else:
-		if testsprite_small.visible:
-			testsprite_small.visible = false
-			get_parent().get_node("%Small_block").position = testsprite_small.global_position
+		if sprite_floor_tool.visible:
+			sprite_floor_tool.visible = false
+			jump_enabled = true
+			walking_enabled = true
+			if is_on_floor():
+				get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
+		elif sprite_block_tool.visible:
+			sprite_block_tool.visible = false
+			if !is_on_floor():
+				get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 
-func determine_sblock_position(inputstrength, controllerangle):
-	
+func determine_floortool_position(inputstrength, controllerangle, delta):
+	#Control stick Deadzone
+	if inputstrength > Vector2(0.3,0.3).abs().length():
+		jump_enabled = false
+		walking_enabled = false
+		velocity.x = move_toward(velocity.x, 0, 1000*delta)
+		velocity = velocity.move_toward(Vector2.ZERO, delta)
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+
+func determine_blocktool_position(inputstrength, controllerangle):
+	#Control stick Deadzone
 	if inputstrength > Vector2(0.3,0.3).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
-			testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
+			sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
 		elif player_cutout.scale.x > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
 			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(PI/4)
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(PI/4)
 			else:
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
 		else:
 			#Snap behaviour when facing left
-			print(str(controllerangle))
 			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.LEFT
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.LEFT
 			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(3*PI/4)
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(3*PI/4)
 			else:
-				testsprite_small.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
 
-			#print("here not")
 
-func _calc_preview_path_shape(angle) -> int :
-	var weight = sin(2 * angle)
-	return 47 + (60 - 47) * pow(weight, 2)
+
+func _on_floor_typecheck_body_entered(body: Node2D) -> void:
+	is_on_tool = true
+
+func _on_floor_typecheck_body_exited(body: Node2D) -> void:
+	is_on_tool = false
