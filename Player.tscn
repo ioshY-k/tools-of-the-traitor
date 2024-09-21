@@ -38,42 +38,42 @@ one_shot = true
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
 position = Vector2(15, -29)
 target_position = Vector2(0, -11)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_inner_left_ceiling" type="RayCast2D" parent="."]
 position = Vector2(-3, -29)
 target_position = Vector2(0, -18)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_inner_right_ceiling" type="RayCast2D" parent="."]
 position = Vector2(8, -29)
 target_position = Vector2(0, -18)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_outer_left_ceiling" type="RayCast2D" parent="."]
 position = Vector2(-10, -29)
 target_position = Vector2(0, -10)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
 position = Vector2(15, -8)
 target_position = Vector2(5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
 position = Vector2(15, -20)
 target_position = Vector2(5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
 position = Vector2(-10, -8)
 target_position = Vector2(-5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
 position = Vector2(-10, -20)
 target_position = Vector2(-5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -5.5)

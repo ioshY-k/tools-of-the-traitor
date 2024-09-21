@@ -345,11 +345,11 @@ position = Vector2(72.49, 98)
 collision_layer = 4
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_tool"]
+[node name="Tool_collision_shape" type="CollisionShape2D" parent="Floor_tool"]
 position = Vector2(-139.99, 0)
 shape = SubResource("RectangleShape2D_k41b6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor_tool/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Floor_tool/Tool_collision_shape"]
 position = Vector2(-1.48416e-05, 1.19209e-06)
 scale = Vector2(1.58594, 0.171875)
 texture = ExtResource("4_bnl5d")
@@ -360,7 +360,7 @@ position = Vector2(400, 60)
 collision_layer = 4
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block_tool"]
+[node name="Tool_collision_shape" type="CollisionShape2D" parent="Block_tool"]
 shape = SubResource("RectangleShape2D_2uth4")
 
 [node name="Sprite2D" type="Sprite2D" parent="Block_tool"]
