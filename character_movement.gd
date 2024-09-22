@@ -40,24 +40,88 @@ var is_on_tool = false
 var jump_enabled = true
 var walking_enabled = true
 enum tools {L_BLOCK, S_BLOCK, WALL, ROPE, SPRING, FIELD}
-
-
 const BASE_X_SCALE = 1.395
+var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
+var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+enum states {IDLE, WALK, JUMP, WALLSLIDE, PLACE_FLOOR_TOOL, PLACE_BLOCK_TOOL}
+var current_state = states.IDLE
+@onready var state_handler = State_handler.new()
+
+
+enum anim_states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
+var current_anim_state = anim_states.GROUNDED
+
+
+
+
 
 
 func _physics_process(delta: float) -> void:
-	var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
-	var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
+	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
+	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
+
+
+	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall)
+	match current_state:
+		states.IDLE:
+			pass
+		states.WALK:
+			pass
+		states.JUMP:
+			pass
+		states.WALLSLIDE:
+			pass
+		states.PLACE_FLOOR_TOOL:
+			pass
+		states.PLACE_BLOCK_TOOL:
+			pass
+
+	current_anim_state = _animation_state_handler(sliding_on_left_wall or sliding_on_right_wall)
+	match current_anim_state:
+		anim_states.GROUNDED:
+			if velocity == Vector2(0,0):
+				animations.play("Idle_anim", 0.3)
+			elif abs(velocity.x) < MAX_RUN_SPEED:
+				animations.play("Walking_anim", 0.5)
+			elif abs(velocity.x) < MAX_P_SPEED:
+				animations.play("Fastwalk_anim", 0.5)
+			else:
+				animations.play("Run_anim", 1)
+		anim_states.TAKEOFF:
+			animations.play("Jumpstart_anim", 0.1)
+		anim_states.AIRBORNE:
+			if velocity.y < 0:
+				if abs(velocity.x) >= MAX_P_SPEED:
+					animations.play("Pjump_anim", 0.2)
+				else:
+					animations.play("Jump_anim", 0.2)
+			if velocity.y > 0:
+				if abs(velocity.x) >= MAX_P_SPEED:
+					animations.play("Pjump_anim", 0.1)
+				else:
+					animations.play("Fall_anim", 0.2)
+		anim_states.LANDING:
+			animations.play("Landing_anim", 0)
+		anim_states.WALLSLIDE:
+			if velocity.y >= 0:
+				animations.play("Wallslide_anim", 0.1)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	_jump_action(sliding_on_left_wall, sliding_on_right_wall) #Player jumping or walljumping
 	_gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall) #Player gravity
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
-	_animation_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
+	_animation_state_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
 	_tool_preview(delta)
 	
 	#print(animations.current_animation)
@@ -68,6 +132,25 @@ func _physics_process(delta: float) -> void:
 	
 	if was_on_floor and not is_on_floor() and velocity.y >= 0:
 		coyote_timer.start()
+
+
+func _animation_state_handler(sliding_on_wall) -> anim_states:
+	if is_on_floor():
+		if current_anim_state == anim_states.AIRBORNE:
+			return anim_states.LANDING
+		else:
+			return anim_states.GROUNDED
+	elif sliding_on_wall:
+		return anim_states.WALLSLIDE
+	else:
+		if current_anim_state == anim_states.GROUNDED:
+			return anim_states.TAKEOFF
+		else:
+			if animations.current_animation != "Jumpstart_anim":
+				return anim_states.AIRBORNE
+			else:
+				return anim_states.TAKEOFF
+
 
 
 func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
@@ -182,56 +265,12 @@ func _ledge_corrections():
 			global_position += Vector2(-7,0)
  
 
-enum states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
-var current_state = states.GROUNDED
-func _animation_handler(sliding_on_wall):
-	
-	if is_on_floor():
-		if current_state == states.AIRBORNE:
-			current_state = states.LANDING
-		else:
-			current_state = states.GROUNDED
-	elif sliding_on_wall:
-		current_state = states.WALLSLIDE
-	else:
-		if current_state == states.GROUNDED:
-			current_state = states.TAKEOFF
-		else:
-			if animations.current_animation != "Jumpstart_anim":
-				current_state = states.AIRBORNE
-			else:
-				current_state = states.TAKEOFF
+
+
 		
 			
 	
-	match current_state:
-		states.GROUNDED:
-			if velocity == Vector2(0,0):
-				animations.play("Idle_anim", 0.3)
-			elif abs(velocity.x) < MAX_RUN_SPEED:
-				animations.play("Walking_anim", 0.5)
-			elif abs(velocity.x) < MAX_P_SPEED:
-				animations.play("Fastwalk_anim", 0.5)
-			else:
-				animations.play("Run_anim", 1)
-		states.TAKEOFF:
-			animations.play("Jumpstart_anim", 0.1)
-		states.AIRBORNE:
-			if velocity.y < 0:
-				if abs(velocity.x) >= MAX_P_SPEED:
-					animations.play("Pjump_anim", 0.2)
-				else:
-					animations.play("Jump_anim", 0.2)
-			if velocity.y > 0:
-				if abs(velocity.x) >= MAX_P_SPEED:
-					animations.play("Pjump_anim", 0.1)
-				else:
-					animations.play("Fall_anim", 0.2)
-		states.LANDING:
-			animations.play("Landing_anim", 0)
-		states.WALLSLIDE:
-			if velocity.y >= 0:
-				animations.play("Wallslide_anim", 0.1)
+
 
 
 func _tool_preview(delta):
