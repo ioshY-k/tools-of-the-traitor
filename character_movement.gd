@@ -54,7 +54,7 @@ var current_anim_state = anim_states.GROUNDED
 
 
 func _process(delta: float) -> void:
-	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall)
+	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall, coyote_timer, jump_buffer_timer)
 
 
 
@@ -197,13 +197,23 @@ func on_run_state(delta):
 			#print("RUN")
 			velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
 
-	velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
-
 func on_jump_state():
-	pass
+	velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
 
-func on_fall_state():
-	pass
+func on_fall_state(delta):
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer.start()
+	if velocity.y <= 0:
+		if Input.is_action_pressed("jump"):
+			#Rising while holding jump
+			velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
+		else:
+			#Rising while not holding jump
+			velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
+	else:
+		#Descending while midair
+		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
+	
 
 func on_land_state():
 	pass

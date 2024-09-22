@@ -7,10 +7,10 @@ var current_state
 func _init():
 	current_state = states.IDLE
 	
-func next_state(is_on_floor, p_speed_is_active, is_on_left_wall, is_on_right_wall) -> states:
+func next_state(is_on_floor, p_speed_is_active, is_on_left_wall, is_on_right_wall, coyote_timer:Timer, jump_buffer_timer:Timer) -> states:
 	match current_state:
 		states.IDLE:
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if Input.is_action_pressed("run") and ( \
 			(Input.is_action_just_pressed("walk_left") and not is_on_left_wall) or\
@@ -22,16 +22,18 @@ func next_state(is_on_floor, p_speed_is_active, is_on_left_wall, is_on_right_wal
 			if Input.is_action_just_pressed("place_simple_tool"):
 				return states.PLACE_FLOOR_TOOL
 			if not is_on_floor:
+				coyote_timer.start()
 				return states.FALL
 			return states.IDLE
 		states.WALK:
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if Input.is_action_just_pressed("run"):
 				return states.RUN
 			if Input.is_action_just_pressed("place_simple_tool"):
 				return states.PLACE_FLOOR_TOOL
 			if not is_on_floor:
+				coyote_timer.start()
 				return states.FALL
 			if (not (Input.is_action_pressed("walk_left") and not Input.is_action_just_pressed("walk_right"))) or\
 			((Input.is_action_pressed("walk_right") and is_on_right_wall) or (Input.is_action_pressed("walk_left") and is_on_left_wall)):
@@ -41,13 +43,14 @@ func next_state(is_on_floor, p_speed_is_active, is_on_left_wall, is_on_right_wal
 			if (not (Input.is_action_pressed("walk_left") and not Input.is_action_just_pressed("walk_right"))) or\
 			((Input.is_action_pressed("walk_right") and is_on_right_wall) or (Input.is_action_pressed("walk_left") and is_on_left_wall)):
 				return states.IDLE
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if not Input.is_action_pressed("run"):
 				return states.WALK
 			if Input.is_action_just_pressed("place_simple_tool"):
 				return states.PLACE_FLOOR_TOOL
 			if not is_on_floor:
+				coyote_timer.start()
 				return states.FALL
 			return states.RUN
 		states.JUMP:
@@ -57,6 +60,8 @@ func next_state(is_on_floor, p_speed_is_active, is_on_left_wall, is_on_right_wal
 				return states.FALL
 			return states.JUMP
 		states.FALL:
+			if Input.is_action_pressed("jump") and coyote_timer.time_left > 0:
+				return states.JUMP
 			if is_on_floor:
 				if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 					if Input.is_action_pressed("run"):
