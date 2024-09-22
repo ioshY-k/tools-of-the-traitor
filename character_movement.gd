@@ -44,8 +44,8 @@ const BASE_X_SCALE = 1.395
 var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
 var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 
-enum states {IDLE, WALK, JUMP, WALLSLIDE, PLACE_FLOOR_TOOL, PLACE_BLOCK_TOOL}
-var current_state = states.IDLE
+enum states {IDLE, WALK, RUN, JUMP, FALL, LAND, WALLSLIDE_L, WALLSLIDE_R, WALLJUMP_L, WALLJUMP_R, PLACE_FLOOR_TOOL, PLACE_BLOCK_TOOL}
+var current_state
 @onready var state_handler = State_handler.new()
 
 
@@ -53,7 +53,8 @@ enum anim_states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
 var current_anim_state = anim_states.GROUNDED
 
 
-
+func _process(delta: float) -> void:
+	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall)
 
 
 
@@ -62,20 +63,31 @@ func _physics_process(delta: float) -> void:
 	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 
 
-	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall)
 	match current_state:
 		states.IDLE:
-			pass
+			on_idle_state(delta)
 		states.WALK:
-			pass
+			on_walk_state(delta)
+		states.RUN:
+			on_run_state(delta)
 		states.JUMP:
-			pass
-		states.WALLSLIDE:
-			pass
+			on_jump_state()
+		states.FALL:
+			on_fall_state(delta)
+		states.LAND:
+			on_land_state()
+		states.WALLSLIDE_L:
+			on_wallslide_l_state()
+		states.WALLSLIDE_R:
+			on_wallslide_r_state()
+		states.WALLJUMP_L:
+			on_walljump_l_state()
+		states.WALLJUMP_R:
+			on_walljump_r_state()
 		states.PLACE_FLOOR_TOOL:
-			pass
+			on_place_floortool_state()
 		states.PLACE_BLOCK_TOOL:
-			pass
+			on_place_blocktool_state()
 
 	current_anim_state = _animation_state_handler(sliding_on_left_wall or sliding_on_right_wall)
 	match current_anim_state:
@@ -106,14 +118,6 @@ func _physics_process(delta: float) -> void:
 		anim_states.WALLSLIDE:
 			if velocity.y >= 0:
 				animations.play("Wallslide_anim", 0.1)
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	
@@ -151,6 +155,76 @@ func _animation_state_handler(sliding_on_wall) -> anim_states:
 			else:
 				return anim_states.TAKEOFF
 
+func on_idle_state(delta):
+	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
+	p_speed_timer.stop()
+	p_speed_is_active = false
+
+func on_walk_state(delta):
+	var direction = sign(Input.get_axis("walk_left", "walk_right"))
+	if direction < 0:
+		player_cutout.scale.x = -abs(player_cutout.scale.x)
+		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+	elif direction > 0:
+		player_cutout.scale.x = abs(player_cutout.scale.x)
+		player_cutout.position.x = 0
+	velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, ACCELERATION * delta)
+	p_speed_timer.stop()
+	p_speed_is_active = false
+
+func on_run_state(delta):
+	var direction = sign(Input.get_axis("walk_left", "walk_right"))
+	if direction < 0:
+		player_cutout.scale.x = -abs(player_cutout.scale.x)
+		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+	elif direction > 0:
+		player_cutout.scale.x = abs(player_cutout.scale.x)
+		player_cutout.position.x = 0
+		
+	if p_speed_is_active:
+		#print("P-SPEED")
+		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
+	if p_speed_timer.is_stopped():
+		#print("time start")
+		p_speed_timer.start()
+		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
+	else:
+		if p_speed_timer.time_left <= 0.1:
+			#print("timeout")
+			p_speed_is_active = true
+			velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
+		else:
+			#print("RUN")
+			velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
+
+	velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
+
+func on_jump_state():
+	pass
+
+func on_fall_state():
+	pass
+
+func on_land_state():
+	pass
+
+func on_wallslide_l_state():
+	pass
+
+func on_wallslide_r_state():
+	pass
+
+func on_walljump_l_state():
+	pass
+
+func on_walljump_r_state():
+	pass
+
+func on_place_floortool_state():
+	pass
+
+func on_place_blocktool_state():
+	pass
 
 
 func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
