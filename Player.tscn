@@ -1,13 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=7 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://character_movement.gd" id="1_ac4tx"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Player_cutout.tscn" id="2_10mar"]
+[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="3_unbga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8e7j"]
 size = Vector2(25, 47)
 
+[sub_resource type="Curve2D" id="Curve2D_aeka8"]
+_data = {
+"points": PackedVector2Array(0.890899, 83.4475, -0.890899, -83.4475, -208, 0, -148.422, 0.264567, 148.422, -0.264567, 0, -86, 0, -81.1929, 0, 81.1929, 208, 0, 125.405, -0.264567, -125.405, 0.264567, 0, 82, 0.176577, 81.2255, -0.176577, -81.2255, -208, 0)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
+size = Vector2(25, 1)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_ac4tx")
 
 [node name="Player_cutout" parent="." instance=ExtResource("2_10mar")]
@@ -28,43 +38,77 @@ one_shot = true
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
 position = Vector2(15, -29)
 target_position = Vector2(0, -11)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_inner_left_ceiling" type="RayCast2D" parent="."]
 position = Vector2(-3, -29)
 target_position = Vector2(0, -18)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_inner_right_ceiling" type="RayCast2D" parent="."]
 position = Vector2(8, -29)
 target_position = Vector2(0, -18)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_outer_left_ceiling" type="RayCast2D" parent="."]
 position = Vector2(-10, -29)
 target_position = Vector2(0, -10)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
-position = Vector2(15, 16)
+position = Vector2(15, -8)
 target_position = Vector2(5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
-position = Vector2(15, -4)
+position = Vector2(15, -20)
 target_position = Vector2(5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
-position = Vector2(-10, 16)
+position = Vector2(-10, -8)
 target_position = Vector2(-5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
-position = Vector2(-10, -4)
+position = Vector2(-10, -20)
 target_position = Vector2(-5, 0)
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -5.5)
 shape = SubResource("RectangleShape2D_o8e7j")
+
+[node name="Sprite_block_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(0, 28)
+scale = Vector2(0.276, 0.276)
+texture = ExtResource("3_unbga")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_aeka8")
+
+[node name="Follow_floor_tool" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-208, 0)
+rotation = -0.5916
+rotates = false
+
+[node name="Sprite_floor_tool" type="Sprite2D" parent="Path2D/Follow_floor_tool"]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+rotation = 0.5916
+scale = Vector2(1.58594, 0.171875)
+texture = ExtResource("3_unbga")
+
+[node name="Floor_typecheck" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_typecheck"]
+position = Vector2(2.5, 18.5)
+shape = SubResource("RectangleShape2D_rih21")
+
+[connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
+[connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]

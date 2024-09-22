@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 const ACCELERATION = 2300 #How fast Player reaches run speed
-const DECELERATION = 1300 #How long until Player stops after moving
+const DECELERATION = 3000 #How long until Player stops after moving
 const AIR_ACCELERATION = 1700
-const AIR_DECELERATION = 700
+const AIR_DECELERATION = 0
 const GRAVITY_RISING = 1500 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 6500 #How much stronger  gravity pulls in falling state vs. rising state
 const MAX_FALLSPEED = 900 #The point where gravity doesn't accelerate fallspeed enymore
@@ -17,9 +17,8 @@ const WALL_JUMP_HEIGHT = 800
 const WALL_JUMP_WIDTH = 1000
 @onready var coyote_timer: Timer = $Coyote_timer #time after leaving ledge where jumpping is still allowed
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
+var p_speed_is_active = false
 @onready var jump_buffer_timer: Timer = $Jump_buffer_timer #time the jumpp button press gets buffered before landing on the ground
-@onready var p_speed_is_active = false
-@onready var direction
 @onready var player_cutout: Node2D = $Player_cutout
 @onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -31,10 +30,19 @@ const WALL_JUMP_WIDTH = 1000
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
+const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
+const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
+@onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
+@onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
+@onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
+@onready var floor_typecheck: Area2D = $Floor_typecheck
+var is_on_tool = false
+var jump_enabled = true
+var walking_enabled = true
+enum tools {L_BLOCK, S_BLOCK, WALL, ROPE, SPRING, FIELD}
+
+
 const BASE_X_SCALE = 1.395
-
-var jump_plays: String
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,7 +50,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	jump_plays = animations.current_animation
 	var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
 	var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 	
@@ -51,8 +58,9 @@ func _physics_process(delta: float) -> void:
 	_speed_manager(delta) #Player running
 	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
 	_animation_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
+	_tool_preview(delta)
 	
-	print(animations.current_animation)
+	#print(animations.current_animation)
 	
 	var was_on_floor = is_on_floor() #Save position before movement for coyote timer
 	
@@ -60,10 +68,10 @@ func _physics_process(delta: float) -> void:
 	
 	if was_on_floor and not is_on_floor() and velocity.y >= 0:
 		coyote_timer.start()
-	
+
 
 func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and jump_enabled:
 		if is_on_floor() or coyote_timer.time_left > 0:
 			#Jump input on floor
 			velocity.y = _current_jumpforce()
@@ -104,34 +112,36 @@ func _gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall):
 			else:
 				#Descending while midair
 				velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
-		
 
 
 func _speed_manager(delta):
-	if velocity.x < 0:
-		player_cutout.scale.x = BASE_X_SCALE * -1
-	elif velocity.x > 0:
-		player_cutout.scale.x = BASE_X_SCALE * 1
-	direction = Input.get_axis("walk_left", "walk_right")
-	if direction:
-		if is_on_floor():
-			#Bewegung auf dem Boden
-			velocity.x = move_toward(velocity.x, direction * _current_max_speed(), ACCELERATION * delta)				
+	if walking_enabled:
+		var direction = sign(Input.get_axis("walk_left", "walk_right"))
+		if direction < 0:
+			player_cutout.scale.x = -abs(player_cutout.scale.x)
+			player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+		elif direction > 0:
+			player_cutout.scale.x = abs(player_cutout.scale.x)
+			player_cutout.position.x = 0
+		if direction:
+			if is_on_floor():
+				#Bewegung auf dem Boden
+				velocity.x = move_toward(velocity.x, direction * _current_max_speed(), ACCELERATION * delta)				
+			else:
+				#Bewegung in der Luft
+				#TODO: current_max_speed mit parameter is_on_floor, damit kein P speed geht
+				velocity.x = move_toward(velocity.x, direction * _current_max_speed(), AIR_ACCELERATION * delta)
 		else:
-			#Bewegung in der Luft
-			#TODO: current_max_speed mit parameter is_on_floor, damit kein P speed geht
-			velocity.x = move_toward(velocity.x, direction * _current_max_speed(), AIR_ACCELERATION * delta)
-	else:
-		if is_on_floor():
-			#Keine Bewegung auf dem Boden
-			velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
-		else:
-			#Keine Bewegung in der Luft
-			velocity.x = move_toward(velocity.x, 0, AIR_DECELERATION * delta)
+			if is_on_floor():
+				#Keine Bewegung auf dem Boden
+				velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
+			else:
+				#Keine Bewegung in der Luft
+				velocity.x = move_toward(velocity.x, 0, AIR_DECELERATION * delta)
 
-	if p_speed_is_active and abs(velocity.x) <= MAX_RUN_SPEED:
-		p_speed_timer.stop()
-		p_speed_is_active = false
+		if p_speed_is_active and abs(velocity.x) <= MAX_RUN_SPEED:
+			p_speed_timer.stop()
+			p_speed_is_active = false
 
 
 func _current_max_speed():
@@ -156,8 +166,8 @@ func _current_max_speed():
 		p_speed_timer.stop()
 		p_speed_is_active = false
 		return MAX_WALK_SPEED
-		
-		
+
+
 func _ledge_corrections():
 	if not is_on_floor():
 		if caster_inner_left_ceiling.is_colliding() or caster_inner_right_ceiling.is_colliding():
@@ -171,6 +181,7 @@ func _ledge_corrections():
 		if caster_outer_right_ceiling.is_colliding():
 			global_position += Vector2(-7,0)
  
+
 enum states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
 var current_state = states.GROUNDED
 func _animation_handler(sliding_on_wall):
@@ -221,3 +232,74 @@ func _animation_handler(sliding_on_wall):
 		states.WALLSLIDE:
 			if velocity.y >= 0:
 				animations.play("Wallslide_anim", 0.1)
+
+
+func _tool_preview(delta):
+	if Input.is_action_pressed("place_simple_tool"):
+		if is_on_floor():
+			sprite_block_tool.visible = false
+			if !is_on_tool:
+				#Floor Tool Preview
+				sprite_floor_tool.visible = true
+				var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+				var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+				determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle(), delta)
+		else:
+			#Block Tool Preview
+			sprite_block_tool.visible = true
+			var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+			var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+			determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+	else:
+		if sprite_floor_tool.visible:
+			sprite_floor_tool.visible = false
+			jump_enabled = true
+			walking_enabled = true
+			if is_on_floor():
+				get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
+		elif sprite_block_tool.visible:
+			sprite_block_tool.visible = false
+			if !is_on_floor():
+				get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
+
+
+func determine_floortool_position(inputstrength, controllerangle, delta):
+	jump_enabled = false
+	walking_enabled = false
+	velocity.x = move_toward(velocity.x, 0, 1000*delta)
+	#Control stick Deadzone
+	if inputstrength > Vector2(0.3,0.3).abs().length():
+		print("here")
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+
+
+func determine_blocktool_position(inputstrength, controllerangle):
+	#Control stick Deadzone
+	if inputstrength > Vector2(0.3,0.3).abs().length():
+		#Snap behaviour when placing below PLayer
+		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
+			sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
+		elif player_cutout.scale.x > 0:
+			#Snap behaviour when facing right
+			if controllerangle > (-PI/8) and controllerangle < (PI/8):
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
+			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(3*PI/8)
+			else:
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+		else:
+			#Snap behaviour when facing left
+			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.LEFT
+			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(5*PI/8)
+			else:
+				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+				
+
+func _on_floor_typecheck_body_entered(body: Node2D) -> void:
+	is_on_tool = true
+
+
+func _on_floor_typecheck_body_exited(body: Node2D) -> void:
+	is_on_tool = false
