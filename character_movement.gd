@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+#Movement variables
 const ACCELERATION = 2300 #How fast Player reaches run speed
 const DECELERATION = 3000 #How long until Player stops after moving
 const AIR_ACCELERATION = 1700
@@ -16,9 +17,11 @@ const GRAVITY_WALL_SLIDING = 300
 const WALL_JUMP_HEIGHT = 800
 const WALL_JUMP_WIDTH = 1000
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
-var p_speed_is_active:bool
-@onready var player_cutout: Node2D = $Player_cutout
-@onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
+var p_speed_is_active: bool
+var sliding_on_left_wall: bool
+var sliding_on_right_wall: bool
+
+#Detection of surroundings
 @onready var caster_outer_right_ceiling: RayCast2D = $Caster_outer_right_ceiling
 @onready var caster_inner_right_ceiling: RayCast2D = $Caster_inner_right_ceiling
 @onready var caster_outer_left_ceiling: RayCast2D = $Caster_outer_left_ceiling
@@ -27,26 +30,35 @@ var p_speed_is_active:bool
 @onready var caster_left_wall: RayCast2D = $Caster_left_wall
 @onready var caster_right_wall_2: RayCast2D = $Caster_right_wall2
 @onready var caster_left_wall_2: RayCast2D = $Caster_left_wall2
+@onready var floor_typecheck: Area2D = $Floor_typecheck
+
+#Player model and animation
+@onready var player_cutout: Node2D = $Model_position/Player_cutout
+@onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
+@onready var model_position: Node2D = $Model_position
+
+#Correction values for 
+const BASE_X_SCALE = 1.395
+
+#Tool placing
 const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
-const SPRITE_FLIP_X_OFFSET = 5 #Player facing left and right is realized by scaling.x * -1 which doesnt mirror on the center of Player. Changing position by this offset corrects this error
 @onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
-@onready var floor_typecheck: Area2D = $Floor_typecheck
+
 var is_on_tool:bool
-const BASE_X_SCALE = 1.395
-var sliding_on_left_wall:bool
-var sliding_on_right_wall:bool
 
 
-enum states {	IDLE, WALK, RUN, JUMP, FALL,
+#State handler
+@onready var state_handler = $State_handler
+enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
 				WALLJUMP_L, WALLJUMP_R,
 				FLOOR_TOOL_PREVIEW, BLOCK_TOOL_PREVIEW,
 				FLOOR_TOOL_PLACE, BLOCK_TOOL_PLACE,
 				FLOOR_TOOL_CANCEL, BLOCK_TOOL_CANCEL}
-var current_state = -1
-@onready var state_handler = $State_handler
+var current_state
+
 
 
 enum anim_states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
@@ -69,10 +81,14 @@ func _physics_process(delta: float) -> void:
 			on_walk_state(delta)
 		states.RUN:
 			on_run_state(delta)
+		states.PUSH:
+			on_push_state()
 		states.JUMP:
 			on_jump_state()
 		states.FALL:
 			on_fall_state(delta)
+		states.LAND:
+			on_land_state()
 		states.WALLSLIDE_L:
 			on_wallslide_l_state(delta)
 		states.WALLSLIDE_R:
@@ -93,119 +109,77 @@ func _physics_process(delta: float) -> void:
 			on_floortool_place_state(delta)
 		states.BLOCK_TOOL_PLACE:
 			on_blocktool_place_state(delta)
-
-	current_anim_state = _animation_state_handler(sliding_on_left_wall or sliding_on_right_wall)
-	match current_anim_state:
-		anim_states.GROUNDED:
-			if velocity == Vector2(0,0):
-				animations.play("Idle_anim", 0.3)
-			elif abs(velocity.x) < MAX_RUN_SPEED:
-				animations.play("Walking_anim", 0.5)
-			elif abs(velocity.x) < MAX_P_SPEED:
-				animations.play("Fastwalk_anim", 0.5)
-			else:
-				animations.play("Run_anim", 1)
-		anim_states.TAKEOFF:
-			animations.play("Jumpstart_anim", 0.1)
-		anim_states.AIRBORNE:
-			if velocity.y < 0:
-				if abs(velocity.x) >= MAX_P_SPEED:
-					animations.play("Pjump_anim", 0.2)
-				else:
-					animations.play("Jump_anim", 0.2)
-			if velocity.y > 0:
-				if abs(velocity.x) >= MAX_P_SPEED:
-					animations.play("Pjump_anim", 0.1)
-				else:
-					animations.play("Fall_anim", 0.2)
-		anim_states.LANDING:
-			animations.play("Landing_anim", 0)
-		anim_states.WALLSLIDE:
-			if velocity.y >= 0:
-				animations.play("Wallslide_anim", 0.1)
-	
-
-	
-	
 	
 	move_and_slide() #Player movement
-	
+	print(str(animations.current_animation))
 
-
-func _animation_state_handler(sliding_on_wall) -> anim_states:
-	if is_on_floor():
-		if current_anim_state == anim_states.AIRBORNE:
-			return anim_states.LANDING
-		else:
-			return anim_states.GROUNDED
-	elif sliding_on_wall:
-		return anim_states.WALLSLIDE
-	else:
-		if current_anim_state == anim_states.GROUNDED:
-			return anim_states.TAKEOFF
-		else:
-			if animations.current_animation != "Jumpstart_anim":
-				return anim_states.AIRBORNE
-			else:
-				return anim_states.TAKEOFF
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
 	p_speed_timer.stop()
 	p_speed_is_active = false
+	animations.play("Idle_anim" ,0.2)
 
 func on_walk_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	if direction < 0:
-		player_cutout.scale.x = -abs(player_cutout.scale.x)
-		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+		model_position.scale.x = -abs(model_position.scale.x)
 	elif direction > 0:
-		player_cutout.scale.x = abs(player_cutout.scale.x)
-		player_cutout.position.x = 0
+		model_position.scale.x = abs(model_position.scale.x)
 	velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, ACCELERATION * delta)
 	p_speed_timer.stop()
 	p_speed_is_active = false
+	animations.play("Walk_anim" ,0.2)
 
 func on_run_state(delta):
-	
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	if direction < 0:
-		player_cutout.scale.x = -abs(player_cutout.scale.x)
-		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+		model_position.scale.x = -abs(model_position.scale.x)
 	elif direction > 0:
-		player_cutout.scale.x = abs(player_cutout.scale.x)
-		player_cutout.position.x = 0
+		model_position.scale.x = abs(model_position.scale.x)
 		
 	if p_speed_is_active:
 		#print("P-SPEED")
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
+		animations.play("P_speed_anim" ,0.2)
 	elif p_speed_timer.is_stopped():
 		#print("time start")
 		p_speed_timer.start()
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
+		animations.play("Run_anim" ,0.2)
 	else:
 		#print("RUN")
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
+		animations.play("Run_anim" ,0.2)
+
+func on_push_state():
+	print("here")
+	var direction = sign(Input.get_axis("walk_left", "walk_right"))
+	velocity.x = direction
+	animations.play("Push_anim", 0.2)
 
 func on_jump_state():
 	velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
+	if p_speed_is_active:
+		animations.play("Pjump_anim", 0.2)
+	else:
+		animations.play("Jump_anim", 0.1)
 
 func on_fall_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	if direction < 0:
-		player_cutout.scale.x = -abs(player_cutout.scale.x)
-		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+		model_position.scale.x = -abs(model_position.scale.x)
 	elif direction > 0:
-		player_cutout.scale.x = abs(player_cutout.scale.x)
-		player_cutout.position.x = 0
+		model_position.scale.x = abs(model_position.scale.x)
 	
 	if not Input.is_action_pressed("run"):
 		p_speed_is_active = false
-	
 	if p_speed_is_active:
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, AIR_ACCELERATION * delta)
 	else:
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, AIR_ACCELERATION * delta)
+		if velocity.y > 0:
+			animations.play("Fall_anim", 0.2)
 	if velocity.y <= 0 and Input.is_action_pressed("jump"):
 		#Rising while holding jump
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
@@ -213,6 +187,9 @@ func on_fall_state(delta):
 	else:
 		#higher gravity on jumrelease and while descending
 		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
+
+func on_land_state():
+	animations.play("Land_anim", 0)
 
 #TODO: identische Funktionen wallslide r und l?
 func on_wallslide_l_state(delta):
@@ -223,6 +200,9 @@ func on_wallslide_l_state(delta):
 	else:
 		#higher gravity on jumrelease and while descending
 		velocity.y = GRAVITY_WALL_SLIDING
+		p_speed_timer.stop()
+		p_speed_is_active = false
+		animations.play("Wallslide_anim",0.2)
 	velocity.x = sign(Input.get_axis("walk_left", "walk_right"))
 
 func on_wallslide_r_state(delta):
@@ -233,15 +213,20 @@ func on_wallslide_r_state(delta):
 	else:
 		#higher gravity on jumrelease and while descending
 		velocity.y = GRAVITY_WALL_SLIDING
+		p_speed_timer.stop()
+		p_speed_is_active = false
+		animations.play("Wallslide_anim",0.2)
 	velocity.x = sign(Input.get_axis("walk_left", "walk_right"))
 
 func on_walljump_l_state():
 	p_speed_is_active = true
 	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
+	animations.play("Pjump_anim")
 
 func on_walljump_r_state():
 	p_speed_is_active = true
 	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
+	animations.play("Pjump_anim")
 
 func on_floortool_preview_state(delta):
 	on_idle_state(delta)
@@ -324,7 +309,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
 			sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
-		elif player_cutout.scale.x > 0:
+		elif Input.get_axis("walk_left", "walk_right") > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
 				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
