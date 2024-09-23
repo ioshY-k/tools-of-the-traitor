@@ -24,19 +24,19 @@ script = ExtResource("1_ac4tx")
 [node name="State_handler" type="Node" parent="."]
 script = ExtResource("2_asryv")
 
+[node name="Coyote" type="Timer" parent="State_handler"]
+wait_time = 0.218
+one_shot = true
+
+[node name="Jump_buffer" type="Timer" parent="State_handler"]
+wait_time = 0.105
+one_shot = true
+
 [node name="Player_cutout" parent="." instance=ExtResource("2_10mar")]
 scale = Vector2(1.395, 1.395)
 
-[node name="Coyote_timer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
 [node name="P_speed_timer" type="Timer" parent="."]
 wait_time = 1.6
-one_shot = true
-
-[node name="Jump_buffer_timer" type="Timer" parent="."]
-wait_time = 0.2
 one_shot = true
 
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
@@ -114,5 +114,6 @@ collision_mask = 4
 position = Vector2(2.5, 18.5)
 shape = SubResource("RectangleShape2D_rih21")
 
+[connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
 [connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]
