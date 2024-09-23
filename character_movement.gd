@@ -44,8 +44,14 @@ const BASE_X_SCALE = 1.395
 var sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
 var sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 
-enum states {IDLE, WALK, RUN, JUMP, FALL, LAND, WALLSLIDE_L, WALLSLIDE_R, WALLJUMP_L, WALLJUMP_R, PLACE_FLOOR_TOOL, PLACE_BLOCK_TOOL}
-var current_state
+
+enum states {	IDLE, WALK, RUN, JUMP, FALL,
+				WALLSLIDE_L, WALLSLIDE_R,
+				WALLJUMP_L, WALLJUMP_R,
+				FLOOR_TOOL_PREVIEW, BLOCK_TOOL_PREVIEW,
+				FLOOR_TOOL_PLACE, BLOCK_TOOL_PLACE,
+				FLOOR_TOOL_CANCEL, BLOCK_TOOL_CANCEL}
+var current_state = -1
 @onready var state_handler = State_handler.new()
 
 
@@ -55,7 +61,7 @@ var current_anim_state = anim_states.GROUNDED
 
 func _process(delta: float) -> void:
 	current_state = state_handler.next_state(is_on_floor(), p_speed_is_active, sliding_on_left_wall, sliding_on_right_wall, coyote_timer, jump_buffer_timer)
-
+	state_handler.set("current_state", current_state)
 
 
 func _physics_process(delta: float) -> void:
@@ -74,8 +80,6 @@ func _physics_process(delta: float) -> void:
 			on_jump_state()
 		states.FALL:
 			on_fall_state(delta)
-		states.LAND:
-			on_land_state()
 		states.WALLSLIDE_L:
 			on_wallslide_l_state()
 		states.WALLSLIDE_R:
@@ -84,10 +88,18 @@ func _physics_process(delta: float) -> void:
 			on_walljump_l_state()
 		states.WALLJUMP_R:
 			on_walljump_r_state()
-		states.PLACE_FLOOR_TOOL:
-			on_place_floortool_state()
-		states.PLACE_BLOCK_TOOL:
-			on_place_blocktool_state()
+		states.FLOOR_TOOL_PREVIEW:
+			on_floortool_preview_state(delta)
+		states.BLOCK_TOOL_PREVIEW:
+			on_blocktool_preview_state(delta)
+		states.FLOOR_TOOL_CANCEL:
+			on_floortool_cancel_state()
+		states.BLOCK_TOOL_CANCEL:
+			on_blocktool_cancel_state()
+		states.FLOOR_TOOL_PLACE:
+			on_floortool_place_state(delta)
+		states.BLOCK_TOOL_PLACE:
+			on_blocktool_place_state(delta)
 
 	current_anim_state = _animation_state_handler(sliding_on_left_wall or sliding_on_right_wall)
 	match current_anim_state:
@@ -121,21 +133,11 @@ func _physics_process(delta: float) -> void:
 	
 
 	
-	_jump_action(sliding_on_left_wall, sliding_on_right_wall) #Player jumping or walljumping
-	_gravity_manager(delta, sliding_on_left_wall, sliding_on_right_wall) #Player gravity
-	_speed_manager(delta) #Player running
-	_ledge_corrections() #Pushing player to outer Edge of ceiling /wall/floor
-	_animation_state_handler(sliding_on_left_wall or sliding_on_right_wall) #Player animations
-	_tool_preview(delta)
+	print(states.keys()[current_state])
 	
-	#print(animations.current_animation)
-	
-	var was_on_floor = is_on_floor() #Save position before movement for coyote timer
 	
 	move_and_slide() #Player movement
 	
-	if was_on_floor and not is_on_floor() and velocity.y >= 0:
-		coyote_timer.start()
 
 
 func _animation_state_handler(sliding_on_wall) -> anim_states:
@@ -201,40 +203,81 @@ func on_jump_state():
 	velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
 
 func on_fall_state(delta):
-	if Input.is_action_just_pressed("jump"):
-		jump_buffer_timer.start()
-	if velocity.y <= 0:
-		if Input.is_action_pressed("jump"):
-			#Rising while holding jump
-			velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
-		else:
-			#Rising while not holding jump
-			velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
-	else:
-		#Descending while midair
-		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
+	var direction = sign(Input.get_axis("walk_left", "walk_right"))
+	if direction < 0:
+		player_cutout.scale.x = -abs(player_cutout.scale.x)
+		player_cutout.position.x = SPRITE_FLIP_X_OFFSET
+	elif direction > 0:
+		player_cutout.scale.x = abs(player_cutout.scale.x)
+		player_cutout.position.x = 0
 	
-
-func on_land_state():
-	pass
+	if not Input.is_action_pressed("run"):
+		p_speed_is_active = false
+	
+	if p_speed_is_active:
+		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, AIR_ACCELERATION * delta)
+	else:
+		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, AIR_ACCELERATION * delta)
+	if velocity.y <= 0 and Input.is_action_pressed("jump"):
+		#Rising while holding jump
+		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
+		_ledge_corrections()
+	else:
+		#higher gravity on jumrelease and while descending
+		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
 
 func on_wallslide_l_state():
-	pass
+	velocity.y = GRAVITY_WALL_SLIDING
 
 func on_wallslide_r_state():
-	pass
+	velocity.y = GRAVITY_WALL_SLIDING
 
 func on_walljump_l_state():
-	pass
+	p_speed_is_active = true
+	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 
 func on_walljump_r_state():
+	p_speed_is_active = true
+	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
+
+func on_floortool_preview_state(delta):
+	on_idle_state(delta)
+	
+	if not is_on_tool:
+		#Floor Tool Preview
+		sprite_floor_tool.visible = true
+		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		follow_floor_tool.progress_ratio = \
+		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+
+func on_blocktool_preview_state(delta):
+	on_fall_state(delta)
+	
+	sprite_block_tool.visible = true
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+
+func on_floortool_cancel_state():
 	pass
 
-func on_place_floortool_state():
+func on_blocktool_cancel_state():
 	pass
 
-func on_place_blocktool_state():
-	pass
+func on_floortool_place_state(delta):
+	on_idle_state(delta)
+	
+	if sprite_floor_tool.visible:
+		sprite_floor_tool.visible = false
+		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
+
+func on_blocktool_place_state(delta):
+	on_fall_state(delta)
+	
+	if sprite_block_tool.visible:
+		sprite_block_tool.visible = false
+		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 
 
 func _jump_action(sliding_on_left_wall, sliding_on_right_wall):
@@ -336,17 +379,16 @@ func _current_max_speed():
 
 
 func _ledge_corrections():
-	if not is_on_floor():
-		if caster_inner_left_ceiling.is_colliding() or caster_inner_right_ceiling.is_colliding():
-			caster_outer_left_ceiling.enabled = false
-			caster_outer_right_ceiling.enabled = false
-		else:
-			caster_outer_left_ceiling.enabled = true
-			caster_outer_right_ceiling.enabled = true
-		if caster_outer_left_ceiling.is_colliding():
-			global_position += Vector2(7,0)
-		if caster_outer_right_ceiling.is_colliding():
-			global_position += Vector2(-7,0)
+	if caster_inner_left_ceiling.is_colliding() or caster_inner_right_ceiling.is_colliding():
+		caster_outer_left_ceiling.enabled = false
+		caster_outer_right_ceiling.enabled = false
+	else:
+		caster_outer_left_ceiling.enabled = true
+		caster_outer_right_ceiling.enabled = true
+	if caster_outer_left_ceiling.is_colliding():
+		global_position += Vector2(7,0)
+	if caster_outer_right_ceiling.is_colliding():
+		global_position += Vector2(-7,0)
  
 
 
@@ -366,7 +408,7 @@ func _tool_preview(delta):
 				sprite_floor_tool.visible = true
 				var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 				var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-				determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle(), delta)
+				determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 		else:
 			#Block Tool Preview
 			sprite_block_tool.visible = true
@@ -386,14 +428,12 @@ func _tool_preview(delta):
 				get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 
 
-func determine_floortool_position(inputstrength, controllerangle, delta):
-	jump_enabled = false
-	walking_enabled = false
-	velocity.x = move_toward(velocity.x, 0, 1000*delta)
+func determine_floortool_position(inputstrength, controllerangle) -> float:
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.3,0.3).abs().length():
-		print("here")
-		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+		return (controllerangle + PI)/(2*PI)
+	else:
+		return follow_floor_tool.progress_ratio
 
 
 func determine_blocktool_position(inputstrength, controllerangle):
