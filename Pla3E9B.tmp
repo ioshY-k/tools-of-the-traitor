@@ -120,12 +120,6 @@ collision_mask = 4
 position = Vector2(0, 18.3344)
 shape = SubResource("RectangleShape2D_rih21")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.34902)
-scale = Vector2(0.03125, 1)
-texture = ExtResource("3_unbga")
-
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
 [connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]

@@ -36,44 +36,39 @@ var sliding_on_right_wall: bool
 @onready var player_cutout: Node2D = $Model_position/Player_cutout
 @onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
 @onready var model_position: Node2D = $Model_position
+@onready var left_arm: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm")
+@onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
 
-#Correction values for 
-const BASE_X_SCALE = 1.395
-
-#Tool placing
+#Tool placement
 const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
 @onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
-
 var is_on_tool:bool
-
 
 #State handler
 @onready var state_handler = $State_handler
+var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
-				WALLJUMP_L, WALLJUMP_R,
-				FLOOR_TOOL_PREVIEW, BLOCK_TOOL_PREVIEW,
-				FLOOR_TOOL_PLACE, BLOCK_TOOL_PLACE,
-				FLOOR_TOOL_CANCEL, BLOCK_TOOL_CANCEL}
-var current_state
+				WALLJUMP_L, WALLJUMP_R}
+@onready var tool_state_handler = $Tool_state_handler
+var current_tool_state
+enum tool_states {	NO_TOOL,
+					FLOOR_TOOL_PREVIEW, BLOCK_TOOL_PREVIEW, WALL_TOOL_PREVIEW,
+					FLOOR_TOOL_PLACE, BLOCK_TOOL_PLACE, WALL_TOOL_PLACE}
 
 
 
-enum anim_states {GROUNDED, TAKEOFF, AIRBORNE, LANDING, WALLSLIDE}
-var current_anim_state = anim_states.GROUNDED
 
-
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
 	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
 	current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 	state_handler.set("current_state", current_state)
-
-
-func _physics_process(delta: float) -> void:
-
+	current_tool_state = tool_state_handler.next_state(is_on_floor())
+	tool_state_handler.set("current_tool_state", current_tool_state)
+	
 	match current_state:
 		states.IDLE:
 			on_idle_state(delta)
@@ -97,28 +92,32 @@ func _physics_process(delta: float) -> void:
 			on_walljump_l_state()
 		states.WALLJUMP_R:
 			on_walljump_r_state()
-		states.FLOOR_TOOL_PREVIEW:
+			
+	match current_tool_state:
+		tool_states.NO_TOOL:
+			pass
+		tool_states.FLOOR_TOOL_PREVIEW:
 			on_floortool_preview_state(delta)
-		states.BLOCK_TOOL_PREVIEW:
-			on_blocktool_preview_state(delta)
-		states.FLOOR_TOOL_CANCEL:
-			on_floortool_cancel_state()
-		states.BLOCK_TOOL_CANCEL:
-			on_blocktool_cancel_state()
-		states.FLOOR_TOOL_PLACE:
-			on_floortool_place_state(delta)
-		states.BLOCK_TOOL_PLACE:
-			on_blocktool_place_state(delta)
+		tool_states.BLOCK_TOOL_PREVIEW:
+			on_blocktool_preview_state()
+		tool_states.WALL_TOOL_PREVIEW:
+			on_wall_tool_preview_state()
+		tool_states.WALL_TOOL_PLACE:
+			on_wall_tool_place_state()
+		tool_states.FLOOR_TOOL_PLACE:
+			on_floortool_place_state()
+		tool_states.BLOCK_TOOL_PLACE:
+			on_blocktool_place_state()
 	
 	move_and_slide() #Player movement
-	print(str(animations.current_animation))
 
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
 	p_speed_timer.stop()
 	p_speed_is_active = false
-	animations.play("Idle_anim" ,0.2)
+	if current_tool_state == tool_states.NO_TOOL:
+		animations.play("Idle_anim" ,0.2)
 
 func on_walk_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
@@ -129,7 +128,8 @@ func on_walk_state(delta):
 	velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, ACCELERATION * delta)
 	p_speed_timer.stop()
 	p_speed_is_active = false
-	animations.play("Walk_anim" ,0.2)
+	if current_tool_state == tool_states.NO_TOOL:
+		animations.play("Walk_anim" ,0.2)
 
 func on_run_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
@@ -141,19 +141,21 @@ func on_run_state(delta):
 	if p_speed_is_active:
 		#print("P-SPEED")
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
-		animations.play("P_speed_anim" ,0.2)
+		if current_tool_state == tool_states.NO_TOOL:
+			animations.play("P_speed_anim" ,0.2)
 	elif p_speed_timer.is_stopped():
 		#print("time start")
 		p_speed_timer.start()
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
-		animations.play("Run_anim" ,0.2)
+		if current_tool_state == tool_states.NO_TOOL:
+			animations.play("Run_anim" ,0.2)
 	else:
 		#print("RUN")
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
-		animations.play("Run_anim" ,0.2)
+		if current_tool_state == tool_states.NO_TOOL:
+			animations.play("Run_anim" ,0.2)
 
 func on_push_state():
-	print("here")
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	velocity.x = direction
 	animations.play("Push_anim", 0.2)
@@ -229,45 +231,49 @@ func on_walljump_r_state():
 	animations.play("Pjump_anim")
 
 func on_floortool_preview_state(delta):
-	on_idle_state(delta)
-	
+	velocity.x = move_toward(velocity.x, 0, 5000 * delta)
 	sprite_block_tool.visible = false
+	animations.play("Preview_anim")
+	left_hand.rotation = deg_to_rad(30)
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
+		if model_position.scale.x < 0:
+			if Vector2(-xAxis, -yAxis).angle() < -PI/2:
+				left_arm.rotation = -(Vector2(-xAxis, -yAxis).angle() + PI) + 1
+			else:
+				left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
+		else:
+			left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
 	if not is_on_tool:
 		#Floor Tool Preview
 		sprite_floor_tool.visible = true
-		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		follow_floor_tool.progress_ratio = \
 		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
-
-func on_blocktool_preview_state(delta):
-	on_fall_state(delta)
 	
+
+func on_blocktool_preview_state():
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = true
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
-func on_floortool_cancel_state():
+func on_wall_tool_preview_state():
 	pass
 
-func on_blocktool_cancel_state():
-	pass
-
-func on_floortool_place_state(delta):
-	on_idle_state(delta)
-	
+func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
 
-func on_blocktool_place_state(delta):
-	on_fall_state(delta)
-	
+func on_blocktool_place_state():
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
+
+func on_wall_tool_place_state():
+	pass
 
 
 
@@ -327,11 +333,11 @@ func determine_blocktool_position(inputstrength, controllerangle):
 				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
 				
 
-func _on_floor_typecheck_body_entered(body: Node2D) -> void:
+func _on_floor_typecheck_body_entered(_body: Node2D) -> void:
 	is_on_tool = true
 
 
-func _on_floor_typecheck_body_exited(body: Node2D) -> void:
+func _on_floor_typecheck_body_exited(_body: Node2D) -> void:
 	is_on_tool = false
 
 
