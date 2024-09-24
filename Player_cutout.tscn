@@ -1341,7 +1341,7 @@ tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
-tracks/5/interp = 1
+tracks/5/interp = 4
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.3),
@@ -1365,7 +1365,7 @@ tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:rotation")
-tracks/7/interp = 1
+tracks/7/interp = 4
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
@@ -1389,7 +1389,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
-tracks/9/interp = 1
+tracks/9/interp = 4
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0.24, 0.68),
@@ -1413,7 +1413,7 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:rotation")
-tracks/11/interp = 1
+tracks/11/interp = 4
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0, 0.38),
@@ -2023,7 +2023,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Player_hip/Player_torso/Player_head:rotation")
-tracks/9/interp = 2
+tracks/9/interp = 4
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.38),
@@ -2185,7 +2185,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0.22, 0.98, 2),
@@ -2197,7 +2197,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
-tracks/1/interp = 2
+tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
 "times": PackedFloat32Array(0.04, 0.84, 1.9),
@@ -2245,7 +2245,7 @@ tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
-tracks/5/interp = 1
+tracks/5/interp = 4
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0.76, 1.18, 1.66, 2),
@@ -2269,7 +2269,7 @@ tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:rotation")
-tracks/7/interp = 1
+tracks/7/interp = 4
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0.74, 1.16, 1.66, 2),
@@ -2293,7 +2293,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
-tracks/9/interp = 1
+tracks/9/interp = 4
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0.56, 1.04, 1.6, 2),
@@ -2317,7 +2317,7 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:rotation")
-tracks/11/interp = 1
+tracks/11/interp = 4
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0.56, 1.04, 1.58, 2),
@@ -2866,7 +2866,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Player_hip/Player_torso:position")
-tracks/2/interp = 2
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.48, 0.56, 0.74, 0.88, 0.92, 1, 1.18, 1.32, 1.58, 1.68, 1.86, 2),
@@ -3184,7 +3184,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Player_hip/Player_torso:position")
-tracks/2/interp = 2
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.48, 0.56, 0.74, 0.88, 1.44, 1.54, 1.72, 1.86),

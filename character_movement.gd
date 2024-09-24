@@ -70,8 +70,6 @@ func _physics_process(delta: float) -> void:
 	current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
-	print("nachher")
-	print(tool_states.keys()[current_tool_state])
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	
 	match current_state:
@@ -103,16 +101,29 @@ func _physics_process(delta: float) -> void:
 			pass
 		tool_states.FLOOR_TOOL_PREVIEW:
 			on_floortool_preview_state(delta)
+		tool_states.FLOOR_TOOL_PLACE:
+			on_floortool_place_state()
 		tool_states.BLOCK_TOOL_PREVIEW:
 			on_blocktool_preview_state()
+		tool_states.BLOCK_TOOL_PLACE:
+			on_blocktool_place_state()
 		tool_states.WALL_TOOL_PREVIEW:
 			on_wall_tool_preview_state(delta)
 		tool_states.WALL_TOOL_PLACE:
 			on_wall_tool_place_state()
-		tool_states.FLOOR_TOOL_PLACE:
-			on_floortool_place_state()
-		tool_states.BLOCK_TOOL_PLACE:
-			on_blocktool_place_state()
+		tool_states.ROPE_TOOL_PREVIEW:
+			on_rope_tool_preview_state()
+		tool_states.ROPE_TOOL_PLACE:
+			on_rope_tool_place_state()
+		tool_states.SPRING_TOOL_PREVIEW:
+			on_spring_tool_preview_state()
+		tool_states.SPRING_TOOL_PLACE:
+			on_spring_tool_place_state()
+		tool_states.FIELD_TOOL_PREVIEW:
+			on_field_tool_preview_state()
+		tool_states.FIELD_TOOL_PLACE:
+			on_field_tool_place_state()
+		
 	
 	move_and_slide() #Player movement
 
@@ -149,7 +160,7 @@ func on_run_state(delta):
 		#print("P-SPEED")
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
-			animations.play("P_speed_anim" ,0.2)
+			animations.play("P_speed_anim" ,0.9)
 	elif p_speed_timer.is_stopped():
 		#print("time start")
 		p_speed_timer.start()
@@ -302,6 +313,23 @@ func on_wall_tool_preview_state(delta):
 	determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
 
+func on_rope_tool_preview_state():
+	sprite_floor_tool.visible = false
+	sprite_block_tool.visible = false
+	sprite_wall_tool.visible = false
+
+
+func on_spring_tool_preview_state():
+	sprite_floor_tool.visible = false
+	sprite_block_tool.visible = false
+	sprite_wall_tool.visible = false
+
+
+func on_field_tool_preview_state():
+	sprite_floor_tool.visible = false
+	sprite_block_tool.visible = false
+	sprite_wall_tool.visible = false
+
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
@@ -309,7 +337,6 @@ func on_floortool_place_state():
 
 
 func on_blocktool_place_state():
-	print("here")
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
@@ -319,6 +346,15 @@ func on_wall_tool_place_state():
 	if sprite_wall_tool.visible:
 		sprite_wall_tool.visible = false
 		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
+
+func on_rope_tool_place_state():
+	pass
+
+func on_spring_tool_place_state():
+	pass
+
+func on_field_tool_place_state():
+	pass
 
 
 func _ledge_corrections():
@@ -369,17 +405,29 @@ func determine_blocktool_position(inputstrength, controllerangle):
 func determine_walltool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.5,0.5).abs().length():
-		#Formula for mapping given highest wallpoint Ymax and lowest wallpoint Ymin:
-		#Ymin + ((controllerangle - Xmin) / (Xmax - Xmin)) * (Ymax - Ymin)
-		var x_value = 70
-		if controllerangle <= -3*PI/4:
-			controllerangle = -(controllerangle + PI)
-			x_value = -70
-		elif controllerangle >= 3*PI/4:
-			controllerangle =  PI - controllerangle
-			x_value = -70
+		var x_value = 63
+		var y_value
 		
-		var y_value = -100 + ((controllerangle + PI/4) / (PI/2)) * 200
+		#Mirrors left Stickangle to the respective right Value.
+		#This way the position mapping only needs to happen within the range of -3PI/8 and +3PI/8 (right wall placement zone)
+		if controllerangle < -PI/2:
+			controllerangle = -(controllerangle + PI)
+			x_value = -63
+		elif controllerangle > PI/2:
+			controllerangle =  PI - controllerangle
+			x_value = -63
+		
+		#Snapping to lowest position
+		if controllerangle > PI/4:
+			y_value = 100
+		#Snapping to highest position
+		elif controllerangle < -PI/4:
+			y_value = -100
+		else:
+			#Formula for mapping given highest wallpoint Ymax and lowest wallpoint Ymin:
+			#Ymin + ((controllerangle - Xmin) / (Xmax - Xmin)) * (Ymax - Ymin)
+			y_value = -100 + ((controllerangle + 3*PI/8) / (3*PI/4)) * 200
+		
 		sprite_wall_tool.position = Vector2(x_value,y_value)
 
 

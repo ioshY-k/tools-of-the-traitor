@@ -16,7 +16,8 @@ func _init():
 	current_tool_state = tool_states.NO_TOOL
 	
 func next_state(is_on_floor:bool) -> tool_states:
-	#print(tool_states.keys()[current_tool_state])
+	print(tool_states.keys()[current_tool_state])
+	
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			if Input.is_action_just_pressed("place_simple_tool"):
@@ -25,21 +26,21 @@ func next_state(is_on_floor:bool) -> tool_states:
 				else:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if Input.is_action_just_pressed("place_special_tool"):
-				if Input.is_action_pressed("stick_up"):
+				if rope_direction():
 					return tool_states.ROPE_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left"):
+				if wall_direction():
 					return tool_states.WALL_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_down"):
+				if spring_direction():
 					return tool_states.SPRING_TOOL_PREVIEW
 				return tool_states.FIELD_TOOL_PREVIEW
 			return tool_states.NO_TOOL
 		tool_states.FLOOR_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("place_special_tool"):
-				if Input.is_action_pressed("stick_up"):
+				if rope_direction():
 					return tool_states.ROPE_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left"):
+				if wall_direction():
 					return tool_states.WALL_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_down"):
+				if spring_direction():
 					return tool_states.SPRING_TOOL_PREVIEW
 				return tool_states.FIELD_TOOL_PREVIEW
 			if Input.is_action_just_pressed("cancel_tool"):
@@ -57,11 +58,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 			if not Input.is_action_pressed("place_simple_tool"):
 				return tool_states.BLOCK_TOOL_PLACE
 			if Input.is_action_just_pressed("place_special_tool"):
-				if Input.is_action_pressed("stick_up"):
+				if rope_direction():
 					return tool_states.ROPE_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left"):
+				if wall_direction():
 					return tool_states.WALL_TOOL_PREVIEW
-				if Input.is_action_pressed("stick_down"):
+				if spring_direction():
 					return tool_states.SPRING_TOOL_PREVIEW
 				return tool_states.FIELD_TOOL_PREVIEW
 			return tool_states.BLOCK_TOOL_PREVIEW
@@ -75,11 +76,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
-			if Input.is_action_pressed("stick_up"):
+			if rope_direction():
 				return tool_states.ROPE_TOOL_PREVIEW
-			if Input.is_action_pressed("stick_down"):
+			if spring_direction():
 				return tool_states.SPRING_TOOL_PREVIEW
-			if not (Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left")):
+			if not wall_direction():
 				return tool_states.FIELD_TOOL_PREVIEW
 			return tool_states.WALL_TOOL_PREVIEW
 		tool_states.ROPE_TOOL_PREVIEW:
@@ -92,11 +93,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.ROPE_TOOL_PLACE
-			if not Input.is_action_pressed("stick_up"):
+			if not rope_direction():
 				return tool_states.FIELD_TOOL_PREVIEW
-			if Input.is_action_pressed("stick_down"):
+			if spring_direction():
 				return tool_states.SPRING_TOOL_PREVIEW
-			if (Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left")):
+			if wall_direction():
 				return tool_states.WALL_TOOL_PREVIEW
 			return tool_states.ROPE_TOOL_PREVIEW
 		tool_states.SPRING_TOOL_PREVIEW:
@@ -109,11 +110,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.SPRING_TOOL_PLACE
-			if Input.is_action_pressed("stick_up"):
+			if rope_direction():
 				return tool_states.ROPE_TOOL_PREVIEW
-			if not Input.is_action_pressed("stick_down"):
+			if not spring_direction():
 				return tool_states.FIELD_TOOL_PREVIEW
-			if (Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left")):
+			if wall_direction():
 				return tool_states.WALL_TOOL_PREVIEW
 			return tool_states.SPRING_TOOL_PREVIEW
 		tool_states.FIELD_TOOL_PREVIEW:
@@ -126,11 +127,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.FIELD_TOOL_PLACE
-			if Input.is_action_pressed("stick_up"):
+			if rope_direction():
 				return tool_states.ROPE_TOOL_PREVIEW
-			if Input.is_action_pressed("stick_down"):
+			if spring_direction():
 				return tool_states.SPRING_TOOL_PREVIEW
-			if (Input.is_action_pressed("stick_right") or Input.is_action_pressed("stick_left")):
+			if wall_direction():
 				return tool_states.WALL_TOOL_PREVIEW
 			return tool_states.FIELD_TOOL_PREVIEW
 		tool_states.FLOOR_TOOL_PLACE,\
@@ -143,3 +144,15 @@ func next_state(is_on_floor:bool) -> tool_states:
 		_:
 			print_debug("not in a valid Tool State")
 			return tool_states.NO_TOOL
+
+func rope_direction() -> bool:
+	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
+	return -5*PI/8 <= controllerangle and controllerangle <= -3*PI/8
+	
+func spring_direction() -> bool:
+	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
+	return 3*PI/8 <= controllerangle and controllerangle <= 5*PI/8
+	
+func wall_direction() -> bool:
+	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
+	return abs(controllerangle) > 5*PI/8 or abs(controllerangle) < 3*PI/8

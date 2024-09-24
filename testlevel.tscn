@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=12 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="Texture2D" uid="uid://ctqcuk7f3vy7h" path="res://Purple.png" id="1_j8rcx"]
 [ext_resource type="Texture2D" uid="uid://ddodxbmhl5saf" path="res://Terrain (16x16).png" id="1_m1v30"]
+[ext_resource type="Script" path="res://ally_destination.gd" id="2_amw6q"]
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Player.tscn" id="2_twxv3"]
 [ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="4_bnl5d"]
 [ext_resource type="Texture2D" uid="uid://csvn82sj0qfrt" path="res://TestBG.png" id="5_0yhaq"]
@@ -318,6 +319,16 @@ position = Vector2(142, 100)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(3.45, 3.45)
+
+[node name="Ally_destination" type="Node2D" parent="CharacterBody2D"]
+position = Vector2(-25.5, 0)
+script = ExtResource("2_amw6q")
+
+[node name="Ally1" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(116.5, 100)
+scale = Vector2(0.0546875, 0.09375)
+texture = ExtResource("4_bnl5d")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
