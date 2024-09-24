@@ -120,10 +120,9 @@ collision_mask = 4
 position = Vector2(0, 18.3344)
 shape = SubResource("RectangleShape2D_rih21")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+[node name="Sprite_wall_tool" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.34902)
-scale = Vector2(0.03125, 1)
+scale = Vector2(0.03125, 1.4375)
 texture = ExtResource("3_unbga")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]

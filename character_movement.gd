@@ -43,6 +43,7 @@ var sliding_on_right_wall: bool
 const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
 @onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
+@onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 var is_on_tool:bool
 
@@ -55,10 +56,12 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
 enum tool_states {	NO_TOOL,
-					FLOOR_TOOL_PREVIEW, BLOCK_TOOL_PREVIEW, WALL_TOOL_PREVIEW,
-					FLOOR_TOOL_PLACE, BLOCK_TOOL_PLACE, WALL_TOOL_PLACE}
-
-
+					FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
+					BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
+					WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
+					ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
+					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE,
+					FIELD_TOOL_PREVIEW, FIELD_TOOL_PLACE}
 
 
 func _physics_process(delta: float) -> void:
@@ -67,6 +70,8 @@ func _physics_process(delta: float) -> void:
 	current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
+	print("nachher")
+	print(tool_states.keys()[current_tool_state])
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	
 	match current_state:
@@ -101,7 +106,7 @@ func _physics_process(delta: float) -> void:
 		tool_states.BLOCK_TOOL_PREVIEW:
 			on_blocktool_preview_state()
 		tool_states.WALL_TOOL_PREVIEW:
-			on_wall_tool_preview_state()
+			on_wall_tool_preview_state(delta)
 		tool_states.WALL_TOOL_PLACE:
 			on_wall_tool_place_state()
 		tool_states.FLOOR_TOOL_PLACE:
@@ -119,6 +124,7 @@ func on_idle_state(delta):
 	if current_tool_state == tool_states.NO_TOOL:
 		animations.play("Idle_anim" ,0.2)
 
+
 func on_walk_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	if direction < 0:
@@ -130,6 +136,7 @@ func on_walk_state(delta):
 	p_speed_is_active = false
 	if current_tool_state == tool_states.NO_TOOL:
 		animations.play("Walk_anim" ,0.2)
+
 
 func on_run_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
@@ -155,10 +162,12 @@ func on_run_state(delta):
 		if current_tool_state == tool_states.NO_TOOL:
 			animations.play("Run_anim" ,0.2)
 
+
 func on_push_state():
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	velocity.x = direction
 	animations.play("Push_anim", 0.2)
+
 
 func on_jump_state():
 	velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
@@ -166,6 +175,7 @@ func on_jump_state():
 		animations.play("Pjump_anim", 0.2)
 	else:
 		animations.play("Jump_anim", 0.1)
+
 
 func on_fall_state(delta):
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
@@ -190,8 +200,10 @@ func on_fall_state(delta):
 		#higher gravity on jumrelease and while descending
 		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
 
+
 func on_land_state():
 	animations.play("Land_anim", 0)
+
 
 #TODO: identische Funktionen wallslide r und l?
 func on_wallslide_l_state(delta):
@@ -207,6 +219,7 @@ func on_wallslide_l_state(delta):
 		animations.play("Wallslide_anim",0.2)
 	velocity.x = sign(Input.get_axis("walk_left", "walk_right"))
 
+
 func on_wallslide_r_state(delta):
 	if velocity.y <= 0 and Input.is_action_pressed("jump"):
 		#Rising while holding jump
@@ -220,19 +233,23 @@ func on_wallslide_r_state(delta):
 		animations.play("Wallslide_anim",0.2)
 	velocity.x = sign(Input.get_axis("walk_left", "walk_right"))
 
+
 func on_walljump_l_state():
 	p_speed_is_active = true
 	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
+
 
 func on_walljump_r_state():
 	p_speed_is_active = true
 	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
 
+
 func on_floortool_preview_state(delta):
-	velocity.x = move_toward(velocity.x, 0, 5000 * delta)
 	sprite_block_tool.visible = false
+	sprite_wall_tool.visible = false
+	velocity.x = move_toward(velocity.x, 0, 5000 * delta)
 	animations.play("Preview_anim")
 	left_hand.rotation = deg_to_rad(30)
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -250,33 +267,58 @@ func on_floortool_preview_state(delta):
 		sprite_floor_tool.visible = true
 		follow_floor_tool.progress_ratio = \
 		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
-	
+
 
 func on_blocktool_preview_state():
 	sprite_floor_tool.visible = false
+	sprite_wall_tool.visible = false
 	sprite_block_tool.visible = true
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
-func on_wall_tool_preview_state():
-	pass
+
+func on_wall_tool_preview_state(delta):
+	sprite_floor_tool.visible = false
+	sprite_block_tool.visible = false
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	#sprite_rope/spring/field_tool.visible = false
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, 5000 * delta)
+		animations.play("Preview_anim")
+		left_hand.rotation = deg_to_rad(30)
+		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
+			if model_position.scale.x < 0:
+				#Mirror vectors that point up right along the y-axis (because scale.x is flipped for the model)
+				if Vector2(-xAxis, -yAxis).angle() < -PI/2:
+					left_arm.rotation = -(Vector2(-xAxis, -yAxis).angle() + PI) + 1
+				#Mirror vectors that point down right along the y-axis (because scale.x is flipped for the model)
+				else:
+					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
+			else:
+				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
+	sprite_wall_tool.visible = true
+	determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
 
+
 func on_blocktool_place_state():
+	print("here")
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 
+
 func on_wall_tool_place_state():
-	pass
-
-
-
+	if sprite_wall_tool.visible:
+		sprite_wall_tool.visible = false
+		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
 
 
 func _ledge_corrections():
@@ -290,20 +332,11 @@ func _ledge_corrections():
 		global_position += Vector2(7,0)
 	if caster_outer_right_ceiling.is_colliding():
 		global_position += Vector2(-7,0)
- 
-
-
-
-		
-			
-	
-
-
 
 
 func determine_floortool_position(inputstrength, controllerangle) -> float:
 	#Control stick Deadzone
-	if inputstrength > Vector2(0.3,0.3).abs().length():
+	if inputstrength > Vector2(0.5,0.5).abs().length():
 		return (controllerangle + PI)/(2*PI)
 	else:
 		return follow_floor_tool.progress_ratio
@@ -311,7 +344,7 @@ func determine_floortool_position(inputstrength, controllerangle) -> float:
 
 func determine_blocktool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
-	if inputstrength > Vector2(0.3,0.3).abs().length():
+	if inputstrength > Vector2(0.5,0.5).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
 			sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
@@ -331,7 +364,24 @@ func determine_blocktool_position(inputstrength, controllerangle):
 				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(5*PI/8)
 			else:
 				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
-				
+
+
+func determine_walltool_position(inputstrength, controllerangle):
+	#Control stick Deadzone
+	if inputstrength > Vector2(0.5,0.5).abs().length():
+		#Formula for mapping given highest wallpoint Ymax and lowest wallpoint Ymin:
+		#Ymin + ((controllerangle - Xmin) / (Xmax - Xmin)) * (Ymax - Ymin)
+		var x_value = 70
+		if controllerangle <= -3*PI/4:
+			controllerangle = -(controllerangle + PI)
+			x_value = -70
+		elif controllerangle >= 3*PI/4:
+			controllerangle =  PI - controllerangle
+			x_value = -70
+		
+		var y_value = -100 + ((controllerangle + PI/4) / (PI/2)) * 200
+		sprite_wall_tool.position = Vector2(x_value,y_value)
+
 
 func _on_floor_typecheck_body_entered(_body: Node2D) -> void:
 	is_on_tool = true

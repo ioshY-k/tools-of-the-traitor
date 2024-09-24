@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=11 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="Texture2D" uid="uid://ctqcuk7f3vy7h" path="res://Purple.png" id="1_j8rcx"]
 [ext_resource type="Texture2D" uid="uid://ddodxbmhl5saf" path="res://Terrain (16x16).png" id="1_m1v30"]
@@ -307,6 +307,9 @@ size = Vector2(203, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uth4"]
 size = Vector2(36, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwha1"]
+size = Vector2(4, 128)
+
 [node name="Testlevel" type="Node"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_twxv3")]
@@ -410,3 +413,16 @@ z_index = -2
 position = Vector2(2291, 749)
 scale = Vector2(0.0848564, 0.402778)
 texture = ExtResource("5_0yhaq")
+
+[node name="Wall_tool" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-200, 0)
+scale = Vector2(1.438, 1.438)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_tool"]
+shape = SubResource("RectangleShape2D_bwha1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall_tool"]
+scale = Vector2(0.03125, 1)
+texture = ExtResource("4_bnl5d")
