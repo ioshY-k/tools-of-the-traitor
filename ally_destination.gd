@@ -1,9 +1,16 @@
-extends Node2D
+extends Area2D
 
-var ally1
-func _ready() -> void:
-	ally1 = get_node("%Ally1")
+@onready var player: CharacterBody2D = $".."
+const DISTANCE = 20
+var mirror = -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	ally1.position = ally1.position.lerp(global_position, delta * 2.0)
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("walk_right"):
+		mirror = -1
+	elif Input.is_action_just_pressed("walk_left"):
+		mirror = 1
+	if player.velocity == Vector2.ZERO:
+		position.x = DISTANCE * mirror
+	else:
+		position = -1 * player.velocity.normalized() * DISTANCE

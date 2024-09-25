@@ -4,18 +4,17 @@ extends CharacterBody2D
 const ACCELERATION = 2300 #How fast Player reaches run speed
 const DECELERATION = 3000 #How long until Player stops after moving
 const AIR_ACCELERATION = 1700
-const AIR_DECELERATION = 0
-const GRAVITY_RISING = 1500 #How fast Player falls with holding jump
-const GRAVITY_FALLING = 6500 #How much stronger  gravity pulls in falling state vs. rising state
-const MAX_FALLSPEED = 900 #The point where gravity doesn't accelerate fallspeed enymore
-const JUMPFORCE = 700 #How high Player gets send when jumping
+const GRAVITY_RISING = 1700 #How fast Player falls with holding jump
+const GRAVITY_FALLING = 3800 #How much stronger  gravity pulls in falling state vs. rising state
+const MAX_FALLSPEED = 700 #The point where gravity doesn't accelerate fallspeed enymore
+const JUMPFORCE = 620 #How high Player gets send when jumping
 const JUMPFORCE_INCREASE = 5 #How much runspeed influences jump height
-const MAX_WALK_SPEED = 310 #Player walk speed
-const MAX_RUN_SPEED = 450 #Player run speed
-const MAX_P_SPEED = 600 #Player P speed
+const MAX_WALK_SPEED = 250 #Player walk speed
+const MAX_RUN_SPEED = 400 #Player run speed
+const MAX_P_SPEED = 500 #Player P speed
 const GRAVITY_WALL_SLIDING = 300
-const WALL_JUMP_HEIGHT = 800
-const WALL_JUMP_WIDTH = 1000
+const WALL_JUMP_HEIGHT = 700
+const WALL_JUMP_WIDTH = 750
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
 var p_speed_is_active: bool
 var sliding_on_left_wall: bool
@@ -41,7 +40,7 @@ var sliding_on_right_wall: bool
 @onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
 
 #Tool placement
-const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
+const PREVIEW_PATH_OFFSET = Vector2(0,0) #Positional offset from the center of the tool preview path
 @onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
@@ -140,7 +139,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide() #Player movement
 
 func check_supercancel():
-	if is_on_floor() and not is_on_tool and Input.is_action_just_pressed("cancel_tool"):
+	if is_on_floor() and Input.is_action_just_pressed("cancel_tool"):
 		supercancel_timer.start()
 		eyes.play("loading_supercancel_anim")
 	if not supercancel_timer.is_stopped() and not Input.is_action_pressed("cancel_tool"):
@@ -153,6 +152,8 @@ func check_supercancel():
 		get_parent().get_node("%Floor_tool").visible = false
 		get_parent().get_node("%Block_tool").visible = false
 		get_parent().get_node("%Wall_tool").visible = false
+		if is_on_tool:
+			await get_tree().create_timer(0.6).timeout
 		floor_tool_available = true
 		block_tool_available = true
 		wall_tool_available = true)
@@ -224,14 +225,20 @@ func on_fall_state(delta):
 	elif direction > 0:
 		model_position.scale.x = abs(model_position.scale.x)
 	
-	if not Input.is_action_pressed("run"):
-		p_speed_is_active = false
-	if p_speed_is_active:
-		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, AIR_ACCELERATION * delta)
+	if Input.is_action_pressed("run"):
+		if p_speed_is_active:
+			velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, AIR_ACCELERATION * delta)
+		else:
+			velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, AIR_ACCELERATION * delta)
+			if velocity.y > 0:
+				animations.play("Fall_anim", 0.2)
 	else:
-		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, AIR_ACCELERATION * delta)
+		p_speed_is_active = false
+		velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, AIR_ACCELERATION * delta)
 		if velocity.y > 0:
 			animations.play("Fall_anim", 0.2)
+
+	
 	if velocity.y <= 0 and Input.is_action_pressed("jump"):
 		#Rising while holding jump
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
@@ -373,7 +380,7 @@ func on_floortool_place_state():
 		sprite_floor_tool.visible = false
 		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_INHERIT)
 		get_parent().get_node("%Floor_tool").visible = true
-		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
+		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position
 		floor_tool_available = false
 
 
@@ -393,6 +400,7 @@ func on_wall_tool_place_state():
 		get_parent().get_node("%Wall_tool").visible = true
 		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
 		wall_tool_available = false
+
 
 func on_rope_tool_place_state():
 	pass
@@ -430,23 +438,23 @@ func determine_blocktool_position(inputstrength, controllerangle):
 	if inputstrength > Vector2(0.5,0.5).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
-			sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.DOWN
+			sprite_block_tool.position = 45 * Vector2.DOWN
 		elif Input.get_axis("walk_left", "walk_right") > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT
+				sprite_block_tool.position = 45 * Vector2.RIGHT
 			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(3*PI/8)
+				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(3*PI/8)
 			else:
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(controllerangle)
 		else:
 			#Snap behaviour when facing left
 			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.LEFT
+				sprite_block_tool.position = 45 * Vector2.LEFT
 			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(5*PI/8)
+				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(5*PI/8)
 			else:
-				sprite_block_tool.position = PREVIEW_PATH_OFFSET + 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(controllerangle)
 
 
 func determine_walltool_position(inputstrength, controllerangle):

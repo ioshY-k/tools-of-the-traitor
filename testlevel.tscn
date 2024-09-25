@@ -1,11 +1,17 @@
-[gd_scene load_steps=12 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=18 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="Texture2D" uid="uid://ctqcuk7f3vy7h" path="res://Purple.png" id="1_j8rcx"]
 [ext_resource type="Texture2D" uid="uid://ddodxbmhl5saf" path="res://Terrain (16x16).png" id="1_m1v30"]
-[ext_resource type="Script" path="res://ally_destination.gd" id="2_amw6q"]
+[ext_resource type="Texture2D" uid="uid://dsglafsk6rax8" path="res://Ally1.png" id="2_58b44"]
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Player.tscn" id="2_twxv3"]
-[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="4_bnl5d"]
+[ext_resource type="Texture2D" uid="uid://c2v3thd6x0gq" path="res://Ally2.png" id="3_3xuu3"]
+[ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://bulblight.png" id="3_iln86"]
+[ext_resource type="Texture2D" uid="uid://c0bvuf6331m1y" path="res://Ally3.png" id="4_lxpsu"]
 [ext_resource type="Texture2D" uid="uid://csvn82sj0qfrt" path="res://TestBG.png" id="5_0yhaq"]
+[ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://ally_followpoints.tscn" id="6_3v5km"]
+[ext_resource type="Texture2D" uid="uid://c6amleg4p5hrr" path="res://Floor.png" id="7_s70e5"]
+[ext_resource type="Texture2D" uid="uid://bma5h1h68wws1" path="res://Block.png" id="8_vhwtv"]
+[ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Wall.png" id="10_32q2q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbq83"]
 texture = ExtResource("1_m1v30")
@@ -309,7 +315,7 @@ size = Vector2(203, 22)
 size = Vector2(36, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwha1"]
-size = Vector2(4, 128)
+size = Vector2(5.56329, 127.955)
 
 [node name="Testlevel" type="Node"]
 
@@ -318,20 +324,50 @@ z_index = 3
 position = Vector2(142, 100)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(3.45, 3.45)
-
-[node name="Ally_destination" type="Node2D" parent="CharacterBody2D"]
-position = Vector2(-25.5, 0)
-script = ExtResource("2_amw6q")
+zoom = Vector2(4.685, 4.685)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.355
 
 [node name="Ally1" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(116.5, 100)
-scale = Vector2(0.0546875, 0.09375)
-texture = ExtResource("4_bnl5d")
+z_index = 2
+position = Vector2(62.135, 104)
+scale = Vector2(0.033, 0.03)
+texture = ExtResource("2_58b44")
+
+[node name="PointLight2D" type="PointLight2D" parent="Ally1"]
+scale = Vector2(1.37, 1.37)
+color = Color(1, 1, 0.00784314, 1)
+texture = ExtResource("3_iln86")
+offset = Vector2(2.26, -104.5)
+
+[node name="Ally2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(122, 104)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_3xuu3")
+
+[node name="PointLight2D" type="PointLight2D" parent="Ally2"]
+scale = Vector2(1.54, 1.54)
+color = Color(0.96623, 2.38247e-06, 5.77569e-07, 1)
+texture = ExtResource("3_iln86")
+offset = Vector2(1.58, -82.615)
+
+[node name="Ally3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(108, 101)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_lxpsu")
+
+[node name="PointLight2D" type="PointLight2D" parent="Ally3"]
+scale = Vector2(1.715, 1.715)
+color = Color(0, 0.764137, 0.279062, 1)
+texture = ExtResource("3_iln86")
+offset = Vector2(-0.98, -78.935)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 z_index = -3
 z_as_relative = false
 anchors_preset = 15
@@ -357,31 +393,32 @@ tile_set = SubResource("TileSet_ycib0")
 
 [node name="Floor_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(72.49, 98)
+visible = false
+position = Vector2(0, -30)
 collision_layer = 4
 collision_mask = 9
 
 [node name="Tool_collision_shape" type="CollisionShape2D" parent="Floor_tool"]
-position = Vector2(-139.99, 0)
 shape = SubResource("RectangleShape2D_k41b6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor_tool/Tool_collision_shape"]
-position = Vector2(-1.48416e-05, 1.19209e-06)
-scale = Vector2(1.58594, 0.171875)
-texture = ExtResource("4_bnl5d")
+[node name="Floor_tool_sprite" type="Sprite2D" parent="Floor_tool"]
+modulate = Color(0.970595, 0.970595, 3.85046e-06, 1)
+position = Vector2(-1.48416e-05, 1.90735e-06)
+scale = Vector2(0.211458, 0.328358)
+texture = ExtResource("7_s70e5")
 
 [node name="Block_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, 34.365)
+visible = false
 collision_layer = 4
 collision_mask = 9
 
 [node name="Tool_collision_shape" type="CollisionShape2D" parent="Block_tool"]
 shape = SubResource("RectangleShape2D_2uth4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Block_tool"]
-scale = Vector2(0.276, 0.276)
-texture = ExtResource("4_bnl5d")
+[node name="Block_tool_sprite" type="Sprite2D" parent="Block_tool"]
+scale = Vector2(0.318584, 0.325044)
+texture = ExtResource("8_vhwtv")
 
 [node name="TestBg" type="Sprite2D" parent="."]
 z_index = -2
@@ -427,13 +464,20 @@ texture = ExtResource("5_0yhaq")
 
 [node name="Wall_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-200, 0)
+visible = false
 scale = Vector2(1.438, 1.438)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_tool"]
 shape = SubResource("RectangleShape2D_bwha1")
 
-[node name="Sprite2D" type="Sprite2D" parent="Wall_tool"]
-scale = Vector2(0.03125, 1)
-texture = ExtResource("4_bnl5d")
+[node name="Wall_tool_sprite" type="Sprite2D" parent="Wall_tool"]
+modulate = Color(0, 0.929412, 0.0941176, 1)
+scale = Vector2(0.132459, 0.180984)
+texture = ExtResource("10_32q2q")
+
+[node name="Ally_followpoints" parent="." instance=ExtResource("6_3v5km")]
+
+[connection signal="visibility_changed" from="Floor_tool/Floor_tool_sprite" to="Ally_followpoints" method="_on_floor_tool_sprite_visibility_changed"]
+[connection signal="visibility_changed" from="Block_tool" to="Ally_followpoints" method="_on_block_tool_visibility_changed"]
+[connection signal="visibility_changed" from="Wall_tool" to="Ally_followpoints" method="_on_wall_tool_visibility_changed"]
