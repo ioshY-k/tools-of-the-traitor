@@ -131,6 +131,7 @@ position = Vector2(0, 18.3344)
 shape = SubResource("RectangleShape2D_rih21")
 
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.34902)
 scale = Vector2(0.190476, 0.263083)
 texture = ExtResource("7_ax4cp")
