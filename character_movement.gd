@@ -38,6 +38,7 @@ var sliding_on_right_wall: bool
 @onready var model_position: Node2D = $Model_position
 @onready var left_arm: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm")
 @onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
+@onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
 
 #Tool placement
 const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of the tool preview path
@@ -45,7 +46,14 @@ const PREVIEW_PATH_OFFSET = Vector2(0,-10) #Positional offset from the center of
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
-var is_on_tool:bool
+var is_on_tool: bool
+var floor_tool_available: bool = true
+var block_tool_available: bool = true
+var wall_tool_available: bool = true
+var rope_tool_available: bool = true
+var spring_tool_available: bool = true
+var field_tool_available: bool = true
+@onready var supercancel_timer: Timer = $Supercancel_timer
 
 #State handler
 @onready var state_handler = $State_handler
@@ -55,7 +63,7 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLJUMP_L, WALLJUMP_R}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
-enum tool_states {	NO_TOOL,
+enum tool_states {	NO_TOOL, CANCEL,
 					FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
 					BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
 					WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
@@ -72,6 +80,8 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	
+	check_supercancel()
+		
 	match current_state:
 		states.IDLE:
 			on_idle_state(delta)
@@ -99,6 +109,8 @@ func _physics_process(delta: float) -> void:
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			pass
+		tool_states.CANCEL:
+			on_cancel_state()
 		tool_states.FLOOR_TOOL_PREVIEW:
 			on_floortool_preview_state(delta)
 		tool_states.FLOOR_TOOL_PLACE:
@@ -127,6 +139,23 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide() #Player movement
 
+func check_supercancel():
+	if is_on_floor() and not is_on_tool and Input.is_action_just_pressed("cancel_tool"):
+		supercancel_timer.start()
+		eyes.play("loading_supercancel_anim")
+	if not supercancel_timer.is_stopped() and not Input.is_action_pressed("cancel_tool"):
+		supercancel_timer.stop()
+		eyes.stop()
+	supercancel_timer.timeout.connect(func():
+		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_DISABLED)
+		get_parent().get_node("%Block_tool").set_process_mode(PROCESS_MODE_DISABLED)
+		get_parent().get_node("%Wall_tool").set_process_mode(PROCESS_MODE_DISABLED)
+		get_parent().get_node("%Floor_tool").visible = false
+		get_parent().get_node("%Block_tool").visible = false
+		get_parent().get_node("%Wall_tool").visible = false
+		floor_tool_available = true
+		block_tool_available = true
+		wall_tool_available = true)
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
@@ -257,6 +286,13 @@ func on_walljump_r_state():
 	animations.play("Pjump_anim")
 
 
+
+func on_cancel_state():
+	sprite_floor_tool.visible = false
+	sprite_block_tool.visible = false
+	sprite_wall_tool.visible = false
+
+
 func on_floortool_preview_state(delta):
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
@@ -273,7 +309,7 @@ func on_floortool_preview_state(delta):
 				left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
 		else:
 			left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
-	if not is_on_tool:
+	if floor_tool_available:
 		#Floor Tool Preview
 		sprite_floor_tool.visible = true
 		follow_floor_tool.progress_ratio = \
@@ -283,10 +319,11 @@ func on_floortool_preview_state(delta):
 func on_blocktool_preview_state():
 	sprite_floor_tool.visible = false
 	sprite_wall_tool.visible = false
-	sprite_block_tool.visible = true
-	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-	determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+	if block_tool_available:
+		sprite_block_tool.visible = true
+		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
 
 func on_wall_tool_preview_state(delta):
@@ -309,8 +346,9 @@ func on_wall_tool_preview_state(delta):
 					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
 			else:
 				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
-	sprite_wall_tool.visible = true
-	determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+	if wall_tool_available:
+		sprite_wall_tool.visible = true
+		determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
 
 func on_rope_tool_preview_state():
@@ -333,19 +371,28 @@ func on_field_tool_preview_state():
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
+		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_INHERIT)
+		get_parent().get_node("%Floor_tool").visible = true
 		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position + Vector2(140,0)
+		floor_tool_available = false
 
 
 func on_blocktool_place_state():
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
+		get_parent().get_node("%Block_tool").set_process_mode(PROCESS_MODE_INHERIT)
+		get_parent().get_node("%Block_tool").visible = true
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
+		block_tool_available = false
 
 
 func on_wall_tool_place_state():
 	if sprite_wall_tool.visible:
 		sprite_wall_tool.visible = false
+		get_parent().get_node("%Wall_tool").set_process_mode(PROCESS_MODE_INHERIT)
+		get_parent().get_node("%Wall_tool").visible = true
 		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
+		wall_tool_available = false
 
 func on_rope_tool_place_state():
 	pass

@@ -45,6 +45,10 @@ scale = Vector2(1.395, 1.395)
 wait_time = 1.6
 one_shot = true
 
+[node name="Supercancel_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
 position = Vector2(14, -30)
 target_position = Vector2(0, -11)
@@ -121,6 +125,7 @@ position = Vector2(0, 18.3344)
 shape = SubResource("RectangleShape2D_rih21")
 
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.34902)
 scale = Vector2(0.03125, 1.4375)
 texture = ExtResource("3_unbga")

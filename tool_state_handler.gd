@@ -4,7 +4,7 @@ class_name Tool_state_handler
 var current_tool_state
 
 
-enum tool_states {	NO_TOOL,
+enum tool_states {	NO_TOOL, CANCEL,
 					FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
 					BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
 					WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
@@ -16,7 +16,7 @@ func _init():
 	current_tool_state = tool_states.NO_TOOL
 	
 func next_state(is_on_floor:bool) -> tool_states:
-	print(tool_states.keys()[current_tool_state])
+	#print(tool_states.keys()[current_tool_state])
 	
 	match current_tool_state:
 		tool_states.NO_TOOL:
@@ -44,7 +44,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.SPRING_TOOL_PREVIEW
 				return tool_states.FIELD_TOOL_PREVIEW
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if not is_on_floor:
 				return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_simple_tool"):
@@ -54,7 +54,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			if is_on_floor:
 				return tool_states.FLOOR_TOOL_PREVIEW
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if not Input.is_action_pressed("place_simple_tool"):
 				return tool_states.BLOCK_TOOL_PLACE
 			if Input.is_action_just_pressed("place_special_tool"):
@@ -68,7 +68,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			return tool_states.BLOCK_TOOL_PREVIEW
 		tool_states.WALL_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor:
 					return tool_states.FLOOR_TOOL_PREVIEW
@@ -85,7 +85,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			return tool_states.WALL_TOOL_PREVIEW
 		tool_states.ROPE_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor:
 					return tool_states.FLOOR_TOOL_PREVIEW
@@ -102,7 +102,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			return tool_states.ROPE_TOOL_PREVIEW
 		tool_states.SPRING_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor:
 					return tool_states.FLOOR_TOOL_PREVIEW
@@ -119,7 +119,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			return tool_states.SPRING_TOOL_PREVIEW
 		tool_states.FIELD_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
-				return tool_states.NO_TOOL
+				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor:
 					return tool_states.FLOOR_TOOL_PREVIEW
@@ -139,7 +139,8 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.WALL_TOOL_PLACE,\
 		tool_states.ROPE_TOOL_PLACE,\
 		tool_states.SPRING_TOOL_PLACE,\
-		tool_states.FIELD_TOOL_PLACE:
+		tool_states.FIELD_TOOL_PLACE,\
+		tool_states.CANCEL:
 			return tool_states.NO_TOOL
 		_:
 			print_debug("not in a valid Tool State")

@@ -1,6 +1,65 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpynb1w5bp435"]
+[gd_scene load_steps=28 format=3 uid="uid://dpynb1w5bp435"]
 
 [ext_resource type="Texture2D" uid="uid://iavu66v7lcmx" path="res://Player_spritesheet.png" id="1_03de8"]
+[ext_resource type="Texture2D" uid="uid://dcyvq0a3u4h5v" path="res://Loading_supercancel_anim/loading12.png" id="2_028mu"]
+[ext_resource type="Texture2D" uid="uid://cwqpdwg30lcgo" path="res://Loading_supercancel_anim/loading1.png" id="3_dkcdf"]
+[ext_resource type="Texture2D" uid="uid://mpmrketi5dd2" path="res://Loading_supercancel_anim/loading2.png" id="4_5b6u8"]
+[ext_resource type="Texture2D" uid="uid://wbq1q6ifrqcj" path="res://Loading_supercancel_anim/loading3.png" id="5_n4fiv"]
+[ext_resource type="Texture2D" uid="uid://cb3jhpc7q24uf" path="res://Loading_supercancel_anim/loading4.png" id="6_83rcb"]
+[ext_resource type="Texture2D" uid="uid://bf1rayp63wm1d" path="res://Loading_supercancel_anim/loading5.png" id="7_uwsbo"]
+[ext_resource type="Texture2D" uid="uid://ublmgns17lpa" path="res://Loading_supercancel_anim/loading6.png" id="8_qtskj"]
+[ext_resource type="Texture2D" uid="uid://csdorb8e0wi7a" path="res://Loading_supercancel_anim/loading7.png" id="9_0maa6"]
+[ext_resource type="Texture2D" uid="uid://dxo5e5fevkcwi" path="res://Loading_supercancel_anim/loading8.png" id="10_w1b56"]
+[ext_resource type="Texture2D" uid="uid://bysnrduwch0wb" path="res://Loading_supercancel_anim/loading9.png" id="11_xt6fr"]
+[ext_resource type="Texture2D" uid="uid://cpi164hvnh5nl" path="res://Loading_supercancel_anim/loading10.png" id="12_lfah8"]
+[ext_resource type="Texture2D" uid="uid://8pwxmglgdbl0" path="res://Loading_supercancel_anim/loading11.png" id="13_vkgxm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sifvl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_028mu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dkcdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5b6u8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n4fiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_83rcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uwsbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qtskj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0maa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_w1b56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xt6fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_lfah8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vkgxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_028mu")
+}],
+"loop": false,
+"name": &"loading_supercancel_anim",
+"speed": 24.0
+}]
 
 [sub_resource type="Animation" id="Animation_lddth"]
 resource_name = "Fall_anim"
@@ -202,19 +261,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -226,19 +285,19 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -250,19 +309,19 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/20/path = NodePath("Player_hip/Player_axle:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/21/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -274,46 +333,22 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_axle:position")
+tracks/22/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(169, 151)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -556,19 +591,19 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -580,58 +615,34 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/22/path = NodePath("Player_hip/Player_axle:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(8, 54)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/23/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -294)]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 54)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -837,19 +848,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -861,19 +872,19 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -885,19 +896,19 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/20/path = NodePath("Player_hip/Player_axle:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/21/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -909,46 +920,22 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_axle:position")
+tracks/22/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(169, 151)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1154,19 +1141,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1178,19 +1165,19 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -1202,19 +1189,19 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/20/path = NodePath("Player_hip/Player_axle:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/21/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -1226,46 +1213,22 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_axle:position")
+tracks/22/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(169, 151)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1448,19 +1411,19 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/14/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/15/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1472,19 +1435,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1496,19 +1459,19 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/18/path = NodePath("Player_hip/Player_axle:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/19/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -1520,70 +1483,46 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_axle:position")
+tracks/20/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/21/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 21.9911]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
+tracks/22/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(169, 151)]
+"values": [Vector2(-103, 116)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 21.9911]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-103, 116)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -1765,19 +1704,19 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/14/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/15/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1789,19 +1728,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1813,94 +1752,70 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/18/path = NodePath("Player_hip/Player_axle:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -294)]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/20/type = "value"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_axle:position")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
 "times": PackedFloat32Array(0, 0.32),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(8, 54), Vector2(8, 28.3349)]
 }
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_axle:rotation")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
 "times": PackedFloat32Array(0, 0.14),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0472]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(169, 151)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
+tracks/22/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(169, 151)]
+"values": [Vector2(-103, 116)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 12.5664]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-103, 116)]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -2034,19 +1949,19 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/10/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/11/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -2058,19 +1973,19 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/12/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/13/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -2082,19 +1997,19 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/14/path = NodePath("Player_hip/Player_axle:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/15/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -2106,19 +2021,19 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_axle:position")
+tracks/16/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/17/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -2130,46 +2045,22 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
+tracks/18/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(169, 151)]
+"values": [Vector2(-103, 116)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_axle/Player_rightwheel:rotation")
+tracks/19/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/20/type = "value"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_axle/Player_leftwheel:position")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-103, 116)]
-}
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_axle/Player_leftwheel:rotation")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -2412,19 +2303,19 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -2436,19 +2327,19 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/21/path = NodePath("Player_hip/Player_axle:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(8, 54)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/22/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -2460,34 +2351,10 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:position")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 54)]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle:rotation")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -2703,19 +2570,19 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/18/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -2727,19 +2594,19 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, -294)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -2751,19 +2618,19 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:position")
+tracks/21/path = NodePath("Player_hip/Player_axle:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -294)]
+"values": [Vector2(8, 54)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso/Player_head/Player_hair:rotation")
+tracks/22/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -2775,58 +2642,34 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:position")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 54)]
+"values": [Vector2(169, 151)]
 }
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle:rotation")
+tracks/24/path = NodePath(".:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0, 0)]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
+tracks/25/path = NodePath(".:rotation")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(169, 151)]
-}
-tracks/26/type = "value"
-tracks/26/imported = false
-tracks/26/enabled = true
-tracks/26/path = NodePath(".:position")
-tracks/26/interp = 1
-tracks/26/loop_wrap = true
-tracks/26/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/27/type = "value"
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/path = NodePath(".:rotation")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -3069,19 +2912,19 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -3093,19 +2936,19 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/21/path = NodePath("Player_hip/Player_axle:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(8, 54)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/22/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -3117,34 +2960,10 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:position")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 54)]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle:rotation")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -3387,19 +3206,19 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(51, -168)]
+"values": [Vector2(0, 0)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
+tracks/20/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -3411,19 +3230,19 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:position")
+tracks/21/path = NodePath("Player_hip/Player_axle:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(8, 54)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles/Player_eyes:rotation")
+tracks/22/path = NodePath("Player_hip/Player_axle:rotation")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -3435,34 +3254,10 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_axle:position")
+tracks/23/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 54)]
-}
-tracks/24/type = "value"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip/Player_axle:rotation")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip/Player_axle/Player_rightwheel:position")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -3597,55 +3392,55 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:position")
+tracks/10/path = NodePath("Player_hip/Player_torso/Player_head:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Player_hip/Player_torso/Player_head/Player_goggles:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Player_hip/Player_torso/Player_head:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-26.8986, -94.2437)]
 }
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Player_hip/Player_torso/Player_head:rotation")
-tracks/13/interp = 4
-tracks/13/loop_wrap = true
-tracks/13/keys = {
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Player_hip/Player_torso/Player_head:rotation")
+tracks/11/interp = 4
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(2.07053, 2.2974),
 "update": 0,
 "values": [-0.523598, -0.387463]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.57079]
+}
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:position")
+tracks/14/path = NodePath("Player_hip/Player_torso/Player_leftarm:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -3657,19 +3452,19 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand:rotation")
-tracks/15/interp = 1
+tracks/15/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
+tracks/15/interp = 2
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.57079]
+"values": [0.785397, 1.00356]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Player_hip/Player_torso/Player_leftarm:position")
+tracks/16/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -3681,67 +3476,67 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
-tracks/17/interp = 2
+tracks/17/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:rotation")
+tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.785397, 1.00356]
+"values": [0.523598]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:position")
+tracks/18/path = NodePath("Player_hip/Player_torso/Player_rightarm:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.12, 0.3, 0.36, 0.64, 0.88, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [Vector2(-8, -49.735), Vector2(-8, -59.6965), Vector2(-8, -34.463), Vector2(-8, -59.6965), Vector2(-8, -34.463), Vector2(-8, -59.6965), Vector2(-8, -34.463)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_righthand:rotation")
+tracks/19/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.523598]
+"values": [4.45058]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Player_hip/Player_torso/Player_rightarm:position")
+tracks/20/path = NodePath("Player_hip/Player_torso:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.3, 0.36, 0.64, 0.88, 0.96),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(-8, -49.735), Vector2(-8, -59.6965), Vector2(-8, -34.463), Vector2(-8, -59.6965), Vector2(-8, -34.463), Vector2(-8, -59.6965), Vector2(-8, -34.463)]
+"values": []
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
+tracks/21/path = NodePath("Player_hip/Player_torso:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [4.45058]
+"values": []
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Player_hip/Player_torso:position")
+tracks/22/path = NodePath("Player_hip:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -3753,7 +3548,7 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Player_hip/Player_torso:rotation")
+tracks/23/path = NodePath("Player_hip:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -3765,7 +3560,7 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("Player_hip:position")
+tracks/24/path = NodePath(".:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
@@ -3777,34 +3572,10 @@ tracks/24/keys = {
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Player_hip:rotation")
+tracks/25/path = NodePath(".:rotation")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/26/type = "value"
-tracks/26/imported = false
-tracks/26/enabled = true
-tracks/26/path = NodePath(".:position")
-tracks/26/interp = 1
-tracks/26/loop_wrap = true
-tracks/26/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/27/type = "value"
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/path = NodePath(".:rotation")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 0,
@@ -3903,6 +3674,13 @@ texture = ExtResource("1_03de8")
 offset = Vector2(-235, -4)
 region_enabled = true
 region_rect = Rect2(1225.1, 17.3537, 558.9, 446.506)
+
+[node name="Player_eyes" type="AnimatedSprite2D" parent="Player_hip/Player_torso/Player_head"]
+position = Vector2(55.924, -165.793)
+sprite_frames = SubResource("SpriteFrames_sifvl")
+animation = &"loading_supercancel_anim"
+frame = 12
+frame_progress = 1.0
 
 [node name="Player_axle" type="Sprite2D" parent="Player_hip"]
 z_index = 2
