@@ -96,6 +96,14 @@ stick_left={
 2d_physics/layer_2="Wall"
 2d_physics/layer_3="Tools"
 2d_physics/layer_4="Areas"
+2d_physics/layer_5="Deadzone"
+2d_physics/layer_10="Followpoint1"
+2d_physics/layer_11="Followpoint2"
+2d_physics/layer_12="Followpoint3"
+2d_physics/layer_13="Followpoint4"
+2d_physics/layer_14="Followpoint5"
+2d_physics/layer_15="Followpoint6"
+2d_physics/layer_16="Followpoint7"
 
 [rendering]
 

@@ -54,6 +54,10 @@ var spring_tool_available: bool = true
 var field_tool_available: bool = true
 @onready var supercancel_timer: Timer = $Supercancel_timer
 
+#Other
+var controllable: bool = true
+@onready var last_spawnpoint = position
+
 #State handler
 @onready var state_handler = $State_handler
 var current_state
@@ -80,60 +84,61 @@ func _physics_process(delta: float) -> void:
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	
 	check_supercancel()
-		
-	match current_state:
-		states.IDLE:
-			on_idle_state(delta)
-		states.WALK:
-			on_walk_state(delta)
-		states.RUN:
-			on_run_state(delta)
-		states.PUSH:
-			on_push_state()
-		states.JUMP:
-			on_jump_state()
-		states.FALL:
-			on_fall_state(delta)
-		states.LAND:
-			on_land_state()
-		states.WALLSLIDE_L:
-			on_wallslide_l_state(delta)
-		states.WALLSLIDE_R:
-			on_wallslide_r_state(delta)
-		states.WALLJUMP_L:
-			on_walljump_l_state()
-		states.WALLJUMP_R:
-			on_walljump_r_state()
-			
-	match current_tool_state:
-		tool_states.NO_TOOL:
-			pass
-		tool_states.CANCEL:
-			on_cancel_state()
-		tool_states.FLOOR_TOOL_PREVIEW:
-			on_floortool_preview_state(delta)
-		tool_states.FLOOR_TOOL_PLACE:
-			on_floortool_place_state()
-		tool_states.BLOCK_TOOL_PREVIEW:
-			on_blocktool_preview_state()
-		tool_states.BLOCK_TOOL_PLACE:
-			on_blocktool_place_state()
-		tool_states.WALL_TOOL_PREVIEW:
-			on_wall_tool_preview_state(delta)
-		tool_states.WALL_TOOL_PLACE:
-			on_wall_tool_place_state()
-		tool_states.ROPE_TOOL_PREVIEW:
-			on_rope_tool_preview_state()
-		tool_states.ROPE_TOOL_PLACE:
-			on_rope_tool_place_state()
-		tool_states.SPRING_TOOL_PREVIEW:
-			on_spring_tool_preview_state()
-		tool_states.SPRING_TOOL_PLACE:
-			on_spring_tool_place_state()
-		tool_states.FIELD_TOOL_PREVIEW:
-			on_field_tool_preview_state()
-		tool_states.FIELD_TOOL_PLACE:
-			on_field_tool_place_state()
+	
+	if controllable:
+		match current_state:
+			states.IDLE:
+				on_idle_state(delta)
+			states.WALK:
+				on_walk_state(delta)
+			states.RUN:
+				on_run_state(delta)
+			states.PUSH:
+				on_push_state()
+			states.JUMP:
+				on_jump_state()
+			states.FALL:
+				on_fall_state(delta)
+			states.LAND:
+				on_land_state()
+			states.WALLSLIDE_L:
+				on_wallslide_l_state(delta)
+			states.WALLSLIDE_R:
+				on_wallslide_r_state(delta)
+			states.WALLJUMP_L:
+				on_walljump_l_state()
+			states.WALLJUMP_R:
+				on_walljump_r_state()
+				
+		match current_tool_state:
+			tool_states.NO_TOOL:
+				pass
+			tool_states.CANCEL:
+				on_cancel_state()
+			tool_states.FLOOR_TOOL_PREVIEW:
+				on_floortool_preview_state(delta)
+			tool_states.FLOOR_TOOL_PLACE:
+				on_floortool_place_state()
+			tool_states.BLOCK_TOOL_PREVIEW:
+				on_blocktool_preview_state()
+			tool_states.BLOCK_TOOL_PLACE:
+				on_blocktool_place_state()
+			tool_states.WALL_TOOL_PREVIEW:
+				on_wall_tool_preview_state(delta)
+			tool_states.WALL_TOOL_PLACE:
+				on_wall_tool_place_state()
+			tool_states.ROPE_TOOL_PREVIEW:
+				on_rope_tool_preview_state()
+			tool_states.ROPE_TOOL_PLACE:
+				on_rope_tool_place_state()
+			tool_states.SPRING_TOOL_PREVIEW:
+				on_spring_tool_preview_state()
+			tool_states.SPRING_TOOL_PLACE:
+				on_spring_tool_place_state()
+			tool_states.FIELD_TOOL_PREVIEW:
+				on_field_tool_preview_state()
+			tool_states.FIELD_TOOL_PLACE:
+				on_field_tool_place_state()
 		
 	
 	move_and_slide() #Player movement
@@ -496,3 +501,15 @@ func _on_floor_typecheck_body_exited(_body: Node2D) -> void:
 
 func _on_p_speed_timer_timeout() -> void:
 	p_speed_is_active = true
+
+
+func _on_deadzone_body_entered(body: Node2D) -> void:
+	print("deadzone entered")
+	controllable = false
+	animations.play("Death_anim")
+	velocity = Vector2.ZERO
+	await animations.animation_finished
+	position = last_spawnpoint
+	animations.play_backwards("Death_anim")
+	await animations.animation_finished
+	controllable = true
