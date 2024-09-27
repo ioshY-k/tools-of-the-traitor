@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Wall.png" id="7_ax4cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8e7j"]
-size = Vector2(28, 47.7686)
+size = Vector2(75, 130)
 
 [sub_resource type="Curve2D" id="Curve2D_aeka8"]
 _data = {
@@ -19,7 +19,7 @@ _data = {
 point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
-size = Vector2(28, 1.07512)
+size = Vector2(75, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jk2y"]
 radius = 1.0
@@ -56,47 +56,47 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
-position = Vector2(14, -30)
-target_position = Vector2(0, -11)
+position = Vector2(42, -83)
+target_position = Vector2(0, -16)
 collision_mask = 6
 
 [node name="Caster_inner_left_ceiling" type="RayCast2D" parent="."]
-position = Vector2(-7, -30)
-target_position = Vector2(0, -18)
+position = Vector2(-22, -83)
+target_position = Vector2(0, -30)
 collision_mask = 6
 
 [node name="Caster_inner_right_ceiling" type="RayCast2D" parent="."]
-position = Vector2(7, -30)
-target_position = Vector2(0, -18)
+position = Vector2(31, -83)
+target_position = Vector2(0, -32)
 collision_mask = 6
 
 [node name="Caster_outer_left_ceiling" type="RayCast2D" parent="."]
-position = Vector2(-14, -30)
-target_position = Vector2(0, -10)
+position = Vector2(-33, -83)
+target_position = Vector2(0, -16)
 collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
-position = Vector2(14, -3)
-target_position = Vector2(5, 0)
+position = Vector2(42, 15)
+target_position = Vector2(16, 0)
 collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
-position = Vector2(14, -18)
-target_position = Vector2(5, 0)
+position = Vector2(42, -20)
+target_position = Vector2(18, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
-position = Vector2(-14, -3)
-target_position = Vector2(-5, 0)
+position = Vector2(-33, 15)
+target_position = Vector2(-17, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
-position = Vector2(-14, -18)
-target_position = Vector2(-5, 0)
+position = Vector2(-33, -19)
+target_position = Vector2(-18, 0)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.11572)
+position = Vector2(4.5, -18)
 shape = SubResource("RectangleShape2D_o8e7j")
 
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
@@ -127,7 +127,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_typecheck"]
-position = Vector2(0, 18.3344)
+position = Vector2(4.5, 49)
 shape = SubResource("RectangleShape2D_rih21")
 
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]

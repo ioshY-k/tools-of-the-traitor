@@ -1,20 +1,20 @@
 extends CharacterBody2D
 
 #Movement variables
-const ACCELERATION = 2300 #How fast Player reaches run speed
-const DECELERATION = 3000 #How long until Player stops after moving
-const AIR_ACCELERATION = 1700
-const GRAVITY_RISING = 1700 #How fast Player falls with holding jump
-const GRAVITY_FALLING = 3800 #How much stronger  gravity pulls in falling state vs. rising state
-const MAX_FALLSPEED = 700 #The point where gravity doesn't accelerate fallspeed enymore
-const JUMPFORCE = 620 #How high Player gets send when jumping
-const JUMPFORCE_INCREASE = 5 #How much runspeed influences jump height
-const MAX_WALK_SPEED = 250 #Player walk speed
-const MAX_RUN_SPEED = 400 #Player run speed
-const MAX_P_SPEED = 500 #Player P speed
-const GRAVITY_WALL_SLIDING = 300
-const WALL_JUMP_HEIGHT = 700
-const WALL_JUMP_WIDTH = 750
+const ACCELERATION = 2300 * 2.5 #How fast Player reaches run speed
+const DECELERATION = 3000 * 2.5 #How long until Player stops after moving
+const AIR_ACCELERATION = 1700 * 2.5
+const GRAVITY_RISING = 1700 * 2.5 #How fast Player falls with holding jump
+const GRAVITY_FALLING = 3800 * 2.5 #How much stronger  gravity pulls in falling state vs. rising state
+const MAX_FALLSPEED = 700 * 2.5 #The point where gravity doesn't accelerate fallspeed enymore
+const JUMPFORCE = 620 * 2.5 #How high Player gets send when jumping
+const JUMPFORCE_INCREASE = 5 * 2.5 #How much runspeed influences jump height
+const MAX_WALK_SPEED = 250 * 2.5 #Player walk speed
+const MAX_RUN_SPEED = 400 * 2.5 #Player run speed
+const MAX_P_SPEED = 500 * 2.5 #Player P speed
+const GRAVITY_WALL_SLIDING = 300 * 2.5
+const WALL_JUMP_HEIGHT = 700 * 2.5
+const WALL_JUMP_WIDTH = 750 * 2.5
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
 var p_speed_is_active: bool
 var sliding_on_left_wall: bool

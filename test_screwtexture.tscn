@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3t4a5hinawen"]
+
+[ext_resource type="Texture2D" path="res://Testscrew_texture.png" id="1_7se5r"]
+
+[node name="TextureRect2" type="TextureRect"]
+texture_filter = 1
+offset_left = 326.0
+offset_top = -29.0
+offset_right = 604.0
+offset_bottom = 133.0
+texture = ExtResource("1_7se5r")
+
+[node name="Node2D" type="Node2D" parent="."]
