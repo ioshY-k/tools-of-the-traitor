@@ -444,50 +444,50 @@ func determine_blocktool_position(inputstrength, controllerangle):
 	if inputstrength > Vector2(0.5,0.5).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
-			sprite_block_tool.position = 45 * Vector2.DOWN
+			sprite_block_tool.position = 100 * Vector2.DOWN
 		elif Input.get_axis("walk_left", "walk_right") > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
-				sprite_block_tool.position = 45 * Vector2.RIGHT
+				sprite_block_tool.position = 100 * Vector2.RIGHT
 			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
-				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(3*PI/8)
+				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(3*PI/8)
 			else:
-				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(controllerangle)
 		else:
 			#Snap behaviour when facing left
 			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
-				sprite_block_tool.position = 45 * Vector2.LEFT
+				sprite_block_tool.position = 100 * Vector2.LEFT
 			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
-				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(5*PI/8)
+				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(5*PI/8)
 			else:
-				sprite_block_tool.position = 45 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(controllerangle)
 
 
 func determine_walltool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.5,0.5).abs().length():
-		var x_value = 63
+		var x_value = 130
 		var y_value
 		
 		#Mirrors left Stickangle to the respective right Value.
 		#This way the position mapping only needs to happen within the range of -3PI/8 and +3PI/8 (right wall placement zone)
 		if controllerangle < -PI/2:
 			controllerangle = -(controllerangle + PI)
-			x_value = -63
+			x_value = -130
 		elif controllerangle > PI/2:
 			controllerangle =  PI - controllerangle
-			x_value = -63
+			x_value = -130
 		
 		#Snapping to lowest position
 		if controllerangle > PI/4:
-			y_value = 100
+			y_value = 240
 		#Snapping to highest position
 		elif controllerangle < -PI/4:
-			y_value = -100
+			y_value = -240
 		else:
-			#Formula for mapping given highest wallpoint Ymax and lowest wallpoint Ymin:
-			#Ymin + ((controllerangle - Xmin) / (Xmax - Xmin)) * (Ymax - Ymin)
-			y_value = -100 + ((controllerangle + 3*PI/8) / (3*PI/4)) * 200
+			#Formula for mapping given highest wallpoint Newmax and lowest wallpoint Newmin:
+			#Newmin + ((controllerangle - Oldmin) / (Oldmax - Oldmin)) * (Newmax - Newmin)
+			y_value = -240 + ((controllerangle + 3*PI/8) / (3*PI/4)) * 480
 		
 		sprite_wall_tool.position = Vector2(x_value,y_value)
 

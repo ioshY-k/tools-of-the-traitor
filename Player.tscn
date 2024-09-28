@@ -14,9 +14,9 @@ size = Vector2(75, 130)
 
 [sub_resource type="Curve2D" id="Curve2D_aeka8"]
 _data = {
-"points": PackedVector2Array(0.890899, 83.4475, -0.890899, -83.4475, -208, 0, -148.422, 0.264567, 148.422, -0.264567, 0, -86, 0, -81.1929, 0, 81.1929, 186.297, -0.891091, 0, 0, 0, 0, 171.327, 63.4257, 125.405, -0.264567, -125.405, 0.264567, 0, 82, 0.176577, 81.2255, -0.176577, -81.2255, -208, 0)
+"points": PackedVector2Array(0.449019, 62.8734, -0.449019, -62.8734, -159.864, 1.86053, -159.248, -0.406326, 159.248, 0.406326, -0.461417, -82.2726, 0.22094, -55.4753, -0.22094, 55.4753, 158.941, 1.86053, 125.405, -0.264567, -125.405, 0.264567, -0.461417, 57.2393, -0.707183, 59.3097, 0.707183, -59.3097, -159.864, 1.86053)
 }
-point_count = 6
+point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
 size = Vector2(75, 4)
@@ -102,8 +102,8 @@ shape = SubResource("RectangleShape2D_o8e7j")
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
-position = Vector2(0, 28)
-scale = Vector2(0.319, 0.325)
+position = Vector2(4, 89)
+scale = Vector2(0.646018, 0.646018)
 texture = ExtResource("5_8eind")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -113,11 +113,12 @@ curve = SubResource("Curve2D_aeka8")
 
 [node name="Follow_floor_tool" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(-208, 0)
+position = Vector2(-159.864, 1.86053)
 rotation = -0.5916
 rotates = false
 
 [node name="Sprite_floor_tool" type="Sprite2D" parent="Path2D/Follow_floor_tool"]
+visible = false
 modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(0.70002, 0.0647659)
 rotation = 0.5916
@@ -135,7 +136,8 @@ shape = SubResource("RectangleShape2D_rih21")
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
-scale = Vector2(0.190476, 0.263083)
+position = Vector2(190, -1)
+scale = Vector2(0.485238, 0.734088)
 texture = ExtResource("7_ax4cp")
 
 [node name="Ally_destination" type="Area2D" parent="."]
@@ -146,9 +148,6 @@ script = ExtResource("6_b7brx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ally_destination"]
 shape = SubResource("CircleShape2D_2jk2y")
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, -328)
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

@@ -313,10 +313,10 @@ sources/0 = SubResource("TileSetAtlasSource_rbq83")
 size = Vector2(955, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uth4"]
-size = Vector2(36, 36)
+size = Vector2(72, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwha1"]
-size = Vector2(5.56329, 127.955)
+size = Vector2(13.9082, 360.223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0eoq8"]
 size = Vector2(124, 124)
@@ -420,7 +420,7 @@ texture = ExtResource("7_s70e5")
 [node name="Block_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
 visible = false
-position = Vector2(0, 65.44)
+position = Vector2(571, -752)
 collision_layer = 4
 collision_mask = 9
 
@@ -428,8 +428,8 @@ collision_mask = 9
 shape = SubResource("RectangleShape2D_2uth4")
 
 [node name="Block_tool_sprite" type="Sprite2D" parent="Block_tool"]
-position = Vector2(0, 0.559998)
-scale = Vector2(0.318584, 0.325044)
+position = Vector2(1.52588e-05, 2.09808e-05)
+scale = Vector2(0.637168, 0.635442)
 texture = ExtResource("8_vhwtv")
 
 [node name="Wall_tool" type="StaticBody2D" parent="."]
@@ -440,11 +440,13 @@ scale = Vector2(1.438, 1.438)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_tool"]
+position = Vector2(-2.0504e-05, 0.000157595)
 shape = SubResource("RectangleShape2D_bwha1")
 
 [node name="Wall_tool_sprite" type="Sprite2D" parent="Wall_tool"]
 modulate = Color(0, 0.929412, 0.0941176, 1)
-scale = Vector2(0.132459, 0.180984)
+position = Vector2(-2.0504e-05, 3.57628e-05)
+scale = Vector2(0.331147, 0.509509)
 texture = ExtResource("10_32q2q")
 
 [node name="Ally_followpoints" parent="." instance=ExtResource("6_3v5km")]
