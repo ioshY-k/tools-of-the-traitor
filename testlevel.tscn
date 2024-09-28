@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=22 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="Texture2D" uid="uid://ctqcuk7f3vy7h" path="res://Purple.png" id="1_j8rcx"]
 [ext_resource type="Texture2D" uid="uid://dsglafsk6rax8" path="res://Ally1.png" id="2_58b44"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://djyokpc7kvm0d" path="res://75x75tileset.png" id="13_7ifjp"]
 [ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="13_c2iby"]
 [ext_resource type="PackedScene" uid="uid://dxy636pajun4c" path="res://checkpoint.tscn" id="14_ftnco"]
+[ext_resource type="Texture2D" uid="uid://drfgnk7mae5wp" path="res://Spikes75x75.png" id="14_sapdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k41b6"]
 size = Vector2(955, 62)
@@ -46,10 +47,25 @@ texture_region_size = Vector2i(75, 75)
 2:2/0 = 0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q302m"]
+texture = ExtResource("14_sapdr")
+texture_region_size = Vector2i(75, 75)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -17)
+0:0/0/z_index = 2
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -17)
+1:0/0/z_index = 2
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -17)
+2:0/0/z_index = 2
+
 [sub_resource type="TileSet" id="TileSet_nb3gb"]
 tile_size = Vector2i(75, 75)
 physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_hehte")
+sources/1 = SubResource("TileSetAtlasSource_q302m")
 
 [node name="Testlevel" type="Node"]
 
@@ -64,6 +80,8 @@ offset = Vector2(0.005, 0)
 zoom = Vector2(1.015, 1.015)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.355
+
+[node name="Ally_followpoints" parent="." instance=ExtResource("6_3v5km")]
 
 [node name="Ally1" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -170,8 +188,6 @@ position = Vector2(-2.0504e-05, 3.57628e-05)
 scale = Vector2(0.331147, 0.509509)
 texture = ExtResource("10_32q2q")
 
-[node name="Ally_followpoints" parent="." instance=ExtResource("6_3v5km")]
-
 [node name="Deadzone" type="Area2D" parent="."]
 position = Vector2(427, 24)
 collision_layer = 16
@@ -192,7 +208,7 @@ position = Vector2(1954, 96)
 
 [node name="Layer0" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAEAPb/AAABAAAAAAAFAPb/AAABAAAAAAAGAPb/AAABAAAAAAAHAPb/AAABAAAAAAAIAPb/AAABAAAAAAAJAPb/AAABAAAAAAAKAPb/AAABAAAAAAALAPb/AAABAAAAAAAMAPb/AAABAAAAAAANAPb/AAABAAAAAAAOAPb/AAABAAAAAAAPAPb/AAACAAAAAAAPAPf/AAACAAEAAAAPAPj/AAACAAIAAAAOAPj/AAABAAIAAAANAPj/AAABAAIAAAAMAPj/AAABAAIAAAALAPj/AAABAAIAAAAKAPj/AAABAAIAAAAJAPj/AAABAAIAAAAIAPj/AAABAAIAAAAHAPj/AAABAAIAAAAGAPj/AAABAAIAAAAFAPj/AAABAAIAAAAEAPj/AAABAAIAAAADAPj/AAAAAAIAAAADAPf/AAAAAAEAAAADAPb/AAAAAAAAAAAPAPX/AAAAAAEAAAAPAPT/AAAAAAEAAAAPAPP/AAAAAAEAAAAPAPL/AAAAAAAAAAAQAPL/AAABAAAAAAARAPL/AAABAAAAAAASAPL/AAABAAAAAAAOAPP/AAABAAIAAAANAPP/AAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAAEAPb/AAABAAAAAAAFAPb/AAABAAAAAAAGAPb/AAABAAAAAAAHAPb/AAABAAAAAAAIAPb/AAABAAAAAAAJAPb/AAABAAAAAAAKAPb/AAABAAAAAAALAPb/AAABAAAAAAAMAPb/AAABAAAAAAANAPb/AAABAAAAAAAOAPb/AAABAAAAAAAPAPb/AAACAAAAAAAPAPf/AAACAAEAAAAPAPj/AAACAAIAAAAOAPj/AAABAAIAAAANAPj/AAABAAIAAAAMAPj/AAABAAIAAAALAPj/AAABAAIAAAAKAPj/AAABAAIAAAAJAPj/AAABAAIAAAAIAPj/AAABAAIAAAAHAPj/AAABAAIAAAAGAPj/AAABAAIAAAAFAPj/AAABAAIAAAAEAPj/AAABAAIAAAADAPj/AAAAAAIAAAADAPf/AAAAAAEAAAADAPb/AAAAAAAAAAAPAPX/AAAAAAEAAAAPAPT/AAAAAAEAAAAPAPP/AAAAAAEAAAAPAPL/AAAAAAAAAAAQAPL/AAABAAAAAAARAPL/AAABAAAAAAASAPL/AAABAAAAAAAOAPP/AAABAAIAAAANAPP/AAABAAIAAAAJAPX/AQAAAAAAAAAKAPX/AQABAAAAAAALAPX/AQABAAAAAAAMAPX/AQABAAAAAAANAPX/AQABAAAAAAAOAPX/AQACAAAAAAA=")
 tile_set = SubResource("TileSet_nb3gb")
 
 [connection signal="visibility_changed" from="Floor_tool/Floor_tool_sprite" to="Ally_followpoints" method="_on_floor_tool_sprite_visibility_changed"]
