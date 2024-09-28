@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=12 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://character_movement.gd" id="1_ac4tx"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Player_cutout.tscn" id="2_10mar"]
@@ -9,12 +9,9 @@
 [ext_resource type="Script" path="res://ally_destination.gd" id="6_b7brx"]
 [ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Wall.png" id="7_ax4cp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8e7j"]
-size = Vector2(75, 130)
-
 [sub_resource type="Curve2D" id="Curve2D_aeka8"]
 _data = {
-"points": PackedVector2Array(0.449019, 62.8734, -0.449019, -62.8734, -159.864, 1.86053, -159.248, -0.406326, 159.248, 0.406326, -0.461417, -82.2726, 0.22094, -55.4753, -0.22094, 55.4753, 158.941, 1.86053, 125.405, -0.264567, -125.405, 0.264567, -0.461417, 57.2393, -0.707183, 59.3097, 0.707183, -59.3097, -159.864, 1.86053)
+"points": PackedVector2Array(0.283501, 61.8682, -0.283501, -61.8682, -159.864, 1.86053, -159.248, -0.406326, 159.248, 0.406326, -0.461417, -56.1807, -0.110096, -61.1715, 0.110096, 61.1715, 158.941, 1.86053, 125.405, -0.264567, -125.405, 0.264567, -0.461417, 64.1617, 0.120407, 65.0059, -0.120407, -65.0059, -159.864, 1.86053)
 }
 point_count = 5
 
@@ -95,9 +92,9 @@ position = Vector2(-33, -19)
 target_position = Vector2(-18, 0)
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(4.5, -18)
-shape = SubResource("RectangleShape2D_o8e7j")
+polygon = PackedVector2Array(-37.5, -65, 37.5, -65, 37.5, 45, 14.5, 65, -37.5, 65)
 
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
 visible = false
@@ -148,6 +145,9 @@ script = ExtResource("6_b7brx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ally_destination"]
 shape = SubResource("CircleShape2D_2jk2y")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 253)
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
