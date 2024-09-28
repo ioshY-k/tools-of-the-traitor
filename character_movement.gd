@@ -8,7 +8,7 @@ const GRAVITY_RISING = 1700 * 2.5 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 3800 * 2.5 #How much stronger  gravity pulls in falling state vs. rising state
 const MAX_FALLSPEED = 700 * 2.5 #The point where gravity doesn't accelerate fallspeed enymore
 const JUMPFORCE = 620 * 2.5 #How high Player gets send when jumping
-const JUMPFORCE_INCREASE = 5 * 2.5 #How much runspeed influences jump height
+const JUMPFORCE_INCREASE = 6 #How much runspeed influences jump height
 const MAX_WALK_SPEED = 250 * 2.5 #Player walk speed
 const MAX_RUN_SPEED = 400 * 2.5 #Player run speed
 const MAX_P_SPEED = 500 * 2.5 #Player P speed
@@ -82,7 +82,8 @@ func _physics_process(delta: float) -> void:
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
-	
+	print("player")
+	print(position)
 	check_supercancel()
 	
 	if controllable:
@@ -308,7 +309,7 @@ func on_cancel_state():
 func on_floortool_preview_state(delta):
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
-	velocity.x = move_toward(velocity.x, 0, 5000 * delta)
+	velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 	animations.play("Preview_anim")
 	left_hand.rotation = deg_to_rad(30)
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -345,7 +346,7 @@ func on_wall_tool_preview_state(delta):
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	#sprite_rope/spring/field_tool.visible = false
 	if is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, 5000 * delta)
+		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
 		left_hand.rotation = deg_to_rad(30)
 		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():

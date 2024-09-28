@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var player: CharacterBody2D = $".."
-const DISTANCE = 20
+const DISTANCE = 60
 var mirror = -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

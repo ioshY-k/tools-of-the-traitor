@@ -33,27 +33,30 @@ func _ready() -> void:
 	allies.append(floor_ally)
 	allies.append(block_ally)
 	allies.append(wall_ally)
+	for point in follow_points:
+		point.position = player.position
 
 func _physics_process(delta: float) -> void:
-	var destination = player.position
+	var destination = player.get_node("Ally_destination").global_position
+	print(player.position)
 	var speed = player.velocity.length()
 	for index in range(len(follow_points)):
 		if index == 0:
-			follow_points[index].position = follow_points[index].position.move_toward(destination, speed * delta)
+			follow_points[index].position = follow_points[index].position.move_toward(destination, max(speed * delta, 800 * delta))
 		else:
 			if not follow_points[index].has_overlapping_areas():
-				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, speed * delta)
+				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, max(speed * delta, 800 * delta))
 	
 	for index in range(len(allies)):
 		#every ally follows their corresponting follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
 	
 	if floor_ally_gone:
-		floor_ally.position = floor_ally.position.move_toward(floor_tool.position, 1100 * get_physics_process_delta_time())
+		floor_ally.position = floor_ally.position.move_toward(floor_tool.position, 2500 * get_physics_process_delta_time())
 	if block_ally_gone:
-		block_ally.position = block_ally.position.move_toward(block_tool.position, 1100 * get_physics_process_delta_time())
+		block_ally.position = block_ally.position.move_toward(block_tool.position, 2500 * get_physics_process_delta_time())
 	if wall_ally_gone:
-		wall_ally.position = wall_ally.position.move_toward(wall_tool.position, 1100 * get_physics_process_delta_time())
+		wall_ally.position = wall_ally.position.move_toward(wall_tool.position, 2500 * get_physics_process_delta_time())
 
 
 func _on_floor_tool_sprite_visibility_changed() -> void:
