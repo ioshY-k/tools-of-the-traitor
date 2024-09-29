@@ -82,8 +82,6 @@ func _physics_process(delta: float) -> void:
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
-	print("player")
-	print(position)
 	check_supercancel()
 	
 	if controllable:
@@ -504,7 +502,10 @@ func _on_p_speed_timer_timeout() -> void:
 	p_speed_is_active = true
 
 
-func _on_deadzone_body_entered(body: Node2D) -> void:
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	print(body)
 	print("deadzone entered")
 	controllable = false
 	animations.play("Death_anim")

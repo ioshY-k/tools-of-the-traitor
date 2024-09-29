@@ -38,7 +38,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var destination = player.get_node("Ally_destination").global_position
-	print(player.position)
 	var speed = player.velocity.length()
 	for index in range(len(follow_points)):
 		if index == 0:

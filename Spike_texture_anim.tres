@@ -1,0 +1,37 @@
+[gd_resource type="AnimatedTexture" load_steps=8 format=3 uid="uid://2p1qoi1ckoy3"]
+
+[ext_resource type="Texture2D" uid="uid://bmjhfikwrv6j5" path="res://Tiles/Spikes75x75_frame1.png" id="1_um16l"]
+[ext_resource type="Texture2D" uid="uid://db8lgq7gxpa3d" path="res://Tiles/Spikes75x75_frame2.png" id="2_rtd8e"]
+[ext_resource type="Texture2D" uid="uid://btpa3pxfyh3t3" path="res://Tiles/Spikes75x75_spinframe2.png" id="3_m5wjq"]
+[ext_resource type="Texture2D" uid="uid://doyynhl5cqai" path="res://Tiles/Spikes75x75_frame3.png" id="4_b4w2e"]
+[ext_resource type="Texture2D" uid="uid://dtrj3ovl6x268" path="res://Tiles/Spikes75x75_frame4.png" id="5_dopky"]
+[ext_resource type="Texture2D" uid="uid://coc5s0ntybsis" path="res://Tiles/Spikes75x75_frame5.png" id="6_8pr3d"]
+[ext_resource type="Texture2D" uid="uid://cfs2g8pua50qk" path="res://Tiles/Spikes75x75_spinframe1.png" id="7_p4maf"]
+
+[resource]
+frames = 12
+speed_scale = 11.7
+frame_0/texture = ExtResource("1_um16l")
+frame_0/duration = 5.0
+frame_1/texture = ExtResource("2_rtd8e")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_b4w2e")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_dopky")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_8pr3d")
+frame_4/duration = 5.0
+frame_5/texture = ExtResource("7_p4maf")
+frame_5/duration = 2.0
+frame_6/texture = ExtResource("6_8pr3d")
+frame_6/duration = 5.0
+frame_7/texture = ExtResource("5_dopky")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("4_b4w2e")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("2_rtd8e")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("1_um16l")
+frame_10/duration = 5.0
+frame_11/texture = ExtResource("3_m5wjq")
+frame_11/duration = 2.0
