@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bma5h1h68wws1"
-path="res://.godot/imported/Block.png-e6431afbf2517b8ce0ac12dbabc9f2c6.ctex"
+uid="uid://cll1nmnr7askq"
+path="res://.godot/imported/Spritesheet_Sonic.png-993ce22d8edd5554075197b87fed948e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Block.png"
-dest_files=["res://.godot/imported/Block.png-e6431afbf2517b8ce0ac12dbabc9f2c6.ctex"]
+source_file="res://Sprites/Tests/Spritesheet_Sonic.png"
+dest_files=["res://.godot/imported/Spritesheet_Sonic.png-993ce22d8edd5554075197b87fed948e.ctex"]
 
 [params]
 

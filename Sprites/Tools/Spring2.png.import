@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgawm8hu1rl2j"
-path="res://.godot/imported/bulblight.png-9d3c27d909660248382ea0a58c600b34.ctex"
+uid="uid://bolnvxkb17jnu"
+path="res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bulblight.png"
-dest_files=["res://.godot/imported/bulblight.png-9d3c27d909660248382ea0a58c600b34.ctex"]
+source_file="res://Sprites/Tools/Spring2.png"
+dest_files=["res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"]
 
 [params]
 

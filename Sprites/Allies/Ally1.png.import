@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0bvuf6331m1y"
-path="res://.godot/imported/Ally3.png-64d1310f09b965cb01ef312adcf86d8a.ctex"
+uid="uid://dsglafsk6rax8"
+path="res://.godot/imported/Ally1.png-b74d5344b14a5396cdfe3e97cb536303.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ally3.png"
-dest_files=["res://.godot/imported/Ally3.png-64d1310f09b965cb01ef312adcf86d8a.ctex"]
+source_file="res://Sprites/Allies/Ally1.png"
+dest_files=["res://.godot/imported/Ally1.png-b74d5344b14a5396cdfe3e97cb536303.ctex"]
 
 [params]
 

@@ -24,7 +24,6 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 				else:
 					return states.WALK
 			if not is_on_floor:
-				coyote_timer.start()
 				return states.FALL
 			return states.IDLE
 		states.WALK:

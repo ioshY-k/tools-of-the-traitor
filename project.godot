@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tools of the Traitor"
-run/main_scene="res://testlevel.tscn"
+run/main_scene="res://Scenes/Levels/testlevel.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -102,6 +102,7 @@ stick_left={
 2d_physics/layer_3="Tools"
 2d_physics/layer_4="Areas"
 2d_physics/layer_5="Deadzone"
+2d_physics/layer_6="Spring_tool"
 2d_physics/layer_10="Followpoint1"
 2d_physics/layer_11="Followpoint2"
 2d_physics/layer_12="Followpoint3"

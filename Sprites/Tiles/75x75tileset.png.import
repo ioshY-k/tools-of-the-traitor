@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://glf545qom7ea"
-path="res://.godot/imported/Spikes_Spreadsheet.png-068531d0a6b5da9a13ba5434f54bc8c0.ctex"
+uid="uid://djyokpc7kvm0d"
+path="res://.godot/imported/75x75tileset.png-3613290cff866a7a296d289997a32f8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/Spikes_Spreadsheet.png"
-dest_files=["res://.godot/imported/Spikes_Spreadsheet.png-068531d0a6b5da9a13ba5434f54bc8c0.ctex"]
+source_file="res://Sprites/Tiles/75x75tileset.png"
+dest_files=["res://.godot/imported/75x75tileset.png-3613290cff866a7a296d289997a32f8f.ctex"]
 
 [params]
 

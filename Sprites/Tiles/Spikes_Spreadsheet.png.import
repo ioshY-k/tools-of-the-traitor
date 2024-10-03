@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctqcuk7f3vy7h"
-path="res://.godot/imported/Purple.png-3b93a7f8b5ec59ba9c22152d9a19d80d.ctex"
+uid="uid://glf545qom7ea"
+path="res://.godot/imported/Spikes_Spreadsheet.png-529a0a651468a4383c1f0e4540064a4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Purple.png"
-dest_files=["res://.godot/imported/Purple.png-3b93a7f8b5ec59ba9c22152d9a19d80d.ctex"]
+source_file="res://Sprites/Tiles/Spikes_Spreadsheet.png"
+dest_files=["res://.godot/imported/Spikes_Spreadsheet.png-529a0a651468a4383c1f0e4540064a4c.ctex"]
 
 [params]
 

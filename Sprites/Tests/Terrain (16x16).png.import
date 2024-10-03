@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cll1nmnr7askq"
-path="res://.godot/imported/Spritesheet_Sonic.png-b7506db97966f555d3980dfc0edcec4d.ctex"
+uid="uid://ddodxbmhl5saf"
+path="res://.godot/imported/Terrain (16x16).png-e5ee08ccffbe071460539e9d2d886436.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spritesheet_Sonic.png"
-dest_files=["res://.godot/imported/Spritesheet_Sonic.png-b7506db97966f555d3980dfc0edcec4d.ctex"]
+source_file="res://Sprites/Tests/Terrain (16x16).png"
+dest_files=["res://.godot/imported/Terrain (16x16).png-e5ee08ccffbe071460539e9d2d886436.ctex"]
 
 [params]
 

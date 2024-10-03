@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://behhlgsy40oeh"
-path="res://.godot/imported/75x75blueground2.png-198e4ed3c66a3e10c0b6a48eaad04525.ctex"
+uid="uid://c6amleg4p5hrr"
+path="res://.godot/imported/Floor.png-fa54ab2f5fad5dfcf38a96a8e570b02e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/75x75blueground2.png"
-dest_files=["res://.godot/imported/75x75blueground2.png-198e4ed3c66a3e10c0b6a48eaad04525.ctex"]
+source_file="res://Sprites/Tools/Floor.png"
+dest_files=["res://.godot/imported/Floor.png-fa54ab2f5fad5dfcf38a96a8e570b02e.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c45ojno7rl6oe"]
 
-[ext_resource type="Script" path="res://ally_followpoints.gd" id="1_kpi3r"]
+[ext_resource type="Script" path="res://Scripts/ally_followpoints.gd" id="1_kpi3r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vca7"]
 
