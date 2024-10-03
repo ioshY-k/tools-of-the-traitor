@@ -423,10 +423,14 @@ func _ledge_corrections():
 	else:
 		caster_outer_left_ceiling.enabled = true
 		caster_outer_right_ceiling.enabled = true
-	if caster_outer_left_ceiling.is_colliding():
-		global_position += Vector2(7,0)
-	if caster_outer_right_ceiling.is_colliding():
-		global_position += Vector2(-7,0)
+	while caster_outer_left_ceiling.is_colliding():
+		print(global_position)
+		global_position += Vector2(2,0)
+		caster_outer_left_ceiling.force_raycast_update()
+	while caster_outer_right_ceiling.is_colliding():
+		print(global_position)
+		global_position += Vector2(-2,0)
+		caster_outer_right_ceiling.force_raycast_update()
 
 
 func determine_floortool_position(inputstrength, controllerangle) -> float:
