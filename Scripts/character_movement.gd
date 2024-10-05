@@ -44,6 +44,7 @@ const PREVIEW_PATH_OFFSET = Vector2(0,0) #Positional offset from the center of t
 @onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
+@onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 var is_on_tool: bool
 var floor_tool_available: bool = true
@@ -82,7 +83,7 @@ func _physics_process(delta: float) -> void:
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
-	print(states.keys()[current_state])
+
 	check_supercancel()
 	if controllable:
 		match current_state:
@@ -131,7 +132,7 @@ func _physics_process(delta: float) -> void:
 			tool_states.ROPE_TOOL_PLACE:
 				on_rope_tool_place_state()
 			tool_states.SPRING_TOOL_PREVIEW:
-				on_spring_tool_preview_state()
+				on_spring_tool_preview_state(delta)
 			tool_states.SPRING_TOOL_PLACE:
 				on_spring_tool_place_state()
 			tool_states.FIELD_TOOL_PREVIEW:
@@ -153,14 +154,17 @@ func check_supercancel():
 		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_DISABLED)
 		get_parent().get_node("%Block_tool").set_process_mode(PROCESS_MODE_DISABLED)
 		get_parent().get_node("%Wall_tool").set_process_mode(PROCESS_MODE_DISABLED)
+		get_parent().get_node("%Spring_tool").set_process_mode(PROCESS_MODE_DISABLED)
 		get_parent().get_node("%Floor_tool").visible = false
 		get_parent().get_node("%Block_tool").visible = false
 		get_parent().get_node("%Wall_tool").visible = false
+		get_parent().get_node("%Spring_tool").visible = false
 		if is_on_tool:
 			await get_tree().create_timer(0.6).timeout
 		floor_tool_available = true
 		block_tool_available = true
-		wall_tool_available = true)
+		wall_tool_available = true
+		spring_tool_available = true)
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
@@ -302,11 +306,13 @@ func on_cancel_state():
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	
 
 
 func on_floortool_preview_state(delta):
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	sprite_spring_tool.visible = false
 	velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 	animations.play("Preview_anim")
 	left_hand.rotation = deg_to_rad(30)
@@ -330,6 +336,7 @@ func on_floortool_preview_state(delta):
 func on_blocktool_preview_state():
 	sprite_floor_tool.visible = false
 	sprite_wall_tool.visible = false
+	sprite_spring_tool.visible = false
 	if block_tool_available:
 		sprite_block_tool.visible = true
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -340,6 +347,7 @@ func on_blocktool_preview_state():
 func on_wall_tool_preview_state(delta):
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
+	sprite_spring_tool.visible = false
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	#sprite_rope/spring/field_tool.visible = false
@@ -366,18 +374,41 @@ func on_rope_tool_preview_state():
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	sprite_spring_tool.visible = false
 
 
-func on_spring_tool_preview_state():
+func on_spring_tool_preview_state(delta):
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	if is_on_floor():
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x), 0) * 100
+		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
+		animations.play("Preview_anim")
+		left_hand.rotation = deg_to_rad(30)
+		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
+			if model_position.scale.x < 0:
+				#Mirror vectors that point up right along the y-axis (because scale.x is flipped for the model)
+				if Vector2(-xAxis, -yAxis).angle() < -PI/2:
+					left_arm.rotation = -(Vector2(-xAxis, -yAxis).angle() + PI) + 1
+				#Mirror vectors that point down right along the y-axis (because scale.x is flipped for the model)
+				else:
+					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
+			else:
+				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
+	else:
+		sprite_spring_tool.position = Vector2.DOWN * 120
+	if spring_tool_available:
+		sprite_spring_tool.visible = true
 
 
 func on_field_tool_preview_state():
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	sprite_spring_tool.visible = false
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
@@ -410,7 +441,13 @@ func on_rope_tool_place_state():
 	pass
 
 func on_spring_tool_place_state():
-	pass
+	if sprite_spring_tool.visible:
+		sprite_spring_tool.visible = false
+		get_parent().get_node("%Spring_tool").set_process_mode(PROCESS_MODE_INHERIT)
+		get_parent().get_node("%Spring_tool").visible = true
+		get_parent().get_node("%Spring_tool").position = sprite_spring_tool.global_position
+		get_parent().get_node("%Spring_tool").apply_impulse(Vector2.DOWN * 1500)
+		spring_tool_available = false
 
 func on_field_tool_place_state():
 	pass
@@ -508,9 +545,7 @@ func _on_p_speed_timer_timeout() -> void:
 
 
 
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	print(body)
-	print("deadzone entered")
+func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	controllable = false
 	animations.play("Death_anim")
 	velocity = Vector2.ZERO
@@ -519,3 +554,26 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
 	controllable = true
+
+
+
+
+func _on_ally1_body_entered(_body: Node2D) -> void:
+	tool_state_handler.floor_tool_unlocked = true
+	get_parent().get_node("%Ally1_collect").queue_free()
+	
+
+
+func _on_ally2_body_entered(_body: Node2D) -> void:
+	tool_state_handler.block_tool_unlocked = true
+	get_parent().get_node("%Ally2_collect").queue_free()
+
+
+func _on_ally3_body_entered(_body: Node2D) -> void:
+	tool_state_handler.wall_tool_unlocked = true
+	get_parent().get_node("%Ally3_collect").queue_free()
+
+
+func _on_ally4_body_entered(_body: Node2D) -> void:
+	tool_state_handler.spring_tool_unlocked = true
+	get_parent().get_node("%Ally4_collect").queue_free()

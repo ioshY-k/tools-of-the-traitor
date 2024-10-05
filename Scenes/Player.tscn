@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=16 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_10mar"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://c6amleg4p5hrr" path="res://Sprites/Tools/Floor.png" id="6_03mwq"]
 [ext_resource type="Script" path="res://Scripts/ally_destination.gd" id="6_b7brx"]
 [ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Sprites/Tools/Wall.png" id="7_ax4cp"]
+[ext_resource type="Texture2D" uid="uid://bolnvxkb17jnu" path="res://Sprites/Tools/Spring2.png" id="9_h2t1i"]
+[ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gei"]
 size = Vector2(74.2373, 130)
@@ -166,6 +168,22 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(6, -8)
 shape = SubResource("RectangleShape2D_vxw3g")
+
+[node name="Sprite_spring_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(5, 9)
+scale = Vector2(0.674779, 0.674779)
+texture = ExtResource("9_h2t1i")
+
+[node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]
+modulate = Color(1, 1, 1, 0.34902)
+texture = ExtResource("10_28md6")
+
+[node name="Top" type="Sprite2D" parent="Sprite_spring_tool"]
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(0, 81)
+texture = ExtResource("10_28md6")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
