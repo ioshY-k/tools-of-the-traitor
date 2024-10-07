@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://du26sctepo01m"]
+[gd_scene load_steps=9 format=3 uid="uid://du26sctepo01m"]
 
 [ext_resource type="Texture2D" uid="uid://bolnvxkb17jnu" path="res://Sprites/Tools/Spring2.png" id="1_kn31j"]
 [ext_resource type="Script" path="res://Scripts/spring_tool.gd" id="1_shgnt"]
@@ -10,7 +10,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Top:position")
+tracks/0/path = NodePath("Node2D/Top:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Middle:position")
+tracks/1/path = NodePath("Node2D/Middle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Middle:scale")
+tracks/2/path = NodePath("Node2D/Middle:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +46,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Bottom:position")
+tracks/3/path = NodePath("Node2D/Bottom:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +58,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Top:scale")
+tracks/4/path = NodePath("Node2D/Top:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -73,7 +73,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Top:position")
+tracks/0/path = NodePath("Node2D/Top:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +85,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Middle:position")
+tracks/1/path = NodePath("Node2D/Middle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -97,7 +97,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Middle:scale")
+tracks/2/path = NodePath("Node2D/Middle:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -109,7 +109,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Bottom:position")
+tracks/3/path = NodePath("Node2D/Bottom:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -121,7 +121,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Top:scale")
+tracks/4/path = NodePath("Node2D/Top:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -140,6 +140,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tbym"]
 size = Vector2(110, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_817bm"]
+size = Vector2(111.765, 107.353)
+
 [node name="SpringTool" type="RigidBody2D"]
 z_index = 2
 collision_layer = 4
@@ -147,28 +150,34 @@ collision_mask = 7
 gravity_scale = 2.0
 script = ExtResource("1_shgnt")
 
-[node name="Middle" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.69, 0.69)
+
+[node name="Middle" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("1_kn31j")
 
-[node name="Bottom" type="Sprite2D" parent="."]
+[node name="Bottom" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, 80)
 texture = ExtResource("2_45mbx")
 
-[node name="Top" type="Sprite2D" parent="."]
+[node name="Top" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("2_45mbx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_76irh")
 }
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, 54, 12, 54, 56, -42, 56, -56, -56, -56, -56, -42)
+[node name="Area2D" type="Area2D" parent="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
 position = Vector2(0, -56.5)
 shape = SubResource("RectangleShape2D_0tbym")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.499999)
+scale = Vector2(0.68, 0.68)
+shape = SubResource("RectangleShape2D_817bm")
+
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

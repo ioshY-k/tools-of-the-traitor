@@ -27,7 +27,7 @@ size = Vector2(73, 4)
 radius = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxw3g"]
-size = Vector2(58, 84)
+size = Vector2(58, 110)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(1, 0)
@@ -166,7 +166,7 @@ position = Vector2(0, 253)
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(6, -8)
+position = Vector2(6, -21)
 shape = SubResource("RectangleShape2D_vxw3g")
 
 [node name="Sprite_spring_tool" type="Sprite2D" parent="."]
