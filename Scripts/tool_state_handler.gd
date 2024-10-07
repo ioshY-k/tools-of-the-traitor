@@ -2,12 +2,12 @@ extends Node
 class_name Tool_state_handler
 
 
-var floor_tool_unlocked: bool = PlayerStats.floor_tool_unlocked
-var block_tool_unlocked: bool = PlayerStats.block_tool_unlocked
-var wall_tool_unlocked: bool = PlayerStats.wall_tool_unlocked
-var rope_tool_unlocked: bool = PlayerStats.rope_tool_unlocked
-var spring_tool_unlocked: bool = PlayerStats.spring_tool_unlocked
-var field_tool_unlocked: bool = PlayerStats.field_tool_unlocked
+@export var floor_tool_unlocked: bool = PlayerStats.floor_tool_unlocked
+@export var block_tool_unlocked: bool = PlayerStats.block_tool_unlocked
+@export var wall_tool_unlocked: bool = PlayerStats.wall_tool_unlocked
+@export var rope_tool_unlocked: bool = PlayerStats.rope_tool_unlocked
+@export var spring_tool_unlocked: bool = PlayerStats.spring_tool_unlocked
+@export var field_tool_unlocked: bool = PlayerStats.field_tool_unlocked
 
 var current_tool_state
 
