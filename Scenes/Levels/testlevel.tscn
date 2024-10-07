@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=33 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cfw1lesyfhjng" path="res://Sprites/Tiles/75x75colorless.png" id="13_x1mca"]
 [ext_resource type="Texture2D" uid="uid://behhlgsy40oeh" path="res://Sprites/Tiles/75x75blueground2.png" id="14_aqwkb"]
 [ext_resource type="PackedScene" uid="uid://du26sctepo01m" path="res://Scenes/Spring_Tool.tscn" id="15_xlpv7"]
+[ext_resource type="Texture2D" uid="uid://dqbaugmsywlq4" path="res://Sprites/Orb.png" id="17_0q0v7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k41b6"]
 size = Vector2(955, 62)
@@ -484,11 +485,14 @@ pattern_1 = SubResource("TileMapPattern_4r1lm")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwdpg"]
 size = Vector2(458.536, 731.829)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_whyir"]
+radius = 279.33
+
 [node name="Testlevel" type="Node"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-3416, 152)
+position = Vector2(-5355, 109)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-1, -132)
@@ -893,6 +897,17 @@ texture = ExtResource("4_qmlu3")
 offset = Vector2(-0.98, -78.935)
 texture_scale = 4.0
 
+[node name="Orb_collect" type="Sprite2D" parent="."]
+position = Vector2(-5525, -8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("17_0q0v7")
+
+[node name="Area2D" type="Area2D" parent="Orb_collect"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Orb_collect/Area2D"]
+shape = SubResource("CircleShape2D_whyir")
+
 [connection signal="visibility_changed" from="Floor_tool/Floor_tool_sprite" to="Ally_followpoints" method="_on_floor_tool_sprite_visibility_changed"]
 [connection signal="visibility_changed" from="Block_tool" to="Ally_followpoints" method="_on_block_tool_visibility_changed"]
 [connection signal="visibility_changed" from="Wall_tool" to="Ally_followpoints" method="_on_wall_tool_visibility_changed"]
@@ -905,3 +920,4 @@ texture_scale = 4.0
 [connection signal="body_entered" from="Ally3_collect/Area2D" to="Ally_followpoints" method="_on_ally3_body_entered"]
 [connection signal="body_entered" from="Ally4_collect/Area2D" to="CharacterBody2D" method="_on_ally4_body_entered"]
 [connection signal="body_entered" from="Ally4_collect/Area2D" to="Ally_followpoints" method="_on_ally4_body_entered"]
+[connection signal="body_entered" from="Orb_collect/Area2D" to="Orb_collect" method="_on_area_2d_body_entered"]
