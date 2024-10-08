@@ -21,7 +21,7 @@ _data = {
 point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
-size = Vector2(73, 4)
+size = Vector2(73, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jk2y"]
 radius = 1.0
@@ -139,7 +139,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_typecheck"]
-position = Vector2(4.5, 49)
+position = Vector2(4.5, 52.5)
 shape = SubResource("RectangleShape2D_rih21")
 
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]

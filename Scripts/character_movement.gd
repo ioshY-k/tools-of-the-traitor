@@ -160,7 +160,7 @@ func check_supercancel():
 		get_parent().get_node("%Wall_tool").visible = false
 		get_parent().get_node("%Spring_tool").visible = false
 		if is_on_tool:
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.9).timeout
 		floor_tool_available = true
 		block_tool_available = true
 		wall_tool_available = true
@@ -461,11 +461,9 @@ func _ledge_corrections():
 		caster_outer_left_ceiling.enabled = true
 		caster_outer_right_ceiling.enabled = true
 	while caster_outer_left_ceiling.is_colliding():
-		print(global_position)
 		global_position += Vector2(2,0)
 		caster_outer_left_ceiling.force_raycast_update()
 	while caster_outer_right_ceiling.is_colliding():
-		print(global_position)
 		global_position += Vector2(-2,0)
 		caster_outer_right_ceiling.force_raycast_update()
 
@@ -547,6 +545,7 @@ func _on_p_speed_timer_timeout() -> void:
 
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	controllable = false
+	PlayerStats.death_count += 1
 	animations.play("Death_anim")
 	velocity = Vector2.ZERO
 	await animations.animation_finished

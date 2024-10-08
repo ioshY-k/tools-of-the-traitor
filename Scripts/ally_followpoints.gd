@@ -46,7 +46,6 @@ func _physics_process(delta: float) -> void:
 				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, max(speed * delta, 800 * delta))
 	
 	for index in range(len(allies)):
-		print(index)
 		#every ally follows their corresponting follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
 	
