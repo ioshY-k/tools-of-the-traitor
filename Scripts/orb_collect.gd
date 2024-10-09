@@ -18,6 +18,8 @@ func _on_collected_decision(collected: bool):
 		PlayerStats.orb_count += 1
 		print("collected! orbcount: " + str(PlayerStats.orb_count))
 		hair.stop()
+		$"../CanvasLayer".tip_buttons[int(str(name)[-1])].disabled = false
+		
 		queue_free()
 	else:
 		await get_tree().create_timer(1).timeout

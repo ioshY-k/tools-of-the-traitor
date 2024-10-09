@@ -8,5 +8,13 @@ var rope_tool_unlocked: bool = false
 var spring_tool_unlocked: bool = false
 var field_tool_unlocked: bool = false
 
+const ORB_NUMBER = 12
+
+var orb_list = []
+
+func _ready() -> void:
+	orb_list.resize(ORB_NUMBER)
+	orb_list.fill(false)
+
 var death_count = 0
 var orb_count = 0
