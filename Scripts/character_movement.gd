@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	#print(str(is_on_floor()) + str(is_on_tool))
+	print(str(controllable))
 	if controllable:
 		match current_state:
 			states.IDLE:
@@ -384,7 +384,7 @@ func on_spring_tool_preview_state(delta):
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	if is_on_floor():
-		sprite_spring_tool.position = Vector2(sign(model_position.scale.x), 0) * 100
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x), 0) * 135
 		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
 		left_hand.rotation = deg_to_rad(30)

@@ -140,8 +140,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tbym"]
 size = Vector2(110, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_817bm"]
-size = Vector2(111.765, 107.353)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5rrh"]
+size = Vector2(111.765, 110.294)
 
 [node name="SpringTool" type="RigidBody2D"]
 z_index = 2
@@ -176,8 +176,8 @@ position = Vector2(0, -56.5)
 shape = SubResource("RectangleShape2D_0tbym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.499999)
+position = Vector2(0, -0.500001)
 scale = Vector2(0.68, 0.68)
-shape = SubResource("RectangleShape2D_817bm")
+shape = SubResource("RectangleShape2D_m5rrh")
 
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

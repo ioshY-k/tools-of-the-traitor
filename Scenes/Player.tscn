@@ -54,7 +54,7 @@ one_shot = true
 scale = Vector2(1.395, 1.395)
 
 [node name="P_speed_timer" type="Timer" parent="."]
-wait_time = 1.6
+wait_time = 1.3
 one_shot = true
 
 [node name="Supercancel_timer" type="Timer" parent="."]
