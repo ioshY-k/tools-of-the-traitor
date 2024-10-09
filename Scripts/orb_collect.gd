@@ -39,11 +39,12 @@ class Collection_tester extends Node:
 		current_death_count = PlayerStats.death_count
 	
 	func _process(_delta: float) -> void:
-		if player.is_on_floor() and not player.is_on_tool:
-			decided_if_collected.emit(true)
-			queue_free()
+		print(str(player.is_on_floor()) + str(player.is_on_tool))
 		if PlayerStats.death_count > current_death_count:
 			decided_if_collected.emit(false)
+			queue_free()
+		if player.is_on_floor() and not player.is_on_tool:
+			decided_if_collected.emit(true)
 			queue_free()
 	
 	
