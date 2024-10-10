@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=15 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_10mar"]
@@ -11,12 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bolnvxkb17jnu" path="res://Sprites/Tools/Spring2.png" id="9_h2t1i"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gei"]
-size = Vector2(74.2373, 130)
-
 [sub_resource type="Curve2D" id="Curve2D_aeka8"]
 _data = {
-"points": PackedVector2Array(0.751656, 26.3289, -0.751656, -26.3289, -159.864, 1.86053, -106.815, -0.643255, 106.815, 0.643255, -0.461417, -56.1807, -0.110096, -27.7645, 0.110096, 27.7645, 158.941, 1.86053, 127.98, -0.501496, -127.98, 0.501496, -0.461417, 64.1617, -0.581826, 36.1006, 0.581826, -36.1006, -159.864, 1.86053)
+"points": PackedVector2Array(0.751656, 26.3289, -0.751656, -26.3289, -159.864, 1.86053, -152.991, 0.0276384, 152.991, -0.0276384, -0.461417, -56.1807, -0.110096, -27.7645, 0.110096, 27.7645, 158.941, 1.86053, 154.493, -0.277865, -154.493, 0.277865, -0.461417, 64.1617, -0.581826, 36.1006, 0.581826, -36.1006, -159.864, 1.86053)
 }
 point_count = 5
 
@@ -31,7 +28,7 @@ size = Vector2(58, 110)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(1, 0)
-collision_mask = 6
+collision_mask = 38
 script = ExtResource("1_ac4tx")
 
 [node name="Tool_state_handler" type="Node" parent="."]
@@ -101,10 +98,10 @@ position = Vector2(-32, -19)
 target_position = Vector2(-18, 0)
 collision_mask = 6
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, -18)
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, -26)
 scale = Vector2(0.983333, 1)
-shape = SubResource("RectangleShape2D_k3gei")
+polygon = PackedVector2Array(-36.6102, -59, 38.1356, -59, 38.1356, 10, 11.1864, 73, -11.1864, 73, -36.6102, 10)
 
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
 visible = false

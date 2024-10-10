@@ -138,14 +138,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tbym"]
-size = Vector2(110, 25)
+size = Vector2(104.348, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5rrh"]
-size = Vector2(111.765, 110.294)
+size = Vector2(108.824, 111.765)
 
 [node name="SpringTool" type="RigidBody2D"]
 z_index = 2
-collision_layer = 4
+collision_layer = 32
 collision_mask = 7
 gravity_scale = 2.0
 script = ExtResource("1_shgnt")
@@ -170,14 +170,32 @@ libraries = {
 }
 
 [node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
 position = Vector2(0, -56.5)
 shape = SubResource("RectangleShape2D_0tbym")
 
+[node name="Caster_outer_left" type="RayCast2D" parent="Node2D"]
+position = Vector2(-53.6232, 53.6232)
+target_position = Vector2(0, 14.4928)
+collision_mask = 6
+collide_with_areas = true
+
+[node name="Caster_inner" type="RayCast2D" parent="Node2D"]
+position = Vector2(0, 49.2754)
+target_position = Vector2(0, 57.971)
+collision_mask = 6
+
+[node name="Caster_outer_right" type="RayCast2D" parent="Node2D"]
+position = Vector2(53.6232, 53.6232)
+target_position = Vector2(0, 14.4928)
+collision_mask = 6
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.500001)
+position = Vector2(0, -1.42109e-14)
 scale = Vector2(0.68, 0.68)
 shape = SubResource("RectangleShape2D_m5rrh")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

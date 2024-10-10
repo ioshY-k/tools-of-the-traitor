@@ -149,12 +149,12 @@ func next_state(is_on_floor:bool) -> tool_states:
 
 func rope_direction() -> bool:
 	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return -5*PI/8 <= controllerangle and controllerangle <= -3*PI/8
+	return -11*PI/16 <= controllerangle and controllerangle <= -5*PI/16
 	
 func spring_direction() -> bool:
 	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return 3*PI/8 <= controllerangle and controllerangle <= 5*PI/8
+	return 5*PI/16 <= controllerangle and controllerangle <= 11*PI/16
 	
 func wall_direction() -> bool:
 	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return abs(controllerangle) > 5*PI/8 or abs(controllerangle) < 3*PI/8
+	return abs(controllerangle) > 11*PI/16 or abs(controllerangle) < 5*PI/16

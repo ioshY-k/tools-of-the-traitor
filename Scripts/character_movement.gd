@@ -383,7 +383,7 @@ func on_spring_tool_preview_state(delta):
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	if is_on_floor():
-		sprite_spring_tool.position = Vector2(sign(model_position.scale.x), 0) * 135
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 135, 3)
 		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
 		left_hand.rotation = deg_to_rad(30)
@@ -469,7 +469,7 @@ func _ledge_corrections():
 
 func determine_floortool_position(inputstrength, controllerangle) -> float:
 	#Control stick Deadzone
-	if inputstrength > Vector2(0.5,0.5).abs().length():
+	if inputstrength > Vector2(0.65,0.65).abs().length():
 		return (controllerangle + PI)/(2*PI)
 	else:
 		return follow_floor_tool.progress_ratio
@@ -477,7 +477,7 @@ func determine_floortool_position(inputstrength, controllerangle) -> float:
 
 func determine_blocktool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
-	if inputstrength > Vector2(0.5,0.5).abs().length():
+	if inputstrength > Vector2(0.65,0.65).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
 			sprite_block_tool.position = 100 * Vector2.DOWN
@@ -497,11 +497,13 @@ func determine_blocktool_position(inputstrength, controllerangle):
 				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(5*PI/8)
 			else:
 				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(controllerangle)
+	else:
+		sprite_block_tool.position = 100 * Vector2.DOWN
 
 
 func determine_walltool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
-	if inputstrength > Vector2(0.5,0.5).abs().length():
+	if inputstrength > Vector2(0.65,0.65).abs().length():
 		var x_value = 130
 		var y_value
 		
@@ -515,10 +517,10 @@ func determine_walltool_position(inputstrength, controllerangle):
 			x_value = -130
 		
 		#Snapping to lowest position
-		if controllerangle > PI/4:
+		if controllerangle > PI/8:
 			y_value = 240
 		#Snapping to highest position
-		elif controllerangle < -PI/4:
+		elif controllerangle < -PI/8:
 			y_value = -240
 		else:
 			#Formula for mapping given highest wallpoint Newmax and lowest wallpoint Newmin:

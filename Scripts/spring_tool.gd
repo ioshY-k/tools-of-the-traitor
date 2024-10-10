@@ -4,7 +4,35 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
 				WALLJUMP_L, WALLJUMP_R}
 @onready var animation_player: AnimationPlayer = $Node2D/AnimationPlayer
+@onready var caster_outer_left: RayCast2D = $Node2D/Caster_outer_left
+@onready var caster_inner: RayCast2D = $Node2D/Caster_inner
+@onready var caster_outer_right: RayCast2D = $Node2D/Caster_outer_right
 
+func _ready() -> void:
+	set_physics_process(false)
+
+func _physics_process(delta: float) -> void:
+	_spring_ledge_corrections()
+	linear_velocity = Vector2.DOWN * 1750
+	
+func _spring_ledge_corrections():
+	if caster_inner.is_colliding():
+		print("no correction")
+		caster_outer_left.enabled = false
+		caster_outer_right.enabled = false
+	else:
+		print("correction")
+		caster_outer_left.enabled = true
+		caster_outer_right.enabled = true
+		while caster_outer_left.is_colliding():
+			print("to the right")
+			global_position += Vector2(2,0)
+			caster_outer_left.force_raycast_update()
+		while caster_outer_right.is_colliding():
+			print("to the left")
+			global_position += Vector2(-2,0)
+			caster_outer_right.force_raycast_update()
+	
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -17,3 +45,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	player.current_state = states.FALL
 	player.controllable = true
 	player.velocity = Vector2.UP * 2400
+
+
+func _on_visibility_changed() -> void:
+	set_physics_process(not is_physics_processing())
