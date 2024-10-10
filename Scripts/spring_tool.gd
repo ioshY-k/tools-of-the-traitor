@@ -17,19 +17,15 @@ func _physics_process(delta: float) -> void:
 	
 func _spring_ledge_corrections():
 	if caster_inner.is_colliding():
-		print("no correction")
 		caster_outer_left.enabled = false
 		caster_outer_right.enabled = false
 	else:
-		print("correction")
 		caster_outer_left.enabled = true
 		caster_outer_right.enabled = true
 		while caster_outer_left.is_colliding():
-			print("to the right")
 			global_position += Vector2(2,0)
 			caster_outer_left.force_raycast_update()
 		while caster_outer_right.is_colliding():
-			print("to the left")
 			global_position += Vector2(-2,0)
 			caster_outer_right.force_raycast_update()
 	

@@ -4,7 +4,7 @@ var hair: AnimatedSprite2D
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("collect")
+	#print("collect")
 	var collection_tester = Collection_tester.new(body, self)
 	add_child(collection_tester)
 	hair = body.get_node("Model_position/Player_cutout/Player_hip/Player_torso/Player_head/Player_hair")
@@ -16,17 +16,20 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_collected_decision(collected: bool):
 	if collected:
 		PlayerStats.orb_count += 1
-		print("collected! orbcount: " + str(PlayerStats.orb_count))
+		#print("collected! orbcount: " + str(PlayerStats.orb_count))
 		hair.stop()
 		$"../CanvasLayer".tip_buttons[int(str(name)[-1])].disabled = false
-		
+		print("show tip")
+		$"../CanvasLayer2/new_tip_text".show()
+		await get_tree().create_timer(5).timeout
+		$"../CanvasLayer2/new_tip_text".hide()
 		queue_free()
 	else:
 		await get_tree().create_timer(1).timeout
 		get_node("Orb_Sprite/Area2D").set_collision_mask_value(1, true)
 		visible = true
 		hair.stop()
-		print("died... orbcount: " + str(PlayerStats.orb_count))
+		#print("died... orbcount: " + str(PlayerStats.orb_count))
 
 class Collection_tester extends Node:
 	
@@ -41,7 +44,7 @@ class Collection_tester extends Node:
 		current_death_count = PlayerStats.death_count
 	
 	func _process(_delta: float) -> void:
-		print(str(player.is_on_floor()) + str(player.is_on_tool))
+		#print(str(player.is_on_floor()) + str(player.is_on_tool))
 		if PlayerStats.death_count > current_death_count:
 			decided_if_collected.emit(false)
 			queue_free()

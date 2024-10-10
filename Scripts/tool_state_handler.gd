@@ -59,8 +59,12 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.FLOOR_TOOL_PLACE
 			return tool_states.FLOOR_TOOL_PREVIEW
 		tool_states.BLOCK_TOOL_PREVIEW:
-			if is_on_floor and floor_tool_unlocked:
-				return tool_states.FLOOR_TOOL_PREVIEW
+			if is_on_floor:
+				if floor_tool_unlocked:
+					return tool_states.FLOOR_TOOL_PREVIEW
+				else:
+					get_node("../Sprite_block_tool").visible = false
+					return tool_states.NO_TOOL
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
 			if not Input.is_action_pressed("place_simple_tool"):

@@ -488,7 +488,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
 				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(3*PI/8)
 			else:
-				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 120 * Vector2.RIGHT.rotated(controllerangle)
 		else:
 			#Snap behaviour when facing left
 			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
@@ -496,7 +496,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
 				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(5*PI/8)
 			else:
-				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = 120 * Vector2.RIGHT.rotated(controllerangle)
 	else:
 		sprite_block_tool.position = 100 * Vector2.DOWN
 
@@ -546,6 +546,12 @@ func _on_p_speed_timer_timeout() -> void:
 
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	controllable = false
+	if sprite_block_tool.visible:
+		sprite_block_tool.visible = false
+	if sprite_wall_tool.visible:
+		sprite_wall_tool.visible = false
+	if sprite_spring_tool.visible:
+		sprite_spring_tool.visible = false
 	PlayerStats.death_count += 1
 	animations.play("Death_anim")
 	velocity = Vector2.ZERO
