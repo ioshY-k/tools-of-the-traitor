@@ -8,18 +8,19 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 @onready var caster_inner: RayCast2D = $Node2D/Caster_inner
 @onready var caster_outer_right: RayCast2D = $Node2D/Caster_outer_right
 
+
 func _ready() -> void:
-	set_physics_process(false)
+	set_process(false)
 
 func _physics_process(delta: float) -> void:
 	_spring_ledge_corrections()
-	linear_velocity = Vector2.DOWN * 1750
 	
 func _spring_ledge_corrections():
 	if caster_inner.is_colliding():
 		caster_outer_left.enabled = false
 		caster_outer_right.enabled = false
 	else:
+		linear_velocity = Vector2.DOWN * 1500
 		caster_outer_left.enabled = true
 		caster_outer_right.enabled = true
 		while caster_outer_left.is_colliding():
@@ -44,4 +45,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_visibility_changed() -> void:
-	set_physics_process(not is_physics_processing())
+	set_process(not is_processing())

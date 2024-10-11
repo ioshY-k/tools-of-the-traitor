@@ -8,6 +8,8 @@ class_name Tool_state_handler
 @export var rope_tool_unlocked: bool = PlayerStats.rope_tool_unlocked
 @export var spring_tool_unlocked: bool = PlayerStats.spring_tool_unlocked
 @export var field_tool_unlocked: bool = PlayerStats.field_tool_unlocked
+@onready var cancel_timer: Timer = $Cancel_timer
+
 
 var current_tool_state
 
@@ -25,26 +27,25 @@ func _init():
 	
 func next_state(is_on_floor:bool) -> tool_states:
 	#print(tool_states.keys()[current_tool_state])
-	
 	match current_tool_state:
 		tool_states.NO_TOOL:
-			if Input.is_action_just_pressed("place_simple_tool"):
-				if is_on_floor and floor_tool_unlocked:
+			if Input.is_action_pressed("place_simple_tool"):
+				if is_on_floor and floor_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.FLOOR_TOOL_PREVIEW
-				if not is_on_floor and block_tool_unlocked:
+				if not is_on_floor and block_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.NO_TOOL
-			if Input.is_action_just_pressed("place_special_tool"):
-				if rope_direction() and rope_tool_unlocked:
+			if Input.is_action_pressed("place_special_tool"):
+				if rope_direction() and rope_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.ROPE_TOOL_PREVIEW
-				if wall_direction() and wall_tool_unlocked:
+				if wall_direction() and wall_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.WALL_TOOL_PREVIEW
-				if spring_direction() and spring_tool_unlocked:
+				if spring_direction() and spring_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.SPRING_TOOL_PREVIEW
 			return tool_states.NO_TOOL
 		tool_states.FLOOR_TOOL_PREVIEW:
-			if Input.is_action_just_pressed("place_special_tool"):
+			if Input.is_action_pressed("place_special_tool"):
 				if rope_direction() and rope_tool_unlocked:
 					return tool_states.ROPE_TOOL_PREVIEW
 				if wall_direction() and wall_tool_unlocked:
@@ -69,7 +70,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.CANCEL
 			if not Input.is_action_pressed("place_simple_tool"):
 				return tool_states.BLOCK_TOOL_PLACE
-			if Input.is_action_just_pressed("place_special_tool"):
+			if Input.is_action_pressed("place_special_tool"):
 				if rope_direction() and rope_tool_unlocked:
 					return tool_states.ROPE_TOOL_PREVIEW
 				if wall_direction() and wall_tool_unlocked:
@@ -80,7 +81,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.WALL_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
-			if Input.is_action_just_pressed("place_simple_tool"):
+			if Input.is_action_pressed("place_simple_tool"):
 				if is_on_floor and floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and block_tool_unlocked:
@@ -95,7 +96,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.ROPE_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
-			if Input.is_action_just_pressed("place_simple_tool"):
+			if Input.is_action_pressed("place_simple_tool"):
 				if is_on_floor and floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and block_tool_unlocked:
@@ -110,7 +111,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.SPRING_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
-			if Input.is_action_just_pressed("place_simple_tool"):
+			if Input.is_action_pressed("place_simple_tool"):
 				if is_on_floor and floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and block_tool_unlocked:
@@ -125,7 +126,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.FIELD_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
-			if Input.is_action_just_pressed("place_simple_tool"):
+			if Input.is_action_pressed("place_simple_tool"):
 				if is_on_floor:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				else:
@@ -144,21 +145,29 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.WALL_TOOL_PLACE,\
 		tool_states.ROPE_TOOL_PLACE,\
 		tool_states.SPRING_TOOL_PLACE,\
-		tool_states.FIELD_TOOL_PLACE,\
+		tool_states.FIELD_TOOL_PLACE:
+			return tool_states.NO_TOOL
 		tool_states.CANCEL:
+			cancel_timer.start()
 			return tool_states.NO_TOOL
 		_:
 			print_debug("not in a valid Tool State")
 			return tool_states.NO_TOOL
 
 func rope_direction() -> bool:
-	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return -11*PI/16 <= controllerangle and controllerangle <= -5*PI/16
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	var controllerangle = Vector2(xAxis,yAxis).angle()
+	return -11*PI/16 <= controllerangle and controllerangle <= -5*PI/16 and Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length()
 	
 func spring_direction() -> bool:
-	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return 5*PI/16 <= controllerangle and controllerangle <= 11*PI/16
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	var controllerangle = Vector2(xAxis,yAxis).angle()
+	return 5*PI/16 <= controllerangle and controllerangle <= 11*PI/16 and Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length()
 	
 func wall_direction() -> bool:
-	var controllerangle = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X),Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)).angle()
-	return abs(controllerangle) > 11*PI/16 or abs(controllerangle) < 5*PI/16
+	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+	var controllerangle = Vector2(xAxis,yAxis).angle()
+	return abs(controllerangle) > 11*PI/16 or abs(controllerangle) < 5*PI/16 and Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length()

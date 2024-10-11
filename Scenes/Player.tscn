@@ -34,6 +34,10 @@ script = ExtResource("1_ac4tx")
 [node name="Tool_state_handler" type="Node" parent="."]
 script = ExtResource("2_yocoj")
 
+[node name="Cancel_timer" type="Timer" parent="Tool_state_handler"]
+wait_time = 0.6
+one_shot = true
+
 [node name="State_handler" type="Node" parent="."]
 script = ExtResource("2_asryv")
 
@@ -79,8 +83,8 @@ target_position = Vector2(0, -29)
 collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
-position = Vector2(41, 15)
-target_position = Vector2(16, 0)
+position = Vector2(39, 0)
+target_position = Vector2(20, 0)
 collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
@@ -89,19 +93,19 @@ target_position = Vector2(18, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
-position = Vector2(-32, 15)
-target_position = Vector2(-17, 0)
+position = Vector2(-29, 0)
+target_position = Vector2(-20, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
-position = Vector2(-32, -19)
+position = Vector2(-31, -19)
 target_position = Vector2(-18, 0)
 collision_mask = 6
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, -26)
 scale = Vector2(0.983333, 1)
-polygon = PackedVector2Array(-36.6102, -59, 38.1356, -59, 38.1356, 10, 11.1864, 73, -11.1864, 73, -36.6102, 10)
+polygon = PackedVector2Array(-36.6102, -59, 38.1356, -59, 38.1356, 10, 31.5254, 73, -29.4915, 73, -36.6102, 10)
 
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
 visible = false
