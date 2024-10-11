@@ -34,6 +34,11 @@ func toggle_pause_menu():
 		if not is_in_death_anim:
 			player.controllable = true
 		Engine.time_scale = 1
+		$Pause_menu.show()
+		$Tip_menu.hide()
+		for panel in tip_panels:
+			if panel.visible:
+				panel.hide()
 		hide()
 	else:
 		if not player.controllable:

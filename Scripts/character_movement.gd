@@ -485,7 +485,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 	if inputstrength > Vector2(0.65,0.65).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
-			sprite_block_tool.position = 140 * Vector2.DOWN
+			sprite_block_tool.position = 100 * Vector2.DOWN
 		elif Input.get_axis("walk_left", "walk_right") > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
@@ -503,7 +503,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 			else:
 				sprite_block_tool.position = 120 * Vector2.RIGHT.rotated(controllerangle)
 	else:
-		sprite_block_tool.position = 140 * Vector2.DOWN
+		sprite_block_tool.position = 100 * Vector2.DOWN
 
 
 func determine_walltool_position(inputstrength, controllerangle):

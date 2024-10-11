@@ -18,7 +18,11 @@ func _on_collected_decision(collected: bool):
 		PlayerStats.orb_count += 1
 		#print("collected! orbcount: " + str(PlayerStats.orb_count))
 		hair.stop()
-		$"../CanvasLayer".tip_buttons[int(str(name)[-1])].disabled = false
+		var orb_title_number = ""
+		for i in range(2):
+			if not str(name)[i] == "O":
+				orb_title_number += str(name)[i]
+		$"../CanvasLayer".tip_buttons[int(orb_title_number) - 1].disabled = false
 		print("show tip")
 		$"../CanvasLayer2/new_tip_text".show()
 		await get_tree().create_timer(5).timeout
