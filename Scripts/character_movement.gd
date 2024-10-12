@@ -84,9 +84,7 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	print(controllable)
 	if controllable:
-		print("yeah")
 		match current_state:
 			states.IDLE:
 				on_idle_state(delta)
@@ -196,18 +194,15 @@ func on_run_state(delta):
 		model_position.scale.x = abs(model_position.scale.x)
 		
 	if p_speed_is_active:
-		#print("P-SPEED")
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
 			animations.play("P_speed_anim" ,0.9)
 	elif p_speed_timer.is_stopped():
-		#print("time start")
 		p_speed_timer.start()
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
 			animations.play("Run_anim" ,0.2)
 	else:
-		#print("RUN")
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
 			animations.play("Run_anim" ,0.2)

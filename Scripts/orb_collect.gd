@@ -23,7 +23,6 @@ func _on_collected_decision(collected: bool):
 			if not str(name)[i] == "O":
 				orb_title_number += str(name)[i]
 		$"../CanvasLayer".tip_buttons[int(orb_title_number) - 1].disabled = false
-		print("show tip")
 		$"../CanvasLayer2/new_tip_text".show()
 		await get_tree().create_timer(5).timeout
 		$"../CanvasLayer2/new_tip_text".hide()
