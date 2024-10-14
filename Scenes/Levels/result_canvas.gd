@@ -8,20 +8,7 @@ extends CanvasLayer
 @onready var quit_button: Button = $VBoxContainer/HBoxContainer/Quit_button
 @onready var player: CharacterBody2D = $"../CharacterBody2D"
 
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_goal_body_entered(body: Node2D) -> void:
+func _on_goal_body_entered(_body: Node2D) -> void:
 	show()
 
 

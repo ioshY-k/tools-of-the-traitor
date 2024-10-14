@@ -12,7 +12,7 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 func _ready() -> void:
 	set_process(false)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_spring_ledge_corrections()
 	
 func _spring_ledge_corrections():

@@ -25,9 +25,10 @@ func _ready() -> void:
 		tip_button.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		toggle_pause_menu()
+		if not $"../Result_canvas".visible:
+				toggle_pause_menu()
 	
 func toggle_pause_menu():
 	if paused:
