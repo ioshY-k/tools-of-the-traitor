@@ -62,6 +62,7 @@ var controllable: bool = true
 
 #State handler
 @onready var state_handler = $State_handler
+
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
@@ -233,7 +234,7 @@ func on_fall_state(delta):
 	elif direction > 0:
 		model_position.scale.x = abs(model_position.scale.x)
 	
-	if Input.is_action_pressed("run"):
+	if state_handler.sprints():
 		if p_speed_is_active:
 			velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, AIR_ACCELERATION * delta)
 		else:

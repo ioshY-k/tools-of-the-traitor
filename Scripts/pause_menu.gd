@@ -24,6 +24,7 @@ func _ready() -> void:
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -159,3 +160,8 @@ func _on_close_tip_button_pressed() -> void:
 			panel.hide()
 			tip_buttons[tip_panels.find(panel)].grab_focus()
 			$Close_tip_button.hide()
+
+
+func _on_sprint_toggle_pressed() -> void:
+	PlayerStats.toggle_to_sprint = not PlayerStats.toggle_to_sprint
+	$"../CanvasLayer2/Sprint_status_icon".visible = not $"../CanvasLayer2/Sprint_status_icon".visible

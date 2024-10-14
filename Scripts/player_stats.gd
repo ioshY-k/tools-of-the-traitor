@@ -8,8 +8,9 @@ var rope_tool_unlocked: bool = false
 var spring_tool_unlocked: bool = false
 var field_tool_unlocked: bool = false
 
-const ORB_NUMBER = 12
+var toggle_to_sprint: bool = false
 
+const ORB_NUMBER = 12
 var orb_list = []
 
 func _ready() -> void:

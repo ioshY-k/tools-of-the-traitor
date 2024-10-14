@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=79 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -47,6 +47,8 @@
 [ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="39_3vuqf"]
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="40_nwenj"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="41_tlds8"]
+[ext_resource type="Texture2D" uid="uid://b4v476rckfh28" path="res://Sprites/run_icon.png" id="42_xf8j3"]
+[ext_resource type="Texture2D" uid="uid://dt6h2mb83ld27" path="res://Sprites/walk_icon.png" id="43_p5m0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k41b6"]
 size = Vector2(955, 62)
@@ -1297,6 +1299,7 @@ texture = ExtResource("9_ilkek")
 
 [node name="Wall_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 4
 position = Vector2(1038, 623)
 scale = Vector2(1.438, 1.438)
@@ -1778,6 +1781,28 @@ theme_override_font_sizes/font_size = 60
 text = "New Control Tip unlocked! Find it in the Tip Menu..."
 horizontal_alignment = 1
 
+[node name="Sprint_status_icon" type="Panel" parent="CanvasLayer2"]
+visible = false
+offset_right = 167.0
+offset_bottom = 144.0
+
+[node name="Run_icon" type="TextureRect" parent="CanvasLayer2/Sprint_status_icon"]
+visible = false
+layout_mode = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 132.0
+offset_bottom = 111.0
+texture = ExtResource("42_xf8j3")
+
+[node name="Walk_icon" type="TextureRect" parent="CanvasLayer2/Sprint_status_icon"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 132.0
+offset_bottom = 111.0
+texture = ExtResource("43_p5m0n")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("18_ndk4q")
@@ -1834,7 +1859,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Pause_menu"]
+[node name="Sprint_toggle" type="CheckButton" parent="CanvasLayer/Pause_menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_icons/checked = ExtResource("18_rr1q2")
@@ -2509,6 +2534,7 @@ text = "Quit"
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Respawn_button" to="CanvasLayer" method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Restart_button" to="CanvasLayer" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Quit_button" to="CanvasLayer" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause_menu/Sprint_toggle" to="CanvasLayer" method="_on_sprint_toggle_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tip_menu/Tip_grid/MarginContainer/Tip_button1" to="CanvasLayer" method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="CanvasLayer" method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="CanvasLayer" method="_on_tip_button_3_pressed"]

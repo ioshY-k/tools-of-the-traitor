@@ -6,6 +6,8 @@ var current_state
 @onready var jump_buffer_timer: Timer = $Jump_buffer
 
 
+var current_sprint_state: bool = false
+
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
 				WALLJUMP_L, WALLJUMP_R}
@@ -16,10 +18,12 @@ func _init():
 func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -> states:
 	match current_state:
 		states.IDLE:
+			#called so that the sprint toggle works in IDLE state
+			sprints()
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
-				if Input.is_action_pressed("run"):
+				if sprints():
 					return states.RUN
 				else:
 					return states.WALK
@@ -29,7 +33,7 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 		states.WALK:
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
-			if Input.is_action_just_pressed("run"):
+			if sprints():
 				return states.RUN
 			if not is_on_floor:
 				coyote_timer.start()
@@ -42,7 +46,7 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 		states.RUN:
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
-			if not Input.is_action_pressed("run"):
+			if not sprints():
 				return states.WALK
 			if not is_on_floor:
 				coyote_timer.start()
@@ -54,7 +58,7 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 			return states.RUN
 		states.PUSH:
 			if not (is_on_left_wall or is_on_right_wall):
-				if Input.is_action_pressed("run"):
+				if sprints():
 					return states.RUN
 				else:
 					return states.WALK
@@ -83,7 +87,7 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 			return states.FALL
 		states.LAND:
 			if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
-				if Input.is_action_pressed("run"):
+				if sprints():
 					return states.RUN
 				else:
 					return states.WALK
@@ -112,3 +116,13 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 		_:
 			print_debug("not in a valid State")
 			return states.IDLE
+
+func sprints() -> bool:
+	if PlayerStats.toggle_to_sprint:
+		if Input.is_action_just_pressed("run"):
+			current_sprint_state = not current_sprint_state
+			get_node("../../CanvasLayer2/Sprint_status_icon/Run_icon").visible = not get_node("../../CanvasLayer2/Sprint_status_icon/Run_icon").visible
+			get_node("../../CanvasLayer2/Sprint_status_icon/Walk_icon").visible = not get_node("../../CanvasLayer2/Sprint_status_icon/Walk_icon").visible
+		return current_sprint_state
+	else:
+		return Input.is_action_pressed("run")
