@@ -1,7 +1,8 @@
-[gd_scene load_steps=79 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=80 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
+[ext_resource type="Script" path="res://Scenes/Levels/camera.gd" id="2_u0yxd"]
 [ext_resource type="Texture2D" uid="uid://dsglafsk6rax8" path="res://Sprites/Allies/Ally1.png" id="3_gf6wi"]
 [ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="4_qmlu3"]
 [ext_resource type="Texture2D" uid="uid://c2v3thd6x0gq" path="res://Sprites/Allies/Ally2.png" id="5_mpint"]
@@ -1182,14 +1183,15 @@ size = Vector2(118, 124)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-5869, 2115)
+position = Vector2(-5899, 2113)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-1, -132)
-offset = Vector2(0.005, 0)
-zoom = Vector2(0.7, 0.7)
+offset = Vector2(0.005, -91.195)
+zoom = Vector2(0.69, 0.69)
 position_smoothing_enabled = true
-position_smoothing_speed = 10.355
+position_smoothing_speed = 10.0
+script = ExtResource("2_u0yxd")
 
 [node name="Ally_followpoints" parent="." instance=ExtResource("2_o4oti")]
 position = Vector2(-6002, 2114)
@@ -1516,6 +1518,16 @@ text = "Hold L in the air
 to use Red Tool"
 autowrap_mode = 2
 
+[node name="TextEdit10" type="TextEdit" parent="."]
+offset_left = -9172.0
+offset_top = 2496.0
+offset_right = -8943.47
+offset_bottom = 2602.29
+theme_override_font_sizes/font_size = 32
+text = "Right stick to
+move camera"
+autowrap_mode = 2
+
 [node name="Ally1_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = 6
@@ -1816,6 +1828,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.564706)
 
 [node name="Pause_menu" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2113,9 +2126,10 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "An orb can only be collected when touching safe ground after touching it. This does not include Spikes or your Tools!
+text = "To collect an Orb, you need to carry ist to safe ground.
+ This does not include Spikes or your Tools!
 
-Your Hair will stay loaded with electricity until the Orb is collected or resetted."
+Your Hair will stay charged while carrying Orbs."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2144,9 +2158,9 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "The default position of your red block tool is right beneath you!
+text = "Your red block tool's default position is right beneath you!
 
-If you need ground below, this means you only need to tap the build button without choosing a direction."
+So if you need ground below, just quickly tap the build button without choosing a direction."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2175,9 +2189,10 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "You can place your green wall tool midair during your wall jumps to create a wall right in front of you!
+text = "Placing your green Wall Tool midair lets you walljump at
+any point of your jump!
 
-With precise timing these midair wall jumps are possible even with your red block tool."
+With precise timing these midair wall jumps can be performed with your red block tool as well."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2206,9 +2221,8 @@ offset_bottom = 206.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Wall jumping without holding Sprint is excellent for trying to land in precise locations!
-
-Though holding sprint lets you jump higher and further away from a Wall."
+text = "Sprinting while Wall Jumping brings you further,
+but Wall Jumping without holding Sprint is excellent for precise Landing!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2299,7 +2313,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "Place your red block tool above your head to stop your momentum after launching from your blue spring tool!
 
-This way you don't launch yourself into spikes at the ceiling."
+This way you won't launch into spikes at the ceiling."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2328,7 +2342,7 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Tap the Reset Button (Y) to cancel your tool placement!
+text = "Tapping the reset button cancels your tool Preview!
 
 ...There is a secret fourth tool hidden back where you started......"
 horizontal_alignment = 1
@@ -2359,9 +2373,11 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "When placing your green wall tool or yellow floor tool, you may first choose the direction and then let go of the stick before placing it!
+text = "When placing Tools, you may first choose the direction
+and then let go of the stick before placing!
 
-This will prevent you from accidentally walking forward after placing them."
+This will prevent you from accidentally walking forward
+after placing Tools."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -2390,9 +2406,10 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Sliding down a wall gives you enough time to place a red block tool right below you, or a green one behind you!
+text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
 
-You won't stop sticking to a wall while aiming down or away from it, so take your  time."
+You'll stay glued to a wall while aiming down or away
+with your Tools."
 horizontal_alignment = 1
 autowrap_mode = 2
 

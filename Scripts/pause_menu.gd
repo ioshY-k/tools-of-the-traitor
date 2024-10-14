@@ -38,6 +38,7 @@ func toggle_pause_menu():
 		Engine.time_scale = 1
 		$Pause_menu.show()
 		$Tip_menu.hide()
+		$Close_tip_button.hide()
 		for panel in tip_panels:
 			if panel.visible:
 				panel.hide()

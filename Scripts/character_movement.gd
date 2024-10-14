@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	print_debug(states.keys()[current_state])
+	#print_debug(states.keys()[current_state])
 	
 	if controllable:
 		match current_state:
