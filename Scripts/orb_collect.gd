@@ -40,8 +40,6 @@ func _on_collected_decision(collected: bool):
 		area_2d.set_collision_mask_value(1, true)
 		cpu_particles_2d.emitting = true
 		orb_sprite.frame = 0
-		print(orb_sprite.frame)
-		print(orb_sprite.visible)
 		rotation_anim_timer.start()
 		#print("died... orbcount: " + str(PlayerStats.orb_count))
 

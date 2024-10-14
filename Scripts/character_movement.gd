@@ -56,6 +56,7 @@ var field_tool_available: bool = true
 @onready var supercancel_timer: Timer = $Supercancel_timer
 
 #Other
+var launched: bool = false
 var controllable: bool = true
 @onready var last_spawnpoint = position
 
@@ -84,6 +85,8 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
+	print_debug(states.keys()[current_state])
+	
 	if controllable:
 		match current_state:
 			states.IDLE:
@@ -215,11 +218,12 @@ func on_push_state():
 
 
 func on_jump_state():
-	velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
-	if p_speed_is_active:
-		animations.play("Pjump_anim", 0.2)
-	else:
-		animations.play("Jump_anim", 0.1)
+	if not launched:
+		velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
+		if p_speed_is_active:
+			animations.play("Pjump_anim", 0.2)
+		else:
+			animations.play("Jump_anim", 0.1)
 
 
 func on_fall_state(delta):
@@ -243,7 +247,7 @@ func on_fall_state(delta):
 			animations.play("Fall_anim", 0.2)
 
 	
-	if velocity.y <= 0 and Input.is_action_pressed("jump"):
+	if velocity.y <= 0 and (Input.is_action_pressed("jump") or launched):
 		#Rising while holding jump
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
 		_ledge_corrections()
@@ -254,6 +258,8 @@ func on_fall_state(delta):
 
 func on_land_state():
 	animations.play("Land_anim", 0)
+	if launched:
+		launched = false
 
 
 #TODO: identische Funktionen wallslide r und l?
@@ -295,13 +301,16 @@ func on_walljump_l_state():
 	p_speed_is_active = true
 	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
+	if launched:
+		launched = false
 
 
 func on_walljump_r_state():
 	p_speed_is_active = true
 	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
-
+	if launched:
+		launched = false
 
 
 func on_cancel_state():

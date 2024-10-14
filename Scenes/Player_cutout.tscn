@@ -3623,7 +3623,6 @@ region_rect = Rect2(0, 361.932, 400.8, 238.068)
 z_index = -1
 position = Vector2(-8, -15)
 rotation = 0.202458
-scale = Vector2(1, 1)
 texture = ExtResource("1_03de8")
 offset = Vector2(32.0392, 42.8752)
 region_enabled = true
