@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://bmutm3ald4rc4"]
+[gd_scene load_steps=79 format=4 uid="uid://bmutm3ald4rc4"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -514,8 +514,6 @@ sources/20 = SubResource("TileSetAtlasSource_wvpw6")
 [sub_resource type="TileMapPattern" id="TileMapPattern_qbj8c"]
 tile_data = PackedInt32Array(0, 65537, 0, 65536, 131073, 0, 1, 131073, 0, 65537, 65537, 0)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_4r1lm"]
-
 [sub_resource type="TileMapPattern" id="TileMapPattern_562yt"]
 tile_data = PackedInt32Array(0, 131074, 0, 65536, 65538, 0, 1, 65538, 0, 65537, 131074, 0)
 
@@ -533,8 +531,7 @@ texture_region_size = Vector2i(75, 75)
 tile_size = Vector2i(75, 75)
 sources/2 = SubResource("TileSetAtlasSource_qhsq3")
 pattern_0 = SubResource("TileMapPattern_qbj8c")
-pattern_1 = SubResource("TileMapPattern_4r1lm")
-pattern_2 = SubResource("TileMapPattern_562yt")
+pattern_1 = SubResource("TileMapPattern_562yt")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwdpg"]
 size = Vector2(458.536, 731.829)
