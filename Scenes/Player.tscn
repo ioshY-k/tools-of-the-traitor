@@ -52,7 +52,6 @@ one_shot = true
 [node name="Model_position" type="Node2D" parent="."]
 
 [node name="Player_cutout" parent="Model_position" instance=ExtResource("2_10mar")]
-scale = Vector2(1.395, 1.395)
 
 [node name="P_speed_timer" type="Timer" parent="."]
 wait_time = 1.3
