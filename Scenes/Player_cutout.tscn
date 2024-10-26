@@ -743,10 +743,10 @@ tracks/2/path = NodePath("Player_hip/Player_torso:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.7, 1.3, 2, 2.1, 3, 3.7, 3.8, 5.2, 6.2),
-"transitions": PackedFloat32Array(3.86375, 1, 1, 3.03143, 1, 1, 3.605, 1, 1, 1.93187, 1),
+"times": PackedFloat32Array(0, 0.6, 1.4, 1.5, 2.1, 2.8, 2.9, 3.8, 4.5, 4.6, 6, 7),
+"transitions": PackedFloat32Array(3.86375, 3.86375, 1, 1, 3.03143, 1, 1, 3.605, 1, 1, 1.93187, 1),
 "update": 0,
-"values": [Vector2(22, -89.347), Vector2(22, -60.347), Vector2(22, -66.347), Vector2(22, -66.347), Vector2(22, -35.285), Vector2(22, -42.347), Vector2(22, -42.347), Vector2(22, -21.347), Vector2(22, -27.347), Vector2(22, -27.347), Vector2(22, -89.347)]
+"values": [Vector2(22, -89.347), Vector2(22, -89.347), Vector2(22, -60.347), Vector2(22, -66.347), Vector2(22, -66.347), Vector2(22, -35.285), Vector2(22, -42.347), Vector2(22, -42.347), Vector2(22, -21.347), Vector2(22, -27.347), Vector2(22, -27.347), Vector2(22, -89.347)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -755,10 +755,10 @@ tracks/3/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 3.2, 5.3),
+"times": PackedFloat32Array(0, 4, 6.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-0.261799, 0.202458, -0.190241]
+"values": [6.02139, 6.48564, 6.09294]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -767,7 +767,7 @@ tracks/4/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_rightha
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.5),
+"times": PackedFloat32Array(0, 3.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.261799, -0.015708]
@@ -779,7 +779,7 @@ tracks/5/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.5, 4.6),
+"times": PackedFloat32Array(0, 3.3, 5.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [6.02139, 5.75959, 5.79275]
@@ -791,7 +791,7 @@ tracks/6/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2.9, 5),
+"times": PackedFloat32Array(0, 3.7, 5.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.261799, -0.155334, 0.574213]
@@ -803,7 +803,7 @@ tracks/7/path = NodePath("Player_hip/Player_torso/Player_head:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 7.5),
+"times": PackedFloat32Array(0, 4.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -0.155334]
@@ -979,7 +979,7 @@ tracks/21/keys = {
 
 [sub_resource type="Animation" id="Animation_dtlpp"]
 resource_name = "Jump_anim"
-length = 0.5
+length = 5.0
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1248,7 +1248,7 @@ tracks/21/keys = {
 
 [sub_resource type="Animation" id="Animation_hc5xo"]
 resource_name = "Land_anim"
-length = 0.5
+length = 0.3
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1281,10 +1281,10 @@ tracks/2/path = NodePath("Player_hip/Player_torso/Player_rightarm:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1.99998, -19)]
+"values": [Vector2(1.99998, -19), Vector2(5.08333, -5.7469), Vector2(1.99998, -19)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1293,10 +1293,10 @@ tracks/3/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.14, 0.28),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [4.97418]
+"values": [4.97418, 6.28318, 6.28318, 6.28318]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1317,10 +1317,10 @@ tracks/5/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_rightha
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.139755, 0.279755),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [1.309]
+"values": [1.309, 0.0, 0.0, -0.523598]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1329,10 +1329,10 @@ tracks/6/path = NodePath("Player_hip/Player_torso/Player_leftarm:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-48, -3)]
+"values": [Vector2(-48, -3), Vector2(-47, 6.7531), Vector2(-48, -3)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1341,10 +1341,10 @@ tracks/7/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.14, 0.28),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [6.80677]
+"values": [6.80677, 5.23598, 5.23598, 5.75958]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1365,10 +1365,10 @@ tracks/9/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.14, 0.28),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-0.523598]
+"values": [-0.523598, 1.0472, 1.0472, 0.523598]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1517,7 +1517,7 @@ tracks/21/keys = {
 
 [sub_resource type="Animation" id="Animation_xn7bi"]
 resource_name = "P_speed_anim"
-length = 0.9
+length = 0.7
 loop_mode = 1
 step = 0.02
 tracks/0/type = "value"
@@ -1527,10 +1527,10 @@ tracks/0/path = NodePath("Player_hip/Player_torso:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06, 0.2, 0.24, 0.46, 0.54, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(22, -66.347)]
+"values": [Vector2(22, -21.1803), Vector2(22, -27.955), Vector2(22, -21.1803), Vector2(22, -27.955), Vector2(22, -21.1803), Vector2(22, -27.955), Vector2(22, -21.1803)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1563,10 +1563,10 @@ tracks/3/path = NodePath("Player_hip/Player_torso/Player_rightarm:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [6.11252]
+"values": [8.11577, 8.37757]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1587,10 +1587,10 @@ tracks/5/path = NodePath("Player_hip/Player_torso/Player_rightarm/Player_rightha
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.16, 0.24, 0.36, 0.56, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.185074]
+"values": [0.185074, 0.0, -0.261799, -0.523598, 0.261799, 0.261799]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1611,10 +1611,10 @@ tracks/7/path = NodePath("Player_hip/Player_torso/Player_leftarm:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.32, 0.46, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [5.97367]
+"values": [6.54498, 6.80678, 6.54498, 6.80678, 6.80678]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1635,10 +1635,10 @@ tracks/9/path = NodePath("Player_hip/Player_torso/Player_leftarm/Player_lefthand
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.08, 0.24, 0.32, 0.4, 0.44, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.098124]
+"values": [1.0472, 0.523598, 1.309, 1.309, 0.680677, 0.523598, 1.309]
 }
 tracks/10/type = "value"
 tracks/10/imported = false

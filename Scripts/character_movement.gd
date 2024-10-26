@@ -77,6 +77,14 @@ enum tool_states {	NO_TOOL, CANCEL,
 					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE,
 					FIELD_TOOL_PREVIEW, FIELD_TOOL_PLACE}
 
+func _ready() -> void:
+	#important since queue cant specify blendtimes
+	animations.set_blend_time("Land_anim","Idle_anim",0.3)
+	animations.set_blend_time("Land_anim","Walk_anim",0.3)
+	animations.set_blend_time("Land_anim","Run_anim",0.3)
+	animations.set_blend_time("Land_anim","P_speed_anim",0.3)
+	animations.set_blend_time("Jump_anim", "Fall_anim", 0.3)
+
 
 func _physics_process(delta: float) -> void:
 	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
@@ -86,8 +94,6 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	#print_debug(states.keys()[current_state])
-	
 	if controllable:
 		match current_state:
 			states.IDLE:
@@ -174,7 +180,10 @@ func on_idle_state(delta):
 	p_speed_timer.stop()
 	p_speed_is_active = false
 	if current_tool_state == tool_states.NO_TOOL:
-		animations.play("Idle_anim" ,0.2)
+		if animations.current_animation == "Land_anim":
+			animations.queue("Idle_anim")
+		else:
+			animations.play("Idle_anim" ,0.3)
 
 
 func on_walk_state(delta):
@@ -187,7 +196,10 @@ func on_walk_state(delta):
 	p_speed_timer.stop()
 	p_speed_is_active = false
 	if current_tool_state == tool_states.NO_TOOL:
-		animations.play("Walk_anim" ,0.2)
+		if animations.current_animation == "Land_anim":
+			animations.queue("Walk_anim")
+		else:
+			animations.play("Walk_anim" ,0.3)
 
 
 func on_run_state(delta):
@@ -200,16 +212,25 @@ func on_run_state(delta):
 	if p_speed_is_active:
 		velocity.x = move_toward(velocity.x, direction * MAX_P_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
-			animations.play("P_speed_anim" ,0.9)
+			if animations.current_animation == "Land_anim":
+				animations.queue("P_speed_anim")
+			else:
+				animations.play("P_speed_anim" , 0.3)
 	elif p_speed_timer.is_stopped():
 		p_speed_timer.start()
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
-			animations.play("Run_anim" ,0.2)
+			if animations.current_animation == "Land_anim":
+				animations.queue("Run_anim")
+			else:
+				animations.play("Run_anim" ,0.3)
 	else:
 		velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, ACCELERATION * delta)
 		if current_tool_state == tool_states.NO_TOOL:
-			animations.play("Run_anim" ,0.2)
+			if animations.current_animation == "Land_anim":
+				animations.queue("Run_anim")
+			else:
+				animations.play("Run_anim" ,0.3)
 
 
 func on_push_state():
@@ -240,7 +261,7 @@ func on_fall_state(delta):
 		else:
 			velocity.x = move_toward(velocity.x, direction * MAX_RUN_SPEED, AIR_ACCELERATION * delta)
 			if velocity.y > 0:
-				animations.play("Fall_anim", 0.2)
+				animations.play("Fall_anim", 0.3)
 	else:
 		p_speed_is_active = false
 		velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, AIR_ACCELERATION * delta)
