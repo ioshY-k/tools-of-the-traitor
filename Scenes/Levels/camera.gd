@@ -13,7 +13,6 @@ func _process(_delta: float) -> void:
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y)
 	var camera_vector: Vector2 = Vector2(xAxis, yAxis)
 	if camera_vector.length() > 0.2:
-		print(camera_vector)
 		position = (initial_position + camera_vector * SCOUT_RADIUS)
 	else:
 		position = initial_position

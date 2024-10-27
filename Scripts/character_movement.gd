@@ -243,7 +243,7 @@ func on_jump_state():
 	if not launched:
 		velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
 		if p_speed_is_active:
-			animations.play("Pjump_anim", 0.2)
+			animations.play("Pjump_anim", 0.3)
 		else:
 			animations.play("Jump_anim", 0.1)
 
