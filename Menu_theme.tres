@@ -1,0 +1,66 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dqteyjs0ylrjj"]
+
+[ext_resource type="FontFile" uid="uid://bmsdogk3agtee" path="res://BAUHS93.TTF" id="1_24wje"]
+[ext_resource type="Texture2D" uid="uid://bbnko3jj5bawe" path="res://Sprites/Menu_theme_hovered.png" id="2_7yj04"]
+[ext_resource type="Texture2D" uid="uid://hmivwecmdmxt" path="res://Sprites/Menu_theme.png" id="3_hpq33"]
+[ext_resource type="Texture2D" uid="uid://bi4a7bqix7v2i" path="res://Sprites/Menu_theme_panel.png" id="4_28ar2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kd7ml"]
+texture = ExtResource("3_hpq33")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1gxeu"]
+texture = ExtResource("2_7yj04")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76rt7"]
+texture = ExtResource("2_7yj04")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6hab"]
+texture = ExtResource("3_hpq33")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_clyc2"]
+texture = ExtResource("2_7yj04")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvvtb"]
+texture = ExtResource("3_hpq33")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4fk8"]
+texture = ExtResource("4_28ar2")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[resource]
+Button/fonts/font = ExtResource("1_24wje")
+Button/styles/disabled = SubResource("StyleBoxTexture_kd7ml")
+Button/styles/focus = SubResource("StyleBoxTexture_1gxeu")
+Button/styles/hover = SubResource("StyleBoxTexture_76rt7")
+Button/styles/normal = SubResource("StyleBoxTexture_s6hab")
+Button/styles/pressed = SubResource("StyleBoxTexture_clyc2")
+CheckButton/styles/disabled = SubResource("StyleBoxTexture_mvvtb")
+Label/fonts/font = ExtResource("1_24wje")
+Panel/styles/panel = SubResource("StyleBoxTexture_b4fk8")
