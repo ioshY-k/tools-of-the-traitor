@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=16 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/character_movement.gd" id="1_ac4tx"]
+[ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_10mar"]
 [ext_resource type="Script" path="res://Scripts/state_handler.gd" id="2_asryv"]
 [ext_resource type="Script" path="res://Scripts/tool_state_handler.gd" id="2_yocoj"]
@@ -31,6 +32,11 @@ position = Vector2(1, 0)
 scale = Vector2(0.809092, 0.809092)
 collision_mask = 38
 script = ExtResource("1_ac4tx")
+
+[node name="Blink_timer" type="Timer" parent="."]
+script = ExtResource("2_1vope")
+min_wait_time = 2.0
+max_wait_time = 5.0
 
 [node name="Tool_state_handler" type="Node" parent="."]
 script = ExtResource("2_yocoj")
@@ -128,13 +134,14 @@ texture = ExtResource("5_8eind")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(1.75417, -6.98807)
-scale = Vector2(3.8017, 3.75595)
+scale = Vector2(4.427, 4.375)
 curve = SubResource("Curve2D_aeka8")
 
 [node name="Follow_floor_tool" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
 position = Vector2(-159.864, 1.86053)
 rotation = -0.5916
+scale = Vector2(4.427, 4.375)
 rotates = false
 
 [node name="Sprite_floor_tool" type="Sprite2D" parent="Path2D/Follow_floor_tool"]
@@ -143,7 +150,7 @@ modulate = Color(1, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(0.70002, 0.0647659)
 rotation = 0.5916
-scale = Vector2(0.211, 0.328)
+scale = Vector2(0.051, 0.079)
 texture = ExtResource("6_03mwq")
 
 [node name="Floor_typecheck" type="Area2D" parent="."]

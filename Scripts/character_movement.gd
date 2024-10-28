@@ -38,6 +38,7 @@ var sliding_on_right_wall: bool
 @onready var left_arm: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm")
 @onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
 @onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
+@onready var blink_timer: Timer = $Blink_timer
 
 #Tool placement
 const PREVIEW_PATH_OFFSET = Vector2(0,0) #Positional offset from the center of the tool preview path
@@ -155,7 +156,7 @@ func _physics_process(delta: float) -> void:
 func check_supercancel():
 	if is_on_floor() and Input.is_action_just_pressed("cancel_tool"):
 		supercancel_timer.start()
-		eyes.play("loading_supercancel_anim")
+		eyes.play("supercancel_anim")
 	if not supercancel_timer.is_stopped() and not Input.is_action_pressed("cancel_tool"):
 		supercancel_timer.stop()
 		eyes.stop()
@@ -184,6 +185,9 @@ func on_idle_state(delta):
 			animations.queue("Idle_anim")
 		else:
 			animations.play("Idle_anim" ,0.3)
+	eyes_blinking()
+
+		
 
 
 func on_walk_state(delta):
@@ -200,6 +204,7 @@ func on_walk_state(delta):
 			animations.queue("Walk_anim")
 		else:
 			animations.play("Walk_anim" ,0.3)
+	eyes_blinking()
 
 
 func on_run_state(delta):
@@ -276,6 +281,7 @@ func on_fall_state(delta):
 	else:
 		#higher gravity on jumrelease and while descending
 		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
+	eyes_blinking()
 
 
 func on_land_state():
@@ -300,6 +306,7 @@ func on_wallslide_l_state(delta):
 			velocity.x = -1
 	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_right"):
 		velocity.x = 1
+	eyes_blinking()
 
 
 func on_wallslide_r_state(delta):
@@ -317,6 +324,7 @@ func on_wallslide_r_state(delta):
 			velocity.x = 1
 	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
 		velocity.x = -1
+	eyes_blinking()
 
 
 func on_walljump_l_state():
@@ -561,6 +569,12 @@ func determine_walltool_position(inputstrength, controllerangle):
 			y_value = -240 + ((controllerangle + 3*PI/8) / (3*PI/4)) * 480
 		
 		sprite_wall_tool.position = Vector2(x_value,y_value)
+
+
+func eyes_blinking():
+	if blink_timer.is_stopped():
+		blink_timer.start()
+	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
 
 
 func _on_floor_typecheck_body_entered(_body: Node2D) -> void:
