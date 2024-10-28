@@ -1,31 +1,672 @@
-[gd_scene load_steps=2 format=3 uid="uid://pljgr605a4pa"]
+[gd_scene load_steps=17 format=3 uid="uid://cat7wbeyrrnjo"]
 
-[ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="1_feutn"]
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_nhf6r"]
+[ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_ku6h5"]
+[ext_resource type="Texture2D" uid="uid://c8bh045jgp2o7" path="res://Sprites/UI/Togglebutton.png" id="3_tbag2"]
+[ext_resource type="Texture2D" uid="uid://do40farynbpub" path="res://Sprites/UI/Togglebutton2.png" id="4_2x2us"]
+[ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="5_lb00x"]
+[ext_resource type="Texture2D" uid="uid://2xsbhrip554x" path="res://Sprites/Orbs/Orb_grey.png" id="6_3y2b6"]
+[ext_resource type="Texture2D" uid="uid://b8fm1dba03yl7" path="res://Sprites/Orbs/Orb_green.png" id="7_cpoij"]
+[ext_resource type="Texture2D" uid="uid://jgos12hj6um1" path="res://Sprites/Orbs/Orb_navy.png" id="8_cj2se"]
+[ext_resource type="Texture2D" uid="uid://c7yd3x0r1daox" path="res://Sprites/Orbs/Orb_orange.png" id="9_rqw6b"]
+[ext_resource type="Texture2D" uid="uid://bly2e53ly7aik" path="res://Sprites/Orbs/Orb_purple.png" id="10_vefrv"]
+[ext_resource type="Texture2D" uid="uid://dn0kpyij1a7w7" path="res://Sprites/Orbs/Orb_red.png" id="11_eu5ua"]
+[ext_resource type="Texture2D" uid="uid://cc5wbq565k7tt" path="res://Sprites/Orbs/Orb_yellow.png" id="12_3b8hb"]
+[ext_resource type="Texture2D" uid="uid://cqrue04hiieqr" path="res://Sprites/Orbs/Orb_pastelgreen.png" id="13_f0r8c"]
+[ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="14_ksmfb"]
+[ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="15_05rj1"]
+[ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="16_61k2p"]
 
-[node name="Pause_menu" type="Control"]
-layout_mode = 3
+[node name="CanvasLayer" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_nhf6r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 0.564706)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 0.490196)
-layout_mode = 1
+[node name="Pause_menu" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1038.0
-offset_top = -1099.0
-offset_right = -526.0
-offset_bottom = -586.0
+offset_left = -250.0
+offset_top = -330.0
+offset_right = 250.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4.13264, 4.13264)
-pivot_offset = Vector2(1.695, 0)
+theme = ExtResource("2_ku6h5")
+
+[node name="Resume_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="Tip_menu_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Tips"
+
+[node name="Respawn_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Respawn"
+
+[node name="Restart_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[node name="Quit_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Sprint_toggle" type="CheckButton" parent="Pause_menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("3_tbag2")
+theme_override_icons/unchecked = ExtResource("4_2x2us")
+text = "Hold Button to Sprint"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause_menu/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Bullet Time"
+
+[node name="HSlider" type="HSlider" parent="Pause_menu/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("2_ku6h5")
+min_value = 20.0
+step = 20.0
+value = 20.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Tip_menu" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -706.0
+offset_top = -584.0
+offset_right = 706.0
+offset_bottom = 584.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.915, 0.915)
+pivot_offset = Vector2(704.995, 583.76)
+size_flags_vertical = 0
+theme = ExtResource("2_ku6h5")
+
+[node name="Tip_grid" type="GridContainer" parent="Tip_menu"]
+layout_mode = 2
+columns = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button1" type="Button" parent="Tip_menu/Tip_grid/MarginContainer"]
+layout_mode = 2
+icon = ExtResource("5_lb00x")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button2" type="Button" parent="Tip_menu/Tip_grid/MarginContainer2"]
+layout_mode = 2
+icon = ExtResource("6_3y2b6")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button3" type="Button" parent="Tip_menu/Tip_grid/MarginContainer3"]
+layout_mode = 2
+icon = ExtResource("7_cpoij")
+
+[node name="MarginContainer4" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button4" type="Button" parent="Tip_menu/Tip_grid/MarginContainer4"]
+layout_mode = 2
+icon = ExtResource("8_cj2se")
+
+[node name="MarginContainer5" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button5" type="Button" parent="Tip_menu/Tip_grid/MarginContainer5"]
+layout_mode = 2
+icon = ExtResource("9_rqw6b")
+
+[node name="MarginContainer6" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button6" type="Button" parent="Tip_menu/Tip_grid/MarginContainer6"]
+layout_mode = 2
+icon = ExtResource("10_vefrv")
+
+[node name="MarginContainer7" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button7" type="Button" parent="Tip_menu/Tip_grid/MarginContainer7"]
+layout_mode = 2
+icon = ExtResource("11_eu5ua")
+
+[node name="MarginContainer8" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button8" type="Button" parent="Tip_menu/Tip_grid/MarginContainer8"]
+layout_mode = 2
+icon = ExtResource("12_3b8hb")
+
+[node name="MarginContainer9" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button9" type="Button" parent="Tip_menu/Tip_grid/MarginContainer9"]
+layout_mode = 2
+icon = ExtResource("13_f0r8c")
+
+[node name="MarginContainer10" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button10" type="Button" parent="Tip_menu/Tip_grid/MarginContainer10"]
+layout_mode = 2
+icon = ExtResource("14_ksmfb")
+
+[node name="MarginContainer11" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button11" type="Button" parent="Tip_menu/Tip_grid/MarginContainer11"]
+layout_mode = 2
+icon = ExtResource("15_05rj1")
+
+[node name="MarginContainer12" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Tip_button12" type="Button" parent="Tip_menu/Tip_grid/MarginContainer12"]
+layout_mode = 2
+icon = ExtResource("16_61k2p")
+
+[node name="Return_button" type="Button" parent="Tip_menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Return"
+
+[node name="Panel1" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("1_feutn")
+
+[node name="Label" type="Label" parent="Panel1"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "The faster you run, the higher you will jump!
+
+If you run for a bit without changing direction, you will reach even higher topspeed."
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 1
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "You can call back your tools only when grounded!
+
+This includes the short period standing on your spring tool before liftoff."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel3" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "To collect an Orb, you need to carry ist to safe ground.
+ This does not include Spikes or your Tools!
+
+Your Hair will stay charged while carrying Orbs."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel4" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel4"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Your red block tool's default position is right beneath you!
+
+So if you need ground below, just quickly tap the build button without choosing a direction."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel5" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel5"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Placing your green Wall Tool midair lets you walljump at
+any point of your jump!
+
+With precise timing these midair wall jumps can be performed with your red block tool as well."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel6" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel6"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -206.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Sprinting while Wall Jumping brings you further
+while Wall Jumping without holding Sprint is excellent for precise Landing!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel7" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel7"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel8" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel8"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "To cover horizontal distance with your red block tool without loosing speed, try placing it diagonally down while descending!
+
+The tool will snap to make the timing for your second jump as generous as possible."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel9" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel9"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Place your red block tool above your head to stop your momentum after launching from your blue spring tool!
+
+This way you won't launch into spikes at the ceiling."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel10" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel10"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Tapping the reset button cancels your tool Preview!
+
+...There is a secret fourth tool hidden back where you started......"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel11" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel11"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "When placing Tools, you may first choose the direction
+and then let go of the stick before placing!
+
+This will prevent you from accidentally walking forward
+after placing Tools."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel12" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 157.0
+offset_top = 94.0
+offset_right = 157.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.835, 0.835)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel12"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -97.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
+
+You'll stay glued to a wall while aiming down or away
+with your Tools."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Close_tip_button" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.5
+offset_top = -234.31
+offset_right = 80.5
+offset_bottom = -128.31
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Close"
+
+[connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
+[connection signal="value_changed" from="Pause_menu/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer/Tip_button1" to="." method="_on_tip_button_1_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="." method="_on_tip_button_4_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="." method="_on_tip_button_5_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="." method="_on_tip_button_6_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="." method="_on_tip_button_7_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="." method="_on_tip_button_8_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="." method="_on_tip_button_9_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="." method="_on_tip_button_10_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="." method="_on_tip_button_11_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="." method="_on_tip_button_12_pressed"]
+[connection signal="pressed" from="Tip_menu/Return_button" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Close_tip_button" to="." method="_on_close_tip_button_pressed"]

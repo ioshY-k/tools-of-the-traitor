@@ -1,54 +1,56 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dqteyjs0ylrjj"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://dqteyjs0ylrjj"]
 
 [ext_resource type="FontFile" uid="uid://bmsdogk3agtee" path="res://BAUHS93.TTF" id="1_24wje"]
-[ext_resource type="Texture2D" uid="uid://bbnko3jj5bawe" path="res://Sprites/Menu_theme_hovered.png" id="2_7yj04"]
-[ext_resource type="Texture2D" uid="uid://hmivwecmdmxt" path="res://Sprites/Menu_theme.png" id="3_hpq33"]
-[ext_resource type="Texture2D" uid="uid://bi4a7bqix7v2i" path="res://Sprites/Menu_theme_panel.png" id="4_28ar2"]
+[ext_resource type="Texture2D" uid="uid://hmivwecmdmxt" path="res://Sprites/UI/Menu_theme.png" id="2_0yy4d"]
+[ext_resource type="Texture2D" uid="uid://bbnko3jj5bawe" path="res://Sprites/UI/Menu_theme_hovered.png" id="3_3l6jr"]
+[ext_resource type="Texture2D" uid="uid://bhpfs6752p31l" path="res://Sprites/UI/Slider_button.png" id="4_wcgur"]
+[ext_resource type="Texture2D" uid="uid://be244qxl3rnt2" path="res://Sprites/UI/Slider_button_unfocused.png" id="4_xp7ha"]
+[ext_resource type="Texture2D" uid="uid://bi4a7bqix7v2i" path="res://Sprites/UI/Menu_theme_panel.png" id="5_mfb1a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kd7ml"]
-texture = ExtResource("3_hpq33")
+texture = ExtResource("2_0yy4d")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1gxeu"]
-texture = ExtResource("2_7yj04")
+texture = ExtResource("3_3l6jr")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76rt7"]
-texture = ExtResource("2_7yj04")
+texture = ExtResource("3_3l6jr")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6hab"]
-texture = ExtResource("3_hpq33")
+texture = ExtResource("2_0yy4d")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_clyc2"]
-texture = ExtResource("2_7yj04")
+texture = ExtResource("3_3l6jr")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvvtb"]
-texture = ExtResource("3_hpq33")
+texture = ExtResource("2_0yy4d")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4fk8"]
-texture = ExtResource("4_28ar2")
+texture = ExtResource("5_mfb1a")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
@@ -62,5 +64,8 @@ Button/styles/hover = SubResource("StyleBoxTexture_76rt7")
 Button/styles/normal = SubResource("StyleBoxTexture_s6hab")
 Button/styles/pressed = SubResource("StyleBoxTexture_clyc2")
 CheckButton/styles/disabled = SubResource("StyleBoxTexture_mvvtb")
+HSlider/icons/grabber = ExtResource("4_xp7ha")
+HSlider/icons/grabber_disabled = ExtResource("4_wcgur")
+HSlider/icons/grabber_highlight = ExtResource("4_wcgur")
 Label/fonts/font = ExtResource("1_24wje")
 Panel/styles/panel = SubResource("StyleBoxTexture_b4fk8")

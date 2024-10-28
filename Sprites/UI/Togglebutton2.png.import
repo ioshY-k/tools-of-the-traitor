@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbnko3jj5bawe"
-path="res://.godot/imported/Menu_theme_hovered.png-04da41249ea60780a2953dc65cc4b11b.ctex"
+uid="uid://do40farynbpub"
+path="res://.godot/imported/Togglebutton2.png-b8229f751ffd2aaa50410482907a8311.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Menu_theme_hovered.png"
-dest_files=["res://.godot/imported/Menu_theme_hovered.png-04da41249ea60780a2953dc65cc4b11b.ctex"]
+source_file="res://Sprites/UI/Togglebutton2.png"
+dest_files=["res://.godot/imported/Togglebutton2.png-b8229f751ffd2aaa50410482907a8311.ctex"]
 
 [params]
 

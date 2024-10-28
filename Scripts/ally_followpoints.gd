@@ -40,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	var speed = player.velocity.length()
 	for index in range(len(follow_points)):
 		if index == 0:
-			follow_points[index].position = follow_points[index].position.move_toward(destination, max(speed * delta, 800 * delta))
+			follow_points[index].position = follow_points[index].position.move_toward(destination, max(speed * delta, 2000 * delta))
 		else:
 			if not follow_points[index].has_overlapping_areas():
-				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, max(speed * delta, 800 * delta))
+				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, max(speed * delta, 2000 * delta))
 	
 	for index in range(len(allies)):
 		#every ally follows their corresponting follow points

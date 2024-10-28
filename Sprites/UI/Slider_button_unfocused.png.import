@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do40farynbpub"
-path="res://.godot/imported/Togglebutton2.png-4b3759d814a2431aa7ee93c15685f7cf.ctex"
+uid="uid://be244qxl3rnt2"
+path="res://.godot/imported/Slider_button_unfocused.png-e8e391004b140665c1742474fd3836e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Togglebutton2.png"
-dest_files=["res://.godot/imported/Togglebutton2.png-4b3759d814a2431aa7ee93c15685f7cf.ctex"]
+source_file="res://Sprites/UI/Slider_button_unfocused.png"
+dest_files=["res://.godot/imported/Slider_button_unfocused.png-e8e391004b140665c1742474fd3836e1.ctex"]
 
 [params]
 

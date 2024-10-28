@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hmivwecmdmxt"
-path="res://.godot/imported/Menu_theme.png-a1bf0544fd9a6bb532beb2631f371d90.ctex"
+uid="uid://kltuepmw5q1y"
+path="res://.godot/imported/Slider_button_unfocused.png-c20d683d504b387130caeb794598a675.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Menu_theme.png"
-dest_files=["res://.godot/imported/Menu_theme.png-a1bf0544fd9a6bb532beb2631f371d90.ctex"]
+source_file="res://Slider_button_unfocused.png"
+dest_files=["res://.godot/imported/Slider_button_unfocused.png-c20d683d504b387130caeb794598a675.ctex"]
 
 [params]
 

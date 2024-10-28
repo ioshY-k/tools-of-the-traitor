@@ -31,7 +31,6 @@ radius = 1.0
 size = Vector2(72, 152)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(1, 0)
 scale = Vector2(0.809092, 0.809092)
 collision_mask = 102
 script = ExtResource("1_ac4tx")
@@ -60,10 +59,10 @@ wait_time = 0.105
 one_shot = true
 
 [node name="Model_position" type="Node2D" parent="."]
-position = Vector2(10.46, 0)
+position = Vector2(10, 0)
 
 [node name="Player_cutout" parent="Model_position" instance=ExtResource("2_10mar")]
-position = Vector2(-7.215, 0)
+position = Vector2(-10, 0)
 
 [node name="P_speed_timer" type="Timer" parent="."]
 wait_time = 1.3
@@ -131,8 +130,8 @@ polygon = PackedVector2Array(-37.6271, -78, 51.8644, -78, 51.8644, 2, 43.7288, 9
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
 z_index = 4
-position = Vector2(4, 89)
-scale = Vector2(0.646018, 0.646018)
+position = Vector2(18.5393, 108.764)
+scale = Vector2(0.811, 0.811)
 texture = ExtResource("5_8eind")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -153,7 +152,7 @@ modulate = Color(0.988235, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(-157.134, 0.367451)
 rotation = -0.00545731
-scale = Vector2(0.224956, 0.346908)
+scale = Vector2(0.21, 0.324)
 skew = 0.010939
 texture = ExtResource("6_03mwq")
 
@@ -177,7 +176,7 @@ visible = false
 modulate = Color(1, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(190, -1)
-scale = Vector2(0.485238, 0.734088)
+scale = Vector2(0.6, 0.908)
 texture = ExtResource("7_ax4cp")
 
 [node name="Ally_destination" type="Area2D" parent="."]
@@ -203,8 +202,8 @@ shape = SubResource("RectangleShape2D_vxw3g")
 [node name="Sprite_spring_tool" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
-position = Vector2(5, 9)
-scale = Vector2(0.674779, 0.674779)
+position = Vector2(148.314, 19.7753)
+scale = Vector2(0.87, 0.87)
 texture = ExtResource("9_h2t1i")
 
 [node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]
