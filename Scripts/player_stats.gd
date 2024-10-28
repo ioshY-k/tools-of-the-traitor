@@ -9,6 +9,7 @@ var spring_tool_unlocked: bool = false
 var field_tool_unlocked: bool = false
 
 var toggle_to_sprint: bool = false
+var bullet_time_value: float = 1.0
 
 const ORB_NUMBER = 12
 var orb_list = []

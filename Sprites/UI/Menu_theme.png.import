@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt6h2mb83ld27"
-path="res://.godot/imported/walk_icon.png-de03beaf9c33a92aa7ec3d5a4f201d5b.ctex"
+uid="uid://hmivwecmdmxt"
+path="res://.godot/imported/Menu_theme.png-6423f584273931d74aa8db2cd2db0b86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/walk_icon.png"
-dest_files=["res://.godot/imported/walk_icon.png-de03beaf9c33a92aa7ec3d5a4f201d5b.ctex"]
+source_file="res://Sprites/UI/Menu_theme.png"
+dest_files=["res://.godot/imported/Menu_theme.png-6423f584273931d74aa8db2cd2db0b86.ctex"]
 
 [params]
 

@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 #Movement variables
-const ACCELERATION = 2300 * 2.5 #How fast Player reaches run speed
-const DECELERATION = 3000 * 2.5 #How long until Player stops after moving
-const AIR_ACCELERATION = 1700 * 2.5
-const GRAVITY_RISING = 1700 * 2.5 #How fast Player falls with holding jump
+const ACCELERATION = 3300 #How fast Player reaches run speed
+const DECELERATION = 6500 #How long until Player stops after moving
+const AIR_ACCELERATION = 4250
+const GRAVITY_RISING = 4250 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 3800 * 2.5 #How much stronger  gravity pulls in falling state vs. rising state
 const MAX_FALLSPEED = 700 * 2.5 #The point where gravity doesn't accelerate fallspeed enymore
 const JUMPFORCE = 1580 #How high Player gets send when jumping
@@ -41,19 +41,24 @@ var sliding_on_right_wall: bool
 @onready var blink_timer: Timer = $Blink_timer
 
 #Tool placement
-const PREVIEW_PATH_OFFSET = Vector2(0,0) #Positional offset from the center of the tool preview path
-@onready var sprite_floor_tool: Sprite2D = $Path2D/Follow_floor_tool/Sprite_floor_tool
+@onready var sprite_floor_tool: Sprite2D = $Path2D/Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 var is_on_tool: bool
+var is_on_spring_tool: bool # To prevent the launch variable from changing back right after launching. This caused middle high jumps from Spring tool
 var floor_tool_available: bool = true
 var block_tool_available: bool = true
 var wall_tool_available: bool = true
 var rope_tool_available: bool = true
 var spring_tool_available: bool = true
 var field_tool_available: bool = true
+var floor_overlapping: bool = false
+var block_tool_distance = 120
+var tool_offset_x = 10
+var last_placed_tools = Array()
+var disable_callback = false # To prevent calling back a tool with the cancel button when it was just used to cancel preview
 @onready var supercancel_timer: Timer = $Supercancel_timer
 
 #Other
@@ -63,7 +68,6 @@ var controllable: bool = true
 
 #State handler
 @onready var state_handler = $State_handler
-
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
@@ -78,6 +82,7 @@ enum tool_states {	NO_TOOL, CANCEL,
 					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE,
 					FIELD_TOOL_PREVIEW, FIELD_TOOL_PLACE}
 
+
 func _ready() -> void:
 	#important since queue cant specify blendtimes
 	animations.set_blend_time("Land_anim","Idle_anim",0.3)
@@ -85,6 +90,17 @@ func _ready() -> void:
 	animations.set_blend_time("Land_anim","Run_anim",0.3)
 	animations.set_blend_time("Land_anim","P_speed_anim",0.3)
 	animations.set_blend_time("Jump_anim", "Fall_anim", 0.3)
+	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
+	supercancel_timer.timeout.connect(func():
+			var tool_arr = [
+			get_parent().get_node("%Floor_tool"),
+			get_parent().get_node("%Block_tool"),
+			get_parent().get_node("%Wall_tool"),
+			get_parent().get_node("%Spring_tool")]
+			for tool in tool_arr:
+				callback_tool(tool)
+				await get_tree().create_timer(0.05).timeout
+			)
 
 
 func _physics_process(delta: float) -> void:
@@ -112,17 +128,17 @@ func _physics_process(delta: float) -> void:
 			states.LAND:
 				on_land_state()
 			states.WALLSLIDE_L:
-				on_wallslide_l_state(delta)
+				on_wallslide_state(delta, true)
 			states.WALLSLIDE_R:
-				on_wallslide_r_state(delta)
+				on_wallslide_state(delta, false)
 			states.WALLJUMP_L:
-				on_walljump_l_state()
+				on_walljump_state(1)
 			states.WALLJUMP_R:
-				on_walljump_r_state()
+				on_walljump_state(-1)
 				
 		match current_tool_state:
 			tool_states.NO_TOOL:
-				pass
+				on_no_tool_state()
 			tool_states.CANCEL:
 				on_cancel_state()
 			tool_states.FLOOR_TOOL_PREVIEW:
@@ -149,32 +165,38 @@ func _physics_process(delta: float) -> void:
 				on_field_tool_preview_state()
 			tool_states.FIELD_TOOL_PLACE:
 				on_field_tool_place_state()
-		
 	
 	move_and_slide() #Player movement
 
+
 func check_supercancel():
+	if Input.is_action_just_released("cancel_tool") and is_on_floor() and not disable_callback:
+		callback_tool(last_placed_tools.pop_back())
+	elif Input.is_action_just_released("cancel_tool"):
+		disable_callback = false
 	if is_on_floor() and Input.is_action_just_pressed("cancel_tool"):
 		supercancel_timer.start()
 		eyes.play("supercancel_anim")
 	if not supercancel_timer.is_stopped() and not Input.is_action_pressed("cancel_tool"):
 		supercancel_timer.stop()
 		eyes.stop()
-	supercancel_timer.timeout.connect(func():
-		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_DISABLED)
-		get_parent().get_node("%Block_tool").set_process_mode(PROCESS_MODE_DISABLED)
-		get_parent().get_node("%Wall_tool").set_process_mode(PROCESS_MODE_DISABLED)
-		get_parent().get_node("%Spring_tool").set_process_mode(PROCESS_MODE_DISABLED)
-		get_parent().get_node("%Floor_tool").visible = false
-		get_parent().get_node("%Block_tool").visible = false
-		get_parent().get_node("%Wall_tool").visible = false
-		get_parent().get_node("%Spring_tool").visible = false
-		if is_on_tool:
-			await get_tree().create_timer(0.9).timeout
-		floor_tool_available = true
-		block_tool_available = true
-		wall_tool_available = true
-		spring_tool_available = true)
+
+
+func callback_tool(tool: Node):
+	if tool == null:
+		return
+	tool.set_process_mode(PROCESS_MODE_DISABLED)
+	tool.visible = false
+	match tool.name:
+		"Floor_tool": 
+			floor_tool_available = true
+		"Block_tool":
+			block_tool_available = true
+		"Wall_tool":
+			wall_tool_available = true
+		"Spring_tool":
+			spring_tool_available = true
+
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
@@ -186,8 +208,6 @@ func on_idle_state(delta):
 		else:
 			animations.play("Idle_anim" ,0.3)
 	eyes_blinking()
-
-		
 
 
 func on_walk_state(delta):
@@ -272,7 +292,7 @@ func on_fall_state(delta):
 		velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, AIR_ACCELERATION * delta)
 		if velocity.y > 0:
 			animations.play("Fall_anim", 0.2)
-
+	
 	
 	if velocity.y <= 0 and (Input.is_action_pressed("jump") or launched):
 		#Rising while holding jump
@@ -286,71 +306,58 @@ func on_fall_state(delta):
 
 func on_land_state():
 	animations.play("Land_anim", 0)
-	if launched:
+	if launched and not is_on_spring_tool:
 		launched = false
 
 
-#TODO: identische Funktionen wallslide r und l?
-func on_wallslide_l_state(delta):
+func on_wallslide_state(delta, left: bool):
 	if velocity.y <= 0 and Input.is_action_pressed("jump"):
 		#Rising while holding jump
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
 		_ledge_corrections()
 	else:
-		#higher gravity on jumrelease and while descending
+		#higher gravity on jumprelease and while descending
 		velocity.y = GRAVITY_WALL_SLIDING
 		p_speed_timer.stop()
 		p_speed_is_active = false
 		animations.play("Wallslide_anim",0.2)
-		if sliding_on_left_wall:
+		if left and sliding_on_left_wall:
 			velocity.x = -1
+		elif not left and sliding_on_right_wall:
+			velocity.x = 1
 	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_right"):
 		velocity.x = 1
-	eyes_blinking()
-
-
-func on_wallslide_r_state(delta):
-	if velocity.y <= 0 and Input.is_action_pressed("jump"):
-		#Rising while holding jump
-		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
-		_ledge_corrections()
-	else:
-		#higher gravity on jumrelease and while descending
-		velocity.y = GRAVITY_WALL_SLIDING
-		p_speed_timer.stop()
-		p_speed_is_active = false
-		animations.play("Wallslide_anim",0.2)
-		if sliding_on_right_wall:
-			velocity.x = 1
-	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
+	elif current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
 		velocity.x = -1
 	eyes_blinking()
 
 
-func on_walljump_l_state():
+func on_walljump_state(left: int):
 	p_speed_is_active = true
-	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
+	velocity = Vector2(left * WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
 	if launched:
 		launched = false
 
 
-func on_walljump_r_state():
-	p_speed_is_active = true
-	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
-	animations.play("Pjump_anim")
-	if launched:
-		launched = false
+func on_no_tool_state():
+	set_bullet_time(false)
 
 
 func on_cancel_state():
 	sprite_floor_tool.visible = false
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
+	sprite_spring_tool.visible = false
+	while Engine.time_scale != 1:
+		set_bullet_time(false)
+		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+	disable_callback = true
 	
 
 
 func on_floortool_preview_state(delta):
+	set_bullet_time(false)
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
 	sprite_spring_tool.visible = false
@@ -370,7 +377,6 @@ func on_floortool_preview_state(delta):
 	if floor_tool_available:
 		#Floor Tool Preview
 		sprite_floor_tool.visible = true
-		follow_floor_tool.progress_ratio = \
 		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 
 
@@ -383,6 +389,7 @@ func on_blocktool_preview_state():
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		set_bullet_time(true)
 
 
 func on_wall_tool_preview_state(delta):
@@ -409,6 +416,7 @@ func on_wall_tool_preview_state(delta):
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
 		determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		set_bullet_time(true)
 
 
 func on_rope_tool_preview_state():
@@ -425,9 +433,11 @@ func on_spring_tool_preview_state(delta):
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	if is_on_floor():
-		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 135, 3)
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 135 + tool_offset_x, 3)
 		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
+		
+		#Managing Arm spinning animation
 		left_hand.rotation = deg_to_rad(30)
 		if Vector2(xAxis, yAxis).length() > Vector2(0.65,0.65).abs().length():
 			if model_position.scale.x < 0:
@@ -439,10 +449,12 @@ func on_spring_tool_preview_state(delta):
 					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
 			else:
 				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
+	
 	else:
-		sprite_spring_tool.position = Vector2.DOWN * 120
+		sprite_spring_tool.position = Vector2.DOWN * 150 + Vector2.RIGHT * tool_offset_x
 	if spring_tool_available:
 		sprite_spring_tool.visible = true
+		set_bullet_time(true)
 
 
 func on_field_tool_preview_state():
@@ -451,13 +463,16 @@ func on_field_tool_preview_state():
 	sprite_wall_tool.visible = false
 	sprite_spring_tool.visible = false
 
+
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
-		get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_INHERIT)
-		get_parent().get_node("%Floor_tool").visible = true
-		get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position
-		floor_tool_available = false
+		if not floor_overlapping:
+			get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_INHERIT)
+			get_parent().get_node("%Floor_tool").visible = true
+			get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position
+			floor_tool_available = false
+			last_placed_tools.push_back(get_parent().get_node("%Floor_tool"))
 
 
 func on_blocktool_place_state():
@@ -467,6 +482,10 @@ func on_blocktool_place_state():
 		get_parent().get_node("%Block_tool").visible = true
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 		block_tool_available = false
+		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
+		while Engine.time_scale != 1:
+			set_bullet_time(false)
+			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 
 
 func on_wall_tool_place_state():
@@ -476,10 +495,15 @@ func on_wall_tool_place_state():
 		get_parent().get_node("%Wall_tool").visible = true
 		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
 		wall_tool_available = false
+		last_placed_tools.push_back(get_parent().get_node("%Wall_tool"))
+		while Engine.time_scale != 1:
+			set_bullet_time(false)
+			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 
 
 func on_rope_tool_place_state():
 	pass
+
 
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
@@ -488,6 +512,10 @@ func on_spring_tool_place_state():
 		get_parent().get_node("%Spring_tool").visible = true
 		get_parent().get_node("%Spring_tool").position = sprite_spring_tool.global_position
 		spring_tool_available = false
+		last_placed_tools.push_back(get_parent().get_node("%Spring_tool"))
+		while Engine.time_scale != 1:
+			set_bullet_time(false)
+			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 
 func on_field_tool_place_state():
 	pass
@@ -508,12 +536,15 @@ func _ledge_corrections():
 		caster_outer_right_ceiling.force_raycast_update()
 
 
-func determine_floortool_position(inputstrength, controllerangle) -> float:
+func determine_floortool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
+	var movespeed = 0
 	if inputstrength > Vector2(0.65,0.65).abs().length():
-		return (controllerangle + PI)/(2*PI)
-	else:
-		return follow_floor_tool.progress_ratio
+		movespeed = 4
+	elif inputstrength > Vector2(0.3,0.3).abs().length():
+		movespeed = 1.5
+	follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+	sprite_floor_tool.position = sprite_floor_tool.position.move_toward(follow_floor_tool.position, movespeed)
 
 
 func determine_blocktool_position(inputstrength, controllerangle):
@@ -521,41 +552,41 @@ func determine_blocktool_position(inputstrength, controllerangle):
 	if inputstrength > Vector2(0.65,0.65).abs().length():
 		#Snap behaviour when placing below PLayer
 		if controllerangle > (3*PI/8) and controllerangle < (5*PI/8):
-			sprite_block_tool.position = 100 * Vector2.DOWN
+			sprite_block_tool.position = block_tool_distance * Vector2.DOWN
 		elif Input.get_axis("walk_left", "walk_right") > 0:
 			#Snap behaviour when facing right
 			if controllerangle > (-PI/8) and controllerangle < (PI/8):
-				sprite_block_tool.position = 100 * Vector2.RIGHT
+				sprite_block_tool.position = block_tool_distance * Vector2.RIGHT
 			elif controllerangle > (PI/8) and controllerangle < (3*PI/8):
-				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(3*PI/8)
+				sprite_block_tool.position = block_tool_distance * Vector2.RIGHT.rotated(3*PI/8)
 			else:
-				sprite_block_tool.position = 120 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = (block_tool_distance+30) * Vector2.RIGHT.rotated(controllerangle)
 		else:
 			#Snap behaviour when facing left
 			if controllerangle > (7*PI/8) or controllerangle < (-7*PI/8):
-				sprite_block_tool.position = 100 * Vector2.LEFT
+				sprite_block_tool.position = block_tool_distance * Vector2.LEFT
 			elif controllerangle > (5*PI/8) and controllerangle < (7*PI/8):
-				sprite_block_tool.position = 100 * Vector2.RIGHT.rotated(5*PI/8)
+				sprite_block_tool.position = block_tool_distance * Vector2.RIGHT.rotated(5*PI/8)
 			else:
-				sprite_block_tool.position = 120 * Vector2.RIGHT.rotated(controllerangle)
+				sprite_block_tool.position = (block_tool_distance+30) * Vector2.RIGHT.rotated(controllerangle)
 	else:
-		sprite_block_tool.position = 100 * Vector2.DOWN
+		sprite_block_tool.position = block_tool_distance * Vector2.DOWN  + Vector2.RIGHT * 10
 
 
 func determine_walltool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.65,0.65).abs().length():
-		var x_value = 130
+		var x_value = 130 + tool_offset_x
 		var y_value
 		
 		#Mirrors left Stickangle to the respective right Value.
 		#This way the position mapping only needs to happen within the range of -3PI/8 and +3PI/8 (right wall placement zone)
 		if controllerangle < -PI/2:
 			controllerangle = -(controllerangle + PI)
-			x_value = -130
+			x_value = -130 + tool_offset_x
 		elif controllerangle > PI/2:
 			controllerangle =  PI - controllerangle
-			x_value = -130
+			x_value = -130 + tool_offset_x
 		
 		#Snapping to lowest position
 		if controllerangle > PI/8:
@@ -574,21 +605,28 @@ func determine_walltool_position(inputstrength, controllerangle):
 func eyes_blinking():
 	if blink_timer.is_stopped():
 		blink_timer.start()
-	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
+
+func set_bullet_time(state):
+	if state and not is_on_floor():
+		Engine.time_scale = move_toward(Engine.time_scale, PlayerStats.bullet_time_value, 0.05)
+	else:
+		Engine.time_scale = move_toward(Engine.time_scale, 1, 0.05)
 
 
-func _on_floor_typecheck_body_entered(_body: Node2D) -> void:
+func _on_floor_typecheck_body_entered(body: Node2D) -> void:
+	if body.name == "Spring_tool":
+		is_on_spring_tool = true
 	is_on_tool = true
 
 
-func _on_floor_typecheck_body_exited(_body: Node2D) -> void:
+func _on_floor_typecheck_body_exited(body: Node2D) -> void:
+	if body.name == "Spring_tool":
+		is_on_spring_tool = false
 	is_on_tool = false
 
 
 func _on_p_speed_timer_timeout() -> void:
 	p_speed_is_active = true
-
-
 
 
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
@@ -602,13 +640,15 @@ func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	PlayerStats.death_count += 1
 	animations.play("Death_anim")
 	velocity = Vector2.ZERO
+	while Engine.time_scale != 1:
+		set_bullet_time(false)
+		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 	await animations.animation_finished
 	position = last_spawnpoint
+	supercancel_timer.timeout.emit()
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
 	controllable = true
-
-
 
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
@@ -630,3 +670,13 @@ func _on_ally3_body_entered(_body: Node2D) -> void:
 func _on_ally4_body_entered(_body: Node2D) -> void:
 	tool_state_handler.spring_tool_unlocked = true
 	get_parent().get_node("%Ally4_collect").queue_free()
+
+
+func _on_overlap_check_body_entered(body: Node2D) -> void:
+	sprite_floor_tool.modulate = Color(0.553, 0.286, 0.549, 0.349)
+	floor_overlapping = true
+
+
+func _on_overlap_check_body_exited(body: Node2D) -> void:
+	sprite_floor_tool.modulate = Color(0.988, 1, 1, 0.349)
+	floor_overlapping = false

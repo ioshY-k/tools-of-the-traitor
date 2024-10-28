@@ -166,3 +166,7 @@ func _on_close_tip_button_pressed() -> void:
 func _on_sprint_toggle_pressed() -> void:
 	PlayerStats.toggle_to_sprint = not PlayerStats.toggle_to_sprint
 	$"../CanvasLayer2/Sprint_status_icon".visible = not $"../CanvasLayer2/Sprint_status_icon".visible
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	PlayerStats.bullet_time_value = (120 - value) / 100
