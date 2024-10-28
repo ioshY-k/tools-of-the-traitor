@@ -8,7 +8,7 @@ extends Node
 @onready var area_4: Area2D = $Area2D4
 @onready var area_5: Area2D = $Area2D5
 @onready var area_6: Area2D = $Area2D6
-var follow_points  = Array()
+var follow_points = Array()
 @onready var floor_ally: Sprite2D = %Ally1
 @onready var block_ally: Sprite2D = %Ally2
 @onready var wall_ally: Sprite2D = %Ally3
@@ -36,6 +36,7 @@ func _ready() -> void:
 		point.position = player.position
 
 func _physics_process(delta: float) -> void:
+	
 	var destination = player.get_node("Ally_destination").global_position
 	var speed = player.velocity.length()
 	for index in range(len(follow_points)):
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 				follow_points[index].position = follow_points[index].position.move_toward(follow_points[index-1].position, max(speed * delta, 2000 * delta))
 	
 	for index in range(len(allies)):
-		#every ally follows their corresponting follow points
+		#every ally follows their corresponding follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
 	
 	if floor_ally_gone:

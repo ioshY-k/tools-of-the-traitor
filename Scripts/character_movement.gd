@@ -68,7 +68,6 @@ var controllable: bool = true
 
 #State handler
 @onready var state_handler = $State_handler
-
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
@@ -82,6 +81,7 @@ enum tool_states {	NO_TOOL, CANCEL,
 					ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
 					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE,
 					FIELD_TOOL_PREVIEW, FIELD_TOOL_PLACE}
+
 
 func _ready() -> void:
 	#important since queue cant specify blendtimes
@@ -128,13 +128,13 @@ func _physics_process(delta: float) -> void:
 			states.LAND:
 				on_land_state()
 			states.WALLSLIDE_L:
-				on_wallslide_l_state(delta)
+				on_wallslide_state(delta, true)
 			states.WALLSLIDE_R:
-				on_wallslide_r_state(delta)
+				on_wallslide_state(delta, false)
 			states.WALLJUMP_L:
-				on_walljump_l_state()
+				on_walljump_state(1)
 			states.WALLJUMP_R:
-				on_walljump_r_state()
+				on_walljump_state(-1)
 				
 		match current_tool_state:
 			tool_states.NO_TOOL:
@@ -181,6 +181,7 @@ func check_supercancel():
 		supercancel_timer.stop()
 		eyes.stop()
 
+
 func callback_tool(tool: Node):
 	if tool == null:
 		return
@@ -195,7 +196,7 @@ func callback_tool(tool: Node):
 			wall_tool_available = true
 		"Spring_tool":
 			spring_tool_available = true
-	
+
 
 func on_idle_state(delta):
 	velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
@@ -207,8 +208,6 @@ func on_idle_state(delta):
 		else:
 			animations.play("Idle_anim" ,0.3)
 	eyes_blinking()
-
-		
 
 
 func on_walk_state(delta):
@@ -293,7 +292,7 @@ func on_fall_state(delta):
 		velocity.x = move_toward(velocity.x, direction * MAX_WALK_SPEED, AIR_ACCELERATION * delta)
 		if velocity.y > 0:
 			animations.play("Fall_anim", 0.2)
-
+	
 	
 	if velocity.y <= 0 and (Input.is_action_pressed("jump") or launched):
 		#Rising while holding jump
@@ -311,60 +310,39 @@ func on_land_state():
 		launched = false
 
 
-#TODO: identische Funktionen wallslide r und l?
-func on_wallslide_l_state(delta):
+func on_wallslide_state(delta, left: bool):
 	if velocity.y <= 0 and Input.is_action_pressed("jump"):
 		#Rising while holding jump
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
 		_ledge_corrections()
 	else:
-		#higher gravity on jumrelease and while descending
+		#higher gravity on jumprelease and while descending
 		velocity.y = GRAVITY_WALL_SLIDING
 		p_speed_timer.stop()
 		p_speed_is_active = false
 		animations.play("Wallslide_anim",0.2)
-		if sliding_on_left_wall:
+		if left and sliding_on_left_wall:
 			velocity.x = -1
+		elif not left and sliding_on_right_wall:
+			velocity.x = 1
 	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_right"):
 		velocity.x = 1
-	eyes_blinking()
-
-
-func on_wallslide_r_state(delta):
-	if velocity.y <= 0 and Input.is_action_pressed("jump"):
-		#Rising while holding jump
-		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
-		_ledge_corrections()
-	else:
-		#higher gravity on jumrelease and while descending
-		velocity.y = GRAVITY_WALL_SLIDING
-		p_speed_timer.stop()
-		p_speed_is_active = false
-		animations.play("Wallslide_anim",0.2)
-		if sliding_on_right_wall:
-			velocity.x = 1
-	if current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
+	elif current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
 		velocity.x = -1
 	eyes_blinking()
 
 
-func on_walljump_l_state():
+func on_walljump_state(left: int):
 	p_speed_is_active = true
-	velocity = Vector2(WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
+	velocity = Vector2(left * WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
 	animations.play("Pjump_anim")
 	if launched:
 		launched = false
 
-
-func on_walljump_r_state():
-	p_speed_is_active = true
-	velocity = Vector2(-WALL_JUMP_WIDTH, -WALL_JUMP_HEIGHT)
-	animations.play("Pjump_anim")
-	if launched:
-		launched = false
 
 func on_no_tool_state():
 	set_bullet_time(false)
+
 
 func on_cancel_state():
 	sprite_floor_tool.visible = false
@@ -458,6 +436,8 @@ func on_spring_tool_preview_state(delta):
 		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 135 + tool_offset_x, 3)
 		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
+		
+		#Managing Arm spinning animation
 		left_hand.rotation = deg_to_rad(30)
 		if Vector2(xAxis, yAxis).length() > Vector2(0.65,0.65).abs().length():
 			if model_position.scale.x < 0:
@@ -469,6 +449,7 @@ func on_spring_tool_preview_state(delta):
 					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
 			else:
 				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
+	
 	else:
 		sprite_spring_tool.position = Vector2.DOWN * 150 + Vector2.RIGHT * tool_offset_x
 	if spring_tool_available:
@@ -481,6 +462,7 @@ func on_field_tool_preview_state():
 	sprite_block_tool.visible = false
 	sprite_wall_tool.visible = false
 	sprite_spring_tool.visible = false
+
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
@@ -522,6 +504,7 @@ func on_wall_tool_place_state():
 func on_rope_tool_place_state():
 	pass
 
+
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
 		sprite_spring_tool.visible = false
@@ -562,6 +545,7 @@ func determine_floortool_position(inputstrength, controllerangle):
 		movespeed = 1.5
 	follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
 	sprite_floor_tool.position = sprite_floor_tool.position.move_toward(follow_floor_tool.position, movespeed)
+
 
 func determine_blocktool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
@@ -645,8 +629,6 @@ func _on_p_speed_timer_timeout() -> void:
 	p_speed_is_active = true
 
 
-
-
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	controllable = false
 	if sprite_block_tool.visible:
@@ -667,8 +649,6 @@ func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
 	controllable = true
-
-
 
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
