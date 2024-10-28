@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=17 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -14,9 +14,12 @@
 
 [sub_resource type="Curve2D" id="Curve2D_aeka8"]
 _data = {
-"points": PackedVector2Array(0.751656, 26.3289, -0.751656, -26.3289, -159.864, 1.86053, -152.991, 0.0276384, 152.991, -0.0276384, -0.461417, -56.1807, -0.110096, -27.7645, 0.110096, 27.7645, 158.941, 1.86053, 154.493, -0.277865, -154.493, 0.277865, -0.461417, 64.1617, -0.581826, 36.1006, 0.581826, -36.1006, -159.864, 1.86053)
+"points": PackedVector2Array(0.751656, 26.3289, -0.751656, -26.3289, -159.864, 1.86053, -152.991, 0.0276384, 152.991, -0.0276384, -0.461417, -56.1807, -0.110096, -27.7645, 0.110096, 27.7645, 158.941, 1.86053, 154.493, -0.277865, -154.493, 0.277865, -0.675429, 69.3981, -0.581826, 36.1006, 0.581826, -36.1006, -159.864, 1.86053)
 }
 point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi3p8"]
+size = Vector2(953.6, 67.7136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
 size = Vector2(72, 32)
@@ -30,7 +33,7 @@ size = Vector2(72, 152)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(1, 0)
 scale = Vector2(0.809092, 0.809092)
-collision_mask = 38
+collision_mask = 102
 script = ExtResource("1_ac4tx")
 
 [node name="Blink_timer" type="Timer" parent="."]
@@ -144,14 +147,21 @@ rotation = -0.5916
 scale = Vector2(4.427, 4.375)
 rotates = false
 
-[node name="Sprite_floor_tool" type="Sprite2D" parent="Path2D/Follow_floor_tool"]
+[node name="Sprite_floor_tool" type="Sprite2D" parent="Path2D"]
 visible = false
-modulate = Color(1, 1, 1, 0.34902)
+modulate = Color(0.988235, 1, 1, 0.34902)
 z_index = 4
-position = Vector2(0.70002, 0.0647659)
-rotation = 0.5916
-scale = Vector2(0.051, 0.079)
+position = Vector2(-157.134, 0.367451)
+rotation = -0.00545731
+scale = Vector2(0.224956, 0.346908)
+skew = 0.010939
 texture = ExtResource("6_03mwq")
+
+[node name="Overlap_check" type="Area2D" parent="Path2D/Sprite_floor_tool"]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/Sprite_floor_tool/Overlap_check"]
+shape = SubResource("RectangleShape2D_wi3p8")
 
 [node name="Floor_typecheck" type="Area2D" parent="."]
 z_index = 8
@@ -207,6 +217,8 @@ position = Vector2(0, 81)
 texture = ExtResource("10_28md6")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
+[connection signal="body_entered" from="Path2D/Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_entered"]
+[connection signal="body_exited" from="Path2D/Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_exited"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
 [connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

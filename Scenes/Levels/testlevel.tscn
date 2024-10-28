@@ -1179,7 +1179,7 @@ size = Vector2(118, 124)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-5943, 2113)
+position = Vector2(-9351, 3239)
 
 [node name="Camera" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-1, -132)
@@ -2541,8 +2541,8 @@ text = "Quit"
 [connection signal="body_entered" from="Ally4_collect/Area2D" to="CharacterBody2D" method="_on_ally4_body_entered"]
 [connection signal="body_entered" from="Ally4_collect/Area2D" to="Ally_followpoints" method="_on_ally4_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Resume_button" to="CanvasLayer" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Pause_menu/Tip_menu_button" to="CanvasLayer" method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Tip_menu_button" to="CanvasLayer" method="_on_tip_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause_menu/Tip_menu_button" to="CanvasLayer" method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Respawn_button" to="CanvasLayer" method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Restart_button" to="CanvasLayer" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause_menu/Quit_button" to="CanvasLayer" method="_on_quit_button_pressed"]
