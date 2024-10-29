@@ -18,7 +18,7 @@ extends CanvasLayer
 
 var is_in_death_anim: bool = false
 var paused: bool = false
-@onready var player: CharacterBody2D = $"../CharacterBody2D"
+@onready var player: CharacterBody2D = $"../Player"
 
 func _ready() -> void:
 	for tip_button in tip_buttons:
@@ -165,8 +165,38 @@ func _on_close_tip_button_pressed() -> void:
 
 func _on_sprint_toggle_pressed() -> void:
 	PlayerStats.toggle_to_sprint = not PlayerStats.toggle_to_sprint
-	$"../CanvasLayer2/Sprint_status_icon".visible = not $"../CanvasLayer2/Sprint_status_icon".visible
+	$"../Misc_canvas/Sprint_status_icon".visible = not $"../Misc_canvas/Sprint_status_icon".visible
 
 
 func _on_h_slider_value_changed(value: float) -> void:
 	PlayerStats.bullet_time_value = (120 - value) / 100
+
+
+func _on_dialog_trigger_body_entered(body: Node2D) -> void:
+	await DialogManager.dialog_finished
+	Engine.time_scale = 0
+	show()
+	$Pause_menu.visible = false
+	$Sprint_question.visible = true
+	$Sprint_question/MarginContainer/VBoxContainer/HBoxContainer/Hold_sprint.grab_focus()
+	
+
+
+func _on_toggle_sprint_pressed() -> void:
+	$Pause_menu/Sprint_toggle.emit_signal("pressed")
+	$Pause_menu.visible = true
+	$Sprint_question.visible = false
+	hide()
+	Engine.time_scale = 1
+	DialogManager.run_dialog("chose_toggle")
+	await DialogManager.dialog_finished
+	player.controllable = true
+
+
+func _on_hold_sprint_pressed() -> void:
+	$Pause_menu.visible = true
+	$Sprint_question.visible = false
+	hide()
+	Engine.time_scale = 1
+	DialogManager.run_dialog("chose_hold")
+	player.controllable = true

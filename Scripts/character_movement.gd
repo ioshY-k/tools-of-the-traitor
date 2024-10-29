@@ -433,7 +433,7 @@ func on_spring_tool_preview_state(delta):
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 	if is_on_floor():
-		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 135 + tool_offset_x, 3)
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 180 + tool_offset_x, 3)
 		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 		animations.play("Preview_anim")
 		
@@ -576,17 +576,17 @@ func determine_blocktool_position(inputstrength, controllerangle):
 func determine_walltool_position(inputstrength, controllerangle):
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.65,0.65).abs().length():
-		var x_value = 130 + tool_offset_x
+		var x_value = 170 + tool_offset_x
 		var y_value
 		
 		#Mirrors left Stickangle to the respective right Value.
 		#This way the position mapping only needs to happen within the range of -3PI/8 and +3PI/8 (right wall placement zone)
 		if controllerangle < -PI/2:
 			controllerangle = -(controllerangle + PI)
-			x_value = -130 + tool_offset_x
+			x_value = -170 + tool_offset_x
 		elif controllerangle > PI/2:
 			controllerangle =  PI - controllerangle
-			x_value = -130 + tool_offset_x
+			x_value = -170 + tool_offset_x
 		
 		#Snapping to lowest position
 		if controllerangle > PI/8:
@@ -672,11 +672,11 @@ func _on_ally4_body_entered(_body: Node2D) -> void:
 	get_parent().get_node("%Ally4_collect").queue_free()
 
 
-func _on_overlap_check_body_entered(body: Node2D) -> void:
+func _on_overlap_check_body_entered(_body: Node2D) -> void:
 	sprite_floor_tool.modulate = Color(0.553, 0.286, 0.549, 0.349)
 	floor_overlapping = true
 
 
-func _on_overlap_check_body_exited(body: Node2D) -> void:
+func _on_overlap_check_body_exited(_body: Node2D) -> void:
 	sprite_floor_tool.modulate = Color(0.988, 1, 1, 0.349)
 	floor_overlapping = false

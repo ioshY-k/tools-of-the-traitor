@@ -141,7 +141,7 @@ _data = {
 size = Vector2(104.348, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5rrh"]
-size = Vector2(108.824, 111.765)
+size = Vector2(105.882, 108.824)
 
 [node name="SpringTool" type="RigidBody2D"]
 z_index = 2

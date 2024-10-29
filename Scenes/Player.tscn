@@ -22,7 +22,7 @@ point_count = 5
 size = Vector2(953.6, 67.7136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
-size = Vector2(72, 32)
+size = Vector2(59, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jk2y"]
 radius = 1.0
@@ -30,8 +30,7 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxw3g"]
 size = Vector2(72, 152)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(0.809092, 0.809092)
+[node name="Player" type="CharacterBody2D"]
 collision_mask = 102
 script = ExtResource("1_ac4tx")
 
@@ -60,6 +59,7 @@ one_shot = true
 
 [node name="Model_position" type="Node2D" parent="."]
 position = Vector2(10, 0)
+scale = Vector2(0.809, 0.809)
 
 [node name="Player_cutout" parent="Model_position" instance=ExtResource("2_10mar")]
 position = Vector2(-10, 0)
@@ -74,56 +74,56 @@ one_shot = true
 
 [node name="Caster_outer_right_ceiling" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(55, -104)
+position = Vector2(45, -90)
 target_position = Vector2(0, -31)
 collision_mask = 6
 
 [node name="Caster_inner_left_ceiling" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-17, -104)
+position = Vector2(-9, -90)
 target_position = Vector2(0, -43)
 collision_mask = 6
 
 [node name="Caster_inner_right_ceiling" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(39, -104)
+position = Vector2(30, -90)
 target_position = Vector2(0, -44)
 collision_mask = 6
 
 [node name="Caster_outer_left_ceiling" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-33, -104)
+position = Vector2(-26, -90)
 target_position = Vector2(0, -29)
 collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(55, -16)
+position = Vector2(38, -16)
 target_position = Vector2(20, 0)
 collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(55, -32)
+position = Vector2(38, -32)
 target_position = Vector2(18, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-33, -16)
+position = Vector2(-20, -16)
 target_position = Vector2(-20, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-33, -32)
+position = Vector2(-20, -32)
 target_position = Vector2(-18, 0)
 collision_mask = 6
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 z_index = 8
 position = Vector2(4, -26)
-scale = Vector2(0.983333, 1)
+scale = Vector2(0.809, 0.823)
 polygon = PackedVector2Array(-37.6271, -78, 51.8644, -78, 51.8644, 2, 43.7288, 90, -29.4915, 90, -37.6271, 2)
 
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
@@ -131,12 +131,12 @@ visible = false
 modulate = Color(1, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(18.5393, 108.764)
-scale = Vector2(0.811, 0.811)
+scale = Vector2(0.656, 0.656)
 texture = ExtResource("5_8eind")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(1.75417, -6.98807)
-scale = Vector2(4.427, 4.375)
+scale = Vector2(3.581, 3.539)
 curve = SubResource("Curve2D_aeka8")
 
 [node name="Follow_floor_tool" type="PathFollow2D" parent="Path2D"]
@@ -168,7 +168,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_typecheck"]
-position = Vector2(11, 80)
+position = Vector2(9.5, 63)
 shape = SubResource("RectangleShape2D_rih21")
 
 [node name="Sprite_wall_tool" type="Sprite2D" parent="."]
@@ -176,7 +176,7 @@ visible = false
 modulate = Color(1, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(190, -1)
-scale = Vector2(0.6, 0.908)
+scale = Vector2(0.485, 0.734)
 texture = ExtResource("7_ax4cp")
 
 [node name="Ally_destination" type="Area2D" parent="."]
@@ -193,6 +193,7 @@ position = Vector2(0, 253)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 z_index = 8
+scale = Vector2(0.809, 0.809)
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -203,7 +204,7 @@ shape = SubResource("RectangleShape2D_vxw3g")
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(148.314, 19.7753)
-scale = Vector2(0.87, 0.87)
+scale = Vector2(0.704, 0.704)
 texture = ExtResource("9_h2t1i")
 
 [node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]

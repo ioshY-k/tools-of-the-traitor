@@ -1,0 +1,116 @@
+[gd_scene load_steps=22 format=3 uid="uid://bwv0yy81ksawb"]
+
+[ext_resource type="Texture2D" uid="uid://0ltk76p44eyr" path="res://Sprites/Sign/Sign.png" id="1_3ibs5"]
+[ext_resource type="Texture2D" uid="uid://ba4shn3iinrdw" path="res://Sprites/Sign/Sign_show1.png" id="2_1ujoo"]
+[ext_resource type="Texture2D" uid="uid://2h21jojt0vdm" path="res://Sprites/Sign/Sign_show2.png" id="3_co1h2"]
+[ext_resource type="Texture2D" uid="uid://lqjon6mtpiuu" path="res://Sprites/Sign/Sign_show3.png" id="4_mal41"]
+[ext_resource type="Texture2D" uid="uid://rsvd6ns4gpfu" path="res://Sprites/Sign/Sign_show4.png" id="5_mvj5f"]
+[ext_resource type="Texture2D" uid="uid://d3wkp0tnctmpm" path="res://Sprites/Sign/Sign_show5.png" id="6_sre3d"]
+[ext_resource type="Texture2D" uid="uid://bdt61lbgf7jjn" path="res://Sprites/Sign/Sign_show6.png" id="7_5y6v2"]
+[ext_resource type="Texture2D" uid="uid://5ekealk1qyo4" path="res://Sprites/Sign/Sign_show7.png" id="8_vnvsu"]
+[ext_resource type="Texture2D" uid="uid://kvcea0f7vepq" path="res://Sprites/Sign/Sign_show8.png" id="9_oyb8i"]
+[ext_resource type="Texture2D" uid="uid://drphyu7rkmwga" path="res://Sprites/Sign/Sign_show9.png" id="10_835p3"]
+[ext_resource type="Texture2D" uid="uid://diqyg5a5fvhkn" path="res://Sprites/Sign/Sign_hide1.png" id="11_q4vud"]
+[ext_resource type="Texture2D" uid="uid://d3supkhvjdnlb" path="res://Sprites/Sign/Sign_hide2.png" id="12_li2ee"]
+[ext_resource type="Texture2D" uid="uid://bf2oax25jxo7k" path="res://Sprites/Sign/Sign_hide3.png" id="13_er3r1"]
+[ext_resource type="Texture2D" uid="uid://bt7uqi6gojtq0" path="res://Sprites/Sign/Sign_hide4.png" id="14_ytr5d"]
+[ext_resource type="Texture2D" uid="uid://be1vrbxnvfvi3" path="res://Sprites/Sign/Sign_hide5.png" id="15_aurgu"]
+[ext_resource type="Texture2D" uid="uid://dtnirl227tmyk" path="res://Sprites/Sign/Sign_hide6.png" id="16_sqh7w"]
+[ext_resource type="Texture2D" uid="uid://cs06wm8lq756k" path="res://Sprites/Sign/Sign_hide7.png" id="17_wukct"]
+[ext_resource type="Texture2D" uid="uid://32l8an3vlbkp" path="res://Sprites/Sign/Sign_hide8.png" id="18_f5ywo"]
+[ext_resource type="Script" path="res://Scenes/Levels/floor_tool_sign.gd" id="19_4ps2h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3m7xt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ibs5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1ujoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_co1h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mal41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mvj5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sre3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5y6v2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vnvsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_oyb8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_835p3")
+}],
+"loop": false,
+"name": &"sign_anim",
+"speed": 26.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_q4vud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_li2ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_er3r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ytr5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_aurgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_sqh7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wukct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_f5ywo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_3ibs5")
+}],
+"loop": false,
+"name": &"sign_hide",
+"speed": 23.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_658ck"]
+size = Vector2(254, 214)
+
+[node name="Sign" type="AnimatedSprite2D"]
+position = Vector2(-1683, 695)
+sprite_frames = SubResource("SpriteFrames_3m7xt")
+animation = &"sign_hide"
+frame = 8
+frame_progress = 1.0
+script = ExtResource("19_4ps2h")
+
+[node name="Interact_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_area"]
+position = Vector2(-12, -20)
+shape = SubResource("RectangleShape2D_658ck")
+
+[connection signal="body_entered" from="Interact_area" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="Interact_area" to="." method="_on_interact_area_body_exited"]

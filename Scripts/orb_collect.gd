@@ -29,10 +29,10 @@ func _on_collected_decision(collected: bool):
 		for i in range(2):
 			if not str(name)[i] == "O":
 				orb_title_number += str(name)[i]
-		$"../../CanvasLayer".tip_buttons[int(orb_title_number) - 1].disabled = false
-		$"../../CanvasLayer2/new_tip_text".show()
+		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
+		$"../../Misc_canvas/new_tip_text".show()
 		await get_tree().create_timer(5).timeout
-		$"../../CanvasLayer2/new_tip_text".hide()
+		$"../../Misc_canvas/new_tip_text".hide()
 		queue_free()
 	else:
 		hair.stop()

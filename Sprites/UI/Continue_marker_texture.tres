@@ -1,0 +1,11 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3 uid="uid://h4e425w23qj5"]
+
+[ext_resource type="Texture2D" uid="uid://bcnqsmeweikb3" path="res://Sprites/UI/ContinueMarker.png" id="1_oyl12"]
+[ext_resource type="Texture2D" uid="uid://b4ydvjjyyk7f2" path="res://Sprites/UI/ContinueMarker2.png" id="2_ccs11"]
+
+[resource]
+frames = 2
+speed_scale = 1.5
+frame_0/texture = ExtResource("1_oyl12")
+frame_1/texture = ExtResource("2_ccs11")
+frame_1/duration = 1.0
