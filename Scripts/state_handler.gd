@@ -121,8 +121,8 @@ func sprints() -> bool:
 	if PlayerStats.toggle_to_sprint:
 		if Input.is_action_just_pressed("run"):
 			current_sprint_state = not current_sprint_state
-			get_node("../../CanvasLayer2/Sprint_status_icon/Run_icon").visible = not get_node("../../CanvasLayer2/Sprint_status_icon/Run_icon").visible
-			get_node("../../CanvasLayer2/Sprint_status_icon/Walk_icon").visible = not get_node("../../CanvasLayer2/Sprint_status_icon/Walk_icon").visible
+			get_node("../../Misc_canvas/Sprint_status_icon/Run_icon").visible = not get_node("../../Misc_canvas/Sprint_status_icon/Run_icon").visible
+			get_node("../../Misc_canvas/Sprint_status_icon/Walk_icon").visible = not get_node("../../Misc_canvas/Sprint_status_icon/Walk_icon").visible
 		return current_sprint_state
 	else:
 		return Input.is_action_pressed("run")

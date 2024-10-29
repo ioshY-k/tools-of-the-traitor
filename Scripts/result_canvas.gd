@@ -6,9 +6,10 @@ extends CanvasLayer
 @onready var continue_button: Button = $VBoxContainer/HBoxContainer/Continue_button
 @onready var retry_button: Button = $VBoxContainer/HBoxContainer/Retry_button
 @onready var quit_button: Button = $VBoxContainer/HBoxContainer/Quit_button
-@onready var player: CharacterBody2D = $"../CharacterBody2D"
+@onready var player: CharacterBody2D = $"../Player"
 
 func _on_goal_body_entered(_body: Node2D) -> void:
+	print("goal")
 	show()
 
 

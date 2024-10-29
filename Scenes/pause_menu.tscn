@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="15_05rj1"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="16_61k2p"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Pause_menu" type="CanvasLayer"]
 visible = false
 script = ExtResource("1_nhf6r")
 
@@ -649,8 +649,8 @@ theme_override_font_sizes/font_size = 40
 text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]
