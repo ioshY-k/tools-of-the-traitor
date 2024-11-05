@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=17 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Sprites/Tools/Wall.png" id="7_ax4cp"]
 [ext_resource type="Texture2D" uid="uid://bolnvxkb17jnu" path="res://Sprites/Tools/Spring2.png" id="9_h2t1i"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
-[ext_resource type="Texture2D" uid="uid://dm560fnlb4os8" path="res://Sprites/UI/Testring.png" id="12_u4ifa"]
-[ext_resource type="Texture2D" uid="uid://dcx5ej5d7l04" path="res://Sprites/UI/new_icon.png" id="13_rojkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rih21"]
 size = Vector2(59, 30)
@@ -190,12 +188,8 @@ modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(0, 81)
 texture = ExtResource("10_28md6")
 
-[node name="Testring" type="Sprite2D" parent="."]
-position = Vector2(1, 10)
-scale = Vector2(31.52, 13.115)
-texture = ExtResource("12_u4ifa")
-
 [node name="Sprite_floor_tool" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.988235, 1, 1, 0.34902)
 z_index = 4
 position = Vector2(-560.943, -5.68765)
@@ -218,10 +212,6 @@ unique_name_in_owner = true
 position = Vector2(-634, 3)
 rotation = -0.357706
 rotates = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Path_floor_tool/Follow_floor_tool"]
-visible = false
-texture = ExtResource("13_rojkq")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

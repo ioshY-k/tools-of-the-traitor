@@ -121,18 +121,18 @@ theme = ExtResource("2_ku6h5")
 layout_mode = 2
 columns = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer1" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Tip_button1" type="Button" parent="Tip_menu/Tip_grid/MarginContainer"]
+[node name="Tip_button1" type="Button" parent="Tip_menu/Tip_grid/MarginContainer1"]
 layout_mode = 2
 icon = ExtResource("5_lb00x")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer/Tip_button1"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
@@ -729,7 +729,7 @@ text = "Close"
 [connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
 [connection signal="value_changed" from="Pause_menu/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer/Tip_button1" to="." method="_on_tip_button_1_pressed"]
+[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="." method="_on_tip_button_4_pressed"]

@@ -49,7 +49,7 @@ var dialog_sequences : Dictionary = {
 												
 											],
 						"chose_toggle_names" : ["Player","DEMObot"],
-						"chode_toggle_param" : {},
+						"chose_toggle_param" : {},
 						"chose_toggle_lines" : [
 												["What Kind of question is this?",
 												"I NEVER Hold my X Buttons to sprint...",
@@ -63,8 +63,12 @@ var dialog_sequences : Dictionary = {
 						"floor_tool_names" : ["Sign_floor_tool"],
 						"floor_tool_param" : {},
 						"floor_tool_lines": [
-												["Hold L/ZL to place Tool",
-												"Press Y to cancel or to call it back when placed"]
+												["Hold L/ZL to place the Yellow Tool.",
+												"Use the left Stick to choose a position",
+												"You can only place this Tool when grounded.",
+												"",
+												"Press Y to call the Tool back when placed.",
+												"Pressing Y before placing it cancels the placement"]
 												
 											],
 						"cam_names" :		["Sign_cam"],
@@ -72,6 +76,17 @@ var dialog_sequences : Dictionary = {
 						"cam_lines" :		[
 												["The right stick controls your camera",
 												""],
+												
+											],
+						"block_tool_names" :		["Sign_block_tool"],
+						"block_tool_param" : {},
+						"block_tool_lines" :		[
+												["Hold L/ZL to place the Red Tool.",
+												"Use the left Stick to choose a position",
+												"You can only place this Tool when airborne.",
+												"",
+												"(The default position is always downwards,",
+												"so tapping L/ZL will always position this tool beneath you)"],
 												
 											],
 						"walljump_names" :	["DEMObot2","Player","DEMObot2","Player","DEMObot2","Player"],

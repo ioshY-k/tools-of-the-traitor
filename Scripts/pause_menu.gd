@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var tip_panels = [$Panel1,$Panel2,$Panel3,$Panel4,$Panel5,$Panel6,$Panel7,$Panel8,$Panel9,$Panel10,$Panel11,$Panel12]
 @onready var tip_buttons = [
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button1,
+	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1,
 	$Tip_menu/Tip_grid/MarginContainer2/Tip_button2,
 	$Tip_menu/Tip_grid/MarginContainer3/Tip_button3,
 	$Tip_menu/Tip_grid/MarginContainer4/Tip_button4,
@@ -70,7 +70,7 @@ func _on_restart_button_pressed() -> void:
 func _on_tip_menu_button_pressed() -> void:
 	$Pause_menu.hide()
 	$Tip_menu.show()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button1.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1.grab_focus()
 
 func _on_respawn_button_pressed() -> void:
 	toggle_pause_menu()
@@ -88,83 +88,83 @@ func _on_tip_button_1_pressed() -> void:
 	$Panel1.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button1/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1/new_icon.visible = false
 
 func _on_tip_button_2_pressed() -> void:
 	$Panel2.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button2/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer2/Tip_button2/new_icon.visible = false
 
 
 func _on_tip_button_3_pressed() -> void:
 	$Panel3.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button3/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer3/Tip_button3/new_icon.visible = false
 
 
 func _on_tip_button_4_pressed() -> void:
 	$Panel4.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button4/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer4/Tip_button4/new_icon.visible = false
 
 
 func _on_tip_button_5_pressed() -> void:
 	$Panel5.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button5/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer5/Tip_button5/new_icon.visible = false
 
 
 func _on_tip_button_6_pressed() -> void:
 	$Panel6.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button6/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer6/Tip_button6/new_icon.visible = false
 
 
 func _on_tip_button_7_pressed() -> void:
 	$Panel7.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button7/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer7/Tip_button7/new_icon.visible = false
 
 
 func _on_tip_button_8_pressed() -> void:
 	$Panel8.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button8/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer8/Tip_button8/new_icon.visible = false
 
 
 func _on_tip_button_9_pressed() -> void:
 	$Panel9.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button9/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer9/Tip_button9/new_icon.visible = false
 	
 
 func _on_tip_button_10_pressed() -> void:
 	$Panel10.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button10/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer10/Tip_button10/new_icon.visible = false
 
 
 func _on_tip_button_11_pressed() -> void:
 	$Panel11.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button11/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer11/Tip_button11/new_icon.visible = false
 
 
 func _on_tip_button_12_pressed() -> void:
 	$Panel12.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer/Tip_button12/new_icon.visible = false
+	$Tip_menu/Tip_grid/MarginContainer12/Tip_button12/new_icon.visible = false
 	
 func _on_close_tip_button_pressed() -> void:
 	for panel in tip_panels:
