@@ -88,72 +88,83 @@ func _on_tip_button_1_pressed() -> void:
 	$Panel1.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
-
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button1/new_icon.visible = false
 
 func _on_tip_button_2_pressed() -> void:
 	$Panel2.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button2/new_icon.visible = false
 
 
 func _on_tip_button_3_pressed() -> void:
 	$Panel3.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button3/new_icon.visible = false
 
 
 func _on_tip_button_4_pressed() -> void:
 	$Panel4.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button4/new_icon.visible = false
 
 
 func _on_tip_button_5_pressed() -> void:
 	$Panel5.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button5/new_icon.visible = false
 
 
 func _on_tip_button_6_pressed() -> void:
 	$Panel6.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button6/new_icon.visible = false
 
 
 func _on_tip_button_7_pressed() -> void:
 	$Panel7.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button7/new_icon.visible = false
 
 
 func _on_tip_button_8_pressed() -> void:
 	$Panel8.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button8/new_icon.visible = false
 
 
 func _on_tip_button_9_pressed() -> void:
 	$Panel9.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button9/new_icon.visible = false
 	
 
 func _on_tip_button_10_pressed() -> void:
 	$Panel10.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button10/new_icon.visible = false
 
 
 func _on_tip_button_11_pressed() -> void:
 	$Panel11.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button11/new_icon.visible = false
 
 
 func _on_tip_button_12_pressed() -> void:
 	$Panel12.show()
 	$Close_tip_button.show()
 	$Close_tip_button.grab_focus()
+	$Tip_menu/Tip_grid/MarginContainer/Tip_button12/new_icon.visible = false
 	
 func _on_close_tip_button_pressed() -> void:
 	for panel in tip_panels:
@@ -172,7 +183,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 	PlayerStats.bullet_time_value = (120 - value) / 100
 
 
-func _on_dialog_trigger_body_entered(body: Node2D) -> void:
+func _on_dialog_trigger_body_entered(_body: Node2D) -> void:
 	await DialogManager.dialog_finished
 	Engine.time_scale = 0
 	show()
@@ -199,4 +210,5 @@ func _on_hold_sprint_pressed() -> void:
 	hide()
 	Engine.time_scale = 1
 	DialogManager.run_dialog("chose_hold")
+	await DialogManager.dialog_finished
 	player.controllable = true

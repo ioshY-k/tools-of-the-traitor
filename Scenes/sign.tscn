@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwv0yy81ksawb"]
+[gd_scene load_steps=23 format=3 uid="uid://bwv0yy81ksawb"]
 
 [ext_resource type="Texture2D" uid="uid://0ltk76p44eyr" path="res://Sprites/Sign/Sign.png" id="1_3ibs5"]
 [ext_resource type="Texture2D" uid="uid://ba4shn3iinrdw" path="res://Sprites/Sign/Sign_show1.png" id="2_1ujoo"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cs06wm8lq756k" path="res://Sprites/Sign/Sign_hide7.png" id="17_wukct"]
 [ext_resource type="Texture2D" uid="uid://32l8an3vlbkp" path="res://Sprites/Sign/Sign_hide8.png" id="18_f5ywo"]
 [ext_resource type="Script" path="res://Scenes/Levels/floor_tool_sign.gd" id="19_4ps2h"]
+[ext_resource type="Texture2D" uid="uid://d2xu27aof2jxj" path="res://Sprites/UI/b_button_icon.png" id="20_6af1b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3m7xt"]
 animations = [{
@@ -99,7 +100,6 @@ animations = [{
 size = Vector2(254, 214)
 
 [node name="Sign" type="AnimatedSprite2D"]
-position = Vector2(-1683, 695)
 sprite_frames = SubResource("SpriteFrames_3m7xt")
 animation = &"sign_hide"
 frame = 8
@@ -111,6 +111,12 @@ script = ExtResource("19_4ps2h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_area"]
 position = Vector2(-12, -20)
 shape = SubResource("RectangleShape2D_658ck")
+
+[node name="Interact_symbol" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-12, -186)
+scale = Vector2(1.56, 1.56)
+texture = ExtResource("20_6af1b")
 
 [connection signal="body_entered" from="Interact_area" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="Interact_area" to="." method="_on_interact_area_body_exited"]

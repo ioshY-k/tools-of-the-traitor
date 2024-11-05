@@ -8,6 +8,8 @@ func _on_body_entered(body: Node2D) -> void:
 	body.velocity = Vector2.ZERO
 	body.controllable = false
 	await DialogManager.dialog_finished
+	print("finished")
 	if not dialog_name == "intro":
+		print("intro")
 		body.controllable = true
 	queue_free()

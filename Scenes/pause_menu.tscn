@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cat7wbeyrrnjo"]
+[gd_scene load_steps=18 format=3 uid="uid://cat7wbeyrrnjo"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_nhf6r"]
 [ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_ku6h5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://do40farynbpub" path="res://Sprites/UI/Togglebutton2.png" id="4_2x2us"]
 [ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="5_lb00x"]
 [ext_resource type="Texture2D" uid="uid://2xsbhrip554x" path="res://Sprites/Orbs/Orb_grey.png" id="6_3y2b6"]
+[ext_resource type="Texture2D" uid="uid://dcx5ej5d7l04" path="res://Sprites/UI/new_icon.png" id="6_rkxdk"]
 [ext_resource type="Texture2D" uid="uid://b8fm1dba03yl7" path="res://Sprites/Orbs/Orb_green.png" id="7_cpoij"]
 [ext_resource type="Texture2D" uid="uid://jgos12hj6um1" path="res://Sprites/Orbs/Orb_navy.png" id="8_cj2se"]
 [ext_resource type="Texture2D" uid="uid://c7yd3x0r1daox" path="res://Sprites/Orbs/Orb_orange.png" id="9_rqw6b"]
@@ -131,6 +132,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("5_lb00x")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer/Tip_button1"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer2" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -141,6 +148,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button2" type="Button" parent="Tip_menu/Tip_grid/MarginContainer2"]
 layout_mode = 2
 icon = ExtResource("6_3y2b6")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="MarginContainer3" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -153,6 +166,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("7_cpoij")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer4" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -163,6 +182,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button4" type="Button" parent="Tip_menu/Tip_grid/MarginContainer4"]
 layout_mode = 2
 icon = ExtResource("8_cj2se")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="MarginContainer5" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -175,6 +200,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("9_rqw6b")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer6" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -185,6 +216,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button6" type="Button" parent="Tip_menu/Tip_grid/MarginContainer6"]
 layout_mode = 2
 icon = ExtResource("10_vefrv")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer6/Tip_button6"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="MarginContainer7" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -197,6 +234,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("11_eu5ua")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer7/Tip_button7"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer8" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -207,6 +250,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button8" type="Button" parent="Tip_menu/Tip_grid/MarginContainer8"]
 layout_mode = 2
 icon = ExtResource("12_3b8hb")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="MarginContainer9" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -219,6 +268,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("13_f0r8c")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer10" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -229,6 +284,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button10" type="Button" parent="Tip_menu/Tip_grid/MarginContainer10"]
 layout_mode = 2
 icon = ExtResource("14_ksmfb")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer10/Tip_button10"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="MarginContainer11" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -241,6 +302,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 icon = ExtResource("15_05rj1")
 
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer11/Tip_button11"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
+
 [node name="MarginContainer12" type="MarginContainer" parent="Tip_menu/Tip_grid"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -251,6 +318,12 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button12" type="Button" parent="Tip_menu/Tip_grid/MarginContainer12"]
 layout_mode = 2
 icon = ExtResource("16_61k2p")
+
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
+visible = false
+position = Vector2(253.307, 255.826)
+scale = Vector2(0.671816, 0.671815)
+texture = ExtResource("6_rkxdk")
 
 [node name="Return_button" type="Button" parent="Tip_menu"]
 layout_mode = 2

@@ -1,6 +1,7 @@
 extends Camera2D
 
 const SCOUT_RADIUS: int = 320
+
 var initial_position: Vector2 = position
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

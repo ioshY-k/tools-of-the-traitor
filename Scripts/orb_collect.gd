@@ -30,6 +30,7 @@ func _on_collected_decision(collected: bool):
 			if not str(name)[i] == "O":
 				orb_title_number += str(name)[i]
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
+		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].get_child(0).visible = true
 		$"../../Misc_canvas/new_tip_text".show()
 		await get_tree().create_timer(5).timeout
 		$"../../Misc_canvas/new_tip_text".hide()

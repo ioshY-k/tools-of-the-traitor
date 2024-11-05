@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 @export var dialog_name : String
+@onready var interact_symbol: Sprite2D = $Interact_symbol
 
 var dialog_trigger : PackedScene = preload("res://Scenes/dialog_trigger.tscn")
 var interacting_body
@@ -21,8 +22,11 @@ func _on_interact_area_body_entered(body: Node2D) -> void:
 	entered = true
 	interacting_body = body
 	play("sign_anim")
+	interact_symbol.visible = true
+	
 
 
 func _on_interact_area_body_exited(_body: Node2D) -> void:
 	entered = false
 	play("sign_hide")
+	interact_symbol.visible = false

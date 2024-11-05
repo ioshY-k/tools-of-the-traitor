@@ -23,7 +23,7 @@ func _on_visibility_changed() -> void:
 	score_label.text = "0"
 	await get_tree().create_timer(1.5).timeout
 	for i in range(PlayerStats.orb_count):
-		score += 10
+		score += 20
 		orb_label.text = str(i+1) + " Orbs"
 		score_label.text = str(score)
 		await get_tree().create_timer(0.2).timeout
@@ -32,7 +32,9 @@ func _on_visibility_changed() -> void:
 		score -= 1
 		deaths_label.text = str(i+1) + " Deaths"
 		score_label.text = str(score)
-		await get_tree().create_timer(0.2).timeout
+		if score == 0:
+			break
+		await get_tree().create_timer(0.04).timeout
 	
 	continue_button.grab_focus()
 	

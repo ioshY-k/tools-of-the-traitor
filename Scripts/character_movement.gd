@@ -41,11 +41,14 @@ var sliding_on_right_wall: bool
 @onready var blink_timer: Timer = $Blink_timer
 
 #Tool placement
-@onready var sprite_floor_tool: Sprite2D = $Path2D/Sprite_floor_tool
+var original_floor_tool_scale = Vector2(0.752,1.148)
+@onready var sprite_floor_tool: Sprite2D = $Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
+@onready var path_floor_tool: Path2D = $Path_floor_tool
+
 var is_on_tool: bool
 var is_on_spring_tool: bool # To prevent the launch variable from changing back right after launching. This caused middle high jumps from Spring tool
 var floor_tool_available: bool = true
@@ -377,7 +380,7 @@ func on_floortool_preview_state(delta):
 	if floor_tool_available:
 		#Floor Tool Preview
 		sprite_floor_tool.visible = true
-		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle(), delta)
 
 
 func on_blocktool_preview_state():
@@ -535,16 +538,20 @@ func _ledge_corrections():
 		global_position += Vector2(-2,0)
 		caster_outer_right_ceiling.force_raycast_update()
 
-
-func determine_floortool_position(inputstrength, controllerangle):
+func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
-	var movespeed = 0
-	if inputstrength > Vector2(0.65,0.65).abs().length():
-		movespeed = 4
-	elif inputstrength > Vector2(0.3,0.3).abs().length():
-		movespeed = 1.5
-	follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-	sprite_floor_tool.position = sprite_floor_tool.position.move_toward(follow_floor_tool.position, movespeed)
+	if inputstrength > 0.95:
+		path_floor_tool.scale.x = 1
+		path_floor_tool.scale.y = 1
+		print("higher")
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+		sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
+	else:
+		print("lower")
+		path_floor_tool.scale.x = inputstrength
+		path_floor_tool.scale.y = inputstrength
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+		sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),5 * delta)
 
 
 func determine_blocktool_position(inputstrength, controllerangle):
