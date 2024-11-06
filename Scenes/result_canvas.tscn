@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/result_canvas.gd" id="1_aokoe"]
 
 [node name="Result_canvas" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_aokoe")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -19,11 +18,22 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -89.0
-offset_bottom = 491.0
+offset_top = -540.0
+offset_bottom = 453.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 375
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Submit Station
+
+Submitting your score will end the Demo.
+You can continue for as long as you like to improve your score, though submitting is only possible at one of the Submit Stations appearing throughout the Level."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -77,12 +87,12 @@ text = "Continue"
 [node name="Retry_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Retry"
+text = "Submit Score & Retry"
 
 [node name="Quit_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Quit"
+text = "Submit Score & Quit"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Continue_button" to="." method="_on_continue_button_pressed"]

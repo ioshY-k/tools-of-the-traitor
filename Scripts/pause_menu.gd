@@ -190,7 +190,11 @@ func _on_dialog_trigger_body_entered(_body: Node2D) -> void:
 	$Pause_menu.visible = false
 	$Sprint_question.visible = true
 	$Sprint_question/MarginContainer/VBoxContainer/HBoxContainer/Hold_sprint.grab_focus()
-	
+
+
+func _on_dialog_trigger_bullettime_body_entered(body: Node2D) -> void:
+	await DialogManager.dialog_finished
+	$Pause_menu/HBoxContainer/Bullet_time_slider.value = 80
 
 
 func _on_toggle_sprint_pressed() -> void:

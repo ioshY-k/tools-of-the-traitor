@@ -21,7 +21,13 @@ func _process(_delta: float) -> void:
 		finished_reading.emit()
 
 
-func display_text(text_to_display: Array, offset):
+func display_text(text_to_display: Array, xOffset, yOffset):
+	if xOffset == null:
+		xOffset = 0
+	if yOffset == null:
+		yOffset = 0
+	
+	
 	for block in range(0, len(text_to_display)-1, 2):
 		custom_minimum_size.x = 0
 		set_deferred("size", 185)
@@ -34,9 +40,8 @@ func display_text(text_to_display: Array, offset):
 		
 		# resizing and positioning box
 		custom_minimum_size.x = size.x
-		if offset != null:
-			global_position.x = get_parent().position.x + offset
-		global_position.y = get_parent().position.y + 150
+		global_position.x = get_parent().position.x - (size.x/2) + xOffset
+		global_position.y = get_parent().position.y + yOffset
 		z_index = 100
 		
 		label.text = ""

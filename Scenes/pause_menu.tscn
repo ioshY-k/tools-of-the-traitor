@@ -84,12 +84,12 @@ text = "Hold Button to Sprint"
 [node name="HBoxContainer" type="HBoxContainer" parent="Pause_menu"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Pause_menu/HBoxContainer"]
+[node name="Bullet_time_label" type="Label" parent="Pause_menu/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 38
 text = "Bullet Time"
 
-[node name="HSlider" type="HSlider" parent="Pause_menu/HBoxContainer"]
+[node name="Bullet_time_slider" type="HSlider" parent="Pause_menu/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("2_ku6h5")
@@ -722,13 +722,13 @@ theme_override_font_sizes/font_size = 40
 text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
-[connection signal="value_changed" from="Pause_menu/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Pause_menu/HBoxContainer/Bullet_time_slider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]
