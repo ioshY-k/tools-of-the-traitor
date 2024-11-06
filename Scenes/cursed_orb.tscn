@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://upgieacxs5ly"]
+
+[ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="1_ba074"]
+[ext_resource type="Script" path="res://Scenes/cursed_orb.gd" id="1_v1hvt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jnipg"]
+radius = 47.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7eiw"]
+radius = 62.0
+
+[node name="Cursed_Orb" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_v1hvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jnipg")
+
+[node name="Sprite_curedorb" type="Sprite2D" parent="."]
+texture = ExtResource("1_ba074")
+
+[node name="Collision_detection_up" type="Area2D" parent="."]
+position = Vector2(3.72529e-09, -31)
+rotation = 0.00140627
+scale = Vector2(0.775, 0.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_detection_up"]
+shape = SubResource("CircleShape2D_d7eiw")
+
+[node name="Collision_detection_down" type="Area2D" parent="."]
+position = Vector2(4.44089e-16, 31)
+rotation = 0.00140627
+scale = Vector2(0.775, 0.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_detection_down"]
+shape = SubResource("CircleShape2D_d7eiw")
+
+[node name="Collision_detection_right" type="Area2D" parent="."]
+position = Vector2(31, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(0.775, 0.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_detection_right"]
+shape = SubResource("CircleShape2D_d7eiw")
+
+[node name="Collision_detection_left" type="Area2D" parent="."]
+position = Vector2(-31, 0)
+rotation = 1.5708
+scale = Vector2(0.775, 0.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_detection_left"]
+shape = SubResource("CircleShape2D_d7eiw")
+
+[node name="Bouncetimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Collision_detection_up" to="." method="_on_collision_detection_up_body_entered"]
+[connection signal="body_entered" from="Collision_detection_down" to="." method="_on_collision_detection_down_body_entered"]
+[connection signal="body_entered" from="Collision_detection_right" to="." method="_on_collision_detection_right_body_entered"]
+[connection signal="body_entered" from="Collision_detection_left" to="." method="_on_collision_detection_left_body_entered"]
+[connection signal="timeout" from="Bouncetimer" to="." method="_on_bouncetimer_timeout"]

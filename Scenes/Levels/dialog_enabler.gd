@@ -4,5 +4,5 @@ extends Area2D
 
 func _ready() -> void:
 	body_entered.connect(func(_body): 
-		dialog_trigger_bullettime.set_process_mode(PROCESS_MODE_INHERIT)
-		print("set mode"))
+		if is_instance_valid(dialog_trigger_bullettime):
+			dialog_trigger_bullettime.set_process_mode(PROCESS_MODE_INHERIT))

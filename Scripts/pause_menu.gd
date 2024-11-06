@@ -1,4 +1,5 @@
 extends CanvasLayer
+@onready var show_timer: CheckButton = $Pause_menu/Show_timer
 
 @onready var tip_panels = [$Panel1,$Panel2,$Panel3,$Panel4,$Panel5,$Panel6,$Panel7,$Panel8,$Panel9,$Panel10,$Panel11,$Panel12]
 @onready var tip_buttons = [
@@ -23,6 +24,8 @@ var paused: bool = false
 func _ready() -> void:
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
+	show_timer.toggled.connect(func(on):
+		get_node("/root/Testlevel/Misc_canvas/Timer").visible = on)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -192,7 +195,7 @@ func _on_dialog_trigger_body_entered(_body: Node2D) -> void:
 	$Sprint_question/MarginContainer/VBoxContainer/HBoxContainer/Hold_sprint.grab_focus()
 
 
-func _on_dialog_trigger_bullettime_body_entered(body: Node2D) -> void:
+func _on_dialog_trigger_bullettime_body_entered(_body: Node2D) -> void:
 	await DialogManager.dialog_finished
 	$Pause_menu/HBoxContainer/Bullet_time_slider.value = 80
 

@@ -62,10 +62,10 @@ var dialog_sequences : Dictionary = {
 				"floor_tool_lines": 		[
 											["Hold L/ZL to place the Yellow Tool.",
 											"Use the left Stick to choose a position",
-											"You can only place this Tool when grounded.",
+											"You can only place this Tool while standing still.",
 											"",
 											"Press Y to call the Tool back when placed.",
-											"Pressing Y before placing it cancels the placement"]
+											""]
 										],
 
 
@@ -160,11 +160,13 @@ var dialog_sequences : Dictionary = {
 											["\"it\" being... everything?",
 											"",
 											"How would that even...",
-											"alright I'll turn it on.",
+											"alright, turn it on for me.",
 											"I can always turn it off",
 											"if it makes me uncomfortable, right?"],
 											["I added the option to the menu.",
-											"Don't thank me, let's see it in action! HOO!"],
+											"Now don't thank me, let's see it in action!",
+											"Jump down into that pit while holding down LT!",
+											"HOO!"],
 										]
 					}
 

@@ -81,6 +81,13 @@ theme_override_icons/checked = ExtResource("3_tbag2")
 theme_override_icons/unchecked = ExtResource("4_2x2us")
 text = "Hold Button to Sprint"
 
+[node name="Show_timer" type="CheckButton" parent="Pause_menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("3_tbag2")
+theme_override_icons/unchecked = ExtResource("4_2x2us")
+text = "Show Timer"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Pause_menu"]
 layout_mode = 2
 
@@ -631,7 +638,9 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Holding Y calls back every Tool at once!
+text = "Pressing Y while positioning your Tool cancels the Tool placement.
+
+Holding Y calls back every Tool at once!
 
 ...There is a secret fourth tool hidden back where you started......"
 horizontal_alignment = 1
@@ -719,8 +728,8 @@ theme_override_font_sizes/font_size = 40
 text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]

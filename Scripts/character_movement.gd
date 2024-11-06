@@ -541,11 +541,16 @@ func _ledge_corrections():
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
 
-		print("lower")
-		path_floor_tool.scale.x = inputstrength
-		path_floor_tool.scale.y = inputstrength
-		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-		sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),5 * delta)
+		if inputstrength >= 0.91:
+			path_floor_tool.scale.x = 1
+			path_floor_tool.scale.y = 1
+			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+			sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
+		else:
+			path_floor_tool.scale.x = inputstrength
+			path_floor_tool.scale.y = inputstrength
+			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+			sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),7 * delta)
 
 
 func determine_blocktool_position(inputstrength, controllerangle):

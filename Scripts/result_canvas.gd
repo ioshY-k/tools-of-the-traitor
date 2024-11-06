@@ -3,13 +3,14 @@ extends CanvasLayer
 @onready var orb_label: Label = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Orb_label
 @onready var deaths_label: Label = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Deaths_label
 @onready var score_label: Label = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/Score_label
+@onready var time_label: Label = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3/Time_label
+@onready var timer: Panel = get_node("/root/Testlevel/Misc_canvas/Timer")
 @onready var continue_button: Button = $VBoxContainer/HBoxContainer/Continue_button
 @onready var retry_button: Button = $VBoxContainer/HBoxContainer/Retry_button
 @onready var quit_button: Button = $VBoxContainer/HBoxContainer/Quit_button
 @onready var player: CharacterBody2D = $"../Player"
 
 func _on_goal_body_entered(_body: Node2D) -> void:
-	print("goal")
 	show()
 
 
@@ -21,6 +22,8 @@ func _on_visibility_changed() -> void:
 	orb_label.text = "0 Orbs"
 	deaths_label.text = "0 Deaths"
 	score_label.text = "0"
+	time_label.text = timer.get_time_formatted()
+	timer.stop_timer()
 	await get_tree().create_timer(1.5).timeout
 	for i in range(PlayerStats.orb_count):
 		score += 20
@@ -42,6 +45,7 @@ func _on_visibility_changed() -> void:
 
 func _on_continue_button_pressed() -> void:
 	hide()
+	timer.continue_timer()
 
 
 func _on_retry_button_pressed() -> void:
