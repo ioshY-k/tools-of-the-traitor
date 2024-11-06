@@ -418,10 +418,6 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "To collect an Orb, you need to carry ist to safe ground.
- This does not include Spikes or your Tools!
-
-Your Hair will stay charged while carrying Orbs."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -450,9 +446,10 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Your red block tool's default position is right beneath you!
+text = "To collect an Orb, you need to carry ist to safe ground.
+ This does not include Spikes or your Tools!
 
-So if you need ground below, just quickly tap the build button without choosing a direction."
+Your Hair will stay charged while carrying Orbs."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -634,7 +631,7 @@ offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "Tapping the reset button cancels your tool Preview!
+text = "Holding Y calls back every Tool at once!
 
 ...There is a secret fourth tool hidden back where you started......"
 horizontal_alignment = 1
@@ -700,8 +697,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
 
-You'll stay glued to a wall while aiming down or away
-with your Tools."
+You'll continue sliding down a wall while aiming 
+down or away with your Tools."
 horizontal_alignment = 1
 autowrap_mode = 2
 
