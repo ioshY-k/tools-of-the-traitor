@@ -46,6 +46,8 @@ func toggle_pause_menu():
 			if panel.visible:
 				panel.hide()
 		hide()
+		#hides all tools when the preview was held down while entering menu
+		player.on_cancel_state()
 	else:
 		if not player.controllable:
 			is_in_death_anim = true
@@ -60,10 +62,6 @@ func toggle_pause_menu():
 
 func _on_resume_button_pressed() -> void:
 	toggle_pause_menu()
-
-
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()
 
 
 func _on_restart_button_pressed() -> void:
@@ -201,7 +199,9 @@ func _on_dialog_trigger_bullettime_body_entered(_body: Node2D) -> void:
 
 
 func _on_toggle_sprint_pressed() -> void:
-	$Pause_menu/Sprint_toggle.emit_signal("pressed")
+	if not $Pause_menu/Sprint_toggle.button_pressed:
+		$Pause_menu/Sprint_toggle.button_pressed = true
+		$Pause_menu/Sprint_toggle.emit_signal("pressed")
 	$Pause_menu.visible = true
 	$Sprint_question.visible = false
 	hide()
@@ -212,6 +212,9 @@ func _on_toggle_sprint_pressed() -> void:
 
 
 func _on_hold_sprint_pressed() -> void:
+	if $Pause_menu/Sprint_toggle.button_pressed:
+		$Pause_menu/Sprint_toggle.button_pressed = false
+		$Pause_menu/Sprint_toggle.emit_signal("pressed")
 	$Pause_menu.visible = true
 	$Sprint_question.visible = false
 	hide()
@@ -219,3 +222,7 @@ func _on_hold_sprint_pressed() -> void:
 	DialogManager.run_dialog("chose_hold")
 	await DialogManager.dialog_finished
 	player.controllable = true
+
+
+func _on_back_to_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

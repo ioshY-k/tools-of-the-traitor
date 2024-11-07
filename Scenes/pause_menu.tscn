@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cat7wbeyrrnjo"]
+[gd_scene load_steps=19 format=3 uid="uid://cat7wbeyrrnjo"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_nhf6r"]
 [ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_ku6h5"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="14_ksmfb"]
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="15_05rj1"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="16_61k2p"]
+[ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="18_xpa1o"]
 
 [node name="Pause_menu" type="CanvasLayer"]
 visible = false
@@ -68,18 +69,18 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Restart"
 
-[node name="Quit_button" type="Button" parent="Pause_menu"]
+[node name="Back_to_menu_button" type="Button" parent="Pause_menu"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
-text = "Quit"
+text = "Back to Menu"
 
 [node name="Sprint_toggle" type="CheckButton" parent="Pause_menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_icons/checked = ExtResource("3_tbag2")
 theme_override_icons/unchecked = ExtResource("4_2x2us")
-text = "Hold Button to Sprint"
+text = "Toggle Button to Sprint"
 
 [node name="Show_timer" type="CheckButton" parent="Pause_menu"]
 layout_mode = 2
@@ -103,7 +104,7 @@ theme = ExtResource("2_ku6h5")
 min_value = 20.0
 step = 20.0
 value = 20.0
-tick_count = 4
+tick_count = 5
 ticks_on_borders = true
 
 [node name="Tip_menu" type="VBoxContainer" parent="."]
@@ -361,6 +362,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "The faster you run, the higher you will jump!
 
@@ -393,6 +395,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "You can call back your tools only when grounded!
 
@@ -424,6 +427,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -452,6 +456,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "To collect an Orb, you need to carry ist to safe ground.
  This does not include Spikes or your Tools!
@@ -484,6 +489,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Placing your green Wall Tool midair lets you walljump at
 any point of your jump!
@@ -516,6 +522,7 @@ offset_top = -206.0
 offset_bottom = 206.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Sprinting while Wall Jumping brings you further
 while Wall Jumping without holding Sprint is excellent for precise Landing!"
@@ -546,6 +553,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!"
 horizontal_alignment = 1
@@ -575,6 +583,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "To cover horizontal distance with your red block tool without loosing speed, try placing it diagonally down while descending!
 
@@ -606,6 +615,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Place your red block tool above your head to stop your momentum after launching from your blue spring tool!
 
@@ -637,6 +647,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Pressing Y while positioning your Tool cancels the Tool placement.
 
@@ -670,6 +681,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "When placing Tools, you may first choose the direction
 and then let go of the stick before placing!
@@ -703,6 +715,7 @@ offset_top = -97.5
 offset_bottom = 97.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
 
@@ -732,7 +745,7 @@ text = "Close"
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
 [connection signal="value_changed" from="Pause_menu/HBoxContainer/Bullet_time_slider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]

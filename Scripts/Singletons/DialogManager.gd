@@ -115,7 +115,7 @@ var dialog_sequences : Dictionary = {
 
 
 				"walljump_names" :		["DEMObot2","Player","DEMObot2","Player","DEMObot2","Player"],
-				"walljump_param" : 		{"xOffset" : -80, "yOffset" : 150},
+				"walljump_param" : 		{"xOffset" : -350, "yOffset" : 150},
 				"walljump_lines" : 		[
 											["Hey by the way:",
 											"To control your camera, just move the..."],

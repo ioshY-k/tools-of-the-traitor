@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="2_u0yxd"]
+[ext_resource type="Script" path="res://Scripts/Player Controls/camera.gd" id="2_u0yxd"]
 [ext_resource type="Texture2D" uid="uid://dsglafsk6rax8" path="res://Sprites/Allies/Ally1.png" id="3_gf6wi"]
 [ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="4_qmlu3"]
 [ext_resource type="Texture2D" uid="uid://c2v3thd6x0gq" path="res://Sprites/Allies/Ally2.png" id="5_mpint"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bx6xh6anmmb6b" path="res://Scenes/Orb.tscn" id="17_3jwa3"]
 [ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="17_cj7a0"]
 [ext_resource type="Texture2D" uid="uid://bjfxh7j2h02l" path="res://Sprites/Orbs/collected_frames/Orb_collected11.png" id="18_gsk5f"]
-[ext_resource type="Script" path="res://Scenes/Levels/dialog_enabler.gd" id="18_ikm0k"]
+[ext_resource type="Script" path="res://Scripts/dialog_enabler.gd" id="18_ikm0k"]
 [ext_resource type="Texture2D" uid="uid://d0lp05nloysvg" path="res://Sprites/Orbs/collected_frames/Orb_collected12.png" id="19_jpkef"]
 [ext_resource type="Texture2D" uid="uid://bixfw53nb4s3a" path="res://Sprites/Orbs/collected_frames/Orb_collected1.png" id="20_e3mdt"]
 [ext_resource type="Texture2D" uid="uid://d21ynwjluqn85" path="res://Sprites/Orbs/collected_frames/Orb_collected2.png" id="21_td2c5"]
@@ -47,13 +47,13 @@
 [ext_resource type="Texture2D" uid="uid://b4v476rckfh28" path="res://Sprites/UI/run_icon.png" id="42_xf8j3"]
 [ext_resource type="Texture2D" uid="uid://dt6h2mb83ld27" path="res://Sprites/UI/walk_icon.png" id="43_p5m0n"]
 [ext_resource type="PackedScene" uid="uid://cat7wbeyrrnjo" path="res://Scenes/pause_menu.tscn" id="45_7vlik"]
-[ext_resource type="Script" path="res://Scenes/Levels/timer.gd" id="47_2rfbk"]
+[ext_resource type="Script" path="res://Scripts/timer.gd" id="47_2rfbk"]
 [ext_resource type="PackedScene" uid="uid://ua73pd60mipx" path="res://Scenes/result_canvas.tscn" id="47_d776w"]
 [ext_resource type="PackedScene" uid="uid://bwv0yy81ksawb" path="res://Scenes/sign.tscn" id="48_kf1qq"]
 [ext_resource type="PackedScene" uid="uid://c1jq3l5o3enkg" path="res://Scenes/dialog_trigger.tscn" id="48_ml1qr"]
 [ext_resource type="Shader" path="res://Shaders/frost_window.gdshader" id="50_y33b1"]
 [ext_resource type="Texture2D" uid="uid://c2tivyc8vj3ol" path="res://Sprites/Rec_room/Record_room_monitor1.png" id="51_23i6i"]
-[ext_resource type="Script" path="res://Scenes/Levels/rec_room.gd" id="52_jtaht"]
+[ext_resource type="Script" path="res://Scripts/rec_room.gd" id="52_jtaht"]
 [ext_resource type="Texture2D" uid="uid://c8mmc6qahexvo" path="res://Sprites/Rec_room/Record_room_monitor2.png" id="52_rtgso"]
 [ext_resource type="Texture2D" uid="uid://bdv1q36fvffwc" path="res://Sprites/Rec_room/Record_room_monitor3.png" id="53_04ha2"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="53_ynckq"]
@@ -1969,7 +1969,7 @@ position = Vector2(-8805, 628)
 dialog_name = "bullet"
 
 [node name="DialogTrigger_walljump" parent="." instance=ExtResource("48_ml1qr")]
-position = Vector2(-155, 2644)
+position = Vector2(-364, 2642)
 dialog_name = "walljump"
 
 [node name="Cursed_Orb" parent="." instance=ExtResource("64_fdfem")]

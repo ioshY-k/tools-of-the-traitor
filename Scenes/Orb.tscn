@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx6xh6anmmb6b"]
 
 [ext_resource type="Script" path="res://Scripts/orb_collect.gd" id="1_vfnev"]
-[ext_resource type="Texture2D" uid="uid://dmtvvi4rr1hb1" path="res://Sprites/lightning_particles.png" id="3_fku8g"]
+[ext_resource type="Texture2D" uid="uid://dmtvvi4rr1hb1" path="res://Sprites/Orbs/lightning_particles.png" id="3_fku8g"]
 
 [sub_resource type="Gradient" id="Gradient_jntyf"]
 offsets = PackedFloat32Array(0, 0.6, 1)
