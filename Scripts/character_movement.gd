@@ -95,13 +95,8 @@ func _ready() -> void:
 	animations.set_blend_time("Jump_anim", "Fall_anim", 0.3)
 	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
 	supercancel_timer.timeout.connect(func():
-			var tool_arr = [
-			get_parent().get_node("%Floor_tool"),
-			get_parent().get_node("%Block_tool"),
-			get_parent().get_node("%Wall_tool"),
-			get_parent().get_node("%Spring_tool")]
-			for tool in tool_arr:
-				callback_tool(tool)
+			for toolnum in range(len(last_placed_tools)):
+				callback_tool(last_placed_tools.pop_back())
 				await get_tree().create_timer(0.05).timeout
 			)
 
@@ -636,7 +631,17 @@ func _on_p_speed_timer_timeout() -> void:
 
 
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
+	kill_player()
+
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
+	kill_player()
+	
+func kill_player():
+	if PlayerStats.cursed_mode:
+		$"../Cursed_Orb".player_got_hit()
 	controllable = false
+	if sprite_floor_tool.visible:
+		sprite_floor_tool.visible = false
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
 	if sprite_wall_tool.visible:
@@ -655,7 +660,6 @@ func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
 	controllable = true
-
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
 	tool_state_handler.floor_tool_unlocked = true

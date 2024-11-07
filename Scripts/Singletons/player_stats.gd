@@ -10,6 +10,7 @@ var field_tool_unlocked: bool = false
 
 var toggle_to_sprint: bool = false
 var bullet_time_value: float = 1.0
+var cursed_mode = true
 
 signal no_dialog
 const ORB_NUMBER = 12

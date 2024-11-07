@@ -19,7 +19,7 @@ size = Vector2(59, 30)
 radius = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxw3g"]
-size = Vector2(72, 152)
+size = Vector2(70.4574, 159.456)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi3p8"]
 size = Vector2(953.6, 67.7136)
@@ -169,7 +169,8 @@ scale = Vector2(0.809, 0.809)
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(11, -20)
+position = Vector2(11.7429, -24.1038)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vxw3g")
 
 [node name="Sprite_spring_tool" type="Sprite2D" parent="."]
@@ -216,6 +217,7 @@ rotates = false
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
 [connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_entered"]
 [connection signal="body_exited" from="Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_exited"]

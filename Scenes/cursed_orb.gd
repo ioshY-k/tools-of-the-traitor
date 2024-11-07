@@ -24,10 +24,8 @@ func _process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(direction_to_player * speed, 400 * delta)
 		if velocity.length() >= (direction_to_player * speed).length() * 2:
-			print("debugged!")
 			velocity = velocity.normalized() * (direction_to_player * speed).length() * 2
 		if velocity.length() == (direction_to_player * speed).length():
-			print("point reached")
 			bouncing = false
 	
 
@@ -37,41 +35,54 @@ func _process(delta: float) -> void:
 
 
 func _on_collision_detection_left_body_entered(body: Node2D) -> void:
-	bouncing = true
-	bouncetimer.stop()
-	bouncetimer.start()
-	velocity = Vector2(-velocity.x, velocity.y) * 1.5
-	player.callback_tool(body)
-	player.last_placed_tools.pop_at(player.last_placed_tools.find(body))
+	tool_got_hit(body, Vector2(-velocity.x, velocity.y))
 
 
 func _on_collision_detection_up_body_entered(body: Node2D) -> void:
-	bouncing = true
-	bouncetimer.stop()
-	bouncetimer.start()
-	velocity = Vector2(velocity.x, -velocity.y) * 1.5
-	player.callback_tool(body)
-	player.last_placed_tools.pop_at(player.last_placed_tools.find(body))
+	tool_got_hit(body, Vector2(velocity.x, -velocity.y))
 
 
 func _on_collision_detection_down_body_entered(body: Node2D) -> void:
-	bouncing = true
-	bouncetimer.stop()
-	bouncetimer.start()
-	velocity = Vector2(velocity.x, -1 * velocity.y) * 1.5
-	player.callback_tool(body)
-	player.last_placed_tools.pop_at(player.last_placed_tools.find(body))
+	tool_got_hit(body, Vector2(velocity.x, -velocity.y))
 
 
 func _on_collision_detection_right_body_entered(body: Node2D) -> void:
+	tool_got_hit(body, Vector2(-velocity.x, velocity.y))
+
+func tool_got_hit(body, direction: Vector2):
+	if body.name == "Player":
+		return
 	bouncing = true
 	bouncetimer.stop()
 	bouncetimer.start()
-	velocity = Vector2(-velocity.x, velocity.y) * 1.5
+	velocity = direction * 1.5
 	player.callback_tool(body)
 	player.last_placed_tools.pop_at(player.last_placed_tools.find(body))
 
 
-func _on_bouncetimer_timeout() -> void:
-	#bouncing = false
-	pass
+func _on_collision_detection_up_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		player_got_hit()
+
+
+func _on_collision_detection_down_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		player_got_hit()
+
+
+func _on_collision_detection_right_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		player_got_hit()
+
+
+func _on_collision_detection_left_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		player_got_hit()
+
+func player_got_hit():
+	var spawn_position = player.last_spawnpoint
+	position += Vector2(0,20000)
+	$Sprite_cursedorb.visible = false
+	await get_tree().create_timer(3).timeout
+	position = spawn_position
+	$Sprite_cursedorb.visible = true
