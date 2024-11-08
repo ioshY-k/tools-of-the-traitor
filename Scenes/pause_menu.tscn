@@ -741,8 +741,8 @@ theme_override_font_sizes/font_size = 40
 text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]

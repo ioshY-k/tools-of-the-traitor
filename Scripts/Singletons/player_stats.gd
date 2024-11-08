@@ -14,19 +14,12 @@ var bullet_time_value: float = 1.0
 var cursed_mode: bool = true
 var no_dialog: bool = false
 const ORB_NUMBER = 12
-var orb_list = []
+var orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 
 var death_count = 0
 var orb_count = 0
-	
-
-func _process(delta: float) -> void:
-	print(bullet_time_value)	
 
 func execute_all_options():
-	print("playerstats wird ausgeführt")
-	orb_list.resize(ORB_NUMBER)
-	orb_list.fill(false)
 	if not cursed_mode:
 		if is_instance_valid(get_node("/root/Testlevel/Cursed_Orb")):
 			get_node("/root/Testlevel/Cursed_Orb").queue_free()

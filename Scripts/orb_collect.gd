@@ -22,13 +22,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_collected_decision(collected: bool):
 	if collected:
-		PlayerStats.orb_count += 1
-		#print("collected! orbcount: " + str(PlayerStats.orb_count))
-		hair.stop()
 		var orb_title_number = ""
 		for i in range(2):
 			if not str(name)[i] == "O":
 				orb_title_number += str(name)[i]
+		
+		PlayerStats.orb_count += 1
+		PlayerStats.orb_list[int(orb_title_number) - 1] = true
+		print("collected! orbcount: " + str(PlayerStats.orb_list))
+		hair.stop()
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].get_child(0).visible = true
 		$"../../Misc_canvas/new_tip_text".show()
