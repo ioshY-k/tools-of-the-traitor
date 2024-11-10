@@ -105,76 +105,77 @@ tracks/7/keys = {
 "values": [Vector2(0.4, 0.4)]
 }
 
-[sub_resource type="Animation" id="Animation_t67cs"]
+[sub_resource type="Animation" id="Animation_uyi80"]
+resource_name = "Allies_fly_out"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Ally1:position")
-tracks/0/interp = 0
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.49012e-08, 0.5),
+"transitions": PackedFloat32Array(0.535886, 0.31864),
 "update": 0,
-"values": [Vector2(144, -285.4)]
+"values": [Vector2(144, 1003.6), Vector2(144, 309.6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Ally2:position")
-tracks/1/interp = 0
+tracks/1/path = NodePath("Ally1:scale")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-172, -286.4)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Ally3:position")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-342, -311.4)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Ally4:position")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -330.4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Ally1:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.4, 0.4)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ally2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.366667),
+"transitions": PackedFloat32Array(1, 0.535886, 0.31864),
+"update": 0,
+"values": [Vector2(-172, 1002.6), Vector2(-172, 1002.6), Vector2(-172, 308.6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ally2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ally3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.49012e-08, 0.266667),
+"transitions": PackedFloat32Array(0.535886, 0.31864),
+"update": 0,
+"values": [Vector2(-342, 977.6), Vector2(-342, 283.6)]
+}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Ally2:scale")
+tracks/5/path = NodePath("Ally3:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.4, 0.4)]
@@ -182,14 +183,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Ally3:scale")
+tracks/6/path = NodePath("Ally4:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.133333, 0.466667),
+"transitions": PackedFloat32Array(1, 0.535886, 0.31864),
 "update": 0,
-"values": [Vector2(0.4, 0.4)]
+"values": [Vector2(0, 958.6), Vector2(0, 958.6), Vector2(0, 264.6)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -198,7 +199,7 @@ tracks/7/path = NodePath("Ally4:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.4, 0.4)]
@@ -305,77 +306,76 @@ tracks/7/keys = {
 "values": [Vector2(0.4, 0.4)]
 }
 
-[sub_resource type="Animation" id="Animation_uyi80"]
-resource_name = "Allies_fly_out"
+[sub_resource type="Animation" id="Animation_t67cs"]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Ally1:position")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.49012e-08, 0.5),
-"transitions": PackedFloat32Array(0.535886, 0.31864),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(144, 1003.6), Vector2(144, 309.6)]
+"values": [Vector2(144, -285.4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Ally1:scale")
-tracks/1/interp = 1
+tracks/1/path = NodePath("Ally2:position")
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.4, 0.4)]
+"values": [Vector2(-172, -286.4)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Ally2:position")
-tracks/2/interp = 1
+tracks/2/path = NodePath("Ally3:position")
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.366667),
-"transitions": PackedFloat32Array(1, 0.535886, 0.31864),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-172, 1002.6), Vector2(-172, 1002.6), Vector2(-172, 308.6)]
+"values": [Vector2(-342, -311.4)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Ally2:scale")
-tracks/3/interp = 1
+tracks/3/path = NodePath("Ally4:position")
+tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.4, 0.4)]
+"values": [Vector2(0, -330.4)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Ally3:position")
+tracks/4/path = NodePath("Ally1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.49012e-08, 0.266667),
-"transitions": PackedFloat32Array(0.535886, 0.31864),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-342, 977.6), Vector2(-342, 283.6)]
+"values": [Vector2(0.4, 0.4)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Ally3:scale")
+tracks/5/path = NodePath("Ally2:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.4, 0.4)]
@@ -383,14 +383,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Ally4:position")
+tracks/6/path = NodePath("Ally3:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.466667),
-"transitions": PackedFloat32Array(1, 0.535886, 0.31864),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 958.6), Vector2(0, 958.6), Vector2(0, 264.6)]
+"values": [Vector2(0.4, 0.4)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -399,7 +399,7 @@ tracks/7/path = NodePath("Ally4:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.4, 0.4)]

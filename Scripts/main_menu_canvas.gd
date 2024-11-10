@@ -4,12 +4,12 @@ extends CanvasLayer
 @onready var options_animation_player: AnimationPlayer = options_animations.get_node("Options_animation_player")
 @onready var highscore_animations: Node2D = $"../Highscore_animations"
 @onready var highscore_animation_player: AnimationPlayer = highscore_animations.get_node("Highscore_anim_player")
-
-
 @onready var playgame_animation_player: AnimationPlayer = $"../Player_rig/Playgame_animation_player"
 @onready var player_rig: Node2D = $"../Player_rig"
 @onready var cursed_orb: Sprite2D = $"../Cursed_Orb"
-
+@onready var highscore_table: VBoxContainer = $Highscore_Container/Highscore_panel/MarginContainer/Highscore_table
+@onready var sort_options: OptionButton = $Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Sort_options
+@onready var cursed_mode: CheckButton = $Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Cursed_mode
 
 @onready var tip_panels = [$Panel1,$Panel2,$Panel3,$Panel4,$Panel5,$Panel6,$Panel7,$Panel8,$Panel9,$Panel10,$Panel11,$Panel12]
 @onready var tip_buttons = [
@@ -35,7 +35,6 @@ func _ready() -> void:
 		tip_button.disabled = true
 		
 	for index in range(len(PlayerStats.orb_list)):
-		print("turning on")
 		if PlayerStats.orb_list[index]:
 			
 			tip_buttons[index].disabled = false
@@ -275,6 +274,50 @@ func _on_highscores_mouse_entered() -> void:
 	highscore_animation_player.queue("highscore_hover")
 
 
-
 func _on_highscores_mouse_exited() -> void:
 	highscore_animation_player.play("highscore_fly_out")
+
+
+func _on_highscores_pressed() -> void:
+	$Highscore_Container.show()
+	cursed_mode.button_pressed = false
+	sort_options.select(0)
+	sort_options.grab_focus()
+
+	sort_and_show()
+
+
+func _on_return_from_hs_pressed() -> void:
+	$Highscore_Container.visible = false
+	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
+
+
+func _on_cursed_mode_toggled(toggled_on: bool) -> void:
+	cursed_mode.button_pressed = toggled_on
+	
+	sort_and_show()
+
+
+func _on_sort_options_item_selected(index: int) -> void:
+	sort_and_show()
+
+func sort_and_show():
+	for entry in highscore_table.get_children():
+		if entry.name != "Header":
+			entry.queue_free()
+	
+	match sort_options.selected:
+		0:
+			Highscores.sort_by_score()
+		1:
+			Highscores.sort_by_time()
+		2:
+			Highscores.sort_by_tools()
+	
+	
+	var num_entries = 0
+	for hs in Highscores.highscore_list:
+		if hs.cursed == cursed_mode.button_pressed and num_entries < 10:
+			var entry = Highscores.convert_to_tableentry(hs)
+			highscore_table.add_child(entry)
+			num_entries += 1

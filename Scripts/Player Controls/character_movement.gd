@@ -110,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
+	
 	if controllable:
 		match current_state:
 			states.IDLE:
@@ -472,6 +473,7 @@ func on_floortool_place_state():
 			get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position
 			floor_tool_available = false
 			last_placed_tools.push_back(get_parent().get_node("%Floor_tool"))
+			PlayerStats.tool_count += 1
 
 
 func on_blocktool_place_state():
@@ -482,6 +484,7 @@ func on_blocktool_place_state():
 		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
 		block_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
+		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -495,6 +498,7 @@ func on_wall_tool_place_state():
 		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
 		wall_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Wall_tool"))
+		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -512,6 +516,7 @@ func on_spring_tool_place_state():
 		get_parent().get_node("%Spring_tool").position = sprite_spring_tool.global_position
 		spring_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Spring_tool"))
+		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout

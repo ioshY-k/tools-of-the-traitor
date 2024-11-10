@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b6iv6lgiqbs3g"]
+
+[node name="HS_entry" type="HBoxContainer"]
+custom_minimum_size = Vector2(1100, 0)
+size_flags_horizontal = 4
+theme_override_constants/separation = 85
+
+[node name="score_label" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[node name="time_label" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "00:00:00"
+horizontal_alignment = 1
+
+[node name="tools_label" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1

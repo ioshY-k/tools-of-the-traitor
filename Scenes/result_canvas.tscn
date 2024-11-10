@@ -15,15 +15,18 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.564706)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -540.0
-offset_bottom = 453.0
+offset_left = -982.5
+offset_top = -491.5
+offset_right = 982.5
+offset_bottom = 491.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 125
+theme_override_constants/separation = 100
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(1, 0)
@@ -38,9 +41,7 @@ custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Submitting your score will end the Demo.
-You can continue for as long as you like to improve your score,
-though submitting is only possible
-at one of the Submit Stations appearing throughout the Level."
+You can continue for as long as you like to improve your score and submit later."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -54,6 +55,7 @@ layout_mode = 2
 theme_override_constants/separation = 250
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -67,37 +69,45 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 95
 text = "0 Deaths"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
 
-[node name="Your_score" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="Score" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 95
-text = "Score"
+text = "Score: 
+"
 horizontal_alignment = 1
 
-[node name="Score_label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="Score_label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 95
 text = "0
 "
 horizontal_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 250
 
-[node name="Your_time" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="Time_label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 95
-text = "Time"
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "Time: 00:00:00"
 horizontal_alignment = 1
 
-[node name="Time_label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="Placed_tools_label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 95
-text = "00:00:00"
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "Placed tools: 0"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -113,12 +123,12 @@ text = "Continue"
 [node name="Retry_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Submit Score & Retry"
+text = "Submit & Retry"
 
 [node name="Quit_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Submit Score & Quit"
+text = "Submit & Quit"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Continue_button" to="." method="_on_continue_button_pressed"]

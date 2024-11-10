@@ -16,8 +16,11 @@ var no_dialog: bool = false
 const ORB_NUMBER = 12
 var orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 
-var death_count = 0
+var temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+var death_count = 3
 var orb_count = 0
+var tool_count = 0
+
 
 func execute_all_options():
 	if not cursed_mode:

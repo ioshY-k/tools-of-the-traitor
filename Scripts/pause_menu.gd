@@ -66,6 +66,10 @@ func _on_resume_button_pressed() -> void:
 
 func _on_restart_button_pressed() -> void:
 	toggle_pause_menu()
+	PlayerStats.orb_count = 0
+	PlayerStats.tool_count = 0
+	PlayerStats.death_count = 0
+	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	get_tree().reload_current_scene()
 
 func _on_tip_menu_button_pressed() -> void:
