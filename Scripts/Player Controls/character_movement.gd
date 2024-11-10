@@ -100,6 +100,7 @@ func _ready() -> void:
 				await get_tree().create_timer(0.05).timeout
 			)
 	PlayerStats.execute_all_options()
+	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
 
 
 func _physics_process(delta: float) -> void:
@@ -668,23 +669,23 @@ func kill_player():
 	controllable = true
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
-	tool_state_handler.floor_tool_unlocked = true
+	PlayerStats.floor_tool_unlocked = true
 	get_parent().get_node("%Ally1_collect").queue_free()
 	
 
 
 func _on_ally2_body_entered(_body: Node2D) -> void:
-	tool_state_handler.block_tool_unlocked = true
+	PlayerStats.block_tool_unlocked = true
 	get_parent().get_node("%Ally2_collect").queue_free()
 
 
 func _on_ally3_body_entered(_body: Node2D) -> void:
-	tool_state_handler.wall_tool_unlocked = true
+	PlayerStats.wall_tool_unlocked = true
 	get_parent().get_node("%Ally3_collect").queue_free()
 
 
 func _on_ally4_body_entered(_body: Node2D) -> void:
-	tool_state_handler.spring_tool_unlocked = true
+	PlayerStats.spring_tool_unlocked = true
 	get_parent().get_node("%Ally4_collect").queue_free()
 
 

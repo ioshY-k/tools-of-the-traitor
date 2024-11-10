@@ -117,6 +117,7 @@ theme_override_constants/separation = 399
 
 [node name="Continue_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Quit_button")
 theme_override_font_sizes/font_size = 40
 text = "Continue"
 
@@ -127,6 +128,7 @@ text = "Submit & Retry"
 
 [node name="Quit_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../Continue_button")
 theme_override_font_sizes/font_size = 40
 text = "Submit & Quit"
 

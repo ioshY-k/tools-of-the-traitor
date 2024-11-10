@@ -86,11 +86,103 @@ func _process(delta: float) -> void:
 
 func _on_play_pressed() -> void:
 	PlayerStats.cursed_mode = false
-	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savedata = savefile.get_as_text()
+	savefile.close()
+	var savefile_dict: Dictionary = JSON.parse_string(savedata)
+	if savefile_dict.has("cursed_mode"):
+		if not savefile_dict["cursed_mode"]:
+			$New_or_continue.show()
+			$New_or_continue/New.grab_focus()
+		else:
+			PlayerStats.xPosition = -8299
+			PlayerStats.yPosition = 2118
+			PlayerStats.orb_count = 0
+			PlayerStats.tool_count = 0
+			PlayerStats.death_count = 0
+			PlayerStats.floor_tool_unlocked = false
+			PlayerStats.block_tool_unlocked = false
+			PlayerStats.wall_tool_unlocked = false
+			PlayerStats.rope_tool_unlocked = false
+			PlayerStats.spring_tool_unlocked = false
+			PlayerStats.field_tool_unlocked = false
+			PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+			if PlayerStats.cursed_mode:
+				PlayerStats.xCursed_orb_position = -9379
+				PlayerStats.yCursed_orb_position = 2053
+			get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	
+	
 
 
 func _on_cursed_mode_pressed() -> void:
 	PlayerStats.cursed_mode = true
+	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savedata = savefile.get_as_text()
+	savefile.close()
+	var savefile_dict: Dictionary = JSON.parse_string(savedata)
+	if savefile_dict.has("cursed_mode"):
+		if savefile_dict["cursed_mode"]:
+			$New_or_continue.show()
+			$New_or_continue/New.grab_focus()
+		else:
+			PlayerStats.xPosition = -8299
+			PlayerStats.yPosition = 2118
+			PlayerStats.orb_count = 0
+			PlayerStats.tool_count = 0
+			PlayerStats.death_count = 0
+			PlayerStats.floor_tool_unlocked = false
+			PlayerStats.block_tool_unlocked = false
+			PlayerStats.wall_tool_unlocked = false
+			PlayerStats.rope_tool_unlocked = false
+			PlayerStats.spring_tool_unlocked = false
+			PlayerStats.field_tool_unlocked = false
+			PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+			if PlayerStats.cursed_mode:
+				PlayerStats.xCursed_orb_position = -9379
+				PlayerStats.yCursed_orb_position = 2053
+			get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+
+
+func _on_new_pressed() -> void:
+	PlayerStats.xPosition = -8299
+	PlayerStats.yPosition = 2118
+	PlayerStats.orb_count = 0
+	PlayerStats.tool_count = 0
+	PlayerStats.death_count = 0
+	PlayerStats.floor_tool_unlocked = false
+	PlayerStats.block_tool_unlocked = false
+	PlayerStats.wall_tool_unlocked = false
+	PlayerStats.rope_tool_unlocked = false
+	PlayerStats.spring_tool_unlocked = false
+	PlayerStats.field_tool_unlocked = false
+	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+	if PlayerStats.cursed_mode:
+		PlayerStats.xCursed_orb_position = -9379
+		PlayerStats.yCursed_orb_position = 2053
+	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+
+
+func _on_continue_pressed() -> void:
+	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savedata = savefile.get_as_text()
+	savefile.close()
+	var savefile_dict: Dictionary = JSON.parse_string(savedata)
+	PlayerStats.xPosition = savefile_dict["xPosition"]
+	PlayerStats.yPosition = savefile_dict["yPosition"]
+	if PlayerStats.cursed_mode:
+		PlayerStats.xCursed_orb_position = savefile_dict["xCursed_orb_position"]
+		PlayerStats.yCursed_orb_position = savefile_dict["yCursed_orb_position"]
+	PlayerStats.orb_count = savefile_dict["orb_count"]
+	PlayerStats.tool_count = savefile_dict["tool_count"]
+	PlayerStats.death_count = savefile_dict["death_count"]
+	PlayerStats.temporary_orb_list = savefile_dict["orb_list"]
+	PlayerStats.floor_tool_unlocked = savefile_dict["floor_tool_unlocked"]
+	PlayerStats.block_tool_unlocked = savefile_dict["block_tool_unlocked"]
+	PlayerStats.wall_tool_unlocked = savefile_dict["wall_tool_unlocked"]
+	PlayerStats.rope_tool_unlocked = savefile_dict["rope_tool_unlocked"]
+	PlayerStats.spring_tool_unlocked = savefile_dict["spring_tool_unlocked"]
+	PlayerStats.field_tool_unlocked = savefile_dict["field_tool_unlocked"]
 	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 
@@ -298,7 +390,7 @@ func _on_cursed_mode_toggled(toggled_on: bool) -> void:
 	sort_and_show()
 
 
-func _on_sort_options_item_selected(index: int) -> void:
+func _on_sort_options_item_selected(_index: int) -> void:
 	sort_and_show()
 
 func sort_and_show():

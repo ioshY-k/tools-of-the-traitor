@@ -26,6 +26,15 @@ var spring_ally_gone: bool = false
 @onready var spring_tool: RigidBody2D = %Spring_tool
 
 func _ready() -> void:
+	if PlayerStats.floor_tool_unlocked:
+		allies.append(floor_ally)
+	if PlayerStats.block_tool_unlocked:
+		allies.append(block_ally)
+	if PlayerStats.wall_tool_unlocked:
+		allies.append(wall_ally)
+	if PlayerStats.spring_tool_unlocked:
+		allies.append(spring_ally)
+	
 	follow_points.append(area_1)
 	follow_points.append(area_2)
 	follow_points.append(area_3)

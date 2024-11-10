@@ -229,4 +229,6 @@ func _on_hold_sprint_pressed() -> void:
 
 
 func _on_back_to_menu_button_pressed() -> void:
+	PlayerStats.save_progress()
+	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

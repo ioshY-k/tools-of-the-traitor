@@ -1,13 +1,6 @@
 extends Node
 class_name Tool_state_handler
 
-
-@export var floor_tool_unlocked: bool = PlayerStats.floor_tool_unlocked
-@export var block_tool_unlocked: bool = PlayerStats.block_tool_unlocked
-@export var wall_tool_unlocked: bool = PlayerStats.wall_tool_unlocked
-@export var rope_tool_unlocked: bool = PlayerStats.rope_tool_unlocked
-@export var spring_tool_unlocked: bool = PlayerStats.spring_tool_unlocked
-@export var field_tool_unlocked: bool = PlayerStats.field_tool_unlocked
 @onready var cancel_timer: Timer = $Cancel_timer
 
 
@@ -27,35 +20,39 @@ func _init():
 	
 func next_state(is_on_floor:bool) -> tool_states:
 	#print(tool_states.keys()[current_tool_state])
+	print("toolstate handler:")
+	print(PlayerStats.floor_tool_unlocked)
+	print("playerstats:")
+	print(PlayerStats.floor_tool_unlocked)
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			if Input.is_action_pressed("place_simple_tool"):
-				if is_on_floor and floor_tool_unlocked and cancel_timer.is_stopped():
+				if is_on_floor and PlayerStats.floor_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.FLOOR_TOOL_PREVIEW
-				if not is_on_floor and block_tool_unlocked and cancel_timer.is_stopped():
+				if not is_on_floor and PlayerStats.block_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.NO_TOOL
 			if Input.is_action_pressed("place_special_tool"):
-				if rope_direction() and rope_tool_unlocked and cancel_timer.is_stopped():
+				if rope_direction() and PlayerStats.rope_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.ROPE_TOOL_PREVIEW
-				if wall_direction() and wall_tool_unlocked and cancel_timer.is_stopped():
+				if wall_direction() and PlayerStats.wall_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.WALL_TOOL_PREVIEW
-				if spring_direction() and spring_tool_unlocked and cancel_timer.is_stopped():
+				if spring_direction() and PlayerStats.spring_tool_unlocked and cancel_timer.is_stopped():
 					return tool_states.SPRING_TOOL_PREVIEW
 			return tool_states.NO_TOOL
 		tool_states.FLOOR_TOOL_PREVIEW:
 			if Input.is_action_pressed("place_special_tool"):
-				if rope_direction() and rope_tool_unlocked:
+				if rope_direction() and PlayerStats.rope_tool_unlocked:
 					return tool_states.ROPE_TOOL_PREVIEW
-				if wall_direction() and wall_tool_unlocked:
+				if wall_direction() and PlayerStats.wall_tool_unlocked:
 					return tool_states.WALL_TOOL_PREVIEW
-				if spring_direction() and spring_tool_unlocked:
+				if spring_direction() and PlayerStats.spring_tool_unlocked:
 					return tool_states.SPRING_TOOL_PREVIEW
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
 			if not is_on_floor:
-				if block_tool_unlocked:
+				if PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.CANCEL
@@ -64,7 +61,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 			return tool_states.FLOOR_TOOL_PREVIEW
 		tool_states.BLOCK_TOOL_PREVIEW:
 			if is_on_floor:
-				if floor_tool_unlocked:
+				if PlayerStats.floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				else:
 					get_node("../Sprite_block_tool").visible = false
@@ -74,56 +71,56 @@ func next_state(is_on_floor:bool) -> tool_states:
 			if not Input.is_action_pressed("place_simple_tool"):
 				return tool_states.BLOCK_TOOL_PLACE
 			if Input.is_action_pressed("place_special_tool"):
-				if rope_direction() and rope_tool_unlocked:
+				if rope_direction() and PlayerStats.rope_tool_unlocked:
 					return tool_states.ROPE_TOOL_PREVIEW
-				if wall_direction() and wall_tool_unlocked:
+				if wall_direction() and PlayerStats.wall_tool_unlocked:
 					return tool_states.WALL_TOOL_PREVIEW
-				if spring_direction() and spring_tool_unlocked:
+				if spring_direction() and PlayerStats.spring_tool_unlocked:
 					return tool_states.SPRING_TOOL_PREVIEW
 			return tool_states.BLOCK_TOOL_PREVIEW
 		tool_states.WALL_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
 			if Input.is_action_pressed("place_simple_tool"):
-				if is_on_floor and floor_tool_unlocked:
+				if is_on_floor and PlayerStats.floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
-				if not is_on_floor and block_tool_unlocked:
+				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
-			if rope_direction() and rope_tool_unlocked:
+			if rope_direction() and PlayerStats.rope_tool_unlocked:
 				return tool_states.ROPE_TOOL_PREVIEW
-			if spring_direction() and spring_tool_unlocked:
+			if spring_direction() and PlayerStats.spring_tool_unlocked:
 				return tool_states.SPRING_TOOL_PREVIEW
 			return tool_states.WALL_TOOL_PREVIEW
 		tool_states.ROPE_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
 			if Input.is_action_pressed("place_simple_tool"):
-				if is_on_floor and floor_tool_unlocked:
+				if is_on_floor and PlayerStats.floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
-				if not is_on_floor and block_tool_unlocked:
+				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.ROPE_TOOL_PLACE
-			if spring_direction() and spring_tool_unlocked:
+			if spring_direction() and PlayerStats.spring_tool_unlocked:
 				return tool_states.SPRING_TOOL_PREVIEW
-			if wall_direction() and wall_tool_unlocked:
+			if wall_direction() and PlayerStats.wall_tool_unlocked:
 				return tool_states.WALL_TOOL_PREVIEW
 			return tool_states.ROPE_TOOL_PREVIEW
 		tool_states.SPRING_TOOL_PREVIEW:
 			if Input.is_action_just_pressed("cancel_tool"):
 				return tool_states.CANCEL
 			if Input.is_action_pressed("place_simple_tool"):
-				if is_on_floor and floor_tool_unlocked:
+				if is_on_floor and PlayerStats.floor_tool_unlocked:
 					return tool_states.FLOOR_TOOL_PREVIEW
-				if not is_on_floor and block_tool_unlocked:
+				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.SPRING_TOOL_PLACE
-			if rope_direction() and rope_tool_unlocked:
+			if rope_direction() and PlayerStats.rope_tool_unlocked:
 				return tool_states.ROPE_TOOL_PREVIEW
-			if wall_direction() and wall_tool_unlocked:
+			if wall_direction() and PlayerStats.wall_tool_unlocked:
 				return tool_states.WALL_TOOL_PREVIEW
 			return tool_states.SPRING_TOOL_PREVIEW
 		tool_states.FIELD_TOOL_PREVIEW:

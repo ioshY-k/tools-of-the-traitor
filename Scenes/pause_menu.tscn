@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cat7wbeyrrnjo"]
+[gd_scene load_steps=21 format=3 uid="uid://cat7wbeyrrnjo"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_nhf6r"]
 [ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_ku6h5"]
@@ -18,6 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="15_05rj1"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="16_61k2p"]
 [ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="18_xpa1o"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_uw22f"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_468pk"]
+events = [SubResource("InputEventAction_uw22f")]
 
 [node name="Pause_menu" type="CanvasLayer"]
 visible = false
@@ -48,7 +54,9 @@ theme = ExtResource("2_ku6h5")
 [node name="Resume_button" type="Button" parent="Pause_menu"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../HBoxContainer/Bullet_time_slider")
 theme_override_font_sizes/font_size = 40
+shortcut = SubResource("Shortcut_468pk")
 text = "Resume"
 
 [node name="Tip_menu_button" type="Button" parent="Pause_menu"]
@@ -100,6 +108,7 @@ text = "Bullet Time"
 [node name="Bullet_time_slider" type="HSlider" parent="Pause_menu/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Resume_button")
 theme = ExtResource("2_ku6h5")
 min_value = 20.0
 step = 20.0
@@ -138,6 +147,8 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button1" type="Button" parent="Tip_menu/Tip_grid/MarginContainer1"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer4/Tip_button4")
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("5_lb00x")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
@@ -155,6 +166,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button2" type="Button" parent="Tip_menu/Tip_grid/MarginContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("6_3y2b6")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
@@ -172,6 +184,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button3" type="Button" parent="Tip_menu/Tip_grid/MarginContainer3"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("7_cpoij")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
@@ -189,6 +202,8 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button4" type="Button" parent="Tip_menu/Tip_grid/MarginContainer4"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_right = NodePath("../../MarginContainer1/Tip_button1")
 icon = ExtResource("8_cj2se")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
@@ -206,6 +221,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button5" type="Button" parent="Tip_menu/Tip_grid/MarginContainer5"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer8/Tip_button8")
 icon = ExtResource("9_rqw6b")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
@@ -257,6 +273,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button8" type="Button" parent="Tip_menu/Tip_grid/MarginContainer8"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../MarginContainer5/Tip_button5")
 icon = ExtResource("12_3b8hb")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
@@ -274,6 +291,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button9" type="Button" parent="Tip_menu/Tip_grid/MarginContainer9"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer12/Tip_button12")
 icon = ExtResource("13_f0r8c")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
@@ -325,6 +343,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button12" type="Button" parent="Tip_menu/Tip_grid/MarginContainer12"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../MarginContainer9/Tip_button9")
 icon = ExtResource("16_61k2p")
 
 [node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
@@ -335,6 +354,7 @@ texture = ExtResource("6_rkxdk")
 
 [node name="Return_button" type="Button" parent="Tip_menu"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Tip_grid/MarginContainer1/Tip_button1")
 theme_override_font_sizes/font_size = 40
 text = "Return"
 

@@ -55,17 +55,27 @@ func _on_continue_button_pressed() -> void:
 
 func _on_retry_button_pressed() -> void:
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	PlayerStats.xPosition = -8299
+	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+	if PlayerStats.cursed_mode:
+		PlayerStats.xCursed_orb_position = -9379
+		PlayerStats.yCursed_orb_position = 2053
 	get_tree().reload_current_scene()
 
 
 func _on_quit_button_pressed() -> void:
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	PlayerStats.xPosition = -8299
+	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+	if PlayerStats.cursed_mode:
+		PlayerStats.xCursed_orb_position = -9379
+		PlayerStats.yCursed_orb_position = 2053
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

@@ -435,11 +435,15 @@ theme_override_constants/separation = 35
 
 [node name="Play" type="Button" parent="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Cursed_mode")
+focus_neighbor_top = NodePath("../../Quit")
 theme_override_font_sizes/font_size = 150
 text = "Play"
 
 [node name="Cursed_mode" type="Button" parent="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Quit")
+focus_neighbor_right = NodePath("../Play")
 theme_override_font_sizes/font_size = 70
 text = "Play cursed mode"
 
@@ -455,11 +459,57 @@ text = "Tips & Options"
 
 [node name="Quit" type="Button" parent="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../HBoxContainer/Play")
 theme_override_font_sizes/font_size = 70
 text = "Quit
 "
 
+[node name="New_or_continue" type="Panel" parent="Main_menu_canvas"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -171.0
+offset_right = 528.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Main_menu_canvas/New_or_continue"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 76.0
+offset_right = 1001.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 50
+text = "Do you want to continue at your last save?"
+horizontal_alignment = 1
+
+[node name="New" type="Button" parent="Main_menu_canvas/New_or_continue"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 169.0
+offset_right = 468.0
+offset_bottom = 286.0
+focus_neighbor_left = NodePath("../Continue")
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="Continue" type="Button" parent="Main_menu_canvas/New_or_continue"]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 170.0
+offset_right = 884.0
+offset_bottom = 287.0
+focus_neighbor_right = NodePath("../New")
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
 [node name="Highscore_Container" type="MarginContainer" parent="Main_menu_canvas"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -537,6 +587,7 @@ theme_override_constants/separation = 35
 
 [node name="Sort_options" type="OptionButton" parent="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Return_from_hs")
 theme_override_font_sizes/font_size = 40
 selected = 0
 item_count = 3
@@ -555,6 +606,7 @@ text = "Cursed Mode"
 
 [node name="Return_from_hs" type="Button" parent="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Sort_options")
 theme_override_font_sizes/font_size = 40
 text = "Return"
 
@@ -591,6 +643,7 @@ theme_override_constants/separation = 30
 
 [node name="Show_tips" type="Button" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../MarginContainer/Return")
 theme_override_font_sizes/font_size = 50
 text = "Show unlocked Tips"
 
@@ -644,6 +697,7 @@ theme_override_constants/margin_right = 60
 
 [node name="Return" type="Button" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Show_tips")
 theme_override_font_sizes/font_size = 35
 text = "Return"
 
@@ -652,11 +706,10 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 58.0
-offset_right = -47.465
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Tip_menu" type="VBoxContainer" parent="Main_menu_canvas"]
 visible = false
@@ -689,6 +742,8 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button1" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer4/Tip_button4")
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("5_m8tyy")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
@@ -706,6 +761,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button2" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("7_3hway")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
@@ -723,6 +779,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button3" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
 icon = ExtResource("8_apcnp")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
@@ -740,6 +797,8 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button4" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_right = NodePath("../../MarginContainer1/Tip_button1")
 icon = ExtResource("9_82522")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
@@ -757,6 +816,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button5" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer8/Tip_button8")
 icon = ExtResource("10_g1ohf")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
@@ -808,6 +868,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button8" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../MarginContainer5/Tip_button5")
 icon = ExtResource("13_mqbjc")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
@@ -825,6 +886,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button9" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../MarginContainer12/Tip_button12")
 icon = ExtResource("14_jn6qh")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
@@ -876,6 +938,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button12" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../MarginContainer9/Tip_button9")
 icon = ExtResource("17_odse5")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
@@ -886,6 +949,7 @@ texture = ExtResource("6_p2mej")
 
 [node name="Return_button" type="Button" parent="Main_menu_canvas/Tip_menu"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Tip_grid/MarginContainer1/Tip_button1")
 theme_override_font_sizes/font_size = 40
 text = "Return"
 
@@ -1329,6 +1393,8 @@ texture = ExtResource("7_0l8mh")
 [connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_options_mouse_exited"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_options_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_quit_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/New_or_continue/New" to="Main_menu_canvas" method="_on_new_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/New_or_continue/Continue" to="Main_menu_canvas" method="_on_continue_pressed"]
 [connection signal="item_selected" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Sort_options" to="Main_menu_canvas" method="_on_sort_options_item_selected"]
 [connection signal="toggled" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Cursed_mode" to="Main_menu_canvas" method="_on_cursed_mode_toggled"]
 [connection signal="pressed" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Return_from_hs" to="Main_menu_canvas" method="_on_return_from_hs_pressed"]

@@ -30,5 +30,10 @@ func restart_timer():
 	msec = 0
 	set_process(true)
 
+func set_timer(t: float):
+	time = t
+	set_process(true)
+	
+
 func get_time_formatted() -> String:
 	return "%02d:%02d:%02d" % [minutes, seconds, msec]

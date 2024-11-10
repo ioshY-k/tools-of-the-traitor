@@ -14,7 +14,7 @@ var bouncing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	position = Vector2(PlayerStats.xCursed_orb_position, PlayerStats.yCursed_orb_position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
