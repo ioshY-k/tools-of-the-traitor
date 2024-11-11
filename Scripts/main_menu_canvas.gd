@@ -90,27 +90,26 @@ func _on_play_pressed() -> void:
 	var savedata = savefile.get_as_text()
 	savefile.close()
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
-	if savefile_dict.has("cursed_mode"):
-		if not savefile_dict["cursed_mode"]:
-			$New_or_continue.show()
-			$New_or_continue/New.grab_focus()
-		else:
-			PlayerStats.xPosition = -8299
-			PlayerStats.yPosition = 2118
-			PlayerStats.orb_count = 0
-			PlayerStats.tool_count = 0
-			PlayerStats.death_count = 0
-			PlayerStats.floor_tool_unlocked = false
-			PlayerStats.block_tool_unlocked = false
-			PlayerStats.wall_tool_unlocked = false
-			PlayerStats.rope_tool_unlocked = false
-			PlayerStats.spring_tool_unlocked = false
-			PlayerStats.field_tool_unlocked = false
-			PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-			if PlayerStats.cursed_mode:
-				PlayerStats.xCursed_orb_position = -9379
-				PlayerStats.yCursed_orb_position = 2053
-			get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	if not savefile_dict["cursed_mode"] and not savefile_dict["beat_game_on_last_save"]:
+		$New_or_continue.show()
+		$New_or_continue/New.grab_focus()
+	else:
+		PlayerStats.xPosition = -8299
+		PlayerStats.yPosition = 2118
+		PlayerStats.orb_count = 0
+		PlayerStats.tool_count = 0
+		PlayerStats.death_count = 0
+		PlayerStats.floor_tool_unlocked = false
+		PlayerStats.block_tool_unlocked = false
+		PlayerStats.wall_tool_unlocked = false
+		PlayerStats.rope_tool_unlocked = false
+		PlayerStats.spring_tool_unlocked = false
+		PlayerStats.field_tool_unlocked = false
+		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+		if PlayerStats.cursed_mode:
+			PlayerStats.xCursed_orb_position = -9379
+			PlayerStats.yCursed_orb_position = 2053
+		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 	
 	
 
@@ -121,27 +120,26 @@ func _on_cursed_mode_pressed() -> void:
 	var savedata = savefile.get_as_text()
 	savefile.close()
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
-	if savefile_dict.has("cursed_mode"):
-		if savefile_dict["cursed_mode"]:
-			$New_or_continue.show()
-			$New_or_continue/New.grab_focus()
-		else:
-			PlayerStats.xPosition = -8299
-			PlayerStats.yPosition = 2118
-			PlayerStats.orb_count = 0
-			PlayerStats.tool_count = 0
-			PlayerStats.death_count = 0
-			PlayerStats.floor_tool_unlocked = false
-			PlayerStats.block_tool_unlocked = false
-			PlayerStats.wall_tool_unlocked = false
-			PlayerStats.rope_tool_unlocked = false
-			PlayerStats.spring_tool_unlocked = false
-			PlayerStats.field_tool_unlocked = false
-			PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-			if PlayerStats.cursed_mode:
-				PlayerStats.xCursed_orb_position = -9379
-				PlayerStats.yCursed_orb_position = 2053
-			get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	if savefile_dict["cursed_mode"] and not savefile_dict["beat_game_on_last_save"]:
+		$New_or_continue.show()
+		$New_or_continue/New.grab_focus()
+	else:
+		PlayerStats.xPosition = -8299
+		PlayerStats.yPosition = 2118
+		PlayerStats.orb_count = 0
+		PlayerStats.tool_count = 0
+		PlayerStats.death_count = 0
+		PlayerStats.floor_tool_unlocked = false
+		PlayerStats.block_tool_unlocked = false
+		PlayerStats.wall_tool_unlocked = false
+		PlayerStats.rope_tool_unlocked = false
+		PlayerStats.spring_tool_unlocked = false
+		PlayerStats.field_tool_unlocked = false
+		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+		if PlayerStats.cursed_mode:
+			PlayerStats.xCursed_orb_position = -9379
+			PlayerStats.yCursed_orb_position = 2053
+		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 
 func _on_new_pressed() -> void:

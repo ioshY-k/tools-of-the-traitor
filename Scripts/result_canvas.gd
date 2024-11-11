@@ -61,9 +61,11 @@ func _on_retry_button_pressed() -> void:
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+	PlayerStats.beat_game_on_last_save = true
 	if PlayerStats.cursed_mode:
 		PlayerStats.xCursed_orb_position = -9379
 		PlayerStats.yCursed_orb_position = 2053
+	PlayerStats.save_progress()
 	get_tree().reload_current_scene()
 
 
@@ -75,7 +77,9 @@ func _on_quit_button_pressed() -> void:
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+	PlayerStats.beat_game_on_last_save = true
 	if PlayerStats.cursed_mode:
 		PlayerStats.xCursed_orb_position = -9379
 		PlayerStats.yCursed_orb_position = 2053
+	PlayerStats.save_progress()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

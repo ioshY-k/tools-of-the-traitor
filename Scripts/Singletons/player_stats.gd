@@ -25,6 +25,8 @@ var yPosition = 2118
 var xCursed_orb_position = -9379
 var yCursed_orb_position = 2053
 
+var beat_game_on_last_save: bool = false #so that hitting play after a successful run doesn't trigger the continue option
+
 
 func save_progress():
 	xPosition = get_node("/root/Testlevel/Player").last_spawnpoint.x
@@ -49,7 +51,8 @@ func save_progress():
 		"orb_count" : orb_count,
 		"orb_list" : temporary_orb_list,
 		"tool_count" : tool_count,
-		"time" : get_node("/root/Testlevel/Misc_canvas/Timer").time
+		"time" : get_node("/root/Testlevel/Misc_canvas/Timer").time,
+		"beat_game_on_last_save" : beat_game_on_last_save
 	}
 	
 	var jsonString = JSON.stringify(savedata)

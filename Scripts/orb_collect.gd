@@ -5,8 +5,18 @@ var hair: AnimatedSprite2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var area_2d: Area2D = $Area2D
 @onready var orb_sprite: AnimatedSprite2D = get_node("..")
+var orb_title_number: int
 
-
+func _ready() -> void:
+	var orb_title = ""
+	for i in range(2):
+		if not str(name)[i] == "O":
+			orb_title += str(name)[i]
+	orb_title_number = int(orb_title)
+	
+	if PlayerStats.temporary_orb_list[orb_title_number - 1]:
+		get_parent().visible = false
+		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print("collect")
@@ -22,14 +32,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_collected_decision(collected: bool):
 	if collected:
-		var orb_title_number = ""
-		for i in range(2):
-			if not str(name)[i] == "O":
-				orb_title_number += str(name)[i]
-		
 		PlayerStats.orb_count += 1
-		PlayerStats.orb_list[int(orb_title_number) - 1] = true
-		print("collected! orbcount: " + str(PlayerStats.orb_list))
+		PlayerStats.orb_list[orb_title_number - 1] = true
+		PlayerStats.temporary_orb_list[int(orb_title_number) - 1] = true
 		hair.stop()
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].get_child(0).visible = true
