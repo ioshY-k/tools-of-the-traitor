@@ -55,6 +55,16 @@ func _on_continue_button_pressed() -> void:
 
 func _on_retry_button_pressed() -> void:
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	
+	var hs_file := "res://highscores.dat"
+
+	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
+	for hs in Highscores.highscore_list:
+		file_w.store_line(str(hs.score))
+		file_w.store_line(hs.time)
+		file_w.store_line(str(hs.tools))
+		file_w.store_line(str(hs.cursed))
+	file_w.close()
 	PlayerStats.xPosition = -8299
 	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0
@@ -71,6 +81,16 @@ func _on_retry_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	
+	var hs_file := "res://highscores.dat"
+	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
+	for hs in Highscores.highscore_list:
+		file_w.store_line(str(hs.score))
+		file_w.store_line(hs.time)
+		file_w.store_line(str(hs.tools))
+		file_w.store_line(str(hs.cursed))
+	file_w.close()
+	
 	PlayerStats.xPosition = -8299
 	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0

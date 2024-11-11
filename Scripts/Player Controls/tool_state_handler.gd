@@ -20,10 +20,6 @@ func _init():
 	
 func next_state(is_on_floor:bool) -> tool_states:
 	#print(tool_states.keys()[current_tool_state])
-	print("toolstate handler:")
-	print(PlayerStats.floor_tool_unlocked)
-	print("playerstats:")
-	print(PlayerStats.floor_tool_unlocked)
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			if Input.is_action_pressed("place_simple_tool"):

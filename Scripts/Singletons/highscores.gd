@@ -4,27 +4,17 @@ var highscore_list = Array()
 const hs_entry_scene = preload("res://Scenes/hs_entry.tscn")
 
 func _ready() -> void:
-	#add_highscore(999,"00:00:00",56,true)
-	#add_highscore(79,"00:57:44",68,true)
-	#add_highscore(979,"00:00:00",864,true)
-	#add_highscore(1,"57:00:42",876,true)
-	#add_highscore(99,"22:00:22",30450,true)
-	#add_highscore(59,"44:33:00",86,true)
-	#add_highscore(4,"00:00:22",8,true)
-	#add_highscore(99,"00:00:44",46,true)
-	#add_highscore(9,"00:44:00",46,true)
-	#add_highscore(15656,"33:00:00",48,false)
-	#add_highscore(1,"00:44:00",487,false)
-	#add_highscore(155,"00:66:33",787,false)
-	#add_highscore(1000,"00:55:55",777,false)
-	#add_highscore(100,"00:55:00",8,false)
-	#add_highscore(0,"00:00:00",87,false)
-	#add_highscore(1000,"00:35:00",7687,false)
-	#add_highscore(160,"00:42:43",52,false)
-	#add_highscore(400,"00:42:00",76,false)
-	#add_highscore(8000,"22:00:00",77,false)
-	#add_highscore(366,"00:00:00",898,false)
-	#add_highscore(18,"00:00:00",5,false)
+	
+	var hs_file := "res://highscores.dat"
+	
+	var file_r = FileAccess.open(hs_file, FileAccess.READ)
+	while file_r.get_position() < file_r.get_length():
+		var score = file_r.get_line()
+		var time = file_r.get_line()
+		var tools = file_r.get_line()
+		var cursed = file_r.get_line()
+		add_highscore(int(score),time,int(tools),cursed == "true")
+	file_r.close()
 	pass
 
 func add_highscore(score, time, tools, cursed):
