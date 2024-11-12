@@ -6,6 +6,8 @@ var seconds: int = 0
 var msec: int = 0
 
 
+func _ready() -> void:
+	time = PlayerStats.time
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

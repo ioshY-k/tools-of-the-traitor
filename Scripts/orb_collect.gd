@@ -34,6 +34,11 @@ func _on_collected_decision(collected: bool):
 	if collected:
 		PlayerStats.orb_count += 1
 		PlayerStats.orb_list[orb_title_number - 1] = true
+		
+		if not PlayerStats.orb_list.has(false):
+			Achievements.save_new_achievement(3)
+			
+		
 		PlayerStats.temporary_orb_list[int(orb_title_number) - 1] = true
 		hair.stop()
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false

@@ -1891,7 +1891,7 @@ theme_override_font_sizes/font_size = 68
 text = "Toggle Y to Sprint"
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(8305, -949)
+position = Vector2(8311, -972)
 collision_layer = 8
 metadata/_edit_group_ = true
 
@@ -1902,7 +1902,7 @@ shape = SubResource("RectangleShape2D_ogu3q")
 texture = ExtResource("22_0wsj2")
 
 [node name="Goal2" type="Area2D" parent="."]
-position = Vector2(6184, 6646)
+position = Vector2(6161, 6650)
 collision_layer = 8
 metadata/_edit_group_ = true
 
@@ -1997,6 +1997,6 @@ position = Vector2(-9379, 2053)
 [connection signal="pressed" from="Pause_menu/Sprint_question/MarginContainer/VBoxContainer/HBoxContainer/Hold_sprint" to="Pause_menu" method="_on_hold_sprint_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_question/MarginContainer/VBoxContainer/HBoxContainer/Toggle_sprint" to="Pause_menu" method="_on_toggle_sprint_pressed"]
 [connection signal="body_entered" from="Goal" to="Result_canvas" method="_on_goal_body_entered"]
-[connection signal="body_entered" from="Goal2" to="Result_canvas" method="_on_goal_body_entered"]
+[connection signal="body_entered" from="Goal2" to="Result_canvas" method="_on_goal_2_body_entered"]
 [connection signal="body_entered" from="DialogTrigger_intro" to="Pause_menu" method="_on_dialog_trigger_body_entered"]
 [connection signal="body_entered" from="DialogTrigger_bullettime" to="Pause_menu" method="_on_dialog_trigger_bullettime_body_entered"]

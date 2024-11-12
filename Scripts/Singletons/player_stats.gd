@@ -22,10 +22,8 @@ var orb_count = 0
 var tool_count = 0
 var xPosition = -8299
 var yPosition = 2118
-var xCursed_orb_position = -9379
-var yCursed_orb_position = 2053
+var time: float = 0.0
 
-var achievement_list = [false, false, false, false, false, false, false, false, false, false]
 
 var beat_game_on_last_save: bool = false #so that hitting play after a successful run doesn't trigger the continue option
 
@@ -33,9 +31,6 @@ var beat_game_on_last_save: bool = false #so that hitting play after a successfu
 func save_progress():
 	xPosition = get_node("/root/Testlevel/Player").last_spawnpoint.x
 	yPosition = get_node("/root/Testlevel/Player").last_spawnpoint.y
-	if cursed_mode:
-		xCursed_orb_position = get_node("/root/Testlevel/Cursed_Orb").position.x
-		yCursed_orb_position = get_node("/root/Testlevel/Cursed_Orb").position.y
 	
 	var savedata = {
 		"floor_tool_unlocked" : floor_tool_unlocked,
@@ -47,8 +42,6 @@ func save_progress():
 		"cursed_mode" : cursed_mode,
 		"xPosition" : xPosition,
 		"yPosition" : yPosition,
-		"xCursed_orb_position" : xCursed_orb_position,
-		"yCursed_orb_position" : yCursed_orb_position,
 		"death_count" : death_count,
 		"orb_count" : orb_count,
 		"orb_list" : temporary_orb_list,

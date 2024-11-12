@@ -13,8 +13,7 @@ extends CanvasLayer
 
 var score: int = 0
 
-func _on_goal_body_entered(_body: Node2D) -> void:
-	show()
+
 
 
 func _on_visibility_changed() -> void:
@@ -54,38 +53,24 @@ func _on_continue_button_pressed() -> void:
 
 
 func _on_retry_button_pressed() -> void:
-	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
-	
-	var hs_file := "res://highscores.dat"
-
-	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
-	for hs in Highscores.highscore_list:
-		file_w.store_line(str(hs.score))
-		file_w.store_line(hs.time)
-		file_w.store_line(str(hs.tools))
-		file_w.store_line(str(hs.cursed))
-	file_w.close()
-	PlayerStats.xPosition = -8299
-	PlayerStats.yPosition = 2118
-	PlayerStats.orb_count = 0
-	PlayerStats.tool_count = 0
-	PlayerStats.death_count = 0
+	submit_and_finish_run()
 	PlayerStats.floor_tool_unlocked = false
 	PlayerStats.block_tool_unlocked = false
 	PlayerStats.wall_tool_unlocked = false
 	PlayerStats.rope_tool_unlocked = false
 	PlayerStats.spring_tool_unlocked = false
 	PlayerStats.field_tool_unlocked = false
-	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-	PlayerStats.beat_game_on_last_save = true
-	if PlayerStats.cursed_mode:
-		PlayerStats.xCursed_orb_position = -9379
-		PlayerStats.yCursed_orb_position = 2053
 	get_tree().reload_current_scene()
 
-
 func _on_quit_button_pressed() -> void:
+	submit_and_finish_run()
+	PlayerStats.save_progress()
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func submit_and_finish_run():
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	if score >= 200:
+		Achievements.save_new_achievement(2)
 	
 	var hs_file := "res://highscores.dat"
 	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
@@ -103,8 +88,31 @@ func _on_quit_button_pressed() -> void:
 	PlayerStats.death_count = 0
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	PlayerStats.beat_game_on_last_save = true
+
+
+func _on_goal_body_entered(body: Node2D) -> void:
+	
+	Achievements.save_new_achievement(0)
+	show()
+	determine_other_achievements()
+
+
+func _on_goal_2_body_entered(body: Node2D) -> void:
+	
+	Achievements.save_new_achievement(1)
+	show()
+	determine_other_achievements()
+
+func determine_other_achievements():
 	if PlayerStats.cursed_mode:
-		PlayerStats.xCursed_orb_position = -9379
-		PlayerStats.yCursed_orb_position = 2053
-	PlayerStats.save_progress()
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		Achievements.save_new_achievement(4)
+		if not PlayerStats.temporary_orb_list.has(false):
+			Achievements.save_new_achievement(5)
+	if timer.minutes < 2:
+		Achievements.save_new_achievement(6)
+	if timer.minutes < 6 and not PlayerStats.temporary_orb_list.has(false):
+		Achievements.save_new_achievement(7)
+	if PlayerStats.tool_count <= 25:
+		Achievements.save_new_achievement(8)
+	if PlayerStats.tool_count <= 25 and not PlayerStats.temporary_orb_list.has(false):
+		Achievements.save_new_achievement(9)

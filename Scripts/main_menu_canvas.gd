@@ -57,16 +57,14 @@ enum player_keypositions {PLAY, PLAY_CURSED, OFF}
 var current_player_pos = player_keypositions.OFF
 
 func _ready() -> void:
-	
+	print("doing smt after signal")
 	var achievement_buttons = [	button_goal, button_goal_2, 
 								button_score, button_orbs,
 								button_cursed, button_cursed_2,
 								button_time, button_time_2,
 								button_tools, button_tools_2]
 	for achievement in range(10):
-		print("round")
-		if PlayerStats.achievement_list[achievement]:
-			("true")
+		if Achievements.achievement_list[achievement]:
 			achievement_buttons[achievement].modulate = Color(1,1,1)
 			
 	
@@ -145,9 +143,7 @@ func _on_play_pressed() -> void:
 		PlayerStats.spring_tool_unlocked = false
 		PlayerStats.field_tool_unlocked = false
 		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-		if PlayerStats.cursed_mode:
-			PlayerStats.xCursed_orb_position = -9379
-			PlayerStats.yCursed_orb_position = 2053
+		PlayerStats.time = 0.0
 		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 	
 	
@@ -175,9 +171,7 @@ func _on_cursed_mode_pressed() -> void:
 		PlayerStats.spring_tool_unlocked = false
 		PlayerStats.field_tool_unlocked = false
 		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-		if PlayerStats.cursed_mode:
-			PlayerStats.xCursed_orb_position = -9379
-			PlayerStats.yCursed_orb_position = 2053
+		PlayerStats.time = 0.0
 		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 
@@ -194,9 +188,7 @@ func _on_new_pressed() -> void:
 	PlayerStats.spring_tool_unlocked = false
 	PlayerStats.field_tool_unlocked = false
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-	if PlayerStats.cursed_mode:
-		PlayerStats.xCursed_orb_position = -9379
-		PlayerStats.yCursed_orb_position = 2053
+	PlayerStats.time = 0.0
 	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 
@@ -207,9 +199,6 @@ func _on_continue_pressed() -> void:
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
 	PlayerStats.xPosition = savefile_dict["xPosition"]
 	PlayerStats.yPosition = savefile_dict["yPosition"]
-	if PlayerStats.cursed_mode:
-		PlayerStats.xCursed_orb_position = savefile_dict["xCursed_orb_position"]
-		PlayerStats.yCursed_orb_position = savefile_dict["yCursed_orb_position"]
 	PlayerStats.orb_count = savefile_dict["orb_count"]
 	PlayerStats.tool_count = savefile_dict["tool_count"]
 	PlayerStats.death_count = savefile_dict["death_count"]
@@ -220,6 +209,7 @@ func _on_continue_pressed() -> void:
 	PlayerStats.rope_tool_unlocked = savefile_dict["rope_tool_unlocked"]
 	PlayerStats.spring_tool_unlocked = savefile_dict["spring_tool_unlocked"]
 	PlayerStats.field_tool_unlocked = savefile_dict["field_tool_unlocked"]
+	PlayerStats.time = savefile_dict["time"]
 	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 
