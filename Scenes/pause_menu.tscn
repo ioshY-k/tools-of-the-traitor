@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cat7wbeyrrnjo"]
+[gd_scene load_steps=23 format=3 uid="uid://cat7wbeyrrnjo"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_nhf6r"]
 [ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_ku6h5"]
@@ -17,13 +17,21 @@
 [ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="14_ksmfb"]
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="15_05rj1"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="16_61k2p"]
+[ext_resource type="Texture2D" uid="uid://hmivwecmdmxt" path="res://Sprites/UI/Menu_theme.png" id="18_6q886"]
 [ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="18_xpa1o"]
 
-[sub_resource type="InputEventAction" id="InputEventAction_uw22f"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ahhsm"]
+texture = ExtResource("18_6q886")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="InputEventAction" id="InputEventAction_g0ose"]
 action = &"ui_cancel"
 
-[sub_resource type="Shortcut" id="Shortcut_468pk"]
-events = [SubResource("InputEventAction_uw22f")]
+[sub_resource type="Shortcut" id="Shortcut_drgsj"]
+events = [SubResource("InputEventAction_g0ose")]
 
 [node name="Pause_menu" type="CanvasLayer"]
 visible = false
@@ -56,7 +64,6 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../HBoxContainer/Bullet_time_slider")
 theme_override_font_sizes/font_size = 40
-shortcut = SubResource("Shortcut_468pk")
 text = "Resume"
 
 [node name="Tip_menu_button" type="Button" parent="Pause_menu"]
@@ -356,6 +363,8 @@ texture = ExtResource("6_rkxdk")
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Tip_grid/MarginContainer1/Tip_button1")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_ahhsm")
+shortcut = SubResource("Shortcut_drgsj")
 text = "Return"
 
 [node name="Panel1" type="Panel" parent="."]

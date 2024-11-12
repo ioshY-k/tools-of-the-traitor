@@ -1891,7 +1891,7 @@ theme_override_font_sizes/font_size = 68
 text = "Toggle Y to Sprint"
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(-6755, 1703)
+position = Vector2(8308, -956)
 collision_layer = 8
 metadata/_edit_group_ = true
 

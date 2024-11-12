@@ -85,7 +85,7 @@ func _on_respawn_button_pressed() -> void:
 func _on_return_button_pressed() -> void:
 	$Tip_menu.hide()
 	$Pause_menu.show()
-	$Pause_menu/Resume_button.grab_focus()
+	$Pause_menu/Tip_menu_button.grab_focus()
 
 
 

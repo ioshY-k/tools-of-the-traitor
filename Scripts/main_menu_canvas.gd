@@ -211,7 +211,7 @@ func _on_bullet_time_slider_value_changed(value: float) -> void:
 
 func _on_return_pressed() -> void:
 	$Options_Container.visible = false
-	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
+	$Main_panel/MarginContainer/VBoxContainer/Options.grab_focus()
 
 
 func _on_options_focus_entered() -> void:
@@ -379,7 +379,7 @@ func _on_highscores_pressed() -> void:
 
 func _on_return_from_hs_pressed() -> void:
 	$Highscore_Container.visible = false
-	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
+	$Main_panel/MarginContainer/VBoxContainer/Highscores.grab_focus()
 
 
 func _on_cursed_mode_toggled(toggled_on: bool) -> void:

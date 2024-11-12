@@ -14,7 +14,7 @@ var bouncing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position = Vector2(PlayerStats.xCursed_orb_position, PlayerStats.yCursed_orb_position)
+	player_got_hit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -80,8 +80,9 @@ func _on_collision_detection_left_area_entered(area: Area2D) -> void:
 		player_got_hit()
 
 func player_got_hit():
-	var spawn_position = player.last_spawnpoint
 	position += Vector2(0,20000)
+	await get_tree().create_timer(1).timeout
+	var spawn_position = player.last_spawnpoint
 	$Sprite_cursedorb.visible = false
 	await get_tree().create_timer(3).timeout
 	position = spawn_position
