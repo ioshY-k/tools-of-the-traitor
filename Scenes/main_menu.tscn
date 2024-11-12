@@ -1,18 +1,30 @@
-[gd_scene load_steps=43 format=3 uid="uid://3etdrjgb1unq"]
+[gd_scene load_steps=59 format=3 uid="uid://3etdrjgb1unq"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu_canvas.gd" id="1_w03fo"]
+[ext_resource type="Texture2D" uid="uid://coyyddwotj21q" path="res://Sprites/UI/option_button_highlight_theme.png" id="2_aeq4f"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_en6pt"]
 [ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_h4maf"]
 [ext_resource type="Texture2D" uid="uid://c8bh045jgp2o7" path="res://Sprites/UI/Togglebutton.png" id="3_sbieh"]
+[ext_resource type="Texture2D" uid="uid://5rpwv2cjkwas" path="res://Sprites/UI/option_button_theme.png" id="3_wp4q5"]
 [ext_resource type="Texture2D" uid="uid://do40farynbpub" path="res://Sprites/UI/Togglebutton2.png" id="4_q6at1"]
+[ext_resource type="Texture2D" uid="uid://bky8b1copxapd" path="res://Sprites/UI/Achievement1.png" id="4_xqixr"]
 [ext_resource type="PackedScene" uid="uid://cm0n1coqbkwj0" path="res://Scenes/options_animations.tscn" id="5_4klwa"]
+[ext_resource type="Texture2D" uid="uid://t42aq75i7q1c" path="res://Sprites/UI/Achievement2.png" id="5_cowqg"]
 [ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="5_m8tyy"]
+[ext_resource type="Texture2D" uid="uid://cyestj4w1t6uv" path="res://Sprites/UI/Achievement9.png" id="6_80cwq"]
+[ext_resource type="Texture2D" uid="uid://dj662475msy1d" path="res://Sprites/UI/Achievement3.png" id="6_f2f8j"]
 [ext_resource type="Texture2D" uid="uid://dcx5ej5d7l04" path="res://Sprites/UI/new_icon.png" id="6_p2mej"]
 [ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="7_0l8mh"]
 [ext_resource type="Texture2D" uid="uid://2xsbhrip554x" path="res://Sprites/Orbs/Orb_grey.png" id="7_3hway"]
+[ext_resource type="Texture2D" uid="uid://brr43cl8fkf5t" path="res://Sprites/UI/Achievement10.png" id="7_65kua"]
+[ext_resource type="Texture2D" uid="uid://cl56s2nifj3rd" path="res://Sprites/UI/Achievement4.png" id="7_gsnt6"]
 [ext_resource type="Texture2D" uid="uid://b8fm1dba03yl7" path="res://Sprites/Orbs/Orb_green.png" id="8_apcnp"]
+[ext_resource type="Texture2D" uid="uid://bs13r3gp66krq" path="res://Sprites/UI/Achievement5.png" id="8_wy58t"]
+[ext_resource type="Texture2D" uid="uid://dgmm1bwmlokvq" path="res://Sprites/UI/Achievement6.png" id="9_1w0ht"]
 [ext_resource type="Texture2D" uid="uid://jgos12hj6um1" path="res://Sprites/Orbs/Orb_navy.png" id="9_82522"]
 [ext_resource type="Texture2D" uid="uid://c7yd3x0r1daox" path="res://Sprites/Orbs/Orb_orange.png" id="10_g1ohf"]
+[ext_resource type="Texture2D" uid="uid://c5nnrymn827wa" path="res://Sprites/UI/Achievement7.png" id="10_jspp8"]
+[ext_resource type="Texture2D" uid="uid://da1gd1u35r7fh" path="res://Sprites/UI/Achievement8.png" id="11_ffrux"]
 [ext_resource type="Texture2D" uid="uid://bly2e53ly7aik" path="res://Sprites/Orbs/Orb_purple.png" id="11_utctt"]
 [ext_resource type="Texture2D" uid="uid://dn0kpyij1a7w7" path="res://Sprites/Orbs/Orb_red.png" id="12_7uqmu"]
 [ext_resource type="Texture2D" uid="uid://cc5wbq565k7tt" path="res://Sprites/Orbs/Orb_yellow.png" id="13_mqbjc"]
@@ -24,6 +36,21 @@
 [ext_resource type="Texture2D" uid="uid://b2es21a1u1bi3" path="res://Sprites/UI/blueground_as_texture.png" id="22_60ltw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2av5u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cxn7o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0frg6"]
+texture = ExtResource("2_aeq4f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljb1v"]
+texture = ExtResource("2_aeq4f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fl8te"]
+texture = ExtResource("3_wp4q5")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [sub_resource type="InputEventAction" id="InputEventAction_0j84y"]
 action = &"ui_cancel"
@@ -417,6 +444,21 @@ _data = {
 "player_hover_cursed": SubResource("Animation_stfw7")
 }
 
+[sub_resource type="Animation" id="Animation_7otpp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-382, -493)]
+}
+
 [sub_resource type="Animation" id="Animation_xlo82"]
 resource_name = "bg_scroll"
 length = 10.0
@@ -433,21 +475,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-82, -43), Vector2(-382, -493)]
-}
-
-[sub_resource type="Animation" id="Animation_7otpp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-382, -493)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u7mef"]
@@ -500,6 +527,7 @@ text = "Play"
 
 [node name="Cursed_mode" type="Button" parent="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Must beat normal mode first. Spawns a Cursed orb that follows you - only your Tools can keep it away!"
 focus_neighbor_top = NodePath("../../Quit")
 focus_neighbor_right = NodePath("../Play")
 theme_override_font_sizes/font_size = 70
@@ -521,6 +549,223 @@ focus_neighbor_bottom = NodePath("../HBoxContainer/Play")
 theme_override_font_sizes/font_size = 70
 text = "Quit
 "
+
+[node name="Margin_Achievements" type="MarginContainer" parent="Main_menu_canvas/Main_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_menu_canvas/Main_panel/Margin_Achievements"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Panel_Achievements" type="Panel" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(800, 129.66)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -422.0
+offset_top = -20.0
+offset_right = 422.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cxn7o")
+
+[node name="Label_goal" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal and submit your first Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_goal2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the secret Second Goal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_score" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach a Score over 200"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_orbs" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Collect every Orb to unlock all Tips"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_cursed" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal in cursed mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label_cursed2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal in cursed mode while collecting all Orbs"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label_time" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal in under 20:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_time2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal in under 20:00 while collecting all Orbs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_tools" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal with max. 25 Tools used"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_tools2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
+visible = false
+custom_minimum_size = Vector2(723.755, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Reach the Goal with max. 25 tools used while collecting all Orbs"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 19
+
+[node name="Button_goal" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ljb1v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("10_jspp8")
+
+[node name="Button_goal2" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("11_ffrux")
+
+[node name="Button_score" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("6_80cwq")
+
+[node name="Button_orbs" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("7_65kua")
+
+[node name="Button_cursed" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("6_f2f8j")
+
+[node name="Button_cursed2" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("7_gsnt6")
+
+[node name="Button_time" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("4_xqixr")
+
+[node name="Button_time2" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("5_cowqg")
+
+[node name="Button_tools" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("8_wy58t")
+
+[node name="Button_tools2" type="Button" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer"]
+modulate = Color(0.56, 0.56, 0.56, 0.568627)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
+icon = ExtResource("9_1w0ht")
 
 [node name="New_or_continue" type="Panel" parent="Main_menu_canvas"]
 visible = false
@@ -1444,11 +1689,12 @@ libraries = {
 autoplay = "bg_scroll"
 
 [node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.9, 0.928333, 1, 1)
 z_index = -3
-offset_left = -82.0
-offset_top = -43.0
-offset_right = 2552.0
-offset_bottom = 1933.0
+offset_left = -382.0
+offset_top = -493.0
+offset_right = 2252.0
+offset_bottom = 1483.0
 texture = ExtResource("22_60ltw")
 stretch_mode = 1
 
@@ -1470,6 +1716,46 @@ stretch_mode = 1
 [connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_options_mouse_exited"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_options_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_quit_pressed"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
+[connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
+[connection signal="mouse_entered" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2" to="Main_menu_canvas" method="_on_achievementbutton_mouse_entered"]
+[connection signal="mouse_exited" from="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
 [connection signal="pressed" from="Main_menu_canvas/New_or_continue/New" to="Main_menu_canvas" method="_on_new_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/New_or_continue/Continue" to="Main_menu_canvas" method="_on_continue_pressed"]
 [connection signal="item_selected" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Sort_options" to="Main_menu_canvas" method="_on_sort_options_item_selected"]

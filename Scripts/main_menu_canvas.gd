@@ -27,10 +27,49 @@ extends CanvasLayer
 	$Tip_menu/Tip_grid/MarginContainer12/Tip_button12,
 ]
 
+@onready var button_goal: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal
+@onready var button_goal_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2
+@onready var button_score: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score
+@onready var button_orbs: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs
+@onready var button_cursed: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed
+@onready var button_cursed_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2
+@onready var button_time: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time
+@onready var button_time_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2
+@onready var button_tools: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools
+@onready var button_tools_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2
+
+@onready var panel_achievements: Panel = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements
+
+@onready var label_goal: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal
+@onready var label_goal_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal2
+@onready var label_score: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_score
+@onready var label_orbs: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_orbs
+@onready var label_cursed: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed
+@onready var label_cursed_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed2
+@onready var label_time: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_time
+@onready var label_time_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_time2
+@onready var label_tools: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools
+@onready var label_tools_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools2
+
+
+
 enum player_keypositions {PLAY, PLAY_CURSED, OFF}
 var current_player_pos = player_keypositions.OFF
 
 func _ready() -> void:
+	
+	var achievement_buttons = [	button_goal, button_goal_2, 
+								button_score, button_orbs,
+								button_cursed, button_cursed_2,
+								button_time, button_time_2,
+								button_tools, button_tools_2]
+	for achievement in range(10):
+		print("round")
+		if PlayerStats.achievement_list[achievement]:
+			("true")
+			achievement_buttons[achievement].modulate = Color(1,1,1)
+			
+	
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
 		
@@ -411,3 +450,45 @@ func sort_and_show():
 			var entry = Highscores.convert_to_tableentry(hs)
 			highscore_table.add_child(entry)
 			num_entries += 1
+
+
+func _on_achievementbutton_focus_entered() -> void:
+	panel_achievements.show()
+	for label in get_tree().get_nodes_in_group("Achievement_label"):
+		label.visible = false
+	
+	if button_goal.has_focus(): label_goal.visible = true
+	if button_goal_2.has_focus(): label_goal_2.visible = true
+	if button_score.has_focus(): label_score.visible = true
+	if button_orbs.has_focus(): label_orbs.visible = true
+	if button_cursed.has_focus(): label_cursed.visible = true
+	if button_cursed_2.has_focus(): label_cursed_2.visible = true
+	if button_time.has_focus(): label_time.visible = true
+	if button_time_2.has_focus(): label_time_2.visible = true
+	if button_tools.has_focus(): label_tools.visible = true
+	if button_tools_2.has_focus(): label_tools_2.visible = true
+	
+	
+
+
+func _on_achievementbutton_focus_exited() -> void:
+	panel_achievements.hide()
+	for label in get_tree().get_nodes_in_group("Achievement_label"):
+		label.visible = false
+
+
+func _on_achievementbutton_mouse_entered() -> void:
+	panel_achievements.show()
+	for label in get_tree().get_nodes_in_group("Achievement_label"):
+		label.visible = false
+	
+	if button_goal.is_hovered(): label_goal.visible = true
+	if button_goal_2.is_hovered(): label_goal_2.visible = true
+	if button_score.is_hovered(): label_score.visible = true
+	if button_orbs.is_hovered(): label_orbs.visible = true
+	if button_cursed.is_hovered(): label_cursed.visible = true
+	if button_cursed_2.is_hovered(): label_cursed_2.visible = true
+	if button_time.is_hovered(): label_time.visible = true
+	if button_time_2.is_hovered(): label_time_2.visible = true
+	if button_tools.is_hovered(): label_tools.visible = true
+	if button_tools_2.is_hovered(): label_tools_2.visible = true

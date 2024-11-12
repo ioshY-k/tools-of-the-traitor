@@ -98,25 +98,25 @@ collision_mask = 6
 
 [node name="Caster_right_wall" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(38, -16)
+position = Vector2(39, -32)
 target_position = Vector2(20, 0)
 collision_mask = 6
 
 [node name="Caster_right_wall2" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(38, -32)
+position = Vector2(39, -48)
 target_position = Vector2(18, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-20, -16)
+position = Vector2(-19, -32)
 target_position = Vector2(-20, 0)
 collision_mask = 6
 
 [node name="Caster_left_wall2" type="RayCast2D" parent="."]
 z_index = 8
-position = Vector2(-20, -32)
+position = Vector2(-19, -48)
 target_position = Vector2(-18, 0)
 collision_mask = 6
 

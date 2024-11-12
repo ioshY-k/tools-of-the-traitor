@@ -25,6 +25,8 @@ var yPosition = 2118
 var xCursed_orb_position = -9379
 var yCursed_orb_position = 2053
 
+var achievement_list = [false, false, false, false, false, false, false, false, false, false]
+
 var beat_game_on_last_save: bool = false #so that hitting play after a successful run doesn't trigger the continue option
 
 

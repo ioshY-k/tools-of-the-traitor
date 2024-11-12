@@ -66,9 +66,17 @@ func _on_resume_button_pressed() -> void:
 
 func _on_restart_button_pressed() -> void:
 	toggle_pause_menu()
+	PlayerStats.xPosition = -8299
+	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
+	PlayerStats.floor_tool_unlocked = false
+	PlayerStats.block_tool_unlocked = false
+	PlayerStats.wall_tool_unlocked = false
+	PlayerStats.rope_tool_unlocked = false
+	PlayerStats.spring_tool_unlocked = false
+	PlayerStats.field_tool_unlocked = false
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	get_tree().reload_current_scene()
 

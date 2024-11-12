@@ -70,12 +70,17 @@ func _on_retry_button_pressed() -> void:
 	PlayerStats.orb_count = 0
 	PlayerStats.tool_count = 0
 	PlayerStats.death_count = 0
+	PlayerStats.floor_tool_unlocked = false
+	PlayerStats.block_tool_unlocked = false
+	PlayerStats.wall_tool_unlocked = false
+	PlayerStats.rope_tool_unlocked = false
+	PlayerStats.spring_tool_unlocked = false
+	PlayerStats.field_tool_unlocked = false
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	PlayerStats.beat_game_on_last_save = true
 	if PlayerStats.cursed_mode:
 		PlayerStats.xCursed_orb_position = -9379
 		PlayerStats.yCursed_orb_position = 2053
-	PlayerStats.save_progress()
 	get_tree().reload_current_scene()
 
 

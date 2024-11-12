@@ -7,8 +7,8 @@ const AIR_ACCELERATION = 4250
 const GRAVITY_RISING = 4250 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 3800 * 2.5 #How much stronger  gravity pulls in falling state vs. rising state
 const MAX_FALLSPEED = 700 * 2.5 #The point where gravity doesn't accelerate fallspeed enymore
-const JUMPFORCE = 1580 #How high Player gets send when jumping
-const JUMPFORCE_INCREASE = 6 #How much runspeed influences jump height
+const JUMPFORCE = 1600 #How high Player gets send when jumping
+const JUMPFORCE_INCREASE = 5 #How much runspeed influences jump height
 const MAX_WALK_SPEED = 250 * 2.5 #Player walk speed
 const MAX_RUN_SPEED = 400 * 2.5 #Player run speed
 const MAX_P_SPEED = 500 * 2.5 #Player P speed
@@ -104,8 +104,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() and caster_left_wall_2.is_colliding())
-	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() and caster_right_wall_2.is_colliding())
+	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() or caster_left_wall_2.is_colliding())
+	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
 	current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 	state_handler.set("current_state", current_state)
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
