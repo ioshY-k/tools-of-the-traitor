@@ -131,22 +131,7 @@ func _on_play_pressed() -> void:
 		$New_or_continue.show()
 		$New_or_continue/New.grab_focus()
 	else:
-		PlayerStats.xPosition = -8299
-		PlayerStats.yPosition = 2118
-		PlayerStats.orb_count = 0
-		PlayerStats.tool_count = 0
-		PlayerStats.death_count = 0
-		PlayerStats.floor_tool_unlocked = false
-		PlayerStats.block_tool_unlocked = false
-		PlayerStats.wall_tool_unlocked = false
-		PlayerStats.rope_tool_unlocked = false
-		PlayerStats.spring_tool_unlocked = false
-		PlayerStats.field_tool_unlocked = false
-		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-		PlayerStats.time = 0.0
-		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
-	
-	
+		prepare_new_game()
 
 
 func _on_cursed_mode_pressed() -> void:
@@ -159,23 +144,13 @@ func _on_cursed_mode_pressed() -> void:
 		$New_or_continue.show()
 		$New_or_continue/New.grab_focus()
 	else:
-		PlayerStats.xPosition = -8299
-		PlayerStats.yPosition = 2118
-		PlayerStats.orb_count = 0
-		PlayerStats.tool_count = 0
-		PlayerStats.death_count = 0
-		PlayerStats.floor_tool_unlocked = false
-		PlayerStats.block_tool_unlocked = false
-		PlayerStats.wall_tool_unlocked = false
-		PlayerStats.rope_tool_unlocked = false
-		PlayerStats.spring_tool_unlocked = false
-		PlayerStats.field_tool_unlocked = false
-		PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-		PlayerStats.time = 0.0
-		get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+		prepare_new_game()
 
 
 func _on_new_pressed() -> void:
+	prepare_new_game()
+
+func prepare_new_game():
 	PlayerStats.xPosition = -8299
 	PlayerStats.yPosition = 2118
 	PlayerStats.orb_count = 0
@@ -189,6 +164,7 @@ func _on_new_pressed() -> void:
 	PlayerStats.field_tool_unlocked = false
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	PlayerStats.time = 0.0
+	
 	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
 
 

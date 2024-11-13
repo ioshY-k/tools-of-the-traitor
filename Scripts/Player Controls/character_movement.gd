@@ -101,6 +101,7 @@ func _ready() -> void:
 			)
 	PlayerStats.execute_all_options()
 	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
+	last_spawnpoint = position
 
 
 func _physics_process(delta: float) -> void:

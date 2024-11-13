@@ -596,6 +596,7 @@ theme_override_font_sizes/font_size = 30
 text = "Reach the Goal and submit your first Score"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_goal2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -606,6 +607,7 @@ theme_override_font_sizes/font_size = 30
 text = "Reach the secret Second Goal"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_score" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -616,6 +618,7 @@ theme_override_font_sizes/font_size = 30
 text = "Reach a Score of 200 or higher"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_orbs" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -626,6 +629,7 @@ theme_override_font_sizes/font_size = 30
 text = "Collect every Orb to unlock all Tips"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_cursed" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -655,9 +659,10 @@ custom_minimum_size = Vector2(723.755, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Reach the Goal in under 20:00:00"
+text = "Reach the Goal in under 2 minutes"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_time2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -665,9 +670,10 @@ custom_minimum_size = Vector2(723.755, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Reach the Goal in under 20:00 while collecting all Orbs"
+text = "Reach the Goal in under 6 minutes while collecting all Orbs"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_tools" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -678,6 +684,7 @@ theme_override_font_sizes/font_size = 30
 text = "Reach the Goal with max. 25 Tools used"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label_tools2" type="Label" parent="Main_menu_canvas/Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -685,7 +692,7 @@ custom_minimum_size = Vector2(723.755, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Reach the Goal with max. 25 tools used while collecting all Orbs"
+text = "Reach the second Goal with max. 30 tools used"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

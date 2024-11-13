@@ -167,7 +167,27 @@ var dialog_sequences : Dictionary = {
 											"Now don't thank me, let's see it in action!",
 											"Jump down into that pit while holding down LT!",
 											"HOO!"],
-										]
+										],
+
+
+				"final_names" : 			["DEMObot4","Player","DEMObot4","Player","DEMObot4"],
+				"final_param" : 			{"yOffset" : -350},
+				"final_lines" :			[
+											["OHO your favorite Chamber,",
+											"Here we go!"],
+											["Just because I spent most time in there",
+											"doesn't mean it's my favourite..."],
+											["OH.. well there must be a Goal in there somewhere.",
+											"Just touch it and you are done!"],
+											["No, I need to get the final five Orbs in there",
+											"before I do that."],
+											["with that little RAM in your Training-Chip",
+											"this does not sound feasable.",
+											"Nearly impossible.",
+											"",
+											"Just try not to push your limits too hard.",
+											"The Goal must be somewhere in there, like I said."]
+										],
 					}
 
 func run_dialog(dialog_name):

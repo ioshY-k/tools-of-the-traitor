@@ -98,8 +98,9 @@ func _on_goal_body_entered(body: Node2D) -> void:
 
 
 func _on_goal_2_body_entered(body: Node2D) -> void:
-	
 	Achievements.save_new_achievement(1)
+	if PlayerStats.tool_count <= 30:
+		Achievements.save_new_achievement(9)
 	show()
 	determine_other_achievements()
 
@@ -114,5 +115,3 @@ func determine_other_achievements():
 		Achievements.save_new_achievement(7)
 	if PlayerStats.tool_count <= 25:
 		Achievements.save_new_achievement(8)
-	if PlayerStats.tool_count <= 25 and not PlayerStats.temporary_orb_list.has(false):
-		Achievements.save_new_achievement(9)

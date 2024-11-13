@@ -85,5 +85,6 @@ func player_got_hit():
 	var spawn_position = player.last_spawnpoint
 	$Sprite_cursedorb.visible = false
 	await get_tree().create_timer(3).timeout
+	print(spawn_position)
 	position = spawn_position
 	$Sprite_cursedorb.visible = true
