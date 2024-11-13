@@ -44,7 +44,7 @@ func save_progress():
 		"yPosition" : yPosition,
 		"death_count" : death_count,
 		"orb_count" : orb_count,
-		"orb_list" : temporary_orb_list,
+		"temporary_orb_list" : temporary_orb_list,
 		"tool_count" : tool_count,
 		"time" : get_node("/root/Testlevel/Misc_canvas/Timer").time,
 		"beat_game_on_last_save" : beat_game_on_last_save
@@ -52,7 +52,7 @@ func save_progress():
 	
 	var jsonString = JSON.stringify(savedata)
 	
-	var jsonFile = FileAccess.open("res://savedata.json", FileAccess.WRITE)
+	var jsonFile = FileAccess.open("user://savedata.json", FileAccess.WRITE)
 	jsonFile.store_line(jsonString)
 
 func execute_all_options():

@@ -4,8 +4,7 @@ var highscore_list = Array()
 const hs_entry_scene = preload("res://Scenes/hs_entry.tscn")
 
 func _ready() -> void:
-	
-	var hs_file := "res://highscores.dat"
+	var hs_file = "user://highscores.dat"
 	
 	var file_r = FileAccess.open(hs_file, FileAccess.READ)
 	while file_r.get_position() < file_r.get_length():
@@ -14,6 +13,7 @@ func _ready() -> void:
 		var tools = file_r.get_line()
 		var cursed = file_r.get_line()
 		add_highscore(int(score),time,int(tools),cursed == "true")
+		
 	file_r.close()
 	pass
 

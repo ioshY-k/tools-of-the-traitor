@@ -24,6 +24,11 @@ var paused: bool = false
 func _ready() -> void:
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
+	for index in range(len(tip_buttons)):
+		if PlayerStats.temporary_orb_list[index]:
+			tip_buttons[index].disabled = false
+	
+	
 	show_timer.toggled.connect(func(on):
 		get_node("/root/Testlevel/Misc_canvas/Timer").visible = on)
 

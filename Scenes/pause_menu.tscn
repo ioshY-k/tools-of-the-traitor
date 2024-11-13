@@ -62,9 +62,15 @@ theme = ExtResource("2_ku6h5")
 [node name="Resume_button" type="Button" parent="Pause_menu"]
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_top = NodePath("../HBoxContainer/Bullet_time_slider")
+focus_neighbor_top = NodePath("../Back_to_menu_button")
 theme_override_font_sizes/font_size = 40
 text = "Resume"
+
+[node name="Restart_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Restart"
 
 [node name="Tip_menu_button" type="Button" parent="Pause_menu"]
 layout_mode = 2
@@ -77,18 +83,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Respawn"
-
-[node name="Restart_button" type="Button" parent="Pause_menu"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "Restart"
-
-[node name="Back_to_menu_button" type="Button" parent="Pause_menu"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "Back to Menu"
 
 [node name="Sprint_toggle" type="CheckButton" parent="Pause_menu"]
 layout_mode = 2
@@ -115,13 +109,19 @@ text = "Bullet Time"
 [node name="Bullet_time_slider" type="HSlider" parent="Pause_menu/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../Resume_button")
 theme = ExtResource("2_ku6h5")
 min_value = 20.0
 step = 20.0
 value = 20.0
 tick_count = 5
 ticks_on_borders = true
+
+[node name="Back_to_menu_button" type="Button" parent="Pause_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Resume_button")
+theme_override_font_sizes/font_size = 40
+text = "Save & Quit to Menu"
 
 [node name="Tip_menu" type="VBoxContainer" parent="."]
 visible = false
@@ -393,9 +393,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "The faster you run, the higher you will jump!
-
-If you run for a bit without changing direction, you will reach even higher topspeed."
+text = "The faster you run, the higher you will jump!"
 horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 1
@@ -458,6 +456,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
+text = "Your tools will keep away the Cursed orb!
+
+A tool destroyed that way is immediatly available again."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -584,7 +585,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!"
+text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!
+
+To place it more accurately, just slightly tilt the stick."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -712,11 +715,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "When placing Tools, you may first choose the direction
-and then let go of the stick before placing!
+text = "If slow motion is active, you can hold down your Build Button before jumping! That way you are in Slowmo for the whole jump!
 
-This will prevent you from accidentally walking forward
-after placing Tools."
+The slow motion does not slow down the timer by the way..."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -770,13 +771,13 @@ theme_override_font_sizes/font_size = 40
 text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
 [connection signal="value_changed" from="Pause_menu/HBoxContainer/Bullet_time_slider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Pause_menu/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]

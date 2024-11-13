@@ -17,10 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+FileCreator="*res://Scripts/Singletons/file_creator.gd"
 PlayerStats="*res://Scenes/player_stats.tscn"
-DialogManager="*res://Scripts/Singletons/DialogManager.gd"
 Highscores="*res://Scripts/Singletons/highscores.gd"
 Achievements="*res://Scripts/Singletons/achievements.gd"
+DialogManager="*res://Scripts/Singletons/DialogManager.gd"
 
 [display]
 

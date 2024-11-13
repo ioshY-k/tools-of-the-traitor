@@ -57,7 +57,16 @@ enum player_keypositions {PLAY, PLAY_CURSED, OFF}
 var current_player_pos = player_keypositions.OFF
 
 func _ready() -> void:
-	print("doing smt after signal")
+	
+	var hs_file = "user://highscores.dat"
+	
+	var hs_file_r = FileAccess.open(hs_file, FileAccess.READ)
+	if hs_file_r.get_position() == hs_file_r.get_length():
+		get_node("/root/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = true
+	else:
+		get_node("/root/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = false
+	hs_file_r.close()
+	
 	var achievement_buttons = [	button_goal, button_goal_2, 
 								button_score, button_orbs,
 								button_cursed, button_cursed_2,
@@ -66,7 +75,17 @@ func _ready() -> void:
 	for achievement in range(10):
 		if Achievements.achievement_list[achievement]:
 			achievement_buttons[achievement].modulate = Color(1,1,1)
-			
+	
+	var file := "user://unlocked_tips.dat"
+	var file_r = FileAccess.open(file, FileAccess.READ)
+	
+	if file_r.get_length() > 0:
+		var counter = 0;
+		while file_r.get_position() < file_r.get_length():
+			PlayerStats.orb_list[counter] = (file_r.get_line() == "true")
+			counter += 1
+	file_r.close()
+	
 	
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
@@ -123,7 +142,7 @@ func _process(delta: float) -> void:
 
 func _on_play_pressed() -> void:
 	PlayerStats.cursed_mode = false
-	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savefile = FileAccess.open("user://savedata.json", FileAccess.READ)
 	var savedata = savefile.get_as_text()
 	savefile.close()
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
@@ -136,7 +155,7 @@ func _on_play_pressed() -> void:
 
 func _on_cursed_mode_pressed() -> void:
 	PlayerStats.cursed_mode = true
-	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savefile = FileAccess.open("user://savedata.json", FileAccess.READ)
 	var savedata = savefile.get_as_text()
 	savefile.close()
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
@@ -169,7 +188,7 @@ func prepare_new_game():
 
 
 func _on_continue_pressed() -> void:
-	var savefile = FileAccess.open("res://savedata.json", FileAccess.READ)
+	var savefile = FileAccess.open("user://savedata.json", FileAccess.READ)
 	var savedata = savefile.get_as_text()
 	savefile.close()
 	var savefile_dict: Dictionary = JSON.parse_string(savedata)
@@ -178,7 +197,7 @@ func _on_continue_pressed() -> void:
 	PlayerStats.orb_count = savefile_dict["orb_count"]
 	PlayerStats.tool_count = savefile_dict["tool_count"]
 	PlayerStats.death_count = savefile_dict["death_count"]
-	PlayerStats.temporary_orb_list = savefile_dict["orb_list"]
+	PlayerStats.temporary_orb_list = savefile_dict["temporary_orb_list"]
 	PlayerStats.floor_tool_unlocked = savefile_dict["floor_tool_unlocked"]
 	PlayerStats.block_tool_unlocked = savefile_dict["block_tool_unlocked"]
 	PlayerStats.wall_tool_unlocked = savefile_dict["wall_tool_unlocked"]
@@ -195,7 +214,7 @@ func _on_quit_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	$Options_Container.visible = true
-	$Options_Container/Options_panel/VBoxContainer/Sprint_toggle.grab_focus()
+	$Options_Container/Options_panel/VBoxContainer/Show_tips.grab_focus()
 
 
 func _on_sprint_toggle_toggled(toggled_on: bool) -> void:

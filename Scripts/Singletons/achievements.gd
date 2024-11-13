@@ -4,7 +4,7 @@ var achievement_list = [false, false, false, false, false, false, false, false, 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var file := "res://achievements.dat"
+	var file := "user://achievements.dat"
 	
 	var file_r = FileAccess.open(file, FileAccess.READ)
 	
@@ -18,8 +18,8 @@ func _ready() -> void:
 func save_new_achievement(index: int):
 	achievement_list[index] = true
 	
-	var file := "res://achievements.dat"
+	var file := "user://achievements.dat"
 	var file_w = FileAccess.open(file, FileAccess.WRITE)
-	for achievement in achievement_list:
-		file_w.store_line(str(achievement))
+	for achievement_got in achievement_list:
+		file_w.store_line(str(achievement_got))
 	file_w.close()

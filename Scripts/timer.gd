@@ -11,7 +11,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time += delta
+	var ts = Engine.time_scale
+	if ts != 0 and ts != 1:
+		time += delta * (1/Engine.time_scale)
+	else:
+		time += delta
 	msec = int(fmod(time,1) * 100)
 	seconds = int(fmod(time, 60))
 	minutes = int(fmod(time,3600) / 60)

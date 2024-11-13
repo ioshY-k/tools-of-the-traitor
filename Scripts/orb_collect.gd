@@ -33,13 +33,23 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_collected_decision(collected: bool):
 	if collected:
 		PlayerStats.orb_count += 1
-		PlayerStats.orb_list[orb_title_number - 1] = true
+		PlayerStats.temporary_orb_list[orb_title_number - 1] = true
+		
+		if PlayerStats.orb_list[orb_title_number - 1] == false:
+			PlayerStats.orb_list[orb_title_number - 1] = true
+			var file := "user://unlocked_tips.dat"
+			var file_w = FileAccess.open(file, FileAccess.WRITE)
+			for tip_got in PlayerStats.orb_list:
+				file_w.store_line(str(tip_got))
+			file_w.close()
+		else:
+			PlayerStats.orb_list[orb_title_number - 1] = true
+			
 		
 		if not PlayerStats.orb_list.has(false):
 			Achievements.save_new_achievement(3)
-			
 		
-		PlayerStats.temporary_orb_list[int(orb_title_number) - 1] = true
+		
 		hair.stop()
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].get_child(0).visible = true

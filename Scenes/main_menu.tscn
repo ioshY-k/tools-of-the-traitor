@@ -1292,9 +1292,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
 theme_override_font_sizes/font_size = 70
-text = "The faster you run, the higher you will jump!
-
-If you run for a bit without changing direction, you will reach even higher topspeed."
+text = "The faster you run, the higher you will jump!"
 horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 1
@@ -1357,6 +1355,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
 theme_override_font_sizes/font_size = 70
+text = "Your tools will keep away the Cursed orb!
+
+A tool destroyed that way is immediatly available again."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -1483,7 +1484,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
 theme_override_font_sizes/font_size = 70
-text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!"
+text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!
+
+To place it more accurately, just slightly tilt the stick."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -1611,11 +1614,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
 theme_override_font_sizes/font_size = 70
-text = "When placing Tools, you may first choose the direction
-and then let go of the stick before placing!
+text = "If slow motion is active, you can hold down your Build Button before jumping! That way you are in Slowmo for the whole jump!
 
-This will prevent you from accidentally walking forward
-after placing Tools."
+The slow motion does not slow down the timer by the way..."
 horizontal_alignment = 1
 autowrap_mode = 2
 

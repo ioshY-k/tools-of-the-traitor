@@ -221,7 +221,6 @@ func run_dialog(dialog_name):
 	
 	# Manage the dialog by instantiating the corresponding textboxes
 	for index in range(len(dialog_participants)):
-		print(dialog_sequences[dialog_name + "_param"].get("offset"))
 		var textbox_node = textbox.instantiate()
 		dialog_participants[index].add_child(textbox_node)
 		textbox_node.display_text(	dialog_sequences[dialog_name + "_lines"][index],

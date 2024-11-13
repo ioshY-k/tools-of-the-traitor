@@ -72,7 +72,7 @@ func submit_and_finish_run():
 	if score >= 200:
 		Achievements.save_new_achievement(2)
 	
-	var hs_file := "res://highscores.dat"
+	var hs_file := "user://highscores.dat"
 	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
 	for hs in Highscores.highscore_list:
 		file_w.store_line(str(hs.score))
@@ -90,14 +90,14 @@ func submit_and_finish_run():
 	PlayerStats.beat_game_on_last_save = true
 
 
-func _on_goal_body_entered(body: Node2D) -> void:
+func _on_goal_body_entered(_body: Node2D) -> void:
 	
 	Achievements.save_new_achievement(0)
 	show()
 	determine_other_achievements()
 
 
-func _on_goal_2_body_entered(body: Node2D) -> void:
+func _on_goal_2_body_entered(_body: Node2D) -> void:
 	Achievements.save_new_achievement(1)
 	if PlayerStats.tool_count <= 30:
 		Achievements.save_new_achievement(9)
