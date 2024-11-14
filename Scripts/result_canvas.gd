@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var retry_button: Button = $VBoxContainer/HBoxContainer/Retry_button
 @onready var quit_button: Button = $VBoxContainer/HBoxContainer/Quit_button
 @onready var player: CharacterBody2D = $"../Player"
+@onready var cursed_orb: CharacterBody2D = $"../Cursed_Orb"
 
 var score: int = 0
 
@@ -21,6 +22,7 @@ func _on_visibility_changed() -> void:
 	player.velocity = Vector2.ZERO
 	if visible:
 		timer.stop_timer()
+		cursed_orb.speed = 0
 		score = 0
 		orb_label.text = "0 Orbs"
 		deaths_label.text = "0 Deaths"
@@ -49,6 +51,7 @@ func _on_visibility_changed() -> void:
 
 func _on_continue_button_pressed() -> void:
 	hide()
+	cursed_orb.speed = 350
 	timer.continue_timer()
 
 
@@ -71,6 +74,8 @@ func submit_and_finish_run():
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
 	if score >= 200:
 		Achievements.save_new_achievement(2)
+		if PlayerStats.cursed_mode:
+			Achievements.save_new_achievement(5)
 	
 	var hs_file := "user://highscores.dat"
 	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
@@ -91,7 +96,6 @@ func submit_and_finish_run():
 
 
 func _on_goal_body_entered(_body: Node2D) -> void:
-	
 	Achievements.save_new_achievement(0)
 	show()
 	determine_other_achievements()
@@ -101,17 +105,15 @@ func _on_goal_2_body_entered(_body: Node2D) -> void:
 	Achievements.save_new_achievement(1)
 	if PlayerStats.tool_count <= 30:
 		Achievements.save_new_achievement(9)
+	if timer.minutes < 2:
+		Achievements.save_new_achievement(7)
 	show()
 	determine_other_achievements()
 
 func determine_other_achievements():
 	if PlayerStats.cursed_mode:
 		Achievements.save_new_achievement(4)
-		if not PlayerStats.temporary_orb_list.has(false):
-			Achievements.save_new_achievement(5)
 	if timer.minutes < 2:
 		Achievements.save_new_achievement(6)
-	if timer.minutes < 6 and not PlayerStats.temporary_orb_list.has(false):
-		Achievements.save_new_achievement(7)
 	if PlayerStats.tool_count <= 25:
 		Achievements.save_new_achievement(8)

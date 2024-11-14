@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-@export var speed = 350
+@onready var speed = 350
+var catchup_speed = 600
 var direction_to_player: Vector2
+var high_distance_to_player: bool
 var bouncing: bool = false
 @onready var bouncetimer: Timer = $Bouncetimer
 @onready var player: CharacterBody2D = $"../Player"
@@ -10,6 +12,7 @@ var bouncing: bool = false
 @onready var collision_detection_down: Area2D = $Collision_detection_down
 @onready var collision_detection_right: Area2D = $Collision_detection_right
 @onready var collision_detection_left: Area2D = $Collision_detection_left
+@onready var respawn_timer: Timer = $Respawn_timer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,16 +22,20 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	direction_to_player = (player.position - position).normalized()
+	high_distance_to_player = (player.position - position).length() > 2000
+	print(high_distance_to_player)
 	if not bouncing:
-		set_velocity(direction_to_player * speed)
+		if high_distance_to_player:
+			set_velocity(direction_to_player * catchup_speed)
+		else:
+			set_velocity(direction_to_player * speed)
 	else:
 		velocity = velocity.move_toward(direction_to_player * speed, 400 * delta)
 		if velocity.length() >= (direction_to_player * speed).length() * 2:
 			velocity = velocity.normalized() * (direction_to_player * speed).length() * 2
 		if velocity.length() == (direction_to_player * speed).length():
 			bouncing = false
-	
-
+		
 	move_and_slide()
 
 
@@ -80,11 +87,10 @@ func _on_collision_detection_left_area_entered(area: Area2D) -> void:
 		player_got_hit()
 
 func player_got_hit():
-	position += Vector2(0,20000)
-	await get_tree().create_timer(1).timeout
-	var spawn_position = player.last_spawnpoint
-	$Sprite_cursedorb.visible = false
-	await get_tree().create_timer(3).timeout
-	print(spawn_position)
-	position = spawn_position
-	$Sprite_cursedorb.visible = true
+	position = Vector2(0,20000)
+	respawn_timer.stop()
+	respawn_timer.start()
+
+
+func _on_respawn_timer_timeout() -> void:
+	position = player.last_spawnpoint

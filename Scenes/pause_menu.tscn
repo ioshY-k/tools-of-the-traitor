@@ -458,7 +458,8 @@ theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
 text = "Your tools will keep away the Cursed orb!
 
-A tool destroyed that way is immediatly available again."
+A tool destroyed that way is immediatly
+available again."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -488,7 +489,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "To collect an Orb, you need to carry ist to safe ground.
+text = "To collect an Orb, you need to carry it to safe ground.
  This does not include Spikes or your Tools!
 
 Your Hair will stay charged while carrying Orbs."
@@ -521,8 +522,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Placing your green Wall Tool midair lets you walljump at
-any point of your jump!
+text = "Placing your green Wall Tool midair lets you walljump
+at any point of your jump!
 
 With precise timing these midair wall jumps can be performed with your red block tool as well."
 horizontal_alignment = 1
@@ -585,7 +586,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Your yellow floor tool can  bel placed in front of walls, letting you use it as a platform in two different places at once!
+text = "Your yellow floor tool can be placed in front of walls, letting you use it as a platform in two different places at once!
 
 To place it more accurately, just slightly tilt the stick."
 horizontal_alignment = 1
