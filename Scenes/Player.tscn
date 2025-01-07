@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=18 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_10mar"]
 [ext_resource type="Script" path="res://Scripts/Player Controls/state_handler.gd" id="2_asryv"]
+[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="2_p4a8p"]
 [ext_resource type="Script" path="res://Scripts/Player Controls/tool_state_handler.gd" id="2_yocoj"]
 [ext_resource type="Texture2D" uid="uid://bma5h1h68wws1" path="res://Sprites/Tools/Block.png" id="5_8eind"]
 [ext_resource type="Texture2D" uid="uid://c6amleg4p5hrr" path="res://Sprites/Tools/Floor.png" id="6_03mwq"]
@@ -33,6 +34,10 @@ point_count = 5
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 102
 script = ExtResource("1_ac4tx")
+
+[node name="Rad_menu" type="Sprite2D" parent="."]
+position = Vector2(13, -93)
+texture = ExtResource("2_p4a8p")
 
 [node name="Blink_timer" type="Timer" parent="."]
 script = ExtResource("2_1vope")

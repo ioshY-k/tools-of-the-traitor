@@ -137,7 +137,7 @@ var dialog_sequences : Dictionary = {
 
 
 					"bullet_names" :		["DEMObot3","Player","DEMObot3","Player","DEMObot3","Player","DEMObot3","Player","DEMObot3"],
-					"bullet_param" : 	{"yOffset" : -350},
+					"bullet_param" : 	{"yOffset" : -350, "xOffset" : 300},
 					"bullet_lines" : 	[
 											["Here we go",
 											"I waited for this moment."],

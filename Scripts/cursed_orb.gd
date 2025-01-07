@@ -5,6 +5,7 @@ var catchup_speed = 600
 var direction_to_player: Vector2
 var high_distance_to_player: bool
 var bouncing: bool = false
+var inside_wall: bool = false
 @onready var bouncetimer: Timer = $Bouncetimer
 @onready var player: CharacterBody2D = $"../Player"
 
@@ -13,27 +14,57 @@ var bouncing: bool = false
 @onready var collision_detection_right: Area2D = $Collision_detection_right
 @onready var collision_detection_left: Area2D = $Collision_detection_left
 @onready var respawn_timer: Timer = $Respawn_timer
+@onready var ground_layer: TileMapLayer = $"../Ground_tilemap/Ground_layer"
+@onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
+var wall_slowdown = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_got_hit()
 
+		
+
+var test = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	print(point_light_2d.color.a)
+	#checks every frame if the Orb is inside a wall
+	if ground_layer.get_cell_source_id( ground_layer.local_to_map(position)) != -1:
+		point_light_2d.color.a = move_toward(point_light_2d.color.a, randf_range(0.5,1), delta*10)
+		point_light_2d.texture_scale = move_toward(point_light_2d.texture_scale, 1.2, delta*2)
+		if wall_slowdown != 0.5:
+			wall_slowdown = 0.5
+			particles.amount = 26
+			particles.initial_velocity_max = 280
+			particles.gravity = Vector2(0,700)
+			particles.color = Color(0.197, 0.242, randf_range(0.65,0.40))
+	else:
+		point_light_2d.color.a = move_toward(point_light_2d.color.a, 0, delta*3)
+		point_light_2d.texture_scale = move_toward(point_light_2d.texture_scale, 0.8, delta*2)
+		if wall_slowdown != 1:
+			wall_slowdown = 1
+			particles.amount = 9
+			particles.initial_velocity_max = 40
+			particles.gravity = Vector2(0,0)
+			particles.color = Color(0.089, 0.012, 0.036)
+			
+	
 	direction_to_player = (player.position - position).normalized()
 	high_distance_to_player = (player.position - position).length() > 2000
-	print(high_distance_to_player)
 	if not bouncing:
 		if high_distance_to_player:
 			set_velocity(direction_to_player * catchup_speed)
 		else:
-			set_velocity(direction_to_player * speed)
+			set_velocity(direction_to_player * speed * wall_slowdown)
+					
 	else:
-		velocity = velocity.move_toward(direction_to_player * speed, 400 * delta)
-		if velocity.length() >= (direction_to_player * speed).length() * 2:
-			velocity = velocity.normalized() * (direction_to_player * speed).length() * 2
-		if velocity.length() == (direction_to_player * speed).length():
+		velocity = velocity.move_toward(direction_to_player * speed * wall_slowdown, 400 * delta)
+		if velocity.length() > (direction_to_player * speed * wall_slowdown).length() * 2:
+			velocity = velocity.normalized() * (direction_to_player * speed * wall_slowdown).length() * 2
+		if velocity.length() == (direction_to_player * speed * wall_slowdown).length():
 			bouncing = false
 		
 	move_and_slide()

@@ -22,7 +22,8 @@ func _on_visibility_changed() -> void:
 	player.velocity = Vector2.ZERO
 	if visible:
 		timer.stop_timer()
-		cursed_orb.speed = 0
+		if PlayerStats.cursed_mode:
+			cursed_orb.speed = 0
 		score = 0
 		orb_label.text = "0 Orbs"
 		deaths_label.text = "0 Deaths"

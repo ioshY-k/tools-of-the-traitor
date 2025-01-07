@@ -155,6 +155,7 @@ accept={
 2d_physics/layer_5="Deadzone"
 2d_physics/layer_6="Spring_tool"
 2d_physics/layer_7="Floor_tool_overlap"
+2d_physics/layer_8="Cursed_Orb"
 2d_physics/layer_10="Followpoint1"
 2d_physics/layer_11="Followpoint2"
 2d_physics/layer_12="Followpoint3"

@@ -46,8 +46,11 @@ var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
+@onready var sprite_rope_tool = $Sprite_spring_tool #vorübergehend
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 @onready var path_floor_tool: Path2D = $Path_floor_tool
+
+@onready var tool_previews = [sprite_floor_tool, sprite_block_tool, sprite_wall_tool, sprite_spring_tool, sprite_rope_tool]
 
 var is_on_tool: bool
 var is_on_spring_tool: bool # To prevent the launch variable from changing back right after launching. This caused middle high jumps from Spring tool
@@ -56,7 +59,6 @@ var block_tool_available: bool = true
 var wall_tool_available: bool = true
 var rope_tool_available: bool = true
 var spring_tool_available: bool = true
-var field_tool_available: bool = true
 var floor_overlapping: bool = false
 var block_tool_distance = 120
 var tool_offset_x = 10
@@ -77,13 +79,12 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLJUMP_L, WALLJUMP_R}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
-enum tool_states {	NO_TOOL, CANCEL,
+enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
 					FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
 					BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
-					WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
+					RIGHT_WALL_TOOL_PREVIEW, LEFT_WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
 					ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
-					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE,
-					FIELD_TOOL_PREVIEW, FIELD_TOOL_PLACE}
+					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE}
 
 
 func _ready() -> void:
@@ -112,6 +113,7 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
+	#print(tool_states.keys()[current_tool_state])
 	
 	if controllable:
 		match current_state:
@@ -143,6 +145,8 @@ func _physics_process(delta: float) -> void:
 				on_no_tool_state()
 			tool_states.CANCEL:
 				on_cancel_state()
+			tool_states.RAD_MENU:
+				on_rad_menu_state()
 			tool_states.FLOOR_TOOL_PREVIEW:
 				on_floortool_preview_state(delta)
 			tool_states.FLOOR_TOOL_PLACE:
@@ -151,8 +155,10 @@ func _physics_process(delta: float) -> void:
 				on_blocktool_preview_state()
 			tool_states.BLOCK_TOOL_PLACE:
 				on_blocktool_place_state()
-			tool_states.WALL_TOOL_PREVIEW:
-				on_wall_tool_preview_state(delta)
+			tool_states.RIGHT_WALL_TOOL_PREVIEW:
+				on_right_wall_tool_preview_state()
+			tool_states.LEFT_WALL_TOOL_PREVIEW:
+				on_left_wall_tool_preview_state()
 			tool_states.WALL_TOOL_PLACE:
 				on_wall_tool_place_state()
 			tool_states.ROPE_TOOL_PREVIEW:
@@ -160,13 +166,9 @@ func _physics_process(delta: float) -> void:
 			tool_states.ROPE_TOOL_PLACE:
 				on_rope_tool_place_state()
 			tool_states.SPRING_TOOL_PREVIEW:
-				on_spring_tool_preview_state(delta)
+				on_spring_tool_preview_state()
 			tool_states.SPRING_TOOL_PLACE:
 				on_spring_tool_place_state()
-			tool_states.FIELD_TOOL_PREVIEW:
-				on_field_tool_preview_state()
-			tool_states.FIELD_TOOL_PLACE:
-				on_field_tool_place_state()
 	
 	move_and_slide() #Player movement
 
@@ -343,14 +345,17 @@ func on_walljump_state(left: int):
 
 
 func on_no_tool_state():
+	$Rad_menu.visible = false
 	set_bullet_time(false)
 
 
+func on_rad_menu_state():
+	$Rad_menu.visible = true
+
+
 func on_cancel_state():
-	sprite_floor_tool.visible = false
-	sprite_block_tool.visible = false
-	sprite_wall_tool.visible = false
-	sprite_spring_tool.visible = false
+	print("cancel")
+	set_tool_visibilities(null)
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -360,9 +365,7 @@ func on_cancel_state():
 
 func on_floortool_preview_state(delta):
 	set_bullet_time(false)
-	sprite_block_tool.visible = false
-	sprite_wall_tool.visible = false
-	sprite_spring_tool.visible = false
+	set_tool_visibilities(sprite_floor_tool)
 	velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 	animations.play("Preview_anim")
 	left_hand.rotation = deg_to_rad(30)
@@ -383,9 +386,7 @@ func on_floortool_preview_state(delta):
 
 
 func on_blocktool_preview_state():
-	sprite_floor_tool.visible = false
-	sprite_wall_tool.visible = false
-	sprite_spring_tool.visible = false
+	set_tool_visibilities(sprite_block_tool)
 	if block_tool_available:
 		sprite_block_tool.visible = true
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -394,77 +395,40 @@ func on_blocktool_preview_state():
 		set_bullet_time(true)
 
 
-func on_wall_tool_preview_state(delta):
-	sprite_floor_tool.visible = false
-	sprite_block_tool.visible = false
-	sprite_spring_tool.visible = false
-	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-	#sprite_rope/spring/field_tool.visible = false
-	if is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
-		animations.play("Preview_anim")
-		left_hand.rotation = deg_to_rad(30)
-		if Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length():
-			if model_position.scale.x < 0:
-				#Mirror vectors that point up right along the y-axis (because scale.x is flipped for the model)
-				if Vector2(-xAxis, -yAxis).angle() < -PI/2:
-					left_arm.rotation = -(Vector2(-xAxis, -yAxis).angle() + PI) + 1
-				#Mirror vectors that point down right along the y-axis (because scale.x is flipped for the model)
-				else:
-					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
-			else:
-				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
+func on_right_wall_tool_preview_state():
+	set_tool_visibilities(sprite_wall_tool)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
-		determine_walltool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		determine_walltool_position(true)
+		set_bullet_time(true)
+		
+func on_left_wall_tool_preview_state():
+	set_tool_visibilities(sprite_wall_tool)
+	if wall_tool_available:
+		sprite_wall_tool.visible = true
+		determine_walltool_position(false)
 		set_bullet_time(true)
 
 
 func on_rope_tool_preview_state():
-	sprite_floor_tool.visible = false
-	sprite_block_tool.visible = false
-	sprite_wall_tool.visible = false
-	sprite_spring_tool.visible = false
+	set_tool_visibilities(sprite_rope_tool)
 
 
-func on_spring_tool_preview_state(delta):
-	sprite_floor_tool.visible = false
-	sprite_block_tool.visible = false
-	sprite_wall_tool.visible = false
-	var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+func on_spring_tool_preview_state():
+	set_tool_visibilities(sprite_spring_tool)
 	if is_on_floor():
 		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 180 + tool_offset_x, 3)
-		velocity.x = move_toward(velocity.x, 0, 8500 * delta)
-		animations.play("Preview_anim")
-		
-		#Managing Arm spinning animation
-		left_hand.rotation = deg_to_rad(30)
-		if Vector2(xAxis, yAxis).length() > Vector2(0.65,0.65).abs().length():
-			if model_position.scale.x < 0:
-				#Mirror vectors that point up right along the y-axis (because scale.x is flipped for the model)
-				if Vector2(-xAxis, -yAxis).angle() < -PI/2:
-					left_arm.rotation = -(Vector2(-xAxis, -yAxis).angle() + PI) + 1
-				#Mirror vectors that point down right along the y-axis (because scale.x is flipped for the model)
-				else:
-					left_arm.rotation =  PI - Vector2(-xAxis, -yAxis).angle() + 1
-			else:
-				left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
-	
 	else:
 		sprite_spring_tool.position = Vector2.DOWN * 150 + Vector2.RIGHT * tool_offset_x
 	if spring_tool_available:
 		sprite_spring_tool.visible = true
 		set_bullet_time(true)
 
-
-func on_field_tool_preview_state():
-	sprite_floor_tool.visible = false
-	sprite_block_tool.visible = false
-	sprite_wall_tool.visible = false
-	sprite_spring_tool.visible = false
-
+func set_tool_visibilities(current_tool):
+	$Rad_menu.visible = false
+	for tool_preview in tool_previews:
+		if current_tool != tool_preview:
+			tool_preview.visible = false
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
@@ -523,9 +487,6 @@ func on_spring_tool_place_state():
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 
-func on_field_tool_place_state():
-	pass
-
 
 func _ledge_corrections():
 	if caster_inner_left_ceiling.is_colliding() or caster_inner_right_ceiling.is_colliding():
@@ -582,33 +543,11 @@ func determine_blocktool_position(inputstrength, controllerangle):
 		sprite_block_tool.position = block_tool_distance * Vector2.DOWN  + Vector2.RIGHT * 10
 
 
-func determine_walltool_position(inputstrength, controllerangle):
-	#Control stick Deadzone
-	if inputstrength > Vector2(0.65,0.65).abs().length():
-		var x_value = 150 + tool_offset_x
-		var y_value
-		
-		#Mirrors left Stickangle to the respective right Value.
-		#This way the position mapping only needs to happen within the range of -3PI/8 and +3PI/8 (right wall placement zone)
-		if controllerangle < -PI/2:
-			controllerangle = -(controllerangle + PI)
-			x_value = -170 + tool_offset_x
-		elif controllerangle > PI/2:
-			controllerangle =  PI - controllerangle
-			x_value = -170 + tool_offset_x
-		
-		#Snapping to lowest position
-		if controllerangle > PI/8:
-			y_value = 240
-		#Snapping to highest position
-		elif controllerangle < -PI/8:
-			y_value = -240
-		else:
-			#Formula for mapping given highest wallpoint Newmax and lowest wallpoint Newmin:
-			#Newmin + ((controllerangle - Oldmin) / (Oldmax - Oldmin)) * (Newmax - Newmin)
-			y_value = -240 + ((controllerangle + 3*PI/8) / (3*PI/4)) * 480
-		
-		sprite_wall_tool.position = Vector2(x_value,y_value)
+func determine_walltool_position(right_side: bool):
+	var direction = -1
+	if right_side: direction = 1
+	sprite_wall_tool.position = Vector2(direction * 150 + tool_offset_x, +75)
+	
 
 
 func eyes_blinking():
