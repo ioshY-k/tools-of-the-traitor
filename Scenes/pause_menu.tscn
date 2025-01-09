@@ -773,8 +773,8 @@ text = "Close"
 
 [connection signal="pressed" from="Pause_menu/Resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Restart_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_menu_button_pressed"]
+[connection signal="pressed" from="Pause_menu/Tip_menu_button" to="." method="_on_tip_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Respawn_button" to="." method="_on_respawn_button_pressed"]
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
 [connection signal="value_changed" from="Pause_menu/HBoxContainer/Bullet_time_slider" to="." method="_on_h_slider_value_changed"]

@@ -49,6 +49,13 @@ var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var sprite_rope_tool = $Sprite_spring_tool #vorübergehend
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 @onready var path_floor_tool: Path2D = $Path_floor_tool
+@onready var rad_menu: Node2D = $Rad_menu
+@onready var rad_menu_anim: AnimationPlayer = $Rad_menu/Rad_menu_Animations
+@onready var bubble_up: AnimatedSprite2D = $Rad_menu/Bubble_up
+@onready var bubble_right: AnimatedSprite2D = $Rad_menu/Bubble_right
+@onready var bubble_bottom: AnimatedSprite2D = $Rad_menu/Bubble_bottom
+@onready var bubble_left: AnimatedSprite2D = $Rad_menu/Bubble_left
+
 
 @onready var tool_previews = [sprite_floor_tool, sprite_block_tool, sprite_wall_tool, sprite_spring_tool, sprite_rope_tool]
 
@@ -113,7 +120,9 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	#print(tool_states.keys()[current_tool_state])
+	print(tool_states.keys()[current_tool_state])
+	
+	print(rad_menu_anim.current_animation)
 	
 	if controllable:
 		match current_state:
@@ -345,17 +354,41 @@ func on_walljump_state(left: int):
 
 
 func on_no_tool_state():
-	$Rad_menu.visible = false
+	if rad_menu.visible:
+		if rad_menu_anim.is_playing():
+			await(rad_menu_anim.animation_finished)
+		if not current_tool_state == tool_states.RAD_MENU: 
+			rad_menu_anim.play_backwards("appear_anim")
+			await(rad_menu_anim.animation_finished)
+			rad_menu.visible = false
 	set_bullet_time(false)
 
 
 func on_rad_menu_state():
-	$Rad_menu.visible = true
+	if not rad_menu.visible:
+		
+		if PlayerStats.wall_tool_unlocked:
+			bubble_left.frame = 1
+			bubble_right.frame = 1
+		else:
+			bubble_left.frame = 0
+			bubble_right.frame = 0
+		if PlayerStats.spring_tool_unlocked:
+			bubble_bottom.frame = 1
+		else:
+			bubble_bottom.frame = 0
+		if PlayerStats.rope_tool_unlocked:
+			bubble_up.frame = 1
+		else:
+			bubble_up.frame = 0
+		
+		rad_menu.visible = true
+		rad_menu_anim.play("appear_anim")
 
 
 func on_cancel_state():
 	print("cancel")
-	set_tool_visibilities(null)
+	set_tool_visibilities(null, false)
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -365,7 +398,7 @@ func on_cancel_state():
 
 func on_floortool_preview_state(delta):
 	set_bullet_time(false)
-	set_tool_visibilities(sprite_floor_tool)
+	set_tool_visibilities(sprite_floor_tool, false)
 	velocity.x = move_toward(velocity.x, 0, 8500 * delta)
 	animations.play("Preview_anim")
 	left_hand.rotation = deg_to_rad(30)
@@ -386,7 +419,7 @@ func on_floortool_preview_state(delta):
 
 
 func on_blocktool_preview_state():
-	set_tool_visibilities(sprite_block_tool)
+	set_tool_visibilities(sprite_block_tool, false)
 	if block_tool_available:
 		sprite_block_tool.visible = true
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -396,14 +429,14 @@ func on_blocktool_preview_state():
 
 
 func on_right_wall_tool_preview_state():
-	set_tool_visibilities(sprite_wall_tool)
+	set_tool_visibilities(sprite_wall_tool,true)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
 		determine_walltool_position(true)
 		set_bullet_time(true)
 		
 func on_left_wall_tool_preview_state():
-	set_tool_visibilities(sprite_wall_tool)
+	set_tool_visibilities(sprite_wall_tool,false)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
 		determine_walltool_position(false)
@@ -411,11 +444,11 @@ func on_left_wall_tool_preview_state():
 
 
 func on_rope_tool_preview_state():
-	set_tool_visibilities(sprite_rope_tool)
+	set_tool_visibilities(sprite_rope_tool, false)
 
 
 func on_spring_tool_preview_state():
-	set_tool_visibilities(sprite_spring_tool)
+	set_tool_visibilities(sprite_spring_tool, false)
 	if is_on_floor():
 		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 180 + tool_offset_x, 3)
 	else:
@@ -424,11 +457,29 @@ func on_spring_tool_preview_state():
 		sprite_spring_tool.visible = true
 		set_bullet_time(true)
 
-func set_tool_visibilities(current_tool):
-	$Rad_menu.visible = false
+func set_tool_visibilities(current_tool, is_right):
+		
 	for tool_preview in tool_previews:
 		if current_tool != tool_preview:
 			tool_preview.visible = false
+			
+	match current_tool:
+		sprite_wall_tool:
+			if is_right:
+				rad_menu_anim.play("select_right_anim")
+				await(rad_menu_anim.animation_finished)
+			else:
+				rad_menu_anim.play("select_left_anim")
+				await(rad_menu_anim.animation_finished)
+		sprite_spring_tool:
+			rad_menu_anim.play("select_bottom_anim")
+			await(rad_menu_anim.animation_finished)
+		sprite_rope_tool:
+			rad_menu_anim.play("select_up_anim")
+			await(rad_menu_anim.animation_finished)
+	
+	if not current_tool_state == tool_states.RAD_MENU: 
+		rad_menu.visible = false
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
