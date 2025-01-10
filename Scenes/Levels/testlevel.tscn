@@ -1811,7 +1811,7 @@ offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
-text = "New Control Tip unlocked! Find it in the Tip Menu..."
+text = "New Strategy! Press Start to open..."
 horizontal_alignment = 1
 
 [node name="Sprint_status_icon" type="Panel" parent="Misc_canvas"]

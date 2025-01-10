@@ -14,9 +14,9 @@ var bullet_time_value: float = 1.0
 var cursed_mode: bool = true
 var no_dialog: bool = false
 const ORB_NUMBER = 12
-var orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+@export var orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 
-var temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
+@export var temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 var death_count = 0
 var orb_count = 0
 var tool_count = 0

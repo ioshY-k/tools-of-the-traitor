@@ -1,20 +1,37 @@
 extends CanvasLayer
 @onready var show_timer: CheckButton = $Pause_menu/Show_timer
 
-@onready var tip_panels = [$Panel1,$Panel2,$Panel3,$Panel4,$Panel5,$Panel6,$Panel7,$Panel8,$Panel9,$Panel10,$Panel11,$Panel12]
+#to determine the tip focused on calling the tip menu. Tip 1 per default
+var last_grabbed_orb : int = 6
+
+@onready var tip_panels = [
+	$Tip_menu/HBoxContainer/Panel1,
+	$Tip_menu/HBoxContainer/Panel2,
+	$Tip_menu/HBoxContainer/Panel3,
+	$Tip_menu/HBoxContainer/Panel4,
+	$Tip_menu/HBoxContainer/Panel5,
+	$Tip_menu/HBoxContainer/Panel6,
+	$Tip_menu/HBoxContainer/Panel7,
+	$Tip_menu/HBoxContainer/Panel8,
+	$Tip_menu/HBoxContainer/Panel9,
+	$Tip_menu/HBoxContainer/Panel10,
+	$Tip_menu/HBoxContainer/Panel11,
+	$Tip_menu/HBoxContainer/Panel12,
+	$Tip_menu/HBoxContainer/PanelEmpty
+]
 @onready var tip_buttons = [
-	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1,
-	$Tip_menu/Tip_grid/MarginContainer2/Tip_button2,
-	$Tip_menu/Tip_grid/MarginContainer3/Tip_button3,
-	$Tip_menu/Tip_grid/MarginContainer4/Tip_button4,
-	$Tip_menu/Tip_grid/MarginContainer5/Tip_button5,
-	$Tip_menu/Tip_grid/MarginContainer6/Tip_button6,
-	$Tip_menu/Tip_grid/MarginContainer7/Tip_button7,
-	$Tip_menu/Tip_grid/MarginContainer8/Tip_button8,
-	$Tip_menu/Tip_grid/MarginContainer9/Tip_button9,
-	$Tip_menu/Tip_grid/MarginContainer10/Tip_button10,
-	$Tip_menu/Tip_grid/MarginContainer11/Tip_button11,
-	$Tip_menu/Tip_grid/MarginContainer12/Tip_button12,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer1/Tip_button1,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer2/Tip_button2,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer3/Tip_button3,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer4/Tip_button4,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer5/Tip_button5,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer6/Tip_button6,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer7/Tip_button7,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer8/Tip_button8,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer9/Tip_button9,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer10/Tip_button10,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer11/Tip_button11,
+	$Tip_menu/HBoxContainer/Tip_grid/MarginContainer12/Tip_button12
 ]
 
 var is_in_death_anim: bool = false
@@ -35,6 +52,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	
+	print("last orb: " + str(last_grabbed_orb))
+	
 	if Input.is_action_just_pressed("pause"):
 		if not $"../Result_canvas".visible:
 				toggle_pause_menu()
@@ -60,8 +80,15 @@ func toggle_pause_menu():
 			is_in_death_anim = false
 			player.controllable = false
 		Engine.time_scale = 0
+		
+		if $"../Misc_canvas/new_tip_text".visible:
+			$Pause_menu.hide()
+			$Tip_menu.show()
+			tip_buttons[last_grabbed_orb].grab_focus()
+		else:
+			$Pause_menu/Resume_button.grab_focus()
 		show()
-		$Pause_menu/Resume_button.grab_focus()
+
 	paused = not paused
 
 
@@ -88,7 +115,7 @@ func _on_restart_button_pressed() -> void:
 func _on_tip_menu_button_pressed() -> void:
 	$Pause_menu.hide()
 	$Tip_menu.show()
-	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1.grab_focus()
+	tip_buttons[0].grab_focus()
 
 func _on_respawn_button_pressed() -> void:
 	toggle_pause_menu()
@@ -99,90 +126,6 @@ func _on_return_button_pressed() -> void:
 	$Tip_menu.hide()
 	$Pause_menu.show()
 	$Pause_menu/Tip_menu_button.grab_focus()
-
-
-
-func _on_tip_button_1_pressed() -> void:
-	$Panel1.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer1/Tip_button1/new_icon.visible = false
-
-func _on_tip_button_2_pressed() -> void:
-	$Panel2.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer2/Tip_button2/new_icon.visible = false
-
-
-func _on_tip_button_3_pressed() -> void:
-	$Panel3.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer3/Tip_button3/new_icon.visible = false
-
-
-func _on_tip_button_4_pressed() -> void:
-	$Panel4.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer4/Tip_button4/new_icon.visible = false
-
-
-func _on_tip_button_5_pressed() -> void:
-	$Panel5.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer5/Tip_button5/new_icon.visible = false
-
-
-func _on_tip_button_6_pressed() -> void:
-	$Panel6.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer6/Tip_button6/new_icon.visible = false
-
-
-func _on_tip_button_7_pressed() -> void:
-	$Panel7.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer7/Tip_button7/new_icon.visible = false
-
-
-func _on_tip_button_8_pressed() -> void:
-	$Panel8.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer8/Tip_button8/new_icon.visible = false
-
-
-func _on_tip_button_9_pressed() -> void:
-	$Panel9.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer9/Tip_button9/new_icon.visible = false
-	
-
-func _on_tip_button_10_pressed() -> void:
-	$Panel10.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer10/Tip_button10/new_icon.visible = false
-
-
-func _on_tip_button_11_pressed() -> void:
-	$Panel11.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer11/Tip_button11/new_icon.visible = false
-
-
-func _on_tip_button_12_pressed() -> void:
-	$Panel12.show()
-	$Close_tip_button.show()
-	$Close_tip_button.grab_focus()
-	$Tip_menu/Tip_grid/MarginContainer12/Tip_button12/new_icon.visible = false
 	
 func _on_close_tip_button_pressed() -> void:
 	for panel in tip_panels:
@@ -246,3 +189,20 @@ func _on_back_to_menu_button_pressed() -> void:
 	PlayerStats.save_progress()
 	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
+
+func _on_tip_button_focus_entered(extra_arg_0: int) -> void:
+	var current_button: Button = tip_buttons[extra_arg_0]
+	
+	if extra_arg_0 < 12:
+		tip_buttons[extra_arg_0].get_node("new_icon").visible = false
+	#sets the Empty Panel as Panel that shows
+	if current_button.disabled == true:
+		extra_arg_0 = 12
+	
+	for panel_index in range(len(tip_panels)):
+		if panel_index == extra_arg_0:
+			tip_panels[panel_index].visible = true
+		else:
+			tip_panels[panel_index].visible = false

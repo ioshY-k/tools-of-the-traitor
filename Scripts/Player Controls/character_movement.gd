@@ -34,6 +34,7 @@ var sliding_on_right_wall: bool
 #Player model and animation
 @onready var player_cutout: Node2D = $Model_position/Player_cutout
 @onready var animations: AnimationPlayer = player_cutout.get_node("AnimationPlayer")
+@onready var rocket_animations: AnimationPlayer = player_cutout.get_node("Player_hip/Player_torso/Rocket_AnimationPlayer")
 @onready var model_position: Node2D = $Model_position
 @onready var left_arm: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm")
 @onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
@@ -120,11 +121,14 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	print(tool_states.keys()[current_tool_state])
-	
-	print(rad_menu_anim.current_animation)
 	
 	if controllable:
+		
+		if p_speed_is_active:
+			rocket_animations.play("Rocket_on")
+		else:
+			rocket_animations.play("Rocket_off")
+		
 		match current_state:
 			states.IDLE:
 				on_idle_state(delta)

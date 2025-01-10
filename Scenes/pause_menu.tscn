@@ -130,258 +130,249 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -706.0
-offset_top = -584.0
-offset_right = 706.0
-offset_bottom = 584.0
+offset_left = -975.95
+offset_top = -561.02
+offset_right = 1036.05
+offset_bottom = 606.98
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.915, 0.915)
 pivot_offset = Vector2(704.995, 583.76)
-size_flags_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_ku6h5")
 
-[node name="Tip_grid" type="GridContainer" parent="Tip_menu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Tip_menu"]
 layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Tip_grid" type="GridContainer" parent="Tip_menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 columns = 4
 
-[node name="MarginContainer1" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer1" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button1" type="Button" parent="Tip_menu/Tip_grid/MarginContainer1"]
+[node name="Tip_button1" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer1"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer4/Tip_button4")
-focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_top = NodePath("../../../../Return_button")
 icon = ExtResource("5_lb00x")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer1/Tip_button1"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer2" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button2" type="Button" parent="Tip_menu/Tip_grid/MarginContainer2"]
+[node name="Tip_button2" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer2"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_top = NodePath("../../../../Return_button")
 icon = ExtResource("6_3y2b6")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer2/Tip_button2"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer3" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button3" type="Button" parent="Tip_menu/Tip_grid/MarginContainer3"]
+[node name="Tip_button3" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer3"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_top = NodePath("../../../../Return_button")
 icon = ExtResource("7_cpoij")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer3/Tip_button3"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer4" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer4" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button4" type="Button" parent="Tip_menu/Tip_grid/MarginContainer4"]
+[node name="Tip_button4" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer4"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../Return_button")
+focus_neighbor_top = NodePath("../../../../Return_button")
 focus_neighbor_right = NodePath("../../MarginContainer1/Tip_button1")
 icon = ExtResource("8_cj2se")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer4/Tip_button4"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer5" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer5" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button5" type="Button" parent="Tip_menu/Tip_grid/MarginContainer5"]
+[node name="Tip_button5" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer5"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer8/Tip_button8")
 icon = ExtResource("9_rqw6b")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer5/Tip_button5"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer6" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer6" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button6" type="Button" parent="Tip_menu/Tip_grid/MarginContainer6"]
+[node name="Tip_button6" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer6"]
 layout_mode = 2
 icon = ExtResource("10_vefrv")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer6/Tip_button6"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer6/Tip_button6"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer7" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer7" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button7" type="Button" parent="Tip_menu/Tip_grid/MarginContainer7"]
+[node name="Tip_button7" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer7"]
 layout_mode = 2
 icon = ExtResource("11_eu5ua")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer7/Tip_button7"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer7/Tip_button7"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer8" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer8" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button8" type="Button" parent="Tip_menu/Tip_grid/MarginContainer8"]
+[node name="Tip_button8" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer8"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer5/Tip_button5")
 icon = ExtResource("12_3b8hb")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer8/Tip_button8"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer9" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer9" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button9" type="Button" parent="Tip_menu/Tip_grid/MarginContainer9"]
+[node name="Tip_button9" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer9"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer12/Tip_button12")
 icon = ExtResource("13_f0r8c")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer9/Tip_button9"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer10" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer10" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button10" type="Button" parent="Tip_menu/Tip_grid/MarginContainer10"]
+[node name="Tip_button10" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer10"]
 layout_mode = 2
 icon = ExtResource("14_ksmfb")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer10/Tip_button10"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer10/Tip_button10"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer11" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer11" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button11" type="Button" parent="Tip_menu/Tip_grid/MarginContainer11"]
+[node name="Tip_button11" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer11"]
 layout_mode = 2
 icon = ExtResource("15_05rj1")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer11/Tip_button11"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer11/Tip_button11"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="MarginContainer12" type="MarginContainer" parent="Tip_menu/Tip_grid"]
+[node name="MarginContainer12" type="MarginContainer" parent="Tip_menu/HBoxContainer/Tip_grid"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
 
-[node name="Tip_button12" type="Button" parent="Tip_menu/Tip_grid/MarginContainer12"]
+[node name="Tip_button12" type="Button" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer12"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer9/Tip_button9")
 icon = ExtResource("16_61k2p")
 
-[node name="new_icon" type="Sprite2D" parent="Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
+[node name="new_icon" type="Sprite2D" parent="Tip_menu/HBoxContainer/Tip_grid/MarginContainer12/Tip_button12"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
 texture = ExtResource("6_rkxdk")
 
-[node name="Return_button" type="Button" parent="Tip_menu"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../Tip_grid/MarginContainer1/Tip_button1")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_ahhsm")
-shortcut = SubResource("Shortcut_drgsj")
-text = "Return"
-
-[node name="Panel1" type="Panel" parent="."]
+[node name="Panel1" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel1"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel1"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -398,21 +389,13 @@ horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 1
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel2"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -430,21 +413,13 @@ This includes the short period standing on your spring tool before liftoff."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel3" type="Panel" parent="."]
+[node name="Panel3" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel3"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel3"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -463,21 +438,13 @@ available again."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel4" type="Panel" parent="."]
+[node name="Panel4" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel4"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel4"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -496,21 +463,13 @@ Your Hair will stay charged while carrying Orbs."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel5" type="Panel" parent="."]
+[node name="Panel5" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel5"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel5"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -529,21 +488,13 @@ With precise timing these midair wall jumps can be performed with your red block
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel6" type="Panel" parent="."]
+[node name="Panel6" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel6"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel6"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -560,21 +511,13 @@ while Wall Jumping without holding Sprint is excellent for precise Landing!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel7" type="Panel" parent="."]
+[node name="Panel7" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel7"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel7"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -592,21 +535,13 @@ To place it more accurately, just slightly tilt the stick."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel8" type="Panel" parent="."]
+[node name="Panel8" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel8"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel8"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -624,21 +559,13 @@ The tool will snap to make the timing for your second jump as generous as possib
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel9" type="Panel" parent="."]
+[node name="Panel9" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel9"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel9"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -656,21 +583,13 @@ This way you won't launch into spikes at the ceiling."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel10" type="Panel" parent="."]
+[node name="Panel10" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel10"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel10"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -690,21 +609,13 @@ Holding Y calls back every Tool at once!
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel11" type="Panel" parent="."]
+[node name="Panel11" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel11"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel11"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -722,21 +633,13 @@ The slow motion does not slow down the timer by the way..."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Panel12" type="Panel" parent="."]
+[node name="Panel12" type="Panel" parent="Tip_menu/HBoxContainer"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 157.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.835, 0.835)
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel12"]
+[node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel12"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -754,6 +657,19 @@ You'll continue sliding down a wall while aiming
 down or away with your Tools."
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="PanelEmpty" type="Panel" parent="Tip_menu/HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Return_button" type="Button" parent="Tip_menu"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../HBoxContainer/Tip_grid/MarginContainer1/Tip_button1")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_ahhsm")
+shortcut = SubResource("Shortcut_drgsj")
+text = "Return"
 
 [node name="Close_tip_button" type="Button" parent="."]
 visible = false
@@ -779,17 +695,29 @@ text = "Close"
 [connection signal="pressed" from="Pause_menu/Sprint_toggle" to="." method="_on_sprint_toggle_pressed"]
 [connection signal="value_changed" from="Pause_menu/HBoxContainer/Bullet_time_slider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Pause_menu/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="." method="_on_tip_button_4_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="." method="_on_tip_button_5_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="." method="_on_tip_button_6_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="." method="_on_tip_button_7_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="." method="_on_tip_button_8_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="." method="_on_tip_button_9_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="." method="_on_tip_button_10_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="." method="_on_tip_button_11_pressed"]
-[connection signal="pressed" from="Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="." method="_on_tip_button_12_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_focus_entered" binds= [0]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer1/Tip_button1" to="." method="_on_tip_button_1_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_focus_entered" binds= [1]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer2/Tip_button2" to="." method="_on_tip_button_2_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_focus_entered" binds= [2]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer3/Tip_button3" to="." method="_on_tip_button_3_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer4/Tip_button4" to="." method="_on_tip_button_focus_entered" binds= [3]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer4/Tip_button4" to="." method="_on_tip_button_4_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer5/Tip_button5" to="." method="_on_tip_button_focus_entered" binds= [4]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer5/Tip_button5" to="." method="_on_tip_button_5_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer6/Tip_button6" to="." method="_on_tip_button_focus_entered" binds= [5]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer6/Tip_button6" to="." method="_on_tip_button_6_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer7/Tip_button7" to="." method="_on_tip_button_focus_entered" binds= [6]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer7/Tip_button7" to="." method="_on_tip_button_7_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer8/Tip_button8" to="." method="_on_tip_button_focus_entered" binds= [7]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer8/Tip_button8" to="." method="_on_tip_button_8_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer9/Tip_button9" to="." method="_on_tip_button_focus_entered" binds= [8]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer9/Tip_button9" to="." method="_on_tip_button_9_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer10/Tip_button10" to="." method="_on_tip_button_focus_entered" binds= [9]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer10/Tip_button10" to="." method="_on_tip_button_10_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer11/Tip_button11" to="." method="_on_tip_button_focus_entered" binds= [10]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer11/Tip_button11" to="." method="_on_tip_button_11_pressed"]
+[connection signal="focus_entered" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer12/Tip_button12" to="." method="_on_tip_button_focus_entered" binds= [11]]
+[connection signal="pressed" from="Tip_menu/HBoxContainer/Tip_grid/MarginContainer12/Tip_button12" to="." method="_on_tip_button_12_pressed"]
 [connection signal="pressed" from="Tip_menu/Return_button" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Close_tip_button" to="." method="_on_close_tip_button_pressed"]

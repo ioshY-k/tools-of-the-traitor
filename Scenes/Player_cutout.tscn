@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://dpynb1w5bp435"]
+[gd_scene load_steps=56 format=3 uid="uid://dpynb1w5bp435"]
 
 [ext_resource type="Texture2D" uid="uid://cgsbstlybw7sw" path="res://Sprites/Player/Hip.png" id="1_kyuqh"]
 [ext_resource type="Texture2D" uid="uid://nx5ifbc8t1ie" path="res://Sprites/Player/Player_hair/Holding_orb_anim/Player_hair_loaded1.png" id="2_i6458"]
 [ext_resource type="Texture2D" uid="uid://duru3lxpaey" path="res://Sprites/Player/Torso.png" id="2_suh5b"]
+[ext_resource type="Texture2D" uid="uid://calq4tqury0uc" path="res://Sprites/Player/Rocket.png" id="3_5oyax"]
 [ext_resource type="Texture2D" uid="uid://cwr5wt2ufvc7h" path="res://Sprites/Player/Player_hair/Holding_orb_anim/Player_hair_loaded2.png" id="3_e4j0u"]
 [ext_resource type="Texture2D" uid="uid://bic32hfqckex3" path="res://Sprites/Player/Arm_r.png" id="3_l5qbl"]
 [ext_resource type="Texture2D" uid="uid://bcrjbw6pbf0h5" path="res://Sprites/Player/Hand_r.png" id="4_4hp2v"]
@@ -34,6 +35,97 @@
 [ext_resource type="Texture2D" uid="uid://c40nf8dh3i2h5" path="res://Sprites/Player/Wheel_l.png" id="32_mc01p"]
 [ext_resource type="Texture2D" uid="uid://chyqyvqu1u47d" path="res://Sprites/Player/Wing_l.png" id="33_gfvpa"]
 [ext_resource type="Texture2D" uid="uid://d1xyvotni22d5" path="res://Sprites/Player/Wing_r.png" id="34_csxda"]
+
+[sub_resource type="Animation" id="Animation_ohxof"]
+resource_name = "Rocket_off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Rocket:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-57.4167, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Rocket:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.469699, 0.389155)]
+}
+
+[sub_resource type="Animation" id="Animation_k0fxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Rocket:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-57.4167, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Rocket:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.469699, 0.389155)]
+}
+
+[sub_resource type="Animation" id="Animation_kcd2n"]
+resource_name = "Rocket_on"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Rocket:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.46, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-124.083, -13.1667), Vector2(-105.333, -13.1667), Vector2(-107.417, -13.1667), Vector2(-92.8333, -13.1667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Rocket:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.46, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.04213, 1.69195), Vector2(1.49838, 1.24144), Vector2(1.63338, 1.35329), Vector2(1.23755, 1.02533)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_abxkp"]
+_data = {
+"RESET": SubResource("Animation_k0fxd"),
+"Rocket_off": SubResource("Animation_ohxof"),
+"Rocket_on": SubResource("Animation_kcd2n")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kwbye"]
 animations = [{
@@ -3706,6 +3798,17 @@ z_as_relative = false
 position = Vector2(22, -66.347)
 texture = ExtResource("2_suh5b")
 region_rect = Rect2(0, 361.932, 400.8, 238.068)
+
+[node name="Player_Rocket" type="Sprite2D" parent="Player_hip/Player_torso"]
+z_index = -1
+position = Vector2(-57.4167, -11)
+scale = Vector2(0.469699, 0.389155)
+texture = ExtResource("3_5oyax")
+
+[node name="Rocket_AnimationPlayer" type="AnimationPlayer" parent="Player_hip/Player_torso"]
+libraries = {
+"": SubResource("AnimationLibrary_abxkp")
+}
 
 [node name="Player_rightarm" type="Sprite2D" parent="Player_hip/Player_torso"]
 z_as_relative = false
