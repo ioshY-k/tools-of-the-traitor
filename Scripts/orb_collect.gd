@@ -55,9 +55,21 @@ func _on_collected_decision(collected: bool):
 		hair.stop()
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].disabled = false
 		$"../../Pause_menu".tip_buttons[int(orb_title_number) - 1].get_child(0).visible = true
+		
+		
 		$"../../Misc_canvas/new_tip_text".show()
+		get_tree().create_tween() \
+		.tween_property($"../../Misc_canvas/new_tip_text", "position:y", 980, 0.4) \
+		.set_trans(Tween.TRANS_BACK) \
+		.set_ease(Tween.EASE_OUT)
 		await get_tree().create_timer(5).timeout
+		get_tree().create_tween() \
+		.tween_property($"../../Misc_canvas/new_tip_text", "position:y", 1100, 0.4) \
+		.set_trans(Tween.TRANS_BACK) \
+		.set_ease(Tween.EASE_IN)
+		await get_tree().create_timer(0.4).timeout
 		$"../../Misc_canvas/new_tip_text".hide()
+		
 		queue_free()
 	else:
 		hair.stop()

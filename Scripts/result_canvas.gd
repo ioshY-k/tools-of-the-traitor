@@ -52,7 +52,8 @@ func _on_visibility_changed() -> void:
 
 func _on_continue_button_pressed() -> void:
 	hide()
-	cursed_orb.speed = 350
+	if is_instance_valid(cursed_orb): 
+		cursed_orb.speed = 350
 	timer.continue_timer()
 
 

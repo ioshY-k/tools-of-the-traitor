@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://bcn8drka07wqk"]
+[gd_scene load_steps=111 format=4 uid="uid://bcn8drka07wqk"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -48,18 +48,29 @@
 [ext_resource type="Texture2D" uid="uid://b4v476rckfh28" path="res://Sprites/UI/run_icon.png" id="42_xf8j3"]
 [ext_resource type="Texture2D" uid="uid://dt6h2mb83ld27" path="res://Sprites/UI/walk_icon.png" id="43_p5m0n"]
 [ext_resource type="PackedScene" uid="uid://cat7wbeyrrnjo" path="res://Scenes/pause_menu.tscn" id="45_7vlik"]
+[ext_resource type="Texture2D" uid="uid://bt5ap1km4n63e" path="res://Sprites/UI/Popup.png" id="46_uvoos"]
 [ext_resource type="Script" path="res://Scripts/timer.gd" id="47_2rfbk"]
+[ext_resource type="Texture2D" uid="uid://bky8b1copxapd" path="res://Sprites/UI/Achievement1.png" id="47_aa67x"]
 [ext_resource type="PackedScene" uid="uid://ua73pd60mipx" path="res://Scenes/result_canvas.tscn" id="47_d776w"]
+[ext_resource type="Texture2D" uid="uid://t42aq75i7q1c" path="res://Sprites/UI/Achievement2.png" id="48_cnvhm"]
 [ext_resource type="PackedScene" uid="uid://bwv0yy81ksawb" path="res://Scenes/sign.tscn" id="48_kf1qq"]
 [ext_resource type="PackedScene" uid="uid://c1jq3l5o3enkg" path="res://Scenes/dialog_trigger.tscn" id="48_ml1qr"]
+[ext_resource type="Texture2D" uid="uid://dj662475msy1d" path="res://Sprites/UI/Achievement3.png" id="49_hu76i"]
+[ext_resource type="Texture2D" uid="uid://cl56s2nifj3rd" path="res://Sprites/UI/Achievement4.png" id="50_y6fhq"]
 [ext_resource type="Shader" path="res://Shaders/frost_window.gdshader" id="50_y33b1"]
+[ext_resource type="Texture2D" uid="uid://bs13r3gp66krq" path="res://Sprites/UI/Achievement5.png" id="51_1owu4"]
 [ext_resource type="Texture2D" uid="uid://c2tivyc8vj3ol" path="res://Sprites/Rec_room/Record_room_monitor1.png" id="51_23i6i"]
 [ext_resource type="Script" path="res://Scripts/rec_room.gd" id="52_jtaht"]
+[ext_resource type="Texture2D" uid="uid://dgmm1bwmlokvq" path="res://Sprites/UI/Achievement6.png" id="52_kaeyd"]
 [ext_resource type="Texture2D" uid="uid://c8mmc6qahexvo" path="res://Sprites/Rec_room/Record_room_monitor2.png" id="52_rtgso"]
 [ext_resource type="Texture2D" uid="uid://bdv1q36fvffwc" path="res://Sprites/Rec_room/Record_room_monitor3.png" id="53_04ha2"]
+[ext_resource type="Texture2D" uid="uid://c5nnrymn827wa" path="res://Sprites/UI/Achievement7.png" id="53_htdfg"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="53_ynckq"]
+[ext_resource type="Texture2D" uid="uid://da1gd1u35r7fh" path="res://Sprites/UI/Achievement8.png" id="54_8xxgt"]
 [ext_resource type="Texture2D" uid="uid://8rgcrxc0vpoq" path="res://Sprites/Rec_room/Record_room_monitor4.png" id="54_dbw3p"]
 [ext_resource type="Texture2D" uid="uid://cwocydct4x5tp" path="res://Sprites/Rec_room/Record_room_monitor5.png" id="55_8hai5"]
+[ext_resource type="Texture2D" uid="uid://cyestj4w1t6uv" path="res://Sprites/UI/Achievement9.png" id="55_rhw2m"]
+[ext_resource type="Texture2D" uid="uid://brr43cl8fkf5t" path="res://Sprites/UI/Achievement10.png" id="56_ct500"]
 [ext_resource type="Texture2D" uid="uid://djesj0nfff126" path="res://Sprites/Rec_room/Record_room_monitor6.png" id="56_gjh5y"]
 [ext_resource type="Texture2D" uid="uid://bnygp1im0lvkx" path="res://Sprites/Rec_room/Record_room_monitor_talking1.png" id="57_aaylw"]
 [ext_resource type="Texture2D" uid="uid://ct6pftuipgi0y" path="res://Sprites/Rec_room/Record_room_monitor_talking2.png" id="58_wsjaj"]
@@ -1196,6 +1207,51 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epury"]
+texture = ExtResource("46_uvoos")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e327a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("53_htdfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_8xxgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_rhw2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_ct500")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_hu76i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_y6fhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_aa67x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_cnvhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_1owu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_kaeyd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogu3q"]
 size = Vector2(118, 124)
 
@@ -1254,7 +1310,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-5207, 960)
+position = Vector2(7955, -974)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)
@@ -1798,21 +1854,84 @@ animation = &"collected_anim"
 [node name="12Orb" parent="Orb_Sprite12" instance=ExtResource("17_3jwa3")]
 scale = Vector2(1.25, 1.25)
 
+[node name="Result_canvas" parent="." instance=ExtResource("47_d776w")]
+
 [node name="Misc_canvas" type="CanvasLayer" parent="."]
 
-[node name="new_tip_text" type="Label" parent="Misc_canvas"]
+[node name="new_tip_text" type="Panel" parent="Misc_canvas"]
 visible = false
-anchors_preset = 12
+custom_minimum_size = Vector2(1500, 100)
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -248.0
-offset_bottom = -165.0
+offset_left = -750.0
+offset_top = 20.0
+offset_right = 750.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_epury")
+
+[node name="text" type="Label" parent="Misc_canvas/new_tip_text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -470.5
+offset_top = -41.5
+offset_right = 470.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 text = "New Strategy! Press Start to open..."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="new_achievement_panel" type="Panel" parent="Misc_canvas"]
+custom_minimum_size = Vector2(200, 150)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -75.0
+offset_right = 225.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_epury")
+
+[node name="Achievement_sprite" type="AnimatedSprite2D" parent="Misc_canvas/new_achievement_panel"]
+position = Vector2(100, 55)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_e327a")
+
+[node name="text" type="Label" parent="Misc_canvas/new_achievement_panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -470.5
+offset_top = -83.0
+offset_right = 470.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "New Achievement!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprint_status_icon" type="Panel" parent="Misc_canvas"]
 visible = false
@@ -1943,8 +2062,6 @@ shape = SubResource("RectangleShape2D_ogu3q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal2"]
 texture = ExtResource("22_0wsj2")
-
-[node name="Result_canvas" parent="." instance=ExtResource("47_d776w")]
 
 [node name="Sign_floor_tool" parent="." instance=ExtResource("48_kf1qq")]
 position = Vector2(-1652, 737)

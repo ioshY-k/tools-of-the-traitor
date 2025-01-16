@@ -2,7 +2,7 @@ extends CanvasLayer
 @onready var show_timer: CheckButton = $Pause_menu/Show_timer
 
 #to determine the tip focused on calling the tip menu. Tip 1 per default
-var last_grabbed_orb : int = 6
+var last_grabbed_orb : int = 0
 
 @onready var tip_panels = [
 	$Tip_menu/HBoxContainer/Panel1,
@@ -53,7 +53,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
-	print("last orb: " + str(last_grabbed_orb))
 	
 	if Input.is_action_just_pressed("pause"):
 		if not $"../Result_canvas".visible:

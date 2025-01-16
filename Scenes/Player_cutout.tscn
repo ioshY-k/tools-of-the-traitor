@@ -36,9 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://chyqyvqu1u47d" path="res://Sprites/Player/Wing_l.png" id="33_gfvpa"]
 [ext_resource type="Texture2D" uid="uid://d1xyvotni22d5" path="res://Sprites/Player/Wing_r.png" id="34_csxda"]
 
-[sub_resource type="Animation" id="Animation_ohxof"]
-resource_name = "Rocket_off"
-length = 0.1
+[sub_resource type="Animation" id="Animation_k0fxd"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,8 +63,9 @@ tracks/1/keys = {
 "values": [Vector2(0.469699, 0.389155)]
 }
 
-[sub_resource type="Animation" id="Animation_k0fxd"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ohxof"]
+resource_name = "Rocket_off"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

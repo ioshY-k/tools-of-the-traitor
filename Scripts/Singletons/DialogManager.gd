@@ -60,7 +60,7 @@ var dialog_sequences : Dictionary = {
 				"floor_tool_names" : 	["Sign_floor_tool"],
 				"floor_tool_param" : 	{"yOffset" : 150},
 				"floor_tool_lines": 		[
-											["Hold L/ZL to place the Yellow Tool.",
+											["Hold L to place the Yellow Tool.",
 											"Use the left Stick to choose a position",
 											"You can only place this Tool while standing still.",
 											"",
@@ -81,30 +81,30 @@ var dialog_sequences : Dictionary = {
 				"block_tool_names" :		["Sign_block_tool"],
 				"block_tool_param" : 	{"yOffset" : 150},
 				"block_tool_lines" :		[
-											["Hold L/ZL to place the Red Tool.",
+											["Hold L to place the Red Tool.",
 											"Use the left Stick to choose a position",
 											"You can only place this Tool when airborne.",
 											"",
 											"(The default position is always downwards,",
-											"so tapping L/ZL will always position this tool beneath you)"],
+											"so tapping L will always position this tool beneath you)"],
 										],
 
 
 				"wall_tool_names" :		["Sign_wall_tool"],
 				"wall_tool_param" : 		{"yOffset" : 150},
 				"wall_tool_lines" :		[
-											["Hold RT + Left/Right to place the Green Tool.",
+											["Hold R to open the special tool menu.",
+											"Tap left or right to choose the Wall tool.",
 											"This Tool can only be placed to your left or right.",
-											"It can be placed while airborne and while grounded.",
-											"It can not be used as standable ground."],
+											"It can be placed while airborne and while grounded."],
 										],
 
 
 				"spring_tool_names" :		["Sign_spring_tool"],
 				"spring_tool_param" : 		{"yOffset" : 150},
 				"spring_tool_lines" :		[
-											["Hold RT + Down to place the Blue Tool.",
-											"",
+											["Hold R to open the special tool menu.",
+											"Tap down to choose the Spring tool.",
 											"While grounded, it will always be placed in front of you.",
 											"While airborn, it will always be placed right below you.",
 											"To get launched from the tool",

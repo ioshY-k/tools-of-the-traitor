@@ -30,7 +30,6 @@ var test = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	print(point_light_2d.color.a)
 	#checks every frame if the Orb is inside a wall
 	if ground_layer.get_cell_source_id( ground_layer.local_to_map(position)) != -1:
 		point_light_2d.color.a = move_toward(point_light_2d.color.a, randf_range(0.5,1), delta*10)
