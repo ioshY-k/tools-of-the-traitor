@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		spring_ally.position = spring_ally.position.move_toward(spring_tool.position, 2500 * get_physics_process_delta_time())
 
 
-func _on_floor_tool_sprite_visibility_changed() -> void:
+func _on_floor_tool_visibility_changed() -> void:
 	floor_ally_gone = not floor_ally_gone
 	if floor_ally_gone:
 		allies.erase(floor_ally)

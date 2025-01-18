@@ -42,6 +42,7 @@ var sliding_on_right_wall: bool
 @onready var blink_timer: Timer = $Blink_timer
 
 #Tool placement
+var floor_tool_freezeframes : bool = false
 var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var sprite_floor_tool: Sprite2D = $Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
@@ -83,16 +84,16 @@ var controllable: bool = true
 @onready var state_handler = $State_handler
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
-				WALLSLIDE_L, WALLSLIDE_R,
-				WALLJUMP_L, WALLJUMP_R}
+	WALLSLIDE_L, WALLSLIDE_R,
+	WALLJUMP_L, WALLJUMP_R}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
 enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
-					FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
-					BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
-					RIGHT_WALL_TOOL_PREVIEW, LEFT_WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
-					ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
-					SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE}
+	FLOOR_TOOL_PREVIEW, FLOOR_TOOL_PLACE,
+	BLOCK_TOOL_PREVIEW, BLOCK_TOOL_PLACE,
+	RIGHT_WALL_TOOL_PREVIEW, LEFT_WALL_TOOL_PREVIEW, WALL_TOOL_PLACE,
+	ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
+	SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE}
 
 
 func _ready() -> void:
@@ -104,10 +105,10 @@ func _ready() -> void:
 	animations.set_blend_time("Jump_anim", "Fall_anim", 0.3)
 	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
 	supercancel_timer.timeout.connect(func():
-			for toolnum in range(len(last_placed_tools)):
-				callback_tool(last_placed_tools.pop_back())
-				await get_tree().create_timer(0.05).timeout
-			)
+		for toolnum in range(len(last_placed_tools)):
+			callback_tool(last_placed_tools.pop_back())
+			await get_tree().create_timer(0.05).timeout
+		)
 	PlayerStats.execute_all_options()
 	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
 	last_spawnpoint = position
@@ -205,7 +206,7 @@ func callback_tool(tool: Node):
 	tool.set_process_mode(PROCESS_MODE_DISABLED)
 	tool.visible = false
 	match tool.name:
-		"Floor_tool": 
+		"Floor_tool":
 			floor_tool_available = true
 		"Block_tool":
 			block_tool_available = true
@@ -361,7 +362,7 @@ func on_no_tool_state():
 	if rad_menu.visible:
 		if rad_menu_anim.is_playing():
 			await(rad_menu_anim.animation_finished)
-		if not current_tool_state == tool_states.RAD_MENU: 
+		if not current_tool_state == tool_states.RAD_MENU:
 			rad_menu_anim.play_backwards("appear_anim")
 			await(rad_menu_anim.animation_finished)
 			rad_menu.visible = false
@@ -482,47 +483,115 @@ func set_tool_visibilities(current_tool, is_right):
 			rad_menu_anim.play("select_up_anim")
 			await(rad_menu_anim.animation_finished)
 	
-	if not current_tool_state == tool_states.RAD_MENU: 
+	if not current_tool_state == tool_states.RAD_MENU:
 		rad_menu.visible = false
 
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 		if not floor_overlapping:
-			get_parent().get_node("%Floor_tool").set_process_mode(PROCESS_MODE_INHERIT)
-			get_parent().get_node("%Floor_tool").visible = true
-			get_parent().get_node("%Floor_tool").position = sprite_floor_tool.global_position
+			var floor_tool = get_parent().get_node("%Floor_tool")
+			floor_tool.set_process_mode(PROCESS_MODE_INHERIT)
+			floor_tool.visible = true
+			floor_tool.position = sprite_floor_tool.global_position
+			floortool_place_animation(floor_tool)
+			
+			floor_tool_freezeframes = true
+			Engine.time_scale = 0.05
+			await get_tree().create_timer(0.031).timeout
+			floor_tool_freezeframes = false
+			Engine.time_scale = 1
+			
 			floor_tool_available = false
 			last_placed_tools.push_back(get_parent().get_node("%Floor_tool"))
 			PlayerStats.tool_count += 1
+
+func floortool_place_animation(floor_tool: StaticBody2D):
+	
+	floor_tool.get_child(3).rotation = -PI/2
+	floor_tool.get_child(3).scale = Vector2(1.64,1.5)
+	floor_tool.get_child(1).position.x = -60
+	floor_tool.get_child(2).position.x = 60
+	
+	get_tree().create_tween() \
+		.tween_property(floor_tool.get_child(3), "rotation", 0, 0.027) \
+		.set_trans(Tween.TRANS_EXPO) \
+		.set_ease(Tween.EASE_IN)
+	get_tree().create_tween() \
+		.tween_property(floor_tool.get_child(3), "scale", Vector2(1.28,1), 0.027) \
+		.set_trans(Tween.TRANS_EXPO) \
+		.set_ease(Tween.EASE_IN)
+	get_tree().create_tween() \
+		.tween_property(floor_tool.get_child(1), "position:x", 0, 0.027) \
+		.set_trans(Tween.TRANS_EXPO) \
+		.set_ease(Tween.EASE_IN)
+	get_tree().create_tween() \
+		.tween_property(floor_tool.get_child(2), "position:x", 0, 0.027) \
+		.set_trans(Tween.TRANS_EXPO) \
+		.set_ease(Tween.EASE_IN)
 
 
 func on_blocktool_place_state():
 	if sprite_block_tool.visible:
 		sprite_block_tool.visible = false
-		get_parent().get_node("%Block_tool").set_process_mode(PROCESS_MODE_INHERIT)
-		get_parent().get_node("%Block_tool").visible = true
-		get_parent().get_node("%Block_tool").position = sprite_block_tool.global_position
+		var block_tool = get_parent().get_node("%Block_tool")
+		block_tool.set_process_mode(PROCESS_MODE_INHERIT)
+		block_tool.visible = true
+		block_tool.position = sprite_block_tool.global_position
+		blocktool_place_animation(block_tool)
 		block_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+			
+func blocktool_place_animation(block_tool):
+	block_tool.get_child(3).scale = Vector2(0.38,0.38)
+	block_tool.get_child(2).scale = Vector2(0.2,0.2)
+	
+	get_tree().create_tween() \
+		.tween_property(block_tool.get_child(3), "scale", Vector2(0.69,0.69), 0.4) \
+		.set_trans(Tween.TRANS_BACK) \
+		.set_ease(Tween.EASE_IN)
+	get_tree().create_tween() \
+		.tween_property(block_tool.get_child(2), "scale", Vector2(0.69,0.69), 0.4) \
+		.set_trans(Tween.TRANS_SPRING) \
+		.set_ease(Tween.EASE_OUT)
 
 
 func on_wall_tool_place_state():
 	if sprite_wall_tool.visible:
 		sprite_wall_tool.visible = false
-		get_parent().get_node("%Wall_tool").set_process_mode(PROCESS_MODE_INHERIT)
-		get_parent().get_node("%Wall_tool").visible = true
-		get_parent().get_node("%Wall_tool").position = sprite_wall_tool.global_position
+		var wall_tool = get_parent().get_node("%Wall_tool")
+		wall_tool.set_process_mode(PROCESS_MODE_INHERIT)
+		wall_tool.visible = true
+		wall_tool.position = sprite_wall_tool.global_position
+		walltool_place_animation(wall_tool)
 		wall_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Wall_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+			
+func walltool_place_animation(wall_tool):
+	wall_tool.get_child(2).scale = Vector2(0.711,0.27)
+	wall_tool.get_child(0).rotation = -PI/2
+	wall_tool.get_child(1).rotation = PI/2
+		
+	get_tree().create_tween() \
+		.tween_property(wall_tool.get_child(2), "scale", Vector2(0.331,0.51), 0.4) \
+		.set_trans(Tween.TRANS_SPRING) \
+		.set_ease(Tween.EASE_OUT)
+	get_tree().create_tween() \
+		.tween_property(wall_tool.get_child(0), "rotation", 0, 0.4) \
+		.set_trans(Tween.TRANS_ELASTIC) \
+		.set_ease(Tween.EASE_OUT)
+	get_tree().create_tween() \
+		.tween_property(wall_tool.get_child(1), "rotation", 0, 0.4) \
+		.set_trans(Tween.TRANS_ELASTIC) \
+		.set_ease(Tween.EASE_OUT)
 
 
 func on_rope_tool_place_state():
@@ -551,25 +620,27 @@ func _ledge_corrections():
 		caster_outer_left_ceiling.enabled = true
 		caster_outer_right_ceiling.enabled = true
 	while caster_outer_left_ceiling.is_colliding():
-		global_position += Vector2(2,0)
+		print_debug("teleporting")
+		global_position += Vector2(20,0)
 		caster_outer_left_ceiling.force_raycast_update()
 	while caster_outer_right_ceiling.is_colliding():
-		global_position += Vector2(-2,0)
+		print_debug("teleporting")
+		global_position += Vector2(-20,0)
 		caster_outer_right_ceiling.force_raycast_update()
 
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
 
-		if inputstrength >= 0.91:
-			path_floor_tool.scale.x = 1
-			path_floor_tool.scale.y = 1
-			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-			sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
-		else:
-			path_floor_tool.scale.x = inputstrength
-			path_floor_tool.scale.y = inputstrength
-			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-			sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),7 * delta)
+	if inputstrength >= 0.91:
+		path_floor_tool.scale.x = 1
+		path_floor_tool.scale.y = 1
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+		sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
+	else:
+		path_floor_tool.scale.x = inputstrength
+		path_floor_tool.scale.y = inputstrength
+		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+		sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),7 * delta)
 
 
 func determine_blocktool_position(inputstrength, controllerangle):
@@ -612,7 +683,7 @@ func eyes_blinking():
 func set_bullet_time(state):
 	if state and not is_on_floor():
 		Engine.time_scale = move_toward(Engine.time_scale, PlayerStats.bullet_time_value, 0.05)
-	else:
+	elif not floor_tool_freezeframes:
 		Engine.time_scale = move_toward(Engine.time_scale, 1, 0.05)
 
 
