@@ -10,7 +10,8 @@ var current_sprint_state: bool = false
 
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
-				WALLJUMP_L, WALLJUMP_R}
+				WALLJUMP_L, WALLJUMP_R,
+				SWING}
 
 func _init():
 	current_state = states.IDLE

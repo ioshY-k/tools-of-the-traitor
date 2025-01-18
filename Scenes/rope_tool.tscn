@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwvx83v77q05o"]
+
+[ext_resource type="Script" path="res://Scripts/rope_tool.gd" id="1_65bk0"]
+[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="2_u1pmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svltb"]
+
+[sub_resource type="Curve2D" id="Curve2D_ftunl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1579.28, 527.121, -90.9687, 0.275663, 90.9687, -0.275663, -1433.94, 617.524, 0, 0, 0, 0, -1295.55, 525.73)
+}
+point_count = 3
+
+[node name="Rope_tool" type="StaticBody2D"]
+position = Vector2(969, 467)
+scale = Vector2(1.438, 1.438)
+collision_layer = 4
+collision_mask = 41
+script = ExtResource("1_65bk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.17246, -52.8512)
+rotation = 3.14159
+scale = Vector2(7.16141, 0.766997)
+shape = SubResource("RectangleShape2D_svltb")
+one_way_collision = true
+
+[node name="Rope_tool_platform" type="Sprite2D" parent="."]
+position = Vector2(4.17246, -49.3741)
+scale = Vector2(1.14441, 0.202363)
+texture = ExtResource("2_u1pmp")
+
+[node name="Path_ropetool" type="Path2D" parent="."]
+position = Vector2(1437.41, -469.402)
+curve = SubResource("Curve2D_ftunl")
+
+[node name="PathFollow_ropetool" type="PathFollow2D" parent="Path_ropetool"]
+position = Vector2(-1579.28, 527.121)
+rotation = 0.556456
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path_ropetool/PathFollow_ropetool"]
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("2_u1pmp")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

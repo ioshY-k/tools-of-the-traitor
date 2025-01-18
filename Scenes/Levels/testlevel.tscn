@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://bcn8drka07wqk"]
+[gd_scene load_steps=118 format=4 uid="uid://bcn8drka07wqk"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -21,13 +21,14 @@
 [ext_resource type="Texture2D" uid="uid://b0a075rorl26b" path="res://Sprites/Tools/Block_center.png" id="15_71rnl"]
 [ext_resource type="PackedScene" uid="uid://du26sctepo01m" path="res://Scenes/Spring_Tool.tscn" id="15_xlpv7"]
 [ext_resource type="Texture2D" uid="uid://cw1aejt6m3kcf" path="res://Sprites/Tools/Wall_toppart.png" id="16_o50wg"]
+[ext_resource type="PackedScene" uid="uid://bwvx83v77q05o" path="res://Scenes/rope_tool.tscn" id="16_ri6ym"]
 [ext_resource type="PackedScene" uid="uid://bx6xh6anmmb6b" path="res://Scenes/Orb.tscn" id="17_3jwa3"]
 [ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="17_cj7a0"]
 [ext_resource type="Texture2D" uid="uid://dbonopdul58a8" path="res://Sprites/Tools/Wall_bottompart.png" id="17_rqn3j"]
 [ext_resource type="Texture2D" uid="uid://bjfxh7j2h02l" path="res://Sprites/Orbs/collected_frames/Orb_collected11.png" id="18_gsk5f"]
 [ext_resource type="Script" path="res://Scripts/dialog_enabler.gd" id="18_ikm0k"]
 [ext_resource type="Script" path="res://Scripts/ally_collect.gd" id="18_ocae4"]
-[ext_resource type="Texture2D" uid="uid://d1ky4n8fkf2ds" path="res://Sprites/Tools/Wall_center.png" id="18_tc5u8"]
+[ext_resource type="Texture2D" uid="uid://bus2742jud4e" path="res://Sprites/Tools/Wall_center.png" id="18_tc5u8"]
 [ext_resource type="Texture2D" uid="uid://d0lp05nloysvg" path="res://Sprites/Orbs/collected_frames/Orb_collected12.png" id="19_jpkef"]
 [ext_resource type="Texture2D" uid="uid://bixfw53nb4s3a" path="res://Sprites/Orbs/collected_frames/Orb_collected1.png" id="20_e3mdt"]
 [ext_resource type="Texture2D" uid="uid://d21ynwjluqn85" path="res://Sprites/Orbs/collected_frames/Orb_collected2.png" id="21_td2c5"]
@@ -1451,9 +1452,10 @@ position = Vector2(1.52588e-05, 2.09808e-05)
 scale = Vector2(0.385, 0.385)
 texture = ExtResource("15_71rnl")
 
+[node name="Rope_tool" parent="." instance=ExtResource("16_ri6ym")]
+
 [node name="Wall_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
-visible = false
 z_index = 4
 position = Vector2(1038, 623)
 scale = Vector2(1.438, 1.438)

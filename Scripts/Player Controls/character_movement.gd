@@ -85,7 +85,8 @@ var controllable: bool = true
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 	WALLSLIDE_L, WALLSLIDE_R,
-	WALLJUMP_L, WALLJUMP_R}
+	WALLJUMP_L, WALLJUMP_R,
+	SWING}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
 enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
@@ -437,14 +438,18 @@ func on_right_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,true)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
-		determine_walltool_position(true)
+		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		determine_walltool_position(true,Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 		set_bullet_time(true)
 		
 func on_left_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,false)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
-		determine_walltool_position(false)
+		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		determine_walltool_position(false,Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 		set_bullet_time(true)
 
 
@@ -454,10 +459,7 @@ func on_rope_tool_preview_state():
 
 func on_spring_tool_preview_state():
 	set_tool_visibilities(sprite_spring_tool, false)
-	if is_on_floor():
-		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 180 + tool_offset_x, 3)
-	else:
-		sprite_spring_tool.position = Vector2.DOWN * 150 + Vector2.RIGHT * tool_offset_x
+	determine_springtool_position()
 	if spring_tool_available:
 		sprite_spring_tool.visible = true
 		set_bullet_time(true)
@@ -601,9 +603,11 @@ func on_rope_tool_place_state():
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
 		sprite_spring_tool.visible = false
-		get_parent().get_node("%Spring_tool").set_process_mode(PROCESS_MODE_INHERIT)
-		get_parent().get_node("%Spring_tool").visible = true
-		get_parent().get_node("%Spring_tool").position = sprite_spring_tool.global_position
+		var spring_tool = get_parent().get_node("%Spring_tool")
+		spring_tool.set_process_mode(PROCESS_MODE_INHERIT)
+		spring_tool.visible = true
+		spring_tool.position = sprite_spring_tool.global_position
+		spring_tool.bounce_animation()
 		spring_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Spring_tool"))
 		PlayerStats.tool_count += 1
@@ -669,11 +673,15 @@ func determine_blocktool_position(inputstrength, controllerangle):
 		sprite_block_tool.position = block_tool_distance * Vector2.DOWN  + Vector2.RIGHT * 10
 
 
-func determine_walltool_position(right_side: bool):
-	var direction = -1
-	if right_side: direction = 1
-	sprite_wall_tool.position = Vector2(direction * 150 + tool_offset_x, +75)
+func determine_walltool_position(right_side: bool, inputstrength, controllerangle):
+	sprite_wall_tool.position = Vector2(sign(model_position.scale.x) * 150 + tool_offset_x, +75)
 	
+
+func determine_springtool_position():
+	if is_on_floor():
+		sprite_spring_tool.position = Vector2(sign(model_position.scale.x) * 180 + tool_offset_x, 3)
+	else:
+		sprite_spring_tool.position = Vector2.DOWN * 150 + Vector2.RIGHT * tool_offset_x
 
 
 func eyes_blinking():

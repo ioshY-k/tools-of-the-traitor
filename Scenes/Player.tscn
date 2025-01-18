@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://drqgoqvc2r0ir" path="res://Sprites/Tools/Wall.png" id="7_ax4cp"]
 [ext_resource type="Texture2D" uid="uid://dnxapwp7jekxw" path="res://Sprites/UI/Radmenu_lockl.png" id="7_ovj22"]
 [ext_resource type="Texture2D" uid="uid://bjqc8f8na21sm" path="res://Sprites/UI/Radmenu_wall2.png" id="8_x57gu"]
-[ext_resource type="Texture2D" uid="uid://bolnvxkb17jnu" path="res://Sprites/Tools/Spring2.png" id="9_h2t1i"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4bv2"]
@@ -690,6 +689,9 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxw3g"]
 size = Vector2(70.4574, 159.456)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
+load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi3p8"]
 size = Vector2(953.6, 67.7136)
 
@@ -883,7 +885,7 @@ visible = false
 modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(148.314, 19.7753)
 scale = Vector2(0.704, 0.704)
-texture = ExtResource("9_h2t1i")
+texture = SubResource("CompressedTexture2D_6eruv")
 
 [node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]
 modulate = Color(1, 1, 1, 0.34902)

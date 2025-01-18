@@ -3,7 +3,6 @@ extends RigidBody2D
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
 				WALLJUMP_L, WALLJUMP_R}
-@onready var animation_player: AnimationPlayer = $Node2D/AnimationPlayer
 @onready var caster_outer_left: RayCast2D = $Node2D/Caster_outer_left
 @onready var caster_inner: RayCast2D = $Node2D/Caster_inner
 @onready var caster_outer_right: RayCast2D = $Node2D/Caster_outer_right
@@ -33,11 +32,14 @@ func _spring_ledge_corrections():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	animation_player.play("Bounce_anim")
+	
 	var player: CharacterBody2D = body
 	player.controllable = false
 	#player.position = position + Vector2(0,-60)
 	player.velocity = Vector2.ZERO
+	
+	bounce_animation()
+	
 	await get_tree().create_timer(0.15).timeout
 	player.current_state = states.FALL
 	player.controllable = true
@@ -46,6 +48,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player.velocity = Vector2.UP * 2400
 	else:
 		player.velocity = Vector2.UP * 1400
+		
+func bounce_animation():
+	var toppart_tween = create_tween().set_parallel(true)
+	toppart_tween.tween_property($Node2D/Top, "position:y", 55, 0.15)
+	toppart_tween.tween_property($Node2D/Middle, "position:y", 24, 0.15)
+	toppart_tween.tween_property($Node2D/Middle, "scale:y", 0, 0.15)
+	toppart_tween.chain().tween_property($Node2D/Top, "position:y", 0, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	toppart_tween.tween_property($Node2D/Middle, "position:y", 0, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	toppart_tween.tween_property($Node2D/Middle, "scale:y", 1, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	
 
 
 func _on_visibility_changed() -> void:

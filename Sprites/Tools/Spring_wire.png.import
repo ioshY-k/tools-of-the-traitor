@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dge5vue6qocxx"
-path="res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
+uid="uid://cn5sqd64xklum"
+path="res://.godot/imported/Spring_wire.png-414ab424c96b750ad317187de8fdefa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tools/Spring2.png"
-dest_files=["res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"]
+source_file="res://Sprites/Tools/Spring_wire.png"
+dest_files=["res://.godot/imported/Spring_wire.png-414ab424c96b750ad317187de8fdefa0.ctex"]
 
 [params]
 

@@ -58,15 +58,21 @@ func _physics_process(delta: float) -> void:
 	for index in range(len(allies)):
 		#every ally follows their corresponding follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
+		allies[index].scale = allies[index].scale.lerp(Vector2(0.16,0.16), 6 * delta )
 	
 	if floor_ally_gone:
 		floor_ally.position = floor_ally.position.move_toward(floor_tool.position, 2500 * get_physics_process_delta_time())
+		floor_ally.scale = floor_ally.scale.move_toward(Vector2(0.12,0.12), 2500 * get_physics_process_delta_time())
 	if block_ally_gone:
 		block_ally.position = block_ally.position.move_toward(block_tool.position, 2500 * get_physics_process_delta_time())
+		block_ally.scale = floor_ally.scale.move_toward(Vector2(0.08,0.08), 2500 * get_physics_process_delta_time())
 	if wall_ally_gone:
 		wall_ally.position = wall_ally.position.move_toward(wall_tool.position, 2500 * get_physics_process_delta_time())
+		wall_ally.scale = floor_ally.scale.move_toward(Vector2(0.07,0.07), 2500 * get_physics_process_delta_time())
 	if spring_ally_gone:
 		spring_ally.position = spring_ally.position.move_toward(spring_tool.position, 2500 * get_physics_process_delta_time())
+		spring_ally.scale = floor_ally.scale.move_toward(Vector2(0.09,0.09), 2500 * get_physics_process_delta_time())
+	
 
 
 func _on_floor_tool_visibility_changed() -> void:
