@@ -13,8 +13,8 @@ const MAX_WALK_SPEED = 250 * 2.5 #Player walk speed
 const MAX_RUN_SPEED = 400 * 2.5 #Player run speed
 const MAX_P_SPEED = 500 * 2.5 #Player P speed
 const GRAVITY_WALL_SLIDING = 300 * 2.5
-const WALL_JUMP_HEIGHT = 700 * 2.5
-const WALL_JUMP_WIDTH = 750 * 2.5
+const WALL_JUMP_HEIGHT = 1750
+const WALL_JUMP_WIDTH = 1875
 @onready var p_speed_timer: Timer = $P_speed_timer #time Player has to maintain runspeed to enter P speed
 var p_speed_is_active: bool
 var sliding_on_left_wall: bool
@@ -48,7 +48,7 @@ var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
-@onready var sprite_rope_tool = $Sprite_spring_tool #vorübergehend
+@onready var sprite_rope_tool = $Sprite_rope_tool
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 @onready var path_floor_tool: Path2D = $Path_floor_tool
 @onready var rad_menu: Node2D = $Rad_menu
@@ -85,8 +85,7 @@ var controllable: bool = true
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 	WALLSLIDE_L, WALLSLIDE_R,
-	WALLJUMP_L, WALLJUMP_R,
-	SWING}
+	WALLJUMP_L, WALLJUMP_R}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
 enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
@@ -123,7 +122,6 @@ func _physics_process(delta: float) -> void:
 	current_tool_state = tool_state_handler.next_state(is_on_floor())
 	tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	
 	if controllable:
 		
 		if p_speed_is_active:
@@ -215,6 +213,8 @@ func callback_tool(tool: Node):
 			wall_tool_available = true
 		"Spring_tool":
 			spring_tool_available = true
+		"Rope_tool":
+			rope_tool_available = true
 
 
 func on_idle_state(delta):
@@ -455,13 +455,17 @@ func on_left_wall_tool_preview_state():
 
 func on_rope_tool_preview_state():
 	set_tool_visibilities(sprite_rope_tool, false)
+	if rope_tool_available:
+		sprite_rope_tool.visible = true
+		#no position determine bc position is always the same
+		set_bullet_time(true)
 
 
 func on_spring_tool_preview_state():
 	set_tool_visibilities(sprite_spring_tool, false)
-	determine_springtool_position()
 	if spring_tool_available:
 		sprite_spring_tool.visible = true
+		determine_springtool_position()
 		set_bullet_time(true)
 
 func set_tool_visibilities(current_tool, is_right):
@@ -597,8 +601,19 @@ func walltool_place_animation(wall_tool):
 
 
 func on_rope_tool_place_state():
-	pass
-
+	if sprite_rope_tool.visible:
+		sprite_rope_tool.visible = false
+		var rope_tool = get_parent().get_node("%Rope_tool")
+		rope_tool.set_process_mode(PROCESS_MODE_INHERIT)
+		rope_tool.placed.emit()
+		rope_tool.visible = true
+		rope_tool.position = sprite_rope_tool.global_position
+		rope_tool_available = false
+		last_placed_tools.push_back(get_parent().get_node("%Rope_tool"))
+		PlayerStats.tool_count += 1
+		while Engine.time_scale != 1:
+			set_bullet_time(false)
+			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:

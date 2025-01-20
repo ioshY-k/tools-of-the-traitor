@@ -1453,9 +1453,13 @@ scale = Vector2(0.385, 0.385)
 texture = ExtResource("15_71rnl")
 
 [node name="Rope_tool" parent="." instance=ExtResource("16_ri6ym")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-6077, 1824)
 
 [node name="Wall_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 4
 position = Vector2(1038, 623)
 scale = Vector2(1.438, 1.438)

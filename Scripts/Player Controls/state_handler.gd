@@ -4,19 +4,29 @@ class_name State_handler
 var current_state
 @onready var coyote_timer: Timer = $Coyote
 @onready var jump_buffer_timer: Timer = $Jump_buffer
+var inside_level = false
 
 
 var current_sprint_state: bool = false
 
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
-				WALLJUMP_L, WALLJUMP_R,
-				SWING}
+				WALLJUMP_L, WALLJUMP_R}
+
+func set_current_state(state):
+	current_state = state
 
 func _init():
 	current_state = states.IDLE
+
+func _enter_tree() -> void:
+	if get_tree().current_scene.name == "Testlevel":
+		inside_level = true
+	else:
+		inside_level = false
 	
 func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -> states:
+	
 	match current_state:
 		states.IDLE:
 			#called so that the sprint toggle works in IDLE state

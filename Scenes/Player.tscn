@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=36 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dnxapwp7jekxw" path="res://Sprites/UI/Radmenu_lockl.png" id="7_ovj22"]
 [ext_resource type="Texture2D" uid="uid://bjqc8f8na21sm" path="res://Sprites/UI/Radmenu_wall2.png" id="8_x57gu"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
+[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="18_erkq1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4bv2"]
 animations = [{
@@ -689,9 +690,6 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxw3g"]
 size = Vector2(70.4574, 159.456)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
-load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi3p8"]
 size = Vector2(953.6, 67.7136)
 
@@ -700,6 +698,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -634, 3, -683.001, -0.706309, 683.001, 0.706309, -16, -228, 0, 0, 0, 0, 602, 25, 686.532, 0, -686.532, 0, -2, 274, 0, 0, 0, 0, -634, 3)
 }
 point_count = 5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
+load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 102
@@ -834,14 +835,6 @@ position = Vector2(4, -26)
 scale = Vector2(0.809, 0.823)
 polygon = PackedVector2Array(-37.6271, -78, 51.8644, -78, 51.8644, 2, 43.7288, 90, -29.4915, 90, -37.6271, 2)
 
-[node name="Sprite_block_tool" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.34902)
-z_index = 4
-position = Vector2(18.5393, 108.764)
-scale = Vector2(0.656, 0.656)
-texture = ExtResource("5_8eind")
-
 [node name="Floor_typecheck" type="Area2D" parent="."]
 z_index = 8
 collision_layer = 8
@@ -850,14 +843,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor_typecheck"]
 position = Vector2(9.5, 63)
 shape = SubResource("RectangleShape2D_rih21")
-
-[node name="Sprite_wall_tool" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.34902)
-z_index = 4
-position = Vector2(190, -1)
-scale = Vector2(0.485, 0.734)
-texture = ExtResource("7_ax4cp")
 
 [node name="Ally_destination" type="Area2D" parent="."]
 position = Vector2(-48.345, 0)
@@ -879,22 +864,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(11.7429, -24.1038)
 shape = SubResource("RectangleShape2D_vxw3g")
-
-[node name="Sprite_spring_tool" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.34902)
-position = Vector2(148.314, 19.7753)
-scale = Vector2(0.704, 0.704)
-texture = SubResource("CompressedTexture2D_6eruv")
-
-[node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]
-modulate = Color(1, 1, 1, 0.34902)
-texture = ExtResource("10_28md6")
-
-[node name="Top" type="Sprite2D" parent="Sprite_spring_tool"]
-modulate = Color(1, 1, 1, 0.34902)
-position = Vector2(0, 81)
-texture = ExtResource("10_28md6")
 
 [node name="Sprite_floor_tool" type="Sprite2D" parent="."]
 visible = false
@@ -920,6 +889,45 @@ unique_name_in_owner = true
 position = Vector2(-634, 3)
 rotation = -0.357706
 rotates = false
+
+[node name="Sprite_block_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+z_index = 4
+position = Vector2(18.5393, 108.764)
+scale = Vector2(0.656, 0.656)
+texture = ExtResource("5_8eind")
+
+[node name="Sprite_wall_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+z_index = 4
+position = Vector2(190, -1)
+scale = Vector2(0.485, 0.734)
+texture = ExtResource("7_ax4cp")
+
+[node name="Sprite_spring_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(148.314, 19.7753)
+scale = Vector2(0.704, 0.704)
+texture = SubResource("CompressedTexture2D_6eruv")
+
+[node name="Bottom" type="Sprite2D" parent="Sprite_spring_tool"]
+modulate = Color(1, 1, 1, 0.34902)
+texture = ExtResource("10_28md6")
+
+[node name="Top" type="Sprite2D" parent="Sprite_spring_tool"]
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(0, 81)
+texture = ExtResource("10_28md6")
+
+[node name="Sprite_rope_tool" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.34902)
+position = Vector2(4, -252)
+scale = Vector2(1.14441, 0.202363)
+texture = ExtResource("18_erkq1")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

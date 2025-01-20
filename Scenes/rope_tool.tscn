@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwvx83v77q05o"]
+[gd_scene load_steps=6 format=3 uid="uid://bwvx83v77q05o"]
 
 [ext_resource type="Script" path="res://Scripts/rope_tool.gd" id="1_65bk0"]
 [ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="2_u1pmp"]
@@ -7,9 +7,11 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ftunl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1579.28, 527.121, -90.9687, 0.275663, 90.9687, -0.275663, -1433.94, 617.524, 0, 0, 0, 0, -1295.55, 525.73)
+"points": PackedVector2Array(0, 0, 0, 0, -1579.97, 545.897, -118.911, -0.0228663, 118.911, 0.0228663, -1438.8, 651.6, 0, 0, 0, 0, -1296.24, 546.593)
 }
 point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coiuh"]
 
 [node name="Rope_tool" type="StaticBody2D"]
 position = Vector2(969, 467)
@@ -20,7 +22,6 @@ script = ExtResource("1_65bk0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.17246, -52.8512)
-rotation = 3.14159
 scale = Vector2(7.16141, 0.766997)
 shape = SubResource("RectangleShape2D_svltb")
 one_way_collision = true
@@ -31,16 +32,27 @@ scale = Vector2(1.14441, 0.202363)
 texture = ExtResource("2_u1pmp")
 
 [node name="Path_ropetool" type="Path2D" parent="."]
-position = Vector2(1437.41, -469.402)
+position = Vector2(1442.28, -541.725)
 curve = SubResource("Curve2D_ftunl")
 
 [node name="PathFollow_ropetool" type="PathFollow2D" parent="Path_ropetool"]
-position = Vector2(-1579.28, 527.121)
-rotation = 0.556456
-rotates = false
+position = Vector2(-1438.61, 651.6)
+rotation = -0.000769267
+progress = 191.006
 
-[node name="Sprite2D" type="Sprite2D" parent="Path_ropetool/PathFollow_ropetool"]
-scale = Vector2(0.235, 0.235)
+[node name="Rope_sprite" type="Sprite2D" parent="Path_ropetool/PathFollow_ropetool"]
+scale = Vector2(0.0899934, 1.21238)
 texture = ExtResource("2_u1pmp")
+offset = Vector2(0, -57.76)
 
+[node name="Area2D" type="Area2D" parent="Path_ropetool/PathFollow_ropetool/Rope_sprite"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D"]
+position = Vector2(-0.515, -58.965)
+scale = Vector2(3.65, 6.275)
+shape = SubResource("RectangleShape2D_coiuh")
+
+[connection signal="placed" from="." to="." method="_on_placed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="body_entered" from="Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D" to="." method="_on_area_2d_body_entered"]
