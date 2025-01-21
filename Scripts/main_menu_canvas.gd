@@ -27,29 +27,29 @@ extends CanvasLayer
 	$Tip_menu/Tip_grid/MarginContainer12/Tip_button12,
 ]
 
-@onready var button_goal: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal
-@onready var button_goal_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_goal2
-@onready var button_score: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_score
-@onready var button_orbs: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_orbs
-@onready var button_cursed: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed
-@onready var button_cursed_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_cursed2
-@onready var button_time: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time
-@onready var button_time_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_time2
-@onready var button_tools: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools
-@onready var button_tools_2: Button = $Main_panel/Margin_Achievements/VBoxContainer/HBoxContainer/Button_tools2
+@onready var button_goal: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_goal
+@onready var button_goal_2: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_goal2
+@onready var button_score: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_score
+@onready var button_orbs: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_orbs
+@onready var button_cursed: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_cursed
+@onready var button_cursed_2: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_cursed2
+@onready var button_time: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_time
+@onready var button_time_2: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_time2
+@onready var button_tools: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_tools
+@onready var button_tools_2: Button = $Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_tools2
 
-@onready var panel_achievements: Panel = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements
+@onready var panel_achievements: Panel = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements
 
-@onready var label_goal: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal
-@onready var label_goal_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal2
-@onready var label_score: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_score
-@onready var label_orbs: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_orbs
-@onready var label_cursed: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed
-@onready var label_cursed_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed2
-@onready var label_time: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_time
-@onready var label_time_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_time2
-@onready var label_tools: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools
-@onready var label_tools_2: Label = $Main_panel/Margin_Achievements/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools2
+@onready var label_goal: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal
+@onready var label_goal_2: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_goal2
+@onready var label_score: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_score
+@onready var label_orbs: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_orbs
+@onready var label_cursed: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed
+@onready var label_cursed_2: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_cursed2
+@onready var label_time: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_time
+@onready var label_time_2: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_time2
+@onready var label_tools: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools
+@onready var label_tools_2: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools2
 
 
 
@@ -127,17 +127,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match current_player_pos:
 		player_keypositions.OFF:
-			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,42), 8 * delta)
+			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,2), 8 * delta)
 			cursed_orb.scale = cursed_orb.scale.lerp(Vector2(0.8,0.8), 8 * delta)
-			player_rig.position = player_rig.position.lerp(Vector2(2358,760), 8 * delta)
+			player_rig.position = player_rig.position.lerp(Vector2(2358,600), 8 * delta)
 		player_keypositions.PLAY:
-			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,42), 8 * delta)
+			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,2), 8 * delta)
 			cursed_orb.scale = cursed_orb.scale.lerp(Vector2(0.8,0.8), 8 * delta)
-			player_rig.position = player_rig.position.lerp(Vector2(1415,760), 8 * delta)
+			player_rig.position = player_rig.position.lerp(Vector2(1415,600), 8 * delta)
 		player_keypositions.PLAY_CURSED:
-			cursed_orb.position = cursed_orb.position.lerp(Vector2(1662,340), 8 * delta)
+			cursed_orb.position = cursed_orb.position.lerp(Vector2(1662,300), 8 * delta)
 			cursed_orb.scale = cursed_orb.scale.lerp(Vector2(2.5,2.5), 8 * delta)
-			player_rig.position = player_rig.position.lerp(Vector2(1346,760), 8 * delta)
+			player_rig.position = player_rig.position.lerp(Vector2(1346,600), 8 * delta)
 
 
 func _on_play_pressed() -> void:
@@ -453,6 +453,10 @@ func _on_achievementbutton_focus_entered() -> void:
 	if button_tools.has_focus(): label_tools.visible = true
 	if button_tools_2.has_focus(): label_tools_2.visible = true
 	
+	get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 532, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+
+
 	
 
 
@@ -460,7 +464,13 @@ func _on_achievementbutton_focus_exited() -> void:
 	panel_achievements.hide()
 	for label in get_tree().get_nodes_in_group("Achievement_label"):
 		label.visible = false
-
+	await get_tree().create_timer(0.02).timeout
+	var still_in_achievement_menu = false
+	for button: Button in get_tree().get_nodes_in_group("Achievement_button"):
+		if button.has_focus():
+			still_in_achievement_menu = true
+	if not still_in_achievement_menu:
+		get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 870, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 func _on_achievementbutton_mouse_entered() -> void:
 	panel_achievements.show()

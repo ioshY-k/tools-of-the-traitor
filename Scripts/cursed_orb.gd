@@ -92,7 +92,7 @@ func tool_got_hit(body, direction: Vector2):
 	bouncing = true
 	bouncetimer.stop()
 	bouncetimer.start()
-	velocity = direction * 1.5
+	velocity = direction * 2
 	player.callback_tool(body)
 	player.last_placed_tools.pop_at(player.last_placed_tools.find(body))
 

@@ -10,7 +10,6 @@ var pendling_right = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_process(false)
-	print(get_parent().get_children(false))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -85,4 +84,3 @@ func _on_visibility_changed() -> void:
 			set_trans(Tween.TRANS_CUBIC).\
 			set_ease(Tween.EASE_OUT)
 		
-	print("vischanged")

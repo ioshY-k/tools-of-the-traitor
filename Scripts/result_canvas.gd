@@ -76,8 +76,8 @@ func submit_and_finish_run():
 	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
 	if score >= 200:
 		Achievements.save_new_achievement(2)
-		if PlayerStats.cursed_mode:
-			Achievements.save_new_achievement(5)
+	if PlayerStats.cursed_mode and score >= 100:
+		Achievements.save_new_achievement(5)
 	
 	var hs_file := "user://highscores.dat"
 	var file_w = FileAccess.open(hs_file, FileAccess.WRITE)
@@ -107,7 +107,7 @@ func _on_goal_2_body_entered(_body: Node2D) -> void:
 	Achievements.save_new_achievement(1)
 	if PlayerStats.tool_count <= 30:
 		Achievements.save_new_achievement(9)
-	if timer.minutes < 2:
+	if timer.minutes < 3:
 		Achievements.save_new_achievement(7)
 	show()
 	determine_other_achievements()
