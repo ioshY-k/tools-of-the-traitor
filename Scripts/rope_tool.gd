@@ -1,6 +1,5 @@
 extends StaticBody2D
 
-signal placed
 var swinging = false
 var pendling_right = true
 @onready var player: CharacterBody2D = get_parent().get_node("Player")
@@ -12,7 +11,7 @@ func _ready() -> void:
 	set_process(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if path_follow_ropetool.progress_ratio <= 0.101:
 		get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.9, 0.8).\
@@ -59,7 +58,7 @@ func swinging_behaviour():
 	
 	
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	player.controllable = false
 	swinging = true
 

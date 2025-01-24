@@ -53,6 +53,5 @@ position = Vector2(-0.515, -58.965)
 scale = Vector2(3.65, 6.275)
 shape = SubResource("RectangleShape2D_coiuh")
 
-[connection signal="placed" from="." to="." method="_on_placed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="body_entered" from="Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D" to="." method="_on_area_2d_body_entered"]

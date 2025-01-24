@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var speed = 350
+@onready var speed
 var catchup_speed = 600
 var direction_to_player: Vector2
 var high_distance_to_player: bool
@@ -13,7 +13,6 @@ var inside_wall: bool = false
 @onready var collision_detection_down: Area2D = $Collision_detection_down
 @onready var collision_detection_right: Area2D = $Collision_detection_right
 @onready var collision_detection_left: Area2D = $Collision_detection_left
-@onready var respawn_timer: Timer = $Respawn_timer
 @onready var ground_layer: TileMapLayer = $"../Ground_tilemap/Ground_layer"
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
@@ -24,9 +23,7 @@ var wall_slowdown = 1.0
 func _ready() -> void:
 	player_got_hit()
 
-		
 
-var test = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
@@ -117,10 +114,19 @@ func _on_collision_detection_left_area_entered(area: Area2D) -> void:
 		player_got_hit()
 
 func player_got_hit():
+	print("teleport it away")
 	position = Vector2(0,20000)
-	respawn_timer.stop()
-	respawn_timer.start()
+	speed = 0
 
-
-func _on_respawn_timer_timeout() -> void:
-	position = player.last_spawnpoint
+#called when exiting checkpoint zone
+func orb_respawn_check() -> void:
+	if (player.position - position).length() > 10000:
+		speed = 0
+		position = player.last_spawnpoint
+		$Sprite_cursedorb.visible = false
+		$Light.scale = Vector2.ZERO
+		await get_tree().create_tween().tween_property($Light, "scale", Vector2(1,1), 0.7).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT_IN).finished
+		$Sprite_cursedorb.visible = true
+		await get_tree().create_tween().tween_property($Light, "scale", Vector2(0,0), 0.7).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT_IN).finished
+		print("finished")
+		speed = 350

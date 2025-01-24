@@ -440,7 +440,7 @@ func on_right_wall_tool_preview_state():
 		sprite_wall_tool.visible = true
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-		determine_walltool_position(true,Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		determine_walltool_position()
 		set_bullet_time(true)
 		
 func on_left_wall_tool_preview_state():
@@ -449,7 +449,7 @@ func on_left_wall_tool_preview_state():
 		sprite_wall_tool.visible = true
 		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
 		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
-		determine_walltool_position(false,Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
+		determine_walltool_position()
 		set_bullet_time(true)
 
 
@@ -688,7 +688,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 		sprite_block_tool.position = block_tool_distance * Vector2.DOWN  + Vector2.RIGHT * 10
 
 
-func determine_walltool_position(right_side: bool, inputstrength, controllerangle):
+func determine_walltool_position():
 	sprite_wall_tool.position = Vector2(sign(model_position.scale.x) * 150 + tool_offset_x, +75)
 	
 
@@ -729,7 +729,7 @@ func _on_p_speed_timer_timeout() -> void:
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	kill_player()
 
-func _on_hurtbox_area_entered(_area: Area2D) -> void:
+func _on_hurtbox_area_entered(area: Area2D) -> void:
 	kill_player()
 	
 func kill_player():

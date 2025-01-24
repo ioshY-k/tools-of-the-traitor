@@ -1317,7 +1317,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-10020, 2349)
+position = Vector2(-8249, 2042)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)
@@ -1510,40 +1510,48 @@ position = Vector2(2661, -368)
 scale = Vector2(39.5714, 1.19478)
 
 [node name="Checkpoint17" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(2002, 286)
-scale = Vector2(91.6917, 0.600105)
+position = Vector2(1996, 311)
+scale = Vector2(53.636, 1.02004)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(5911, -1083)
-scale = Vector2(25.6271, 0.263825)
+position = Vector2(5911, -1090)
+scale = Vector2(25.6271, 1.06383)
+
+[node name="Checkpoint31" parent="." instance=ExtResource("11_3ikjp")]
+position = Vector2(-8102, 2139)
+scale = Vector2(54.1143, 0.571443)
 
 [node name="Checkpoint4" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(7338, -1407)
+position = Vector2(7342, -1392)
+scale = Vector2(17.9891, 1.16675)
 
 [node name="Checkpoint3" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(-1520, 734)
-scale = Vector2(62.6315, 2.33739)
+position = Vector2(-1533, 771)
+scale = Vector2(61.6176, 1.05939)
 
 [node name="Checkpoint10" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(4185, -419)
+scale = Vector2(39.2956, 1.01699)
 
 [node name="Checkpoint5" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(-1677, 1867)
 scale = Vector2(38.303, 2.26998)
 
 [node name="Checkpoint6" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(-1473, -784)
+position = Vector2(-1473, -813)
+scale = Vector2(57.2026, 1.18086)
 
 [node name="Checkpoint7" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(5162, 832)
+position = Vector2(5187, 847)
+scale = Vector2(31.44, 1.12)
 
 [node name="Checkpoint25" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(3570, 2170)
-scale = Vector2(1.88898, 2.35154)
+position = Vector2(3783, 2166)
+scale = Vector2(48.929, 2.35154)
 
 [node name="Checkpoint13" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(645, 21)
-scale = Vector2(1, 3.975)
+scale = Vector2(93.3991, 1.02889)
 
 [node name="Checkpoint12" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(-9568, 3435)
@@ -1554,12 +1562,12 @@ position = Vector2(-5097, 1074)
 scale = Vector2(82.8, 1)
 
 [node name="Checkpoint26" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(-8970, 617)
-scale = Vector2(16.4275, 1.67452)
+position = Vector2(-8978, 606)
+scale = Vector2(26.0385, 1.58847)
 
 [node name="Checkpoint27" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(-10027, 1148)
-scale = Vector2(18.2434, 1.73165)
+position = Vector2(-10115, 1275)
+scale = Vector2(41.6572, 2.08389)
 
 [node name="Checkpoint11" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(-10941, 2571)
@@ -1574,8 +1582,8 @@ position = Vector2(-10491, 3456)
 scale = Vector2(66.8977, 0.925958)
 
 [node name="Checkpoint24" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(-8040, -271)
-scale = Vector2(19.0805, 1.64253)
+position = Vector2(-8042, -304)
+scale = Vector2(27.0241, 1.64253)
 
 [node name="Checkpoint9" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(-2721, 1735)
@@ -1583,7 +1591,7 @@ scale = Vector2(51.7186, 1.91739)
 
 [node name="Checkpoint14" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(-1951, 4219)
-scale = Vector2(83.7398, 1.27193)
+scale = Vector2(73.8881, 0.893328)
 
 [node name="Checkpoint15" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(1750, 3682)
@@ -1594,32 +1602,32 @@ position = Vector2(2840, 6253)
 scale = Vector2(69.4466, 1.39377)
 
 [node name="Checkpoint18" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(6331, 5774)
-scale = Vector2(61.17, 2.25609)
+position = Vector2(6350, 5795)
+scale = Vector2(62.1, 1.23624)
 
 [node name="Checkpoint19" parent="." instance=ExtResource("11_3ikjp")]
 position = Vector2(7482, 7046)
 scale = Vector2(1, 0.51)
 
 [node name="Checkpoint20" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(2911, 3564)
-scale = Vector2(19.2009, 1.83654)
+position = Vector2(2917, 3600)
+scale = Vector2(25.0925, 1.95843)
 
 [node name="Checkpoint29" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(4714, 3564)
-scale = Vector2(19.2009, 1.83654)
+position = Vector2(4703, 3593)
+scale = Vector2(26.2686, 2.04648)
 
 [node name="Checkpoint21" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(2317, 7143)
-scale = Vector2(1, 1.92)
+position = Vector2(1946, 7128)
+scale = Vector2(36.972, 1.96913)
 
 [node name="Checkpoint22" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(4584, 7127)
-scale = Vector2(1, 1.92)
+position = Vector2(4968, 7161)
+scale = Vector2(80.7802, 0.98249)
 
 [node name="Checkpoint30" parent="." instance=ExtResource("11_3ikjp")]
-position = Vector2(4539, 6241)
-scale = Vector2(11.1657, 0.277442)
+position = Vector2(4373, 6256)
+scale = Vector2(40.4426, 0.801115)
 
 [node name="Ground_tilemap" type="Node" parent="."]
 
@@ -2182,16 +2190,12 @@ position = Vector2(-8008, -282)
 dialog_name = "bullet"
 
 [node name="DialogTrigger_final" parent="." instance=ExtResource("48_ml1qr")]
-position = Vector2(1605, 3689)
+position = Vector2(1672, 3697)
+scale = Vector2(6.68205, 0.783575)
 dialog_name = "final"
 
 [node name="Cursed_Orb" parent="." instance=ExtResource("64_fdfem")]
-position = Vector2(-8253, 2046)
-
-[node name="Respawn_timer" type="Timer" parent="Cursed_Orb"]
-wait_time = 3.5
-one_shot = true
-autostart = true
+position = Vector2(2023, 1133)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Cursed_Orb"]
 amount = 26
@@ -2238,4 +2242,3 @@ texture_scale = 0.6
 [connection signal="body_entered" from="Goal2" to="Result_canvas" method="_on_goal_2_body_entered"]
 [connection signal="body_entered" from="DialogTrigger_intro" to="Pause_menu" method="_on_dialog_trigger_body_entered"]
 [connection signal="body_entered" from="DialogTrigger_bullettime" to="Pause_menu" method="_on_dialog_trigger_bullettime_body_entered"]
-[connection signal="timeout" from="Cursed_Orb/Respawn_timer" to="Cursed_Orb" method="_on_respawn_timer_timeout"]
