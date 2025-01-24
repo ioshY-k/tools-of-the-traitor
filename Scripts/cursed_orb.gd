@@ -114,7 +114,6 @@ func _on_collision_detection_left_area_entered(area: Area2D) -> void:
 		player_got_hit()
 
 func player_got_hit():
-	print("teleport it away")
 	position = Vector2(0,20000)
 	speed = 0
 

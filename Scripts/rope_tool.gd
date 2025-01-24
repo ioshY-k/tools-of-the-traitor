@@ -37,10 +37,10 @@ func swinging_behaviour():
 	else:
 		player.get_node("Model_position").scale.x = -abs(player.get_node("Model_position").scale.x)
 	if Input.is_action_just_pressed("jump"):
-		if path_follow_ropetool.progress_ratio > 0.25 and pendling_right:
+		if path_follow_ropetool.progress_ratio > 0.5:
 			player.velocity = Vector2(1875,-1750)
 			area_2d.process_mode = Node.PROCESS_MODE_DISABLED
-		if path_follow_ropetool.progress_ratio < 0.75 and not pendling_right:
+		if path_follow_ropetool.progress_ratio < 0.5:
 			player.velocity = Vector2(-1875,-1750)
 			area_2d.process_mode = Node.PROCESS_MODE_DISABLED
 		player.controllable = true
@@ -74,7 +74,7 @@ func _on_visibility_changed() -> void:
 	set_process(not is_processing())
 	if visible:
 		path_follow_ropetool.progress_ratio = 0.5
-		if player.velocity.x < 0:
+		if player.get_node("Model_position").scale.x < 0:
 			get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.1, 0.4).\
 			set_trans(Tween.TRANS_CUBIC).\
 			set_ease(Tween.EASE_OUT)

@@ -693,7 +693,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_cxn7o")
 
 [node name="Label_goal" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -704,7 +704,7 @@ autowrap_mode = 2
 
 [node name="Label_goal2" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -715,7 +715,7 @@ autowrap_mode = 2
 
 [node name="Label_score" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -726,7 +726,7 @@ autowrap_mode = 2
 
 [node name="Label_orbs" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -737,7 +737,7 @@ autowrap_mode = 2
 
 [node name="Label_cursed" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -748,7 +748,7 @@ autowrap_mode = 2
 
 [node name="Label_cursed2" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -759,7 +759,7 @@ autowrap_mode = 2
 
 [node name="Label_time" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -770,7 +770,7 @@ autowrap_mode = 2
 
 [node name="Label_time2" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -781,7 +781,7 @@ autowrap_mode = 2
 
 [node name="Label_tools" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -792,7 +792,7 @@ autowrap_mode = 2
 
 [node name="Label_tools2" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
-custom_minimum_size = Vector2(723.755, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
@@ -805,7 +805,7 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 43
 text = "Beating all 10 Challenges
-will unlock a final 5th Tool..."
+will unlock a secret 5th Tool..."
 horizontal_alignment = 1
 
 [node name="Margin_Achievements" type="MarginContainer" parent="Main_menu_canvas/Main_panel"]
@@ -978,6 +978,7 @@ theme_override_constants/margin_right = 500
 theme_override_constants/margin_bottom = 100
 
 [node name="Options_panel" type="Panel" parent="Main_menu_canvas/Options_Container"]
+custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 theme = ExtResource("2_h4maf")
 
@@ -1044,6 +1045,11 @@ value = 20.0
 tick_count = 5
 ticks_on_borders = true
 
+[node name="Reset_progress" type="Button" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Reset Progress"
+
 [node name="MarginContainer" type="MarginContainer" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 60
@@ -1056,6 +1062,51 @@ focus_neighbor_bottom = NodePath("../../Show_tips")
 theme_override_font_sizes/font_size = 35
 shortcut = SubResource("Shortcut_oyxq5")
 text = "Return"
+
+[node name="Really_delete" type="Panel" parent="Main_menu_canvas"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -171.0
+offset_right = 528.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Main_menu_canvas/Really_delete"]
+layout_mode = 0
+offset_left = 36.765
+offset_top = 43.35
+offset_right = 1018.77
+offset_bottom = 160.35
+theme_override_font_sizes/font_size = 50
+text = "Do you really want to delete all Progress?
+(This includes Achievements and Highscores)"
+horizontal_alignment = 1
+
+[node name="Yes" type="Button" parent="Main_menu_canvas/Really_delete"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 169.0
+offset_right = 468.0
+offset_bottom = 286.0
+focus_neighbor_left = NodePath("../No")
+theme_override_font_sizes/font_size = 50
+text = "Yes"
+
+[node name="No" type="Button" parent="Main_menu_canvas/Really_delete"]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 170.0
+offset_right = 884.0
+offset_bottom = 287.0
+focus_neighbor_right = NodePath("../Yes")
+theme_override_font_sizes/font_size = 50
+text = "No"
 
 [node name="Panel_behind_tips" type="Panel" parent="Main_menu_canvas"]
 visible = false
@@ -1325,19 +1376,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel1"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "The faster you run, the higher you will jump!"
+theme_override_font_sizes/font_size = 87
+text = "You jump much higher
+while walking
+or running!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 1
 
@@ -1356,21 +1414,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel2"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "You can call back your tools only when grounded!
+theme_override_font_sizes/font_size = 87
+text = "You can call back your Tools only when grounded!
 
 This includes the short period standing on your spring tool before liftoff."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel3" type="Panel" parent="Main_menu_canvas"]
@@ -1388,22 +1451,28 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel3"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Your tools will keep away the Cursed orb!
+theme_override_font_sizes/font_size = 87
+text = "Your tools will
+keep away the Cursed orb!
 
 A tool destroyed that way is immediatly
 available again."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel4" type="Panel" parent="Main_menu_canvas"]
@@ -1421,22 +1490,28 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel4"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "To collect an Orb, you need to carry it to safe ground.
- This does not include Spikes or your Tools!
+theme_override_font_sizes/font_size = 87
+text = "Placing the
+Floor Tool briefly freezes time.
 
-Your Hair will stay charged while carrying Orbs."
+That way you
+won't accidentally walk off an Edge after placing it!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel5" type="Panel" parent="Main_menu_canvas"]
@@ -1454,22 +1529,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel5"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Placing your green Wall Tool midair lets you walljump 
-at any point of your jump!
-
-With precise timing these midair wall jumps can be performed with your red block tool as well."
+theme_override_font_sizes/font_size = 87
+text = "Placing the Wall Tool midair
+lets you walljump
+at any point of your jump!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel6" type="Panel" parent="Main_menu_canvas"]
@@ -1487,20 +1566,24 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel6"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -206.0
-offset_bottom = 206.0
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Sprinting while Wall Jumping brings you further
-while Wall Jumping without holding Sprint is excellent for precise Landing!"
+theme_override_font_sizes/font_size = 87
+text = "To land precisely after a wall jump, just let go of the Sprint button"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel7" type="Panel" parent="Main_menu_canvas"]
@@ -1518,22 +1601,24 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel7"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Your yellow floor tool can be placed in front of walls, letting you use it as a platform in two different
-places at once!
-
-To place it more accurately, just slightly tilt the stick."
+theme_override_font_sizes/font_size = 87
+text = "Your Floor Tool can be placed in front of walls, letting you use it as a platform in two different places at once!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel8" type="Panel" parent="Main_menu_canvas"]
@@ -1551,21 +1636,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel8"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "To cover horizontal distance with your red block tool without loosing speed, try placing it diagonally down while descending!
+theme_override_font_sizes/font_size = 87
+text = "Keep your forward momentum after placing the Block Tool by placing it diagonally and immediately jumping off of it.
 
-The tool will snap to make the timing for your second jump as generous as possible."
+The position will snap to make the timing for your second jump more generous."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel9" type="Panel" parent="Main_menu_canvas"]
@@ -1583,21 +1673,27 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel9"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Place your red block tool above your head to stop your momentum after launching from your blue spring tool!
+theme_override_font_sizes/font_size = 87
+text = "Placing The Block Tool above you
+will stop the momentum of the Spring Tool launching you up!
 
 This way you won't launch into spikes at the ceiling."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel10" type="Panel" parent="Main_menu_canvas"]
@@ -1615,23 +1711,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel10"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Pressing Y while positioning your Tool cancels the Tool placement.
+theme_override_font_sizes/font_size = 87
+text = "Holding the Callback Button calls back every Tool at once. 
 
-Holding Y calls back every Tool at once!
-
-...There is a secret fourth tool hidden back where you started......"
+....Bring the Tools back to where you started and you may find a 4th Tool...."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel11" type="Panel" parent="Main_menu_canvas"]
@@ -1649,21 +1748,26 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel11"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "If slow motion is active, you can hold down your Build Button before jumping! That way you are in Slowmo for the whole jump!
+theme_override_font_sizes/font_size = 87
+text = "You can hold down the Place Button before jumping.
 
-The slow motion does not slow down the timer by the way..."
+That way your Tool is locked in and you are in Slowmotion for the whole jump!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel12" type="Panel" parent="Main_menu_canvas"]
@@ -1681,22 +1785,28 @@ scale = Vector2(0.835, 0.835)
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Main_menu_canvas/Panel12"]
+custom_minimum_size = Vector2(1600, 987.03)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+offset_left = -200.0
+offset_top = -493.515
+offset_right = 200.0
+offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_fsh2a")
-theme_override_font_sizes/font_size = 70
-text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
+theme_override_font_sizes/font_size = 87
+text = "For a low Tool count:
+don't call back Tools that can be used a second time when backtracking.
 
-You'll continue sliding down a wall while aiming 
-down or away with your Tools."
+For a fast time:
+turn off Slow Motion"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Close_tip_button" type="Button" parent="Main_menu_canvas"]
@@ -1820,7 +1930,10 @@ stretch_mode = 1
 [connection signal="toggled" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Show_timer" to="Main_menu_canvas" method="_on_show_timer_toggled"]
 [connection signal="toggled" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Skip_dialog" to="Main_menu_canvas" method="_on_skip_dialog_toggled"]
 [connection signal="value_changed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider" to="Main_menu_canvas" method="_on_bullet_time_slider_value_changed"]
+[connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_reset_progress_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_yes_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_no_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="Main_menu_canvas" method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="Main_menu_canvas" method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="Main_menu_canvas" method="_on_tip_button_3_pressed"]

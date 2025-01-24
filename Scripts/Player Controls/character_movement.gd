@@ -438,8 +438,6 @@ func on_right_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,true)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
-		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		determine_walltool_position()
 		set_bullet_time(true)
 		
@@ -447,8 +445,6 @@ func on_left_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,false)
 	if wall_tool_available:
 		sprite_wall_tool.visible = true
-		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		determine_walltool_position()
 		set_bullet_time(true)
 
@@ -605,7 +601,6 @@ func on_rope_tool_place_state():
 		sprite_rope_tool.visible = false
 		var rope_tool = get_parent().get_node("%Rope_tool")
 		rope_tool.set_process_mode(PROCESS_MODE_INHERIT)
-		rope_tool.placed.emit()
 		rope_tool.visible = true
 		rope_tool.position = sprite_rope_tool.global_position
 		rope_tool_available = false
@@ -689,7 +684,7 @@ func determine_blocktool_position(inputstrength, controllerangle):
 
 
 func determine_walltool_position():
-	sprite_wall_tool.position = Vector2(sign(model_position.scale.x) * 150 + tool_offset_x, +75)
+	sprite_wall_tool.position = Vector2(sign(model_position.scale.x) * 150 + tool_offset_x, -90)
 	
 
 func determine_springtool_position():
@@ -729,7 +724,7 @@ func _on_p_speed_timer_timeout() -> void:
 func _on_hurtbox_body_entered(_body: Node2D) -> void:
 	kill_player()
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	kill_player()
 	
 func kill_player():
@@ -744,6 +739,8 @@ func kill_player():
 		sprite_wall_tool.visible = false
 	if sprite_spring_tool.visible:
 		sprite_spring_tool.visible = false
+	if sprite_rope_tool.visible:
+		sprite_rope_tool.visible = false
 	PlayerStats.death_count += 1
 	animations.play("Death_anim")
 	velocity = Vector2.ZERO
@@ -776,7 +773,10 @@ func _on_ally3_body_entered(_body: Node2D) -> void:
 func _on_ally4_body_entered(_body: Node2D) -> void:
 	PlayerStats.spring_tool_unlocked = true
 	get_parent().get_node("%Ally4_collect").queue_free()
-
+	
+func _on_ally5_body_entered(_body: Node2D) -> void:
+	PlayerStats.rope_tool_unlocked = true
+	get_parent().get_node("%Ally5_collect").queue_free()
 
 func _on_overlap_check_body_entered(_body: Node2D) -> void:
 	sprite_floor_tool.modulate = Color(0.553, 0.286, 0.549, 0.349)

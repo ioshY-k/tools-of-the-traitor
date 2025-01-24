@@ -66,15 +66,7 @@ func _ready() -> void:
 	else:
 		get_node("/root/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = false
 	hs_file_r.close()
-	
-	var achievement_buttons = [	button_goal, button_goal_2, 
-								button_score, button_orbs,
-								button_cursed, button_cursed_2,
-								button_time, button_time_2,
-								button_tools, button_tools_2]
-	for achievement in range(10):
-		if Achievements.achievement_list[achievement]:
-			achievement_buttons[achievement].modulate = Color(1,1,1)
+	check_achievements()
 	
 	var file := "user://unlocked_tips.dat"
 	var file_r = FileAccess.open(file, FileAccess.READ)
@@ -123,6 +115,18 @@ func _ready() -> void:
 	$Options_Container/Options_panel/VBoxContainer/Skip_dialog.button_pressed = PlayerStats.no_dialog
 	$Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider.value = 120 - (PlayerStats.bullet_time_value * 100)
 
+func check_achievements():
+	print("checking achievements")
+	var achievement_buttons = [	button_goal, button_goal_2, 
+								button_score, button_orbs,
+								button_cursed, button_cursed_2,
+								button_time, button_time_2,
+								button_tools, button_tools_2]
+	for achievement in range(10):
+		if Achievements.achievement_list[achievement]:
+			achievement_buttons[achievement].modulate = Color(1,1,1)
+		else:
+			achievement_buttons[achievement].modulate = Color(0.56, 0.56, 0.56, 0.569)
 
 func _process(delta: float) -> void:
 	match current_player_pos:
@@ -487,3 +491,25 @@ func _on_achievementbutton_mouse_entered() -> void:
 	if button_time_2.is_hovered(): label_time_2.visible = true
 	if button_tools.is_hovered(): label_tools.visible = true
 	if button_tools_2.is_hovered(): label_tools_2.visible = true
+
+
+func _on_reset_progress_pressed() -> void:
+	$Really_delete.show()
+	$Really_delete/No.grab_focus()
+
+
+func _on_no_pressed() -> void:
+	$Really_delete.hide()
+	$Options_Container/Options_panel/VBoxContainer/Reset_progress.grab_focus()
+
+
+func _on_yes_pressed() -> void:
+	DirAccess.remove_absolute("user://highscores.dat")
+	DirAccess.remove_absolute("user://achievements.dat")
+	DirAccess.remove_absolute("user://unlocked_tips.dat")
+	DirAccess.remove_absolute("user://savedata.json")
+	FileCreator.create_files()
+	for achievement in range(10):
+		Achievements.achievement_list[achievement] = false
+	get_tree().reload_current_scene()
+	

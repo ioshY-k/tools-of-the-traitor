@@ -66,7 +66,7 @@ shape = SubResource("CircleShape2D_d7eiw")
 one_shot = true
 
 [node name="Light" type="Sprite2D" parent="."]
-scale = Vector2(1e-05, 1e-05)
+modulate = Color(0.16784, 0.1416, 0.24, 1)
 texture = ExtResource("3_aiidw")
 
 [connection signal="area_entered" from="Collision_detection_up" to="." method="_on_collision_detection_up_area_entered"]

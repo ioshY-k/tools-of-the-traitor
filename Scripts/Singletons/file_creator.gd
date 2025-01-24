@@ -2,7 +2,9 @@ extends Node
 
 
 func _ready() -> void:
-	
+	create_files()
+
+func create_files():
 	if not FileAccess.file_exists("user://unlocked_tips.dat"):
 		var filecreator = FileAccess.open("user://unlocked_tips.dat", FileAccess.WRITE_READ)
 		filecreator.close()

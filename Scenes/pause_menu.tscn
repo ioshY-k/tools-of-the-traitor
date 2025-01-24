@@ -374,18 +374,18 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel1"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "The faster you run, the higher you will jump!"
+text = "You jump much higher
+while walking
+or running!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 1
 
@@ -397,20 +397,18 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel2"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "You can call back your tools only when grounded!
+text = "You can call back your Tools only when grounded!
 
 This includes the short period standing on your spring tool before liftoff."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel3" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -421,21 +419,20 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel3"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Your tools will keep away the Cursed orb!
+text = "Your tools will
+keep away the Cursed orb!
 
 A tool destroyed that way is immediatly
 available again."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel4" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -446,21 +443,20 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel4"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "To collect an Orb, you need to carry it to safe ground.
- This does not include Spikes or your Tools!
+text = "Placing the
+Floor Tool briefly freezes time.
 
-Your Hair will stay charged while carrying Orbs."
+That way you
+won't accidentally walk off an Edge after placing it!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel5" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -471,21 +467,19 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel5"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Placing your green Wall Tool midair lets you walljump
-at any point of your jump!
-
-With precise timing these midair wall jumps can be performed with your red block tool as well."
+text = "Placing the
+Wall Tool midair lets you walljump
+at any point of
+your jump!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel6" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -496,19 +490,16 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel6"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -206.0
-offset_bottom = 206.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Sprinting while Wall Jumping brings you further
-while Wall Jumping without holding Sprint is excellent for precise Landing!"
+text = "To land precisely after a wall jump, just let go of the Sprint button"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel7" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -519,20 +510,19 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel7"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Your yellow floor tool can be placed in front of walls, letting you use it as a platform in two different places at once!
-
-To place it more accurately, just slightly tilt the stick."
+text = "Your Floor Tool
+can be placed in front of walls, letting you use it
+as a platform
+in two different places at once!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel8" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -543,20 +533,19 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel8"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
-theme_override_font_sizes/font_size = 70
-text = "To cover horizontal distance with your red block tool without loosing speed, try placing it diagonally down while descending!
+theme_override_font_sizes/font_size = 61
+text = "Keep your forward momentum after placing the Block Tool by placing it diagonally and immediately jumping off of it.
 
-The tool will snap to make the timing for your second jump as generous as possible."
+The position will snap to make the timing
+for your second jump more generous."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel9" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -567,20 +556,19 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel9"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Place your red block tool above your head to stop your momentum after launching from your blue spring tool!
+text = "Placing The Block Tool above you
+will stop the momentum of the Spring Tool launching you up!
 
 This way you won't launch into spikes at the ceiling."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel10" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -591,22 +579,18 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel10"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Pressing Y while positioning your Tool cancels the Tool placement.
+text = "Holding the Callback Button calls back every Tool at once. 
 
-Holding Y calls back every Tool at once!
-
-...There is a secret fourth tool hidden back where you started......"
+....Bring the Tools back to where you started and you may find a 4th Tool...."
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel11" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -617,20 +601,20 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel11"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "If slow motion is active, you can hold down your Build Button before jumping! That way you are in Slowmo for the whole jump!
+text = "You can hold down the Place Button before jumping.
 
-The slow motion does not slow down the timer by the way..."
+That way your
+Tool is locked in
+and you are in Slowmotion for the whole jump!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel12" type="Panel" parent="Tip_menu/HBoxContainer"]
@@ -641,21 +625,21 @@ size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Tip_menu/HBoxContainer/Panel12"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -97.5
-offset_bottom = 97.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Sliding down a wall gives you enough time to place tools below or behind behind you!
+text = "For a low Tool count: don't call back Tools that
+can be used a second time when backtracking.
 
-You'll continue sliding down a wall while aiming 
-down or away with your Tools."
+For a fast time:
+turn off
+Slow Motion"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="PanelEmpty" type="Panel" parent="Tip_menu/HBoxContainer"]
