@@ -3,6 +3,7 @@ extends MarginContainer
 @onready var label: Label = $MarginContainer/Label
 @onready var letter_display_timer: Timer = $Letter_display_timer
 @onready var continue_marker: TextureRect = $MarginContainer2/ContinueMarker
+@onready var talking_sfx: AudioStreamPlayer = $Talking_sfx
 
 var text_blocks = Array()
 var letter_index = 0
@@ -20,14 +21,17 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("accept"):
 		finished_reading.emit()
 
+func change_pitch(pitch: float):
+	print(pitch)
+	talking_sfx.volume_db = 0.8
 
-func display_text(text_to_display: Array, xOffset, yOffset):
+func display_text(text_to_display: Array, xOffset, yOffset, char_pitch):
 	if xOffset == null:
 		xOffset = 0
 	if yOffset == null:
 		yOffset = 0
 	
-	
+	talking_sfx.pitch_scale = char_pitch
 	for block in range(0, len(text_to_display)-1, 2):
 		custom_minimum_size.x = 0
 		set_deferred("size", 185)
@@ -65,11 +69,14 @@ func display_letters(block1: String, block2: String):
 				letter_display_timer.start(letter_time_skipping)
 			else:
 				letter_display_timer.start(letter_time)
+			if not talking_sfx.playing:
+				talking_sfx.play()
 			await letter_display_timer.timeout
 			letter_index += 2
 		if letter_index == current_block.length()-1:
 			label.text += current_block[letter_index]
 		label.text += "\n"
+		
 	
 	finished_textblock.emit()
 	

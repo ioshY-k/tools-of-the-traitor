@@ -41,6 +41,13 @@ var sliding_on_right_wall: bool
 @onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
 @onready var blink_timer: Timer = $Blink_timer
 
+#Sound
+@onready var jump_sfx: AudioStreamPlayer = $Jump_sfx
+@onready var walljump_sfx: AudioStreamPlayer = $Walljump_sfx
+@onready var placewall_sfx: AudioStreamPlayer = $Placewall_sfx
+@onready var placefloor_sfx: AudioStreamPlayer = $Placefloor_sfx
+@onready var callback_sfx: AudioStreamPlayer = $Callback_sfx
+
 #Tool placement
 var floor_tool_freezeframes : bool = false
 var original_floor_tool_scale = Vector2(0.752,1.148)
@@ -215,6 +222,7 @@ func callback_tool(tool: Node):
 			spring_tool_available = true
 		"Rope_tool":
 			rope_tool_available = true
+	callback_sfx.play()
 
 
 func on_idle_state(delta):
@@ -290,6 +298,8 @@ func on_jump_state():
 			animations.play("Pjump_anim", 0.3)
 		else:
 			animations.play("Jump_anim", 0.1)
+	jump_sfx.pitch_scale = randf_range(0.9, 1.1)
+	jump_sfx.play()
 
 
 func on_fall_state(delta):
@@ -349,6 +359,7 @@ func on_wallslide_state(delta, left: bool):
 	elif current_tool_state == tool_states.NO_TOOL and Input.is_action_pressed("walk_left"):
 		velocity.x = -1
 	eyes_blinking()
+	
 
 
 func on_walljump_state(left: int):
@@ -357,6 +368,9 @@ func on_walljump_state(left: int):
 	animations.play("Pjump_anim")
 	if launched:
 		launched = false
+	walljump_sfx.pitch_scale = randf_range(0.9, 1.1)
+	walljump_sfx.play()
+	
 
 
 func on_no_tool_state():
@@ -497,7 +511,7 @@ func on_floortool_place_state():
 			floor_tool.visible = true
 			floor_tool.position = sprite_floor_tool.global_position
 			floortool_place_animation(floor_tool)
-			
+			placefloor_sfx.play()
 			floor_tool_freezeframes = true
 			Engine.time_scale = 0.05
 			await get_tree().create_timer(0.031).timeout
@@ -570,6 +584,7 @@ func on_wall_tool_place_state():
 		wall_tool.visible = true
 		wall_tool.position = sprite_wall_tool.global_position
 		walltool_place_animation(wall_tool)
+		placewall_sfx.play()
 		wall_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Wall_tool"))
 		PlayerStats.tool_count += 1

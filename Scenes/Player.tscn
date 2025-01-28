@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=41 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -18,6 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://bjqc8f8na21sm" path="res://Sprites/UI/Radmenu_wall2.png" id="8_x57gu"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
 [ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="18_erkq1"]
+[ext_resource type="AudioStream" uid="uid://kpw5j6tjkkiv" path="res://Sound/jumping3.wav" id="19_mbly6"]
+[ext_resource type="AudioStream" uid="uid://chg3r1u38xrwe" path="res://Sound/jumping4.wav" id="20_ic28e"]
+[ext_resource type="AudioStream" uid="uid://b6qprgh5auwdo" path="res://Sound/place_wall.wav" id="21_vnyd3"]
+[ext_resource type="AudioStream" uid="uid://bd64ln1t77ngq" path="res://Sound/place_floor.wav" id="22_6mak1"]
+[ext_resource type="AudioStream" uid="uid://cvmk2yepgf5ck" path="res://Sound/callback_tool.wav" id="23_3qy3x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4bv2"]
 animations = [{
@@ -928,6 +933,21 @@ modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(4, -252)
 scale = Vector2(1.14441, 0.202363)
 texture = ExtResource("18_erkq1")
+
+[node name="Jump_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_mbly6")
+
+[node name="Walljump_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_ic28e")
+
+[node name="Placewall_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_vnyd3")
+
+[node name="Placefloor_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_6mak1")
+
+[node name="Callback_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_3qy3x")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg6pjl4gtvbcn"]
+[gd_scene load_steps=6 format=3 uid="uid://bg6pjl4gtvbcn"]
 
 [ext_resource type="Script" path="res://Scripts/textbox.gd" id="1_fdchw"]
 [ext_resource type="Texture2D" uid="uid://mfdluvly6sw" path="res://Sprites/UI/Dialog_box.png" id="2_t8p06"]
 [ext_resource type="Texture2D" uid="uid://h4e425w23qj5" path="res://Sprites/UI/Continue_marker_texture.tres" id="3_a8ytd"]
 [ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="3_h30ou"]
+[ext_resource type="AudioStream" uid="uid://17114i8oylyx" path="res://Sound/talking_sound.wav" id="5_68243"]
 
 [node name="Textbox" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 150)
@@ -54,5 +55,8 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 texture = ExtResource("3_a8ytd")
 expand_mode = 1
+
+[node name="Talking_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_68243")
 
 [connection signal="timeout" from="Letter_display_timer" to="." method="_on_letter_display_timer_timeout"]

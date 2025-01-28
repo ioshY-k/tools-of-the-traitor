@@ -3,6 +3,11 @@ extends Node
 var textbox : PackedScene = preload("res://Scenes/textbox.tscn")
 signal dialog_finished
 
+var char_pitches : Dictionary = {
+	"player" : 1.1,
+	"demobot" : 0.8
+}
+
 var dialog_participants = Array()
 
 #existing parameters: "offset" (adjusting textbox offset on xAxis)
@@ -225,9 +230,18 @@ func run_dialog(dialog_name):
 		dialog_participants[index].add_child(textbox_node)
 		textbox_node.display_text(	dialog_sequences[dialog_name + "_lines"][index],
 									dialog_sequences[dialog_name + "_param"].get("xOffset"),
-									dialog_sequences[dialog_name + "_param"].get("yOffset"))
+									dialog_sequences[dialog_name + "_param"].get("yOffset"),
+									determine_pitch(dialog_participants[index].name))
 		await textbox_node.finished_displaying
 		textbox_node.queue_free()
 	
 	dialog_finished.emit()
+
+func determine_pitch(name):
+	if "DEMObot" in name:
+		return 0.9
+	if "Player" in name:
+		return 1.1
+	if "Sign" in name:
+		return 0.7
 	
