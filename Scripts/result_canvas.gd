@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var score_label: Label = $VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer2/Score_label
 @onready var time_label: Label = $VBoxContainer/HBoxContainer2/Time_label
 @onready var placed_tools_label: Label = $VBoxContainer/HBoxContainer2/Placed_tools_label
-@onready var timer: Panel = get_node("/root/Testlevel/Misc_canvas/Timer")
 @onready var continue_button: Button = $VBoxContainer/HBoxContainer/Continue_button
 @onready var retry_button: Button = $VBoxContainer/HBoxContainer/Retry_button
 @onready var quit_button: Button = $VBoxContainer/HBoxContainer/Quit_button
@@ -14,6 +13,8 @@ extends CanvasLayer
 
 var score: int = 0
 
+@onready var select_sfx: AudioStreamPlayer = $select_sfx
+@onready var confirm_sfx: AudioStreamPlayer = $confirm_sfx
 
 
 
@@ -21,7 +22,7 @@ func _on_visibility_changed() -> void:
 	player.controllable = !player.controllable
 	player.velocity = Vector2.ZERO
 	if visible:
-		timer.stop_timer()
+		get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").stop_timer()
 		if PlayerStats.cursed_mode:
 			cursed_orb.speed = 0
 		score = 0
@@ -42,7 +43,7 @@ func _on_visibility_changed() -> void:
 				score_label.text = str(score)
 			await get_tree().create_timer(0.04).timeout
 		await get_tree().create_timer(1).timeout
-		time_label.text = "Time: " + timer.get_time_formatted()
+		time_label.text = "Time: " + get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").get_time_formatted()
 		placed_tools_label.text = "Placed Tools: " + str(PlayerStats.tool_count)
 		
 		
@@ -54,7 +55,7 @@ func _on_continue_button_pressed() -> void:
 	hide()
 	if is_instance_valid(cursed_orb): 
 		cursed_orb.speed = 350
-	timer.continue_timer()
+	get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").continue_timer()
 
 
 func _on_retry_button_pressed() -> void:
@@ -65,15 +66,15 @@ func _on_retry_button_pressed() -> void:
 	PlayerStats.rope_tool_unlocked = false
 	PlayerStats.spring_tool_unlocked = false
 	PlayerStats.field_tool_unlocked = false
-	get_tree().reload_current_scene()
+	get_node("/root/Scene_loader").fade_to_scene("Testlevel")
 
 func _on_quit_button_pressed() -> void:
 	submit_and_finish_run()
 	PlayerStats.save_progress()
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_node("/root/Scene_loader").fade_to_scene("Main_menu")
 
 func submit_and_finish_run():
-	Highscores.add_highscore(score, timer.get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
+	Highscores.add_highscore(score, get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").get_time_formatted(), PlayerStats.tool_count, PlayerStats.cursed_mode)
 	if score >= 200:
 		Achievements.save_new_achievement(2)
 	if PlayerStats.cursed_mode and score >= 100:
@@ -107,7 +108,7 @@ func _on_goal_2_body_entered(_body: Node2D) -> void:
 	Achievements.save_new_achievement(1)
 	if PlayerStats.tool_count <= 30:
 		Achievements.save_new_achievement(9)
-	if timer.minutes < 3:
+	if get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").minutes < 3:
 		Achievements.save_new_achievement(7)
 	show()
 	determine_other_achievements()
@@ -115,7 +116,15 @@ func _on_goal_2_body_entered(_body: Node2D) -> void:
 func determine_other_achievements():
 	if PlayerStats.cursed_mode:
 		Achievements.save_new_achievement(4)
-	if timer.minutes < 2:
+	if get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").minutes < 2:
 		Achievements.save_new_achievement(6)
 	if PlayerStats.tool_count <= 25:
 		Achievements.save_new_achievement(8)
+
+
+func _on_select_sfx() -> void:
+	select_sfx.play()
+
+
+func _on_confirm_sfx() -> void:
+	confirm_sfx.play()

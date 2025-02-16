@@ -58,5 +58,6 @@ expand_mode = 1
 
 [node name="Talking_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_68243")
+volume_db = -65.905
 
 [connection signal="timeout" from="Letter_display_timer" to="." method="_on_letter_display_timer_timeout"]

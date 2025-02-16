@@ -35,7 +35,7 @@ func _on_collected_decision(collected: bool):
 		PlayerStats.orb_count += 1
 		PlayerStats.temporary_orb_list[orb_title_number - 1] = true
 		
-		get_node("/root/Testlevel/Pause_menu").last_grabbed_orb = orb_title_number - 1
+		get_node("/root/Scene_loader/Testlevel/Pause_menu").last_grabbed_orb = orb_title_number - 1
 		
 		if PlayerStats.orb_list[orb_title_number - 1] == false:
 			PlayerStats.orb_list[orb_title_number - 1] = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=4 uid="uid://bcn8drka07wqk"]
+[gd_scene load_steps=118 format=4 uid="uid://2wgcsbefs01w"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -1317,7 +1317,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-8249, 2042)
+position = Vector2(8049, -988)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)

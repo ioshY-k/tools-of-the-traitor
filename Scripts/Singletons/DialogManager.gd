@@ -237,11 +237,11 @@ func run_dialog(dialog_name):
 	
 	dialog_finished.emit()
 
-func determine_pitch(name):
-	if "DEMObot" in name:
+func determine_pitch(char_name):
+	if "DEMObot" in char_name:
 		return 0.9
-	if "Player" in name:
+	if "Player" in char_name:
 		return 1.1
-	if "Sign" in name:
+	if "Sign" in char_name:
 		return 0.7
 	

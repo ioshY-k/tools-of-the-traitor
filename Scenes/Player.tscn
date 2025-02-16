@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=43 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -23,6 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://b6qprgh5auwdo" path="res://Sound/place_wall.wav" id="21_vnyd3"]
 [ext_resource type="AudioStream" uid="uid://bd64ln1t77ngq" path="res://Sound/place_floor.wav" id="22_6mak1"]
 [ext_resource type="AudioStream" uid="uid://cvmk2yepgf5ck" path="res://Sound/callback_tool.wav" id="23_3qy3x"]
+[ext_resource type="AudioStream" uid="uid://cqb17d6f5cbdc" path="res://Sound/place_spring.wav" id="23_nfg8a"]
+[ext_resource type="AudioStream" uid="uid://brudfatphcojr" path="res://Sound/died.wav" id="25_fs5uv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4bv2"]
 animations = [{
@@ -946,8 +948,14 @@ stream = ExtResource("21_vnyd3")
 [node name="Placefloor_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_6mak1")
 
+[node name="Placespring_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_nfg8a")
+
 [node name="Callback_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_3qy3x")
+
+[node name="Died_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_fs5uv")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

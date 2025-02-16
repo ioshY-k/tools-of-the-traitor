@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmcpgojnxsggl"]
+
+[ext_resource type="Script" path="res://Scripts/sceneloader.gd" id="1_qml2o"]
+[ext_resource type="Texture2D" uid="uid://dbnbwk8b41pcw" path="res://Sprites/UI/Blendscreen.png" id="2_v4cy6"]
+
+[node name="Scene_loader" type="Node2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_qml2o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Blendscreen" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(972, 324)
+scale = Vector2(1.32885, 1.40619)
+texture = ExtResource("2_v4cy6")

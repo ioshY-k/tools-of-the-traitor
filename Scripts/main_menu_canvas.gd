@@ -51,6 +51,9 @@ extends CanvasLayer
 @onready var label_tools: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools
 @onready var label_tools_2: Label = $Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer/Label_tools2
 
+@onready var confirm_sfx: AudioStreamPlayer = $"../confirm_sfx"
+@onready var return_sfx: AudioStreamPlayer = $"../return_sfx"
+@onready var select_sfx: AudioStreamPlayer = $"../select_sfx"
 
 
 enum player_keypositions {PLAY, PLAY_CURSED, OFF}
@@ -62,9 +65,9 @@ func _ready() -> void:
 	
 	var hs_file_r = FileAccess.open(hs_file, FileAccess.READ)
 	if hs_file_r.get_position() == hs_file_r.get_length():
-		get_node("/root/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = true
+		get_node("/root/Scene_loader/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = true
 	else:
-		get_node("/root/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = false
+		get_node("/root/Scene_loader/Main_menu/Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Cursed_mode").disabled = false
 	hs_file_r.close()
 	check_achievements()
 	
@@ -116,7 +119,6 @@ func _ready() -> void:
 	$Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider.value = 120 - (PlayerStats.bullet_time_value * 100)
 
 func check_achievements():
-	print("checking achievements")
 	var achievement_buttons = [	button_goal, button_goal_2, 
 								button_score, button_orbs,
 								button_cursed, button_cursed_2,
@@ -188,7 +190,7 @@ func prepare_new_game():
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
 	PlayerStats.time = 0.0
 	
-	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	get_node("/root/Scene_loader").fade_to_scene("Testlevel")
 
 
 func _on_continue_pressed() -> void:
@@ -209,7 +211,8 @@ func _on_continue_pressed() -> void:
 	PlayerStats.spring_tool_unlocked = savefile_dict["spring_tool_unlocked"]
 	PlayerStats.field_tool_unlocked = savefile_dict["field_tool_unlocked"]
 	PlayerStats.time = savefile_dict["time"]
-	get_tree().change_scene_to_file("res://Scenes/Levels/testlevel.tscn")
+	
+	get_node("/root/Scene_loader").fade_to_scene("Testlevel")
 
 
 func _on_quit_pressed() -> void:
@@ -457,7 +460,7 @@ func _on_achievementbutton_focus_entered() -> void:
 	if button_tools.has_focus(): label_tools.visible = true
 	if button_tools_2.has_focus(): label_tools_2.visible = true
 	
-	get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 532, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 532, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
 
 
@@ -474,7 +477,7 @@ func _on_achievementbutton_focus_exited() -> void:
 		if button.has_focus():
 			still_in_achievement_menu = true
 	if not still_in_achievement_menu:
-		get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 870, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+		get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 870, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 func _on_achievementbutton_mouse_entered() -> void:
 	panel_achievements.show()
@@ -512,4 +515,22 @@ func _on_yes_pressed() -> void:
 	for achievement in range(10):
 		Achievements.achievement_list[achievement] = false
 	get_tree().reload_current_scene()
-	
+
+func _on_focus_entered_sfx() -> void:
+	select_sfx.play()
+
+
+func _on_button_cursed_2_focus_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_confirmed_sfx() -> void:
+	confirm_sfx.play()
+
+
+func _on_return_sfx() -> void:
+	return_sfx.play()
+
+
+func _on_select_sfx() -> void:
+	pass # Replace with function body.

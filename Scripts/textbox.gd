@@ -16,6 +16,8 @@ signal finished_displaying()
 
 var firsttimetest = true
 
+func _ready() -> void:
+	talking_sfx.volume_db = db_to_linear(-20.0)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("accept"):

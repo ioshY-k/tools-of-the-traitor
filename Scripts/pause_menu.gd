@@ -38,7 +38,13 @@ var is_in_death_anim: bool = false
 var paused: bool = false
 @onready var player: CharacterBody2D = $"../Player"
 
+@onready var select_sfx: AudioStreamPlayer = $select_sfx
+@onready var return_sfx: AudioStreamPlayer = $return_sfx
+@onready var confirm_sfx: AudioStreamPlayer = $confirm_sfx
+
+
 func _ready() -> void:
+	
 	for tip_button in tip_buttons:
 		tip_button.disabled = true
 	for index in range(len(tip_buttons)):
@@ -47,7 +53,7 @@ func _ready() -> void:
 	
 	
 	show_timer.toggled.connect(func(on):
-		get_node("/root/Testlevel/Misc_canvas/Timer").visible = on)
+		get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").visible = on)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -182,12 +188,12 @@ func _on_hold_sprint_pressed() -> void:
 	await DialogManager.dialog_finished
 	player.controllable = true
 
-
+	
 func _on_back_to_menu_button_pressed() -> void:
 	PlayerStats.beat_game_on_last_save = false
 	PlayerStats.save_progress()
 	Engine.time_scale = 1
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_node("/root/Scene_loader").fade_to_scene("Main_menu")
 
 
 
@@ -205,3 +211,15 @@ func _on_tip_button_focus_entered(extra_arg_0: int) -> void:
 			tip_panels[panel_index].visible = true
 		else:
 			tip_panels[panel_index].visible = false
+
+
+func _on_select_sfx() -> void:
+	select_sfx.play()
+
+
+func _on_confirm_sfx() -> void:
+	confirm_sfx.play()
+
+
+func _on_return_sfx() -> void:
+	return_sfx.play()

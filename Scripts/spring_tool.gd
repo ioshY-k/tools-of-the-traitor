@@ -6,6 +6,7 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 @onready var caster_outer_left: RayCast2D = $Node2D/Caster_outer_left
 @onready var caster_inner: RayCast2D = $Node2D/Caster_inner
 @onready var caster_outer_right: RayCast2D = $Node2D/Caster_outer_right
+@onready var spring_sfx: AudioStreamPlayer = $spring_sfx
 
 
 func _ready() -> void:
@@ -41,6 +42,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	bounce_animation()
 	
 	await get_tree().create_timer(0.15).timeout
+	spring_sfx.play()
 	player.current_state = states.FALL
 	player.controllable = true
 	player.launched = true

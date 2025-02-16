@@ -46,7 +46,9 @@ var sliding_on_right_wall: bool
 @onready var walljump_sfx: AudioStreamPlayer = $Walljump_sfx
 @onready var placewall_sfx: AudioStreamPlayer = $Placewall_sfx
 @onready var placefloor_sfx: AudioStreamPlayer = $Placefloor_sfx
+@onready var placespring_sfx: AudioStreamPlayer = $Placespring_sfx
 @onready var callback_sfx: AudioStreamPlayer = $Callback_sfx
+@onready var died_sfx: AudioStreamPlayer = $Died_sfx
 
 #Tool placement
 var floor_tool_freezeframes : bool = false
@@ -633,6 +635,7 @@ func on_spring_tool_place_state():
 		spring_tool.visible = true
 		spring_tool.position = sprite_spring_tool.global_position
 		spring_tool.bounce_animation()
+		placespring_sfx.play()
 		spring_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Spring_tool"))
 		PlayerStats.tool_count += 1
@@ -758,6 +761,7 @@ func kill_player():
 		sprite_rope_tool.visible = false
 	PlayerStats.death_count += 1
 	animations.play("Death_anim")
+	died_sfx.play()
 	velocity = Vector2.ZERO
 	while Engine.time_scale != 1:
 		set_bullet_time(false)

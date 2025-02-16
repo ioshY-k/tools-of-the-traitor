@@ -29,8 +29,8 @@ var beat_game_on_last_save: bool = false #so that hitting play after a successfu
 
 
 func save_progress():
-	xPosition = get_node("/root/Testlevel/Player").last_spawnpoint.x
-	yPosition = get_node("/root/Testlevel/Player").last_spawnpoint.y
+	xPosition = get_node("/root/Scene_loader/Testlevel/Player").last_spawnpoint.x
+	yPosition = get_node("/root/Scene_loader/Testlevel/Player").last_spawnpoint.y
 	
 	var savedata = {
 		"floor_tool_unlocked" : floor_tool_unlocked,
@@ -46,7 +46,7 @@ func save_progress():
 		"orb_count" : orb_count,
 		"temporary_orb_list" : temporary_orb_list,
 		"tool_count" : tool_count,
-		"time" : get_node("/root/Testlevel/Misc_canvas/Timer").time,
+		"time" : get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").time,
 		"beat_game_on_last_save" : beat_game_on_last_save
 	}
 	
@@ -57,22 +57,22 @@ func save_progress():
 
 func execute_all_options():
 	if not cursed_mode:
-		if is_instance_valid(get_node("/root/Testlevel/Cursed_Orb")):
-			get_node("/root/Testlevel/Cursed_Orb").queue_free()
+		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Cursed_Orb")):
+			get_node("/root/Scene_loader/Testlevel/Cursed_Orb").queue_free()
 	else:
 		no_dialog = true
 	if no_dialog:
 		for triggerbox in get_tree().get_nodes_in_group("Dialog_trigger_group"):
 			triggerbox.queue_free()
 	if show_timer:
-		if is_instance_valid(get_node("/root/Testlevel/Misc_canvas/Timer")):
-			get_node("/root/Testlevel/Pause_menu/Pause_menu/Show_timer").button_pressed = true
-			get_node("/root/Testlevel/Misc_canvas/Timer").visible = true
+		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer")):
+			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Show_timer").button_pressed = true
+			get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").visible = true
 	if bullet_time_value != 1.0:
-		if is_instance_valid(get_node("/root/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider")):
-			get_node("/root/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider").value = 120 - (bullet_time_value * 100)
+		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider")):
+			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider").value = 120 - (bullet_time_value * 100)
 	if toggle_to_sprint:
-		if is_instance_valid(get_node("/root/Testlevel/Pause_menu/Pause_menu/Sprint_toggle")):
-			get_node("/root/Testlevel/Pause_menu/Pause_menu/Sprint_toggle").button_pressed = true
-			get_node("/root/Testlevel/Misc_canvas/Sprint_status_icon").visible = true
+		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle")):
+			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle").button_pressed = true
+			get_node("/root/Scene_loader/Testlevel/Misc_canvas/Sprint_status_icon").visible = true
 	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://du26sctepo01m"]
+[gd_scene load_steps=8 format=3 uid="uid://du26sctepo01m"]
 
 [ext_resource type="Script" path="res://Scripts/spring_tool.gd" id="1_shgnt"]
 [ext_resource type="Texture2D" uid="uid://cn5sqd64xklum" path="res://Sprites/Tools/Spring_wire.png" id="2_4e5fl"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="2_45mbx"]
 [ext_resource type="Texture2D" uid="uid://bc63hajcadcpk" path="res://Sprites/Tools/Spring_center.png" id="4_1hn1i"]
+[ext_resource type="AudioStream" uid="uid://d4df7d7bhqyiu" path="res://Sound/use_spring.wav" id="5_qwpfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tbym"]
 size = Vector2(104.348, 25)
@@ -60,6 +61,9 @@ collision_mask = 6
 position = Vector2(0, -1.42109e-14)
 scale = Vector2(0.68, 0.68)
 shape = SubResource("RectangleShape2D_m5rrh")
+
+[node name="spring_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qwpfp")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
