@@ -112,12 +112,12 @@ func _ready() -> void:
 		func(): current_player_pos = player_keypositions.OFF)
 	$Main_panel/MarginContainer/VBoxContainer/Quit.mouse_entered.connect(
 		func(): current_player_pos = player_keypositions.OFF)
-	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
 	$Options_Container/Options_panel/VBoxContainer/Sprint_toggle.button_pressed = PlayerStats.toggle_to_sprint
 	$Options_Container/Options_panel/VBoxContainer/Show_timer.button_pressed = PlayerStats.show_timer
 	$Options_Container/Options_panel/VBoxContainer/Skip_dialog.button_pressed = PlayerStats.no_dialog
 	$Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider.value = 120 - (PlayerStats.bullet_time_value * 100)
-
+	await get_node("/root/Scene_loader").faded
+	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
 func check_achievements():
 	var achievement_buttons = [	button_goal, button_goal_2, 
 								button_score, button_orbs,

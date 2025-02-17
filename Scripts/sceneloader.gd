@@ -2,14 +2,17 @@ extends Node2D
 
 var main_menu_scene = preload("res://Scenes/main_menu.tscn")
 var testlevel_scene = preload("res://Scenes/Levels/testlevel.tscn")
+var intro_scene = preload("res://Scenes/intro_scene.tscn")
+
 @onready var blendscreen: Sprite2D = $CanvasLayer/Blendscreen
 var blend_tween: Tween
 signal faded
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_child(main_menu_scene.instantiate())
-	blend_fade_in()
+	add_child(intro_scene.instantiate())
+	
+
 
 func fade_to_scene(scene):
 	if scene == "Testlevel":
@@ -28,6 +31,12 @@ func fade_to_scene(scene):
 		await get_tree().create_timer(0.5).timeout
 		add_child(main_menu_scene.instantiate())
 		blend_fade_in()
+	if scene == "Main_menu_initial":
+		get_child(1).queue_free()
+		await get_tree().create_timer(0.5).timeout
+		add_child(main_menu_scene.instantiate())
+		blend_fade_in()
+	
 		
 		
 

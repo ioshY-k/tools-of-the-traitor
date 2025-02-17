@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://o8egvp5x6c8j"]
+
+[ext_resource type="Script" path="res://Scenes/intro_scene.gd" id="1_a7678"]
+[ext_resource type="Texture2D" uid="uid://dd4w6olaclfxn" path="res://Sprites/Other/Logo.png" id="1_h5602"]
+[ext_resource type="Texture2D" uid="uid://qafktmsi1l0j" path="res://Sprites/Other/Gamelogo_beta.png" id="2_o08w6"]
+
+[sub_resource type="Animation" id="Animation_kdr6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Godot_logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game_logo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nu6wy"]
+resource_name = "Logo_dia_anim"
+length = 5.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Godot_logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game_logo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f4byr"]
+resource_name = "Logo_disappear_anim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game_logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3ysi"]
+_data = {
+"Logo_dia_anim": SubResource("Animation_nu6wy"),
+"Logo_disappear_anim": SubResource("Animation_f4byr"),
+"RESET": SubResource("Animation_kdr6o")
+}
+
+[node name="Intro_scene" type="Node2D"]
+script = ExtResource("1_a7678")
+
+[node name="Logo_Canvas" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Godot_logo" type="Sprite2D" parent="Logo_Canvas"]
+position = Vector2(943, 509)
+texture = ExtResource("1_h5602")
+
+[node name="Game_logo" type="Sprite2D" parent="Logo_Canvas"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(943, 489)
+scale = Vector2(0.321886, 0.317809)
+texture = ExtResource("2_o08w6")
+
+[node name="Intro_animationPlayer" type="AnimationPlayer" parent="Logo_Canvas"]
+libraries = {
+"": SubResource("AnimationLibrary_f3ysi")
+}
+
+[node name="Press_anything" type="Label" parent="Logo_Canvas"]
+visible = false
+offset_left = 629.0
+offset_top = 938.0
+offset_right = 1263.0
+offset_bottom = 1052.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.87, 0.87, 0.87, 1)
+theme_override_font_sizes/font_size = 100
+text = "Press A to start"
