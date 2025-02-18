@@ -78,8 +78,8 @@ func _physics_process(delta: float) -> void:
 		spring_ally.position = spring_ally.position.move_toward(spring_tool.position, 2500 * get_physics_process_delta_time())
 		spring_ally.scale = spring_ally.scale.move_toward(Vector2(0.09,0.09), 2500 * get_physics_process_delta_time())
 	if rope_ally_gone:
-		rope_ally.position = rope_ally.position.move_toward(rope_tool.position, 2500 * get_physics_process_delta_time())
-		rope_ally.scale = rope_ally.scale.move_toward(Vector2(0.09,0.09), 2500 * get_physics_process_delta_time())
+		rope_ally.position = rope_ally.position.move_toward(rope_tool.position +Vector2.UP * 50 + Vector2.RIGHT * 5, 2500 * get_physics_process_delta_time())
+		rope_ally.scale = rope_ally.scale.move_toward(Vector2(0.07,0.07), 2500 * get_physics_process_delta_time())
 	
 
 

@@ -4,7 +4,8 @@ var swinging = false
 var pendling_right = true
 @onready var player: CharacterBody2D = get_parent().get_node("Player")
 @onready var path_follow_ropetool: PathFollow2D = $Path_ropetool/PathFollow_ropetool
-@onready var area_2d: Area2D = $Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D
+@onready var area_2d: Area2D = $Path_ropetool/PathFollow_ropetool/Area2D
+var knot_rot = -0.05
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,17 +13,35 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	
+	knot_rot = 0.13
 	if path_follow_ropetool.progress_ratio <= 0.101:
 		get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.9, 0.8).\
 		set_trans(Tween.TRANS_CUBIC).\
 		set_ease(Tween.EASE_IN_OUT)
+		
+		get_tree().create_tween().tween_property($Rope_tool_platform/Center, "rotation", -0.6, 0.8).\
+		set_trans(Tween.TRANS_SINE).\
+		set_ease(Tween.EASE_OUT)
+		
+		for knot in get_tree().get_nodes_in_group("Rope_rotor"):
+			get_tree().create_tween().tween_property(knot, "rotation", -knot_rot, 0.8).\
+			set_trans(Tween.TRANS_CUBIC).\
+			set_ease(Tween.EASE_IN_OUT)
 		pendling_right = true
 
 	if path_follow_ropetool.progress_ratio >= 0.899:
 		get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.1, 0.8).\
 		set_trans(Tween.TRANS_CUBIC).\
 		set_ease(Tween.EASE_IN_OUT)
+		
+		get_tree().create_tween().tween_property($Rope_tool_platform/Center, "rotation", 0.6, 0.8).\
+		set_trans(Tween.TRANS_SINE).\
+		set_ease(Tween.EASE_OUT)
+		
+		for knot in get_tree().get_nodes_in_group("Rope_rotor"):
+			get_tree().create_tween().tween_property(knot, "rotation", knot_rot, 0.8).\
+			set_trans(Tween.TRANS_CUBIC).\
+			set_ease(Tween.EASE_IN_OUT)
 		pendling_right = false
 	
 	
@@ -74,12 +93,33 @@ func _on_visibility_changed() -> void:
 	set_process(not is_processing())
 	if visible:
 		path_follow_ropetool.progress_ratio = 0.5
+		$Rope_tool_platform/Center.rotation = 0
+		for knot in get_tree().get_nodes_in_group("Rope_rotor"):
+			knot.rotation = 0
 		if player.get_node("Model_position").scale.x < 0:
 			get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.1, 0.4).\
 			set_trans(Tween.TRANS_CUBIC).\
 			set_ease(Tween.EASE_OUT)
+			
+			get_tree().create_tween().tween_property($Rope_tool_platform/Center, "rotation", 0.6, 0.4).\
+			set_trans(Tween.TRANS_SINE).\
+			set_ease(Tween.EASE_OUT)
+			
+			for knot in get_tree().get_nodes_in_group("Rope_rotor"):
+				get_tree().create_tween().tween_property(knot, "rotation", knot_rot, 0.4).\
+				set_trans(Tween.TRANS_CUBIC).\
+				set_ease(Tween.EASE_OUT)
 		else:
 			get_tree().create_tween().tween_property(path_follow_ropetool, "progress_ratio", 0.9, 0.4).\
 			set_trans(Tween.TRANS_CUBIC).\
 			set_ease(Tween.EASE_OUT)
+			
+			get_tree().create_tween().tween_property($Rope_tool_platform/Center, "rotation", -0.6, 0.4).\
+			set_trans(Tween.TRANS_SINE).\
+			set_ease(Tween.EASE_OUT)
+			
+			for knot in get_tree().get_nodes_in_group("Rope_rotor"):
+				get_tree().create_tween().tween_property(knot, "rotation", -knot_rot, 0.4).\
+				set_trans(Tween.TRANS_CUBIC).\
+				set_ease(Tween.EASE_OUT)
 		

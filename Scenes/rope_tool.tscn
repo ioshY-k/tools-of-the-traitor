@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwvx83v77q05o"]
+[gd_scene load_steps=9 format=3 uid="uid://bwvx83v77q05o"]
 
 [ext_resource type="Script" path="res://Scripts/rope_tool.gd" id="1_65bk0"]
-[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="2_u1pmp"]
+[ext_resource type="Texture2D" uid="uid://d3fw0b6e86snw" path="res://Sprites/Tools/Rope_base.png" id="2_0mtbp"]
+[ext_resource type="Texture2D" uid="uid://dsngrft4yeq2v" path="res://Sprites/Tools/Rope_center.png" id="3_4qv0w"]
+[ext_resource type="Texture2D" uid="uid://5lp7bsde08al" path="res://Sprites/Tools/Rope_knot.png" id="4_fvi33"]
+[ext_resource type="Texture2D" uid="uid://dbdgkiqkkajip" path="res://Sprites/Tools/Rope_end.png" id="5_sqh5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svltb"]
 
@@ -27,9 +30,70 @@ shape = SubResource("RectangleShape2D_svltb")
 one_way_collision = true
 
 [node name="Rope_tool_platform" type="Sprite2D" parent="."]
-position = Vector2(4.17246, -49.3741)
-scale = Vector2(1.14441, 0.202363)
-texture = ExtResource("2_u1pmp")
+position = Vector2(4.17246, 31.9889)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("2_0mtbp")
+
+[node name="Center" type="Sprite2D" parent="Rope_tool_platform"]
+z_index = 1
+position = Vector2(0, -144.877)
+texture = ExtResource("3_4qv0w")
+
+[node name="Knot0" type="Sprite2D" parent="Rope_tool_platform"]
+position = Vector2(-1.49, -142.49)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot" type="Sprite2D" parent="Rope_tool_platform/Knot0" groups=["Rope_rotor"]]
+z_as_relative = false
+position = Vector2(0, 28.32)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot2" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot3" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot4" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot5" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot6" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot7" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot8" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot10" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("4_fvi33")
+offset = Vector2(0, 16)
+
+[node name="Knot_end" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8/Knot10" groups=["Rope_rotor"]]
+position = Vector2(0.034, 30)
+texture = ExtResource("5_sqh5o")
+offset = Vector2(0, 16)
 
 [node name="Path_ropetool" type="Path2D" parent="."]
 position = Vector2(1442.28, -541.725)
@@ -37,21 +101,17 @@ curve = SubResource("Curve2D_ftunl")
 
 [node name="PathFollow_ropetool" type="PathFollow2D" parent="Path_ropetool"]
 position = Vector2(-1438.61, 651.6)
-rotation = -0.000765567
+rotation = -0.000766407
 progress = 191.007
 
-[node name="Rope_sprite" type="Sprite2D" parent="Path_ropetool/PathFollow_ropetool"]
+[node name="Area2D" type="Area2D" parent="Path_ropetool/PathFollow_ropetool"]
 scale = Vector2(0.0899934, 1.21238)
-texture = ExtResource("2_u1pmp")
-offset = Vector2(0, -57.76)
-
-[node name="Area2D" type="Area2D" parent="Path_ropetool/PathFollow_ropetool/Rope_sprite"]
 collision_layer = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path_ropetool/PathFollow_ropetool/Area2D"]
 position = Vector2(-0.515, -58.965)
 scale = Vector2(3.65, 6.275)
 shape = SubResource("RectangleShape2D_coiuh")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="body_entered" from="Path_ropetool/PathFollow_ropetool/Rope_sprite/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Path_ropetool/PathFollow_ropetool/Area2D" to="." method="_on_area_2d_body_entered"]
