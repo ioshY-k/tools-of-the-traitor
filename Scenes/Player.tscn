@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=44 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -709,6 +709,9 @@ point_count = 5
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
 load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_twub3"]
+radius = 111.841
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 102
 script = ExtResource("1_ac4tx")
@@ -956,6 +959,16 @@ stream = ExtResource("23_3qy3x")
 
 [node name="Died_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_fs5uv")
+
+[node name="Floortool_placement_zone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floortool_placement_zone"]
+position = Vector2(-17, 24)
+rotation = 1.57079
+scale = Vector2(2.31608, 5.61879)
+shape = SubResource("CircleShape2D_twub3")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

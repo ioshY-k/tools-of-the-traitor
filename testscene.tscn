@@ -1,504 +1,81 @@
-[gd_scene load_steps=64 format=3 uid="uid://3etdrjgb1unq"]
+[gd_scene load_steps=43 format=3 uid="uid://csxfq6lgw36cm"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu_canvas.gd" id="1_w03fo"]
-[ext_resource type="Texture2D" uid="uid://nhkcchoa5fki" path="res://Sprites/UI/Popup_darker.png" id="2_5lqhp"]
-[ext_resource type="Texture2D" uid="uid://coyyddwotj21q" path="res://Sprites/UI/option_button_highlight_theme.png" id="2_aeq4f"]
-[ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_en6pt"]
-[ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="2_h4maf"]
-[ext_resource type="Texture2D" uid="uid://c8bh045jgp2o7" path="res://Sprites/UI/Togglebutton.png" id="3_sbieh"]
-[ext_resource type="Texture2D" uid="uid://5rpwv2cjkwas" path="res://Sprites/UI/option_button_theme.png" id="3_wp4q5"]
-[ext_resource type="Texture2D" uid="uid://do40farynbpub" path="res://Sprites/UI/Togglebutton2.png" id="4_q6at1"]
-[ext_resource type="Texture2D" uid="uid://bky8b1copxapd" path="res://Sprites/UI/Achievement1.png" id="4_xqixr"]
-[ext_resource type="PackedScene" uid="uid://cm0n1coqbkwj0" path="res://Scenes/options_animations.tscn" id="5_4klwa"]
-[ext_resource type="Texture2D" uid="uid://t42aq75i7q1c" path="res://Sprites/UI/Achievement2.png" id="5_cowqg"]
-[ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="5_m8tyy"]
-[ext_resource type="Texture2D" uid="uid://cyestj4w1t6uv" path="res://Sprites/UI/Achievement9.png" id="6_80cwq"]
-[ext_resource type="Texture2D" uid="uid://dj662475msy1d" path="res://Sprites/UI/Achievement3.png" id="6_f2f8j"]
-[ext_resource type="Texture2D" uid="uid://dcx5ej5d7l04" path="res://Sprites/UI/new_icon.png" id="6_p2mej"]
-[ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="7_0l8mh"]
-[ext_resource type="Texture2D" uid="uid://2xsbhrip554x" path="res://Sprites/Orbs/Orb_grey.png" id="7_3hway"]
-[ext_resource type="Texture2D" uid="uid://brr43cl8fkf5t" path="res://Sprites/UI/Achievement10.png" id="7_65kua"]
-[ext_resource type="Texture2D" uid="uid://cl56s2nifj3rd" path="res://Sprites/UI/Achievement4.png" id="7_gsnt6"]
-[ext_resource type="Texture2D" uid="uid://b8fm1dba03yl7" path="res://Sprites/Orbs/Orb_green.png" id="8_apcnp"]
-[ext_resource type="Texture2D" uid="uid://bs13r3gp66krq" path="res://Sprites/UI/Achievement5.png" id="8_wy58t"]
-[ext_resource type="Texture2D" uid="uid://dgmm1bwmlokvq" path="res://Sprites/UI/Achievement6.png" id="9_1w0ht"]
-[ext_resource type="Texture2D" uid="uid://jgos12hj6um1" path="res://Sprites/Orbs/Orb_navy.png" id="9_82522"]
-[ext_resource type="Texture2D" uid="uid://c7yd3x0r1daox" path="res://Sprites/Orbs/Orb_orange.png" id="10_g1ohf"]
-[ext_resource type="Texture2D" uid="uid://c5nnrymn827wa" path="res://Sprites/UI/Achievement7.png" id="10_jspp8"]
-[ext_resource type="Texture2D" uid="uid://da1gd1u35r7fh" path="res://Sprites/UI/Achievement8.png" id="11_ffrux"]
-[ext_resource type="Texture2D" uid="uid://bly2e53ly7aik" path="res://Sprites/Orbs/Orb_purple.png" id="11_utctt"]
-[ext_resource type="Texture2D" uid="uid://dn0kpyij1a7w7" path="res://Sprites/Orbs/Orb_red.png" id="12_7uqmu"]
-[ext_resource type="Texture2D" uid="uid://cc5wbq565k7tt" path="res://Sprites/Orbs/Orb_yellow.png" id="13_mqbjc"]
-[ext_resource type="Texture2D" uid="uid://cqrue04hiieqr" path="res://Sprites/Orbs/Orb_pastelgreen.png" id="14_jn6qh"]
-[ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="15_2fcde"]
-[ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="17_odse5"]
-[ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="18_fsh2a"]
-[ext_resource type="PackedScene" uid="uid://gxhg6fc7slat" path="res://Scenes/highscore_animations.tscn" id="20_pc3qj"]
-[ext_resource type="Texture2D" uid="uid://b2es21a1u1bi3" path="res://Sprites/UI/blueground_as_texture.png" id="22_60ltw"]
-[ext_resource type="AudioStream" uid="uid://cag6q83465tvl" path="res://Sound/menu_confirm.wav" id="36_vmenc"]
-[ext_resource type="AudioStream" uid="uid://blh6gx24jms57" path="res://Sound/menu_return.wav" id="37_0l80q"]
-[ext_resource type="AudioStream" uid="uid://bwcr8vbn028ej" path="res://Sound/menu_select.wav" id="38_tgjbl"]
+[ext_resource type="Texture2D" uid="uid://nhkcchoa5fki" path="res://Sprites/UI/Popup_darker.png" id="2_abdn5"]
+[ext_resource type="Texture2D" uid="uid://coyyddwotj21q" path="res://Sprites/UI/option_button_highlight_theme.png" id="3_fqy5s"]
+[ext_resource type="Texture2D" uid="uid://5rpwv2cjkwas" path="res://Sprites/UI/option_button_theme.png" id="4_jmx75"]
+[ext_resource type="Texture2D" uid="uid://c5nnrymn827wa" path="res://Sprites/UI/Achievement7.png" id="5_v3uwp"]
+[ext_resource type="Texture2D" uid="uid://da1gd1u35r7fh" path="res://Sprites/UI/Achievement8.png" id="6_7f65h"]
+[ext_resource type="Texture2D" uid="uid://cyestj4w1t6uv" path="res://Sprites/UI/Achievement9.png" id="7_ar7ia"]
+[ext_resource type="Texture2D" uid="uid://brr43cl8fkf5t" path="res://Sprites/UI/Achievement10.png" id="8_iak1n"]
+[ext_resource type="Texture2D" uid="uid://dj662475msy1d" path="res://Sprites/UI/Achievement3.png" id="9_fjhhm"]
+[ext_resource type="Texture2D" uid="uid://cl56s2nifj3rd" path="res://Sprites/UI/Achievement4.png" id="10_ae0xp"]
+[ext_resource type="Texture2D" uid="uid://bky8b1copxapd" path="res://Sprites/UI/Achievement1.png" id="11_or6ha"]
+[ext_resource type="Texture2D" uid="uid://t42aq75i7q1c" path="res://Sprites/UI/Achievement2.png" id="12_01dsc"]
+[ext_resource type="Texture2D" uid="uid://bs13r3gp66krq" path="res://Sprites/UI/Achievement5.png" id="13_21m8b"]
+[ext_resource type="Texture2D" uid="uid://dgmm1bwmlokvq" path="res://Sprites/UI/Achievement6.png" id="14_vgkeh"]
+[ext_resource type="Texture2D" uid="uid://c8bh045jgp2o7" path="res://Sprites/UI/Togglebutton.png" id="15_3utfq"]
+[ext_resource type="Texture2D" uid="uid://do40farynbpub" path="res://Sprites/UI/Togglebutton2.png" id="16_a7iuf"]
+[ext_resource type="Theme" uid="uid://dqteyjs0ylrjj" path="res://Menu_theme.tres" id="17_x2gqe"]
+[ext_resource type="Texture2D" uid="uid://baex07cr4oe8y" path="res://Sprites/Orbs/Orb_cyan.png" id="18_e2ato"]
+[ext_resource type="Texture2D" uid="uid://dcx5ej5d7l04" path="res://Sprites/UI/new_icon.png" id="19_5xqyl"]
+[ext_resource type="Texture2D" uid="uid://2xsbhrip554x" path="res://Sprites/Orbs/Orb_grey.png" id="20_4fs3n"]
+[ext_resource type="Texture2D" uid="uid://b8fm1dba03yl7" path="res://Sprites/Orbs/Orb_green.png" id="21_ysk3t"]
+[ext_resource type="Texture2D" uid="uid://jgos12hj6um1" path="res://Sprites/Orbs/Orb_navy.png" id="22_h46ey"]
+[ext_resource type="Texture2D" uid="uid://c7yd3x0r1daox" path="res://Sprites/Orbs/Orb_orange.png" id="23_oh4pp"]
+[ext_resource type="Texture2D" uid="uid://bly2e53ly7aik" path="res://Sprites/Orbs/Orb_purple.png" id="24_obadd"]
+[ext_resource type="Texture2D" uid="uid://dn0kpyij1a7w7" path="res://Sprites/Orbs/Orb_red.png" id="25_bm1ij"]
+[ext_resource type="Texture2D" uid="uid://cc5wbq565k7tt" path="res://Sprites/Orbs/Orb_yellow.png" id="26_5ru3g"]
+[ext_resource type="Texture2D" uid="uid://cqrue04hiieqr" path="res://Sprites/Orbs/Orb_pastelgreen.png" id="27_t05gi"]
+[ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="28_0hqf1"]
+[ext_resource type="Texture2D" uid="uid://1jg8whmxf1it" path="res://Sprites/Orbs/Orb_black.png" id="29_8yxhq"]
+[ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="30_y2lna"]
+[ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="31_rlibu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2av5u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wecmd"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sotrs"]
-texture = ExtResource("2_5lqhp")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kgj5u"]
+texture = ExtResource("2_abdn5")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0frg6"]
-texture = ExtResource("2_aeq4f")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4jim"]
+texture = ExtResource("3_fqy5s")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljb1v"]
-texture = ExtResource("2_aeq4f")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ocln"]
+texture = ExtResource("3_fqy5s")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fl8te"]
-texture = ExtResource("3_wp4q5")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsbas"]
+texture = ExtResource("4_jmx75")
 texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cxn7o"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2wd62"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_0j84y"]
 action = &"ui_cancel"
 
-[sub_resource type="Shortcut" id="Shortcut_c7ehn"]
+[sub_resource type="Shortcut" id="Shortcut_v64h0"]
 events = [SubResource("InputEventAction_0j84y")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_lbuy4"]
 action = &"ui_cancel"
 
-[sub_resource type="Shortcut" id="Shortcut_oyxq5"]
+[sub_resource type="Shortcut" id="Shortcut_d1xd7"]
 events = [SubResource("InputEventAction_lbuy4")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_0ti2d"]
 action = &"ui_cancel"
 
-[sub_resource type="Shortcut" id="Shortcut_dvv8k"]
+[sub_resource type="Shortcut" id="Shortcut_tfsk0"]
 events = [SubResource("InputEventAction_0ti2d")]
 
-[sub_resource type="Animation" id="Animation_c75ar"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1415, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_f80fm"]
-resource_name = "player_fly_from_cursed"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 0.450625),
-"update": 0,
-"values": [Vector2(1346, 760), Vector2(1415, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.03527, 0.450625),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.03527, 0.450625),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_qq06k"]
-resource_name = "player_fly_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.466517, 1),
-"update": 0,
-"values": [Vector2(2358, 749), Vector2(1415, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_iujjj"]
-resource_name = "player_fly_in_cursed"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.466517, 1),
-"update": 0,
-"values": [Vector2(2358, 749), Vector2(1346, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_irxpn"]
-resource_name = "player_fly_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [Vector2(1415, 760), Vector2(2358, 749)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_fsmji"]
-resource_name = "player_fly_out_cursed"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [Vector2(1346, 760), Vector2(2358, 749)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_mwuwj"]
-resource_name = "player_fly_to_cursed"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 0.450625),
-"update": 0,
-"values": [Vector2(1415, 760), Vector2(1346, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.450625, 1.03527),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.6, -1.6)]
-}
-
-[sub_resource type="Animation" id="Animation_41kbq"]
-resource_name = "player_hover"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1415, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [3.14159, 3.21986, 3.11561]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.3, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.66, -1.66), Vector2(1.52, -1.52)]
-}
-
-[sub_resource type="Animation" id="Animation_stfw7"]
-resource_name = "player_hover_cursed"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1346, 760)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [3.14159, 3.21986, 3.11561]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.3, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1.6, -1.6), Vector2(1.66, -1.66), Vector2(1.52, -1.52)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yawtq"]
-_data = {
-"RESET": SubResource("Animation_c75ar"),
-"player_fly_from_cursed": SubResource("Animation_f80fm"),
-"player_fly_in": SubResource("Animation_qq06k"),
-"player_fly_in_cursed": SubResource("Animation_iujjj"),
-"player_fly_out": SubResource("Animation_irxpn"),
-"player_fly_out_cursed": SubResource("Animation_fsmji"),
-"player_fly_to_cursed": SubResource("Animation_mwuwj"),
-"player_hover": SubResource("Animation_41kbq"),
-"player_hover_cursed": SubResource("Animation_stfw7")
-}
-
-[sub_resource type="Animation" id="Animation_7otpp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-382, -493)]
-}
-
-[sub_resource type="Animation" id="Animation_xlo82"]
-resource_name = "bg_scroll"
-length = 10.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-82, -43), Vector2(-382, -493)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7mef"]
-_data = {
-"RESET": SubResource("Animation_7otpp"),
-"bg_scroll": SubResource("Animation_xlo82")
-}
-
-[node name="Main_menu" type="Node2D"]
-z_index = -1
+[node name="Node2D" type="Node2D"]
 
 [node name="Main_menu_canvas" type="CanvasLayer" parent="."]
-script = ExtResource("1_w03fo")
 
 [node name="Main_panel" type="Panel" parent="Main_menu_canvas"]
 anchors_preset = 15
@@ -506,7 +83,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2av5u")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wecmd")
 
 [node name="MarginContainer" type="MarginContainer" parent="Main_menu_canvas/Main_panel"]
 layout_mode = 1
@@ -577,7 +154,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxTexture_sotrs")
+theme_override_styles/panel = SubResource("StyleBoxTexture_kgj5u")
 
 [node name="MarginContainer" type="MarginContainer" parent="Main_menu_canvas/Main_panel/Panel"]
 layout_mode = 0
@@ -606,73 +183,73 @@ theme_override_constants/separation = 19
 [node name="Button_goal" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ljb1v")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("10_jspp8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3ocln")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("5_v3uwp")
 
 [node name="Button_goal2" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("11_ffrux")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("6_7f65h")
 
 [node name="Button_score" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("6_80cwq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("7_ar7ia")
 
 [node name="Button_orbs" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("7_65kua")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("8_iak1n")
 
 [node name="Button_cursed" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("6_f2f8j")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("9_fjhhm")
 
 [node name="Button_cursed2" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("7_gsnt6")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("10_ae0xp")
 
 [node name="Button_time" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("4_xqixr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("11_or6ha")
 
 [node name="Button_time2" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("5_cowqg")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("12_01dsc")
 
 [node name="Button_tools" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("8_wy58t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("13_21m8b")
 
 [node name="Button_tools2" type="Button" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" groups=["Achievement_button"]]
 modulate = Color(0.56, 0.56, 0.56, 0.568627)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_0frg6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_fl8te")
-icon = ExtResource("9_1w0ht")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m4jim")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsbas")
+icon = ExtResource("14_vgkeh")
 
 [node name="Panel_Achievements" type="Panel" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(600, 129.66)
@@ -693,7 +270,7 @@ offset_right = 422.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_cxn7o")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2wd62")
 
 [node name="Label_goal" type="Label" parent="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/Panel_Achievements/PanelContainer" groups=["Achievement_label"]]
 visible = false
@@ -948,15 +525,15 @@ popup/item_2/id = 2
 [node name="Cursed_mode" type="CheckButton" parent="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-theme_override_icons/checked = ExtResource("3_sbieh")
-theme_override_icons/unchecked = ExtResource("4_q6at1")
+theme_override_icons/checked = ExtResource("15_3utfq")
+theme_override_icons/unchecked = ExtResource("16_a7iuf")
 text = "Cursed Mode"
 
 [node name="Return_from_hs" type="Button" parent="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Sort_options")
 theme_override_font_sizes/font_size = 40
-shortcut = SubResource("Shortcut_c7ehn")
+shortcut = SubResource("Shortcut_v64h0")
 text = "Return"
 
 [node name="Options_Container" type="MarginContainer" parent="Main_menu_canvas"]
@@ -974,7 +551,7 @@ theme_override_constants/margin_bottom = 100
 [node name="Options_panel" type="Panel" parent="Main_menu_canvas/Options_Container"]
 custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main_menu_canvas/Options_Container/Options_panel"]
 layout_mode = 1
@@ -999,26 +576,26 @@ text = "Show unlocked Tips"
 
 [node name="Sprint_toggle" type="CheckButton" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 theme_override_font_sizes/font_size = 40
-theme_override_icons/checked = ExtResource("3_sbieh")
-theme_override_icons/unchecked = ExtResource("4_q6at1")
+theme_override_icons/checked = ExtResource("15_3utfq")
+theme_override_icons/unchecked = ExtResource("16_a7iuf")
 text = "Toggle to Sprint "
 
 [node name="Show_timer" type="CheckButton" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 theme_override_font_sizes/font_size = 40
-theme_override_icons/checked = ExtResource("3_sbieh")
-theme_override_icons/unchecked = ExtResource("4_q6at1")
+theme_override_icons/checked = ExtResource("15_3utfq")
+theme_override_icons/unchecked = ExtResource("16_a7iuf")
 text = "Show Timer"
 
 [node name="Skip_dialog" type="CheckButton" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 theme_override_font_sizes/font_size = 40
-theme_override_icons/checked = ExtResource("3_sbieh")
-theme_override_icons/unchecked = ExtResource("4_q6at1")
+theme_override_icons/checked = ExtResource("15_3utfq")
+theme_override_icons/unchecked = ExtResource("16_a7iuf")
 text = "Skip Dialog"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer"]
@@ -1032,7 +609,7 @@ text = "Slowmo "
 [node name="Bullet_time_slider" type="HSlider" parent="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 min_value = 20.0
 step = 20.0
 value = 20.0
@@ -1054,7 +631,7 @@ theme_override_constants/margin_right = 60
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../Show_tips")
 theme_override_font_sizes/font_size = 35
-shortcut = SubResource("Shortcut_oyxq5")
+shortcut = SubResource("Shortcut_d1xd7")
 text = "Return"
 
 [node name="Really_delete" type="Panel" parent="Main_menu_canvas"]
@@ -1128,7 +705,7 @@ grow_vertical = 2
 scale = Vector2(0.915, 0.915)
 pivot_offset = Vector2(704.995, 583.76)
 size_flags_vertical = 0
-theme = ExtResource("2_h4maf")
+theme = ExtResource("17_x2gqe")
 
 [node name="Tip_grid" type="GridContainer" parent="Main_menu_canvas/Tip_menu"]
 layout_mode = 2
@@ -1145,13 +722,13 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer4/Tip_button4")
 focus_neighbor_top = NodePath("../../../Return_button")
-icon = ExtResource("5_m8tyy")
+icon = ExtResource("18_e2ato")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1163,13 +740,13 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button2" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
-icon = ExtResource("7_3hway")
+icon = ExtResource("20_4fs3n")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer3" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1181,13 +758,13 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button3" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
-icon = ExtResource("8_apcnp")
+icon = ExtResource("21_ysk3t")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1200,13 +777,13 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
 focus_neighbor_right = NodePath("../../MarginContainer1/Tip_button1")
-icon = ExtResource("9_82522")
+icon = ExtResource("22_h46ey")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer5" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1218,13 +795,13 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button5" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer8/Tip_button8")
-icon = ExtResource("10_g1ohf")
+icon = ExtResource("23_oh4pp")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer6" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1235,13 +812,13 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button6" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6"]
 layout_mode = 2
-icon = ExtResource("11_utctt")
+icon = ExtResource("24_obadd")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer7" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1252,13 +829,13 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button7" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7"]
 layout_mode = 2
-icon = ExtResource("12_7uqmu")
+icon = ExtResource("25_bm1ij")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer8" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1270,13 +847,13 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button8" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer5/Tip_button5")
-icon = ExtResource("13_mqbjc")
+icon = ExtResource("26_5ru3g")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer9" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1288,13 +865,13 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button9" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer12/Tip_button12")
-icon = ExtResource("14_jn6qh")
+icon = ExtResource("27_t05gi")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer10" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1305,13 +882,13 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button10" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10"]
 layout_mode = 2
-icon = ExtResource("15_2fcde")
+icon = ExtResource("28_0hqf1")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer11" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1322,13 +899,13 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button11" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11"]
 layout_mode = 2
-icon = ExtResource("7_0l8mh")
+icon = ExtResource("29_8yxhq")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="MarginContainer12" type="MarginContainer" parent="Main_menu_canvas/Tip_menu/Tip_grid"]
 layout_mode = 2
@@ -1340,19 +917,19 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button12" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer9/Tip_button9")
-icon = ExtResource("17_odse5")
+icon = ExtResource("30_y2lna")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
 visible = false
 position = Vector2(253.307, 255.826)
 scale = Vector2(0.671816, 0.671815)
-texture = ExtResource("6_p2mej")
+texture = ExtResource("19_5xqyl")
 
 [node name="Return_button" type="Button" parent="Main_menu_canvas/Tip_menu"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Tip_grid/MarginContainer1/Tip_button1")
 theme_override_font_sizes/font_size = 40
-shortcut = SubResource("Shortcut_dvv8k")
+shortcut = SubResource("Shortcut_tfsk0")
 text = "Return"
 
 [node name="Panel1" type="Panel" parent="Main_menu_canvas"]
@@ -1383,7 +960,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "You jump much higher
 while walking
@@ -1421,7 +998,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "You can call back your Tools only when grounded!
 
@@ -1458,7 +1035,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Your tools will
 keep away the Cursed orb!
@@ -1497,7 +1074,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Placing the
 Floor Tool briefly freezes time.
@@ -1536,7 +1113,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Placing the Wall Tool midair
 lets you walljump
@@ -1573,7 +1150,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "To land precisely after a wall jump, just let go of the Sprint button"
 horizontal_alignment = 1
@@ -1608,7 +1185,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Your Floor Tool can be placed in front of walls, letting you use it as a platform in two different places at once!"
 horizontal_alignment = 1
@@ -1643,7 +1220,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Keep your forward momentum after placing the Block Tool by placing it diagonally and immediately jumping off of it.
 
@@ -1680,7 +1257,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Placing The Block Tool above you
 will stop the momentum of the Spring Tool launching you up!
@@ -1718,7 +1295,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "Holding the Callback Button calls back every Tool at once. 
 
@@ -1755,7 +1332,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "You can hold down the Place Button before jumping.
 
@@ -1792,7 +1369,7 @@ offset_right = 200.0
 offset_bottom = 493.515
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("18_fsh2a")
+theme_override_fonts/font = ExtResource("31_rlibu")
 theme_override_font_sizes/font_size = 87
 text = "For a low Tool count:
 don't call back Tools that can be used a second time when backtracking.
@@ -1818,52 +1395,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Close"
-
-[node name="Options_animations" parent="." instance=ExtResource("5_4klwa")]
-position = Vector2(872, -675)
-
-[node name="Highscore_animations" parent="." instance=ExtResource("20_pc3qj")]
-
-[node name="Player_rig" parent="." instance=ExtResource("2_en6pt")]
-position = Vector2(1415, 760)
-rotation = 3.14159
-scale = Vector2(1.6, -1.6)
-
-[node name="Playgame_animation_player" type="AnimationPlayer" parent="Player_rig"]
-libraries = {
-"": SubResource("AnimationLibrary_yawtq")
-}
-
-[node name="Cursed_Orb" type="Sprite2D" parent="."]
-position = Vector2(2016, 42)
-scale = Vector2(0.805, 0.805)
-texture = ExtResource("7_0l8mh")
-
-[node name="Background_scroll" type="AnimationPlayer" parent="."]
-root_node = NodePath("../TextureRect")
-libraries = {
-"": SubResource("AnimationLibrary_u7mef")
-}
-autoplay = "bg_scroll"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color(0.9, 0.928333, 1, 1)
-z_index = -3
-offset_left = -382.0
-offset_top = -493.0
-offset_right = 2252.0
-offset_bottom = 1483.0
-texture = ExtResource("22_60ltw")
-stretch_mode = 1
-
-[node name="confirm_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("36_vmenc")
-
-[node name="return_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("37_0l80q")
-
-[node name="select_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("38_tgjbl")
 
 [connection signal="focus_entered" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play" to="Main_menu_canvas" method="_on_play_focus_entered"]
 [connection signal="focus_entered" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play" to="Main_menu_canvas" method="_on_focus_entered_sfx"]

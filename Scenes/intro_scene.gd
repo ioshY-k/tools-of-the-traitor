@@ -18,8 +18,3 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if not event.is_action("joystick_action"):
 		anything_pressed.emit()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

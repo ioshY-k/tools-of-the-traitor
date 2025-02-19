@@ -652,27 +652,28 @@ func _ledge_corrections():
 		caster_outer_left_ceiling.enabled = true
 		caster_outer_right_ceiling.enabled = true
 	while caster_outer_left_ceiling.is_colliding():
-		print_debug("teleporting")
 		global_position += Vector2(20,0)
 		caster_outer_left_ceiling.force_raycast_update()
 	while caster_outer_right_ceiling.is_colliding():
-		print_debug("teleporting")
 		global_position += Vector2(-20,0)
 		caster_outer_right_ceiling.force_raycast_update()
 
+
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
-
-	if inputstrength >= 0.91:
-		path_floor_tool.scale.x = 1
-		path_floor_tool.scale.y = 1
-		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-		sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
+	if Input.is_mouse_button_pressed(1):
+		sprite_floor_tool.global_position = global_position + (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin())
 	else:
-		path_floor_tool.scale.x = inputstrength
-		path_floor_tool.scale.y = inputstrength
-		follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
-		sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),7 * delta)
+		if inputstrength >= 0.91:
+			path_floor_tool.scale.x = 1
+			path_floor_tool.scale.y = 1
+			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+			sprite_floor_tool.position = to_local(follow_floor_tool.global_position)
+		else:
+			path_floor_tool.scale.x = inputstrength
+			path_floor_tool.scale.y = inputstrength
+			follow_floor_tool.progress_ratio = (controllerangle + PI)/(2*PI)
+			sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position),7 * delta)
 
 
 func determine_blocktool_position(inputstrength, controllerangle):

@@ -20,11 +20,10 @@ func _ready() -> void:
 	talking_sfx.volume_db = db_to_linear(-20.0)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("accept"):
+	if Input.is_action_just_pressed("accept") or Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("place_simple_tool"):
 		finished_reading.emit()
 
 func change_pitch(pitch: float):
-	print(pitch)
 	talking_sfx.volume_db = 0.8
 
 func display_text(text_to_display: Array, xOffset, yOffset, char_pitch):
@@ -67,7 +66,7 @@ func display_letters(block1: String, block2: String):
 		while letter_index < current_block.length()-1:
 			label.text += current_block[letter_index] + current_block[letter_index+1]
 			
-			if Input.is_action_pressed("accept"):
+			if Input.is_action_pressed("accept") or Input.is_action_pressed("jump") or Input.is_action_just_pressed("place_simple_tool"):
 				letter_display_timer.start(letter_time_skipping)
 			else:
 				letter_display_timer.start(letter_time)
