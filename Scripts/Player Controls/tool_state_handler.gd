@@ -23,10 +23,10 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.NO_TOOL:
 			if Input.is_action_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked and cancel_timer.is_stopped():
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked and cancel_timer.is_stopped():
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin() + Vector2.DOWN*100) 
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.NO_TOOL
@@ -37,9 +37,10 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.RAD_MENU:
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.NO_TOOL
@@ -64,6 +65,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.RAD_MENU
 			if not is_on_floor:
 				if PlayerStats.block_tool_unlocked:
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.CANCEL
@@ -74,7 +76,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 		tool_states.BLOCK_TOOL_PREVIEW:
 			if is_on_floor:
 				if PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				else:
 					get_node("../Sprite_block_tool").visible = false
@@ -92,10 +94,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
 			return tool_states.RIGHT_WALL_TOOL_PREVIEW
@@ -105,10 +108,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
 			return tool_states.LEFT_WALL_TOOL_PREVIEW
@@ -118,10 +122,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.ROPE_TOOL_PLACE
 			return tool_states.ROPE_TOOL_PREVIEW
@@ -131,10 +136,11 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.CANCEL
 			if Input.is_action_just_pressed("place_simple_tool"):
 				if is_on_floor and PlayerStats.floor_tool_unlocked:
-					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.SPRING_TOOL_PLACE
 			return tool_states.SPRING_TOOL_PREVIEW

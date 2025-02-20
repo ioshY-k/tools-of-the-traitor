@@ -129,7 +129,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not get_node("../Pause_menu").paused:
+	if not get_node("../Pause_menu").paused and not get_node("../Result_canvas").visible:
 		sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() or caster_left_wall_2.is_colliding())
 		sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
 		current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
