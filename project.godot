@@ -14,6 +14,7 @@ config/name="Tools of the Traitor"
 run/main_scene="res://Scenes/scene_loader.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://Sprites/Other/Game_logo_icon.ico"
 
 [autoload]
 

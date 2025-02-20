@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://o8egvp5x6c8j"]
 
 [ext_resource type="Script" path="res://Scenes/intro_scene.gd" id="1_a7678"]
-[ext_resource type="Texture2D" uid="uid://dd4w6olaclfxn" path="res://Sprites/Other/Logo.png" id="1_h5602"]
-[ext_resource type="Texture2D" uid="uid://dru1iww52rnsr" path="res://Sprites/Other/Game_logo.png" id="3_xsg4e"]
+[ext_resource type="Texture2D" uid="uid://bk43355yvgvue" path="res://Sprites/Other/Logo.png" id="1_h5602"]
+[ext_resource type="Texture2D" uid="uid://bsr7d82ms7shj" path="res://Sprites/Other/Game_logo.png" id="3_xsg4e"]
 
 [sub_resource type="Animation" id="Animation_nu6wy"]
 resource_name = "Logo_dia_anim"

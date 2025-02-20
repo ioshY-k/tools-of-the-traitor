@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcmxr0ugbcqxa"]
 
-[ext_resource type="Texture2D" uid="uid://brigsa2bj4rg1" path="res://Sprites/Other/Cursor.png" id="1_m1ks6"]
+[ext_resource type="Texture2D" uid="uid://hpl5fvb1s6br" path="res://Sprites/Other/Cursor.png" id="1_m1ks6"]
 [ext_resource type="Script" path="res://Scripts/cursor.gd" id="2_k3kne"]
 
 [node name="Cursor" type="Sprite2D"]
