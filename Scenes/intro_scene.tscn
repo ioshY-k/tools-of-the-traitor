@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/intro_scene.gd" id="1_a7678"]
 [ext_resource type="Texture2D" uid="uid://dd4w6olaclfxn" path="res://Sprites/Other/Logo.png" id="1_h5602"]
-[ext_resource type="Texture2D" uid="uid://qafktmsi1l0j" path="res://Sprites/Other/Gamelogo_beta.png" id="2_o08w6"]
+[ext_resource type="Texture2D" uid="uid://dru1iww52rnsr" path="res://Sprites/Other/Game_logo.png" id="3_xsg4e"]
 
 [sub_resource type="Animation" id="Animation_nu6wy"]
 resource_name = "Logo_dia_anim"
@@ -97,8 +97,8 @@ texture = ExtResource("1_h5602")
 [node name="Game_logo" type="Sprite2D" parent="Logo_Canvas"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(943, 489)
-scale = Vector2(0.321886, 0.317809)
-texture = ExtResource("2_o08w6")
+scale = Vector2(0.644175, 0.636016)
+texture = ExtResource("3_xsg4e")
 
 [node name="Intro_animationPlayer" type="AnimationPlayer" parent="Logo_Canvas"]
 libraries = {

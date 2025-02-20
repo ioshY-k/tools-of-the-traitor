@@ -140,7 +140,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
 					return tool_states.BLOCK_TOOL_PREVIEW
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600) 
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.SPRING_TOOL_PLACE
 			return tool_states.SPRING_TOOL_PREVIEW
