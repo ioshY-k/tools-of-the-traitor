@@ -977,3 +977,5 @@ shape = SubResource("CircleShape2D_twub3")
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_entered"]
 [connection signal="body_exited" from="Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_exited"]
+[connection signal="mouse_entered" from="Floortool_placement_zone" to="." method="_on_floortool_placement_zone_mouse_crossed" binds= [true]]
+[connection signal="mouse_exited" from="Floortool_placement_zone" to="." method="_on_floortool_placement_zone_mouse_crossed" binds= [false]]

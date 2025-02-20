@@ -53,6 +53,7 @@ var sliding_on_right_wall: bool
 #Tool placement
 var floor_tool_freezeframes : bool = false
 var original_floor_tool_scale = Vector2(0.752,1.148)
+@onready var floortool_placement_zone: Area2D = $Floortool_placement_zone
 @onready var sprite_floor_tool: Sprite2D = $Sprite_floor_tool
 @onready var sprite_block_tool: Sprite2D = $Sprite_block_tool
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
@@ -121,6 +122,8 @@ func _ready() -> void:
 	PlayerStats.execute_all_options()
 	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
 	last_spawnpoint = position
+	
+	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _physics_process(delta: float) -> void:
@@ -388,6 +391,7 @@ func on_no_tool_state():
 
 func on_rad_menu_state():
 	if not rad_menu.visible:
+		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		if PlayerStats.wall_tool_unlocked:
 			bubble_left.frame = 1
@@ -409,7 +413,7 @@ func on_rad_menu_state():
 
 
 func on_cancel_state():
-	print("cancel")
+	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
 	set_tool_visibilities(null, false)
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
@@ -507,6 +511,7 @@ func set_tool_visibilities(current_tool, is_right):
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
+		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
 		if not floor_overlapping:
 			var floor_tool = get_parent().get_node("%Floor_tool")
 			floor_tool.set_process_mode(PROCESS_MODE_INHERIT)
@@ -658,11 +663,19 @@ func _ledge_corrections():
 		global_position += Vector2(-20,0)
 		caster_outer_right_ceiling.force_raycast_update()
 
+var cursor_inside_area
 
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
 	if Input.is_mouse_button_pressed(1):
-		sprite_floor_tool.global_position = global_position + (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin())
+		floortool_placement_zone.process_mode = Node.PROCESS_MODE_INHERIT
+		if cursor_inside_area:
+			sprite_floor_tool.global_position = global_position + (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin())
+		else:
+			follow_floor_tool.progress_ratio = (Input.get_last_mouse_velocity().angle() + PI)/(2*PI)
+			path_floor_tool.scale.x = 1
+			path_floor_tool.scale.y = 1
+			sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position), 0.5)
 	else:
 		if inputstrength >= 0.91:
 			path_floor_tool.scale.x = 1
@@ -806,3 +819,12 @@ func _on_overlap_check_body_entered(_body: Node2D) -> void:
 func _on_overlap_check_body_exited(_body: Node2D) -> void:
 	sprite_floor_tool.modulate = Color(0.988, 1, 1, 0.349)
 	floor_overlapping = false
+
+
+func _on_floortool_placement_zone_mouse_crossed(inside: bool) -> void:
+	if inside:
+		print("area entered")
+		cursor_inside_area = true
+	else:
+		print("area exited")
+		cursor_inside_area = false # Replace with function body.
