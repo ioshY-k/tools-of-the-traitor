@@ -76,6 +76,7 @@ func toggle_pause_menu():
 			if panel.visible:
 				panel.hide()
 		hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		#hides all tools when the preview was held down while entering menu
 		player.on_cancel_state()
 	else:
@@ -92,6 +93,7 @@ func toggle_pause_menu():
 			tip_buttons[last_grabbed_orb].grab_focus()
 		else:
 			$Pause_menu/Resume_button.grab_focus()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 		show()
 
 	paused = not paused

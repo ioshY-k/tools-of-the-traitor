@@ -46,12 +46,13 @@ func _on_visibility_changed() -> void:
 		time_label.text = "Time: " + get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").get_time_formatted()
 		placed_tools_label.text = "Placed Tools: " + str(PlayerStats.tool_count)
 		
-		
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		continue_button.grab_focus()
 	
 
 
 func _on_continue_button_pressed() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) 
 	hide()
 	if is_instance_valid(cursed_orb): 
 		cursed_orb.speed = 350

@@ -539,7 +539,6 @@ text = "Play"
 
 [node name="Cursed_mode" type="Button" parent="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-tooltip_text = "Must beat normal mode first. Spawns a Cursed orb that follows you - only your Tools can keep it away!"
 focus_neighbor_top = NodePath("../../Quit")
 focus_neighbor_right = NodePath("../Play")
 theme_override_font_sizes/font_size = 70
@@ -1974,14 +1973,14 @@ stream = ExtResource("38_tgjbl")
 [connection signal="focus_entered" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="value_changed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider" to="Main_menu_canvas" method="_on_bullet_time_slider_value_changed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_reset_progress_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_yes_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_no_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_return_sfx"]

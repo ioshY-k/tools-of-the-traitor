@@ -1,9 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=45 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
 [ext_resource type="PackedScene" uid="uid://dpynb1w5bp435" path="res://Scenes/Player_cutout.tscn" id="2_10mar"]
 [ext_resource type="Script" path="res://Scripts/Player Controls/state_handler.gd" id="2_asryv"]
+[ext_resource type="PackedScene" uid="uid://dcmxr0ugbcqxa" path="res://Scenes/cursor.tscn" id="2_bog0u"]
 [ext_resource type="Texture2D" uid="uid://4c86jbcl0nfb" path="res://Sprites/UI/Radmenu_locku.png" id="2_qjws2"]
 [ext_resource type="Script" path="res://Scripts/Player Controls/tool_state_handler.gd" id="2_yocoj"]
 [ext_resource type="Texture2D" uid="uid://bkvbydih5iu0q" path="res://Sprites/UI/Radmenu_lockr.png" id="3_cxk5h"]
@@ -716,6 +717,8 @@ radius = 111.841
 collision_mask = 102
 script = ExtResource("1_ac4tx")
 
+[node name="Cursor" parent="." instance=ExtResource("2_bog0u")]
+
 [node name="Rad_menu" type="Node2D" parent="."]
 position = Vector2(13, -93)
 
@@ -961,6 +964,7 @@ stream = ExtResource("23_3qy3x")
 stream = ExtResource("25_fs5uv")
 
 [node name="Floortool_placement_zone" type="Area2D" parent="."]
+scale = Vector2(1.22943, 1.35343)
 collision_layer = 8
 collision_mask = 0
 

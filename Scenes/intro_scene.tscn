@@ -107,11 +107,11 @@ libraries = {
 
 [node name="Press_anything" type="Label" parent="Logo_Canvas"]
 visible = false
-offset_left = 629.0
-offset_top = 938.0
-offset_right = 1263.0
-offset_bottom = 1052.0
+offset_left = 421.0
+offset_top = 937.0
+offset_right = 1476.0
+offset_bottom = 1051.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.87, 0.87, 0.87, 1)
 theme_override_font_sizes/font_size = 100
-text = "Press A to start"
+text = "Press any button to start"

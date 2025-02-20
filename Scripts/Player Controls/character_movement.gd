@@ -51,6 +51,7 @@ var sliding_on_right_wall: bool
 @onready var died_sfx: AudioStreamPlayer = $Died_sfx
 
 #Tool placement
+@onready var cursor: Sprite2D = $Cursor
 var floor_tool_freezeframes : bool = false
 var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var floortool_placement_zone: Area2D = $Floortool_placement_zone
@@ -124,15 +125,17 @@ func _ready() -> void:
 	last_spawnpoint = position
 	
 	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+	cursor.hide()
 
 
 func _physics_process(delta: float) -> void:
-	sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() or caster_left_wall_2.is_colliding())
-	sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
-	current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
-	state_handler.set("current_state", current_state)
-	current_tool_state = tool_state_handler.next_state(is_on_floor())
-	tool_state_handler.set("current_tool_state", current_tool_state)
+	if not get_node("../Pause_menu").paused:
+		sliding_on_left_wall = is_on_wall() and (caster_left_wall.is_colliding() or caster_left_wall_2.is_colliding())
+		sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
+		current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
+		state_handler.set("current_state", current_state)
+		current_tool_state = tool_state_handler.next_state(is_on_floor())
+		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
 	if controllable:
 		
@@ -392,6 +395,7 @@ func on_no_tool_state():
 func on_rad_menu_state():
 	if not rad_menu.visible:
 		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+		cursor.hide()
 		
 		if PlayerStats.wall_tool_unlocked:
 			bubble_left.frame = 1
@@ -415,6 +419,7 @@ func on_rad_menu_state():
 func on_cancel_state():
 	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
 	set_tool_visibilities(null, false)
+	cursor.hide()
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -447,9 +452,16 @@ func on_floortool_preview_state(delta):
 func on_blocktool_preview_state():
 	set_tool_visibilities(sprite_block_tool, false)
 	if block_tool_available:
+		var xAxis
+		var yAxis
 		sprite_block_tool.visible = true
-		var xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
+		if Input.is_mouse_button_pressed(1):
+			cursor.show()
+			xAxis = (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin()).x
+			yAxis = (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin()).y
+		else:
+			xAxis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+			yAxis = Input.get_joy_axis(0 ,JOY_AXIS_LEFT_Y)
 		determine_blocktool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle())
 		set_bullet_time(true)
 
@@ -512,6 +524,7 @@ func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+		cursor.hide()
 		if not floor_overlapping:
 			var floor_tool = get_parent().get_node("%Floor_tool")
 			floor_tool.set_process_mode(PROCESS_MODE_INHERIT)
@@ -562,6 +575,7 @@ func on_blocktool_place_state():
 		block_tool.visible = true
 		block_tool.position = sprite_block_tool.global_position
 		blocktool_place_animation(block_tool)
+		cursor.hide()
 		block_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
 		PlayerStats.tool_count += 1
@@ -668,11 +682,14 @@ var cursor_inside_area
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
 	if Input.is_mouse_button_pressed(1):
+		
+		cursor.show()
 		floortool_placement_zone.process_mode = Node.PROCESS_MODE_INHERIT
 		if cursor_inside_area:
 			sprite_floor_tool.global_position = global_position + (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin())
 		else:
-			follow_floor_tool.progress_ratio = (Input.get_last_mouse_velocity().angle() + PI)/(2*PI)
+			var cursor_angle = (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin()).angle()
+			follow_floor_tool.progress_ratio = (cursor_angle + PI)/(2*PI)
 			path_floor_tool.scale.x = 1
 			path_floor_tool.scale.y = 1
 			sprite_floor_tool.position = sprite_floor_tool.position.lerp(to_local(follow_floor_tool.global_position), 0.5)
@@ -690,6 +707,7 @@ func determine_floortool_position(inputstrength, controllerangle, delta):
 
 
 func determine_blocktool_position(inputstrength, controllerangle):
+	
 	#Control stick Deadzone
 	if inputstrength > Vector2(0.65,0.65).abs().length():
 		#Snap behaviour when placing below PLayer
@@ -823,8 +841,6 @@ func _on_overlap_check_body_exited(_body: Node2D) -> void:
 
 func _on_floortool_placement_zone_mouse_crossed(inside: bool) -> void:
 	if inside:
-		print("area entered")
 		cursor_inside_area = true
 	else:
-		print("area exited")
 		cursor_inside_area = false # Replace with function body.

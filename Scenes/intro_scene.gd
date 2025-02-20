@@ -16,5 +16,5 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if not event.is_action("joystick_action"):
+	if not event.is_action("joystick_action") and not event.as_text().begins_with("Mouse motion"):
 		anything_pressed.emit()

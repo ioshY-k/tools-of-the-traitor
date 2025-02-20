@@ -26,6 +26,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin())
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked and cancel_timer.is_stopped():
+					Input.warp_mouse(get_parent().get_global_transform_with_canvas().get_origin() + Vector2.DOWN*100) 
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.NO_TOOL
@@ -168,11 +169,3 @@ func right_wall_direction(xAxis,yAxis,controllerangle,mouse_vector) -> bool:
 func left_wall_direction(xAxis,yAxis,controllerangle,mouse_vector) -> bool:
 	return ((controllerangle > 11*PI/16 or controllerangle < -11*PI/16) and Vector2(xAxis, yAxis).length() > Vector2(0.3,0.3).abs().length())\
 			or ((mouse_vector.angle() > 11*PI/16 or mouse_vector.angle() < -11*PI/16) and mouse_vector.length() > Vector2(500,500).abs().length())
-
-func other_mousebutton_just_pressed(current_mousebutton):
-	if current_mousebutton == 1:
-		print(Input.is_action_just_pressed("place_special_tool"))
-		return Input.is_action_just_pressed("place_special_tool")
-	if current_mousebutton == 2:
-		print(Input.is_action_just_pressed("place_simple_tool"))
-		return Input.is_action_just_pressed("place_simple_tool")

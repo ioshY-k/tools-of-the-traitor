@@ -22,6 +22,7 @@ func fade_to_scene(scene):
 		get_child(1).queue_free()
 		await get_tree().create_timer(0.5).timeout
 		add_child(testlevel_scene.instantiate())
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		blend_fade_in()
 	if scene == "Main_menu":
 		get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
@@ -30,6 +31,7 @@ func fade_to_scene(scene):
 		get_child(1).queue_free()
 		await get_tree().create_timer(0.5).timeout
 		add_child(main_menu_scene.instantiate())
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 		blend_fade_in()
 	if scene == "Main_menu_initial":
 		get_child(1).queue_free()
