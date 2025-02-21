@@ -463,13 +463,9 @@ func _on_achievementbutton_focus_entered() -> void:
 	
 	get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 532, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
-
-
 	
-
-
+	
 func _on_achievementbutton_focus_exited() -> void:
-	panel_achievements.hide()
 	for label in get_tree().get_nodes_in_group("Achievement_label"):
 		label.visible = false
 	await get_tree().create_timer(0.02).timeout
