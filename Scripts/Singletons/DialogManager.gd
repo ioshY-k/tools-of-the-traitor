@@ -186,7 +186,7 @@ var dialog_sequences : Dictionary = {
 											"Just touch it and you are done!"],
 											["No, I need to get the final five Orbs in there",
 											"before I do that."],
-											["with that little RAM in your Training-Chip",
+											["My computation says...",
 											"this does not sound feasable.",
 											"Nearly impossible.",
 											"",

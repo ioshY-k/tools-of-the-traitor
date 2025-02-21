@@ -9,7 +9,7 @@ var entered: bool = false
 
 
 func _input(event: InputEvent) -> void:
-	if entered and event.is_action_pressed("accept"):
+	if entered and event.is_action_pressed("interact"):
 		var dialog_trigger_node : Node = dialog_trigger.instantiate()
 		dialog_trigger_node.dialog_name = dialog_name
 		add_child(dialog_trigger_node)

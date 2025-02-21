@@ -109,7 +109,7 @@ func _on_goal_2_body_entered(_body: Node2D) -> void:
 	Achievements.save_new_achievement(1)
 	if PlayerStats.tool_count <= 30:
 		Achievements.save_new_achievement(9)
-	if get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").minutes < 3:
+	if get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").minutes < 2:
 		Achievements.save_new_achievement(7)
 	show()
 	determine_other_achievements()

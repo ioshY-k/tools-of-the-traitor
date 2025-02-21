@@ -117,7 +117,7 @@ func _on_restart_button_pressed() -> void:
 	PlayerStats.spring_tool_unlocked = false
 	PlayerStats.field_tool_unlocked = false
 	PlayerStats.temporary_orb_list = [false, false, false, false, false, false, false, false, false, false, false, false]
-	get_tree().reload_current_scene()
+	get_node("/root/Scene_loader").fade_to_scene("Testlevel")
 
 func _on_tip_menu_button_pressed() -> void:
 	$Pause_menu.hide()

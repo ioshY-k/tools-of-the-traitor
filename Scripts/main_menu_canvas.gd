@@ -78,6 +78,7 @@ func _ready() -> void:
 		var counter = 0;
 		while file_r.get_position() < file_r.get_length():
 			PlayerStats.orb_list[counter] = (file_r.get_line() == "true")
+			print(PlayerStats.orb_list[counter])
 			counter += 1
 	file_r.close()
 	
@@ -512,9 +513,7 @@ func _on_yes_pressed() -> void:
 	DirAccess.remove_absolute("user://unlocked_tips.dat")
 	DirAccess.remove_absolute("user://savedata.json")
 	FileCreator.create_files()
-	for achievement in range(10):
-		Achievements.achievement_list[achievement] = false
-	get_tree().reload_current_scene()
+	get_tree().quit()
 
 func _on_focus_entered_sfx() -> void:
 	select_sfx.play()

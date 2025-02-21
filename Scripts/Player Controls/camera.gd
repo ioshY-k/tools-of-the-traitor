@@ -13,8 +13,18 @@ func _process(_delta: float) -> void:
 	var xAxis = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	var yAxis = Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y)
 	var camera_vector: Vector2 = Vector2(xAxis, yAxis)
+	
+	if Input.is_action_pressed("camera_right"):
+		camera_vector = Vector2.RIGHT
+	if Input.is_action_pressed("camera_down"):
+		camera_vector = Vector2.DOWN
+	if Input.is_action_pressed("camera_left"):
+		camera_vector = Vector2.LEFT
+	if Input.is_action_pressed("camera_up"):
+		camera_vector = Vector2.UP
 	if camera_vector.length() > 0.2:
 		position = (initial_position + camera_vector * SCOUT_RADIUS)
 	else:
 		position = initial_position
+		
 	
