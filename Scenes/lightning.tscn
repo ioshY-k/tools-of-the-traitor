@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://cspby6grk7303"]
+
+[ext_resource type="Texture2D" uid="uid://b0hgsxchbaar2" path="res://Sprites/Decoration/Lightning1.png" id="1_euagi"]
+[ext_resource type="Texture2D" uid="uid://6sumvlbn1y0g" path="res://Sprites/Decoration/Lightning2.png" id="2_r1naa"]
+[ext_resource type="Texture2D" uid="uid://tbmktiemo7x3" path="res://Sprites/Decoration/Lightning3.png" id="3_qwxee"]
+[ext_resource type="Texture2D" uid="uid://fnpowubn6raq" path="res://Sprites/Decoration/Lightning4.png" id="4_ekbca"]
+[ext_resource type="Texture2D" uid="uid://bl2fruf2vh6e" path="res://Sprites/Decoration/Lightning5.png" id="5_bdjgm"]
+[ext_resource type="Script" path="res://Scripts/lightning.gd" id="6_lmp7j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dks6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_euagi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r1naa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qwxee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ekbca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bdjgm")
+}],
+"loop": false,
+"name": &"lightning_strike_anim",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_37imd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nfegg"]
+resource_name = "lightning_fade_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.184314), Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugc7h"]
+_data = {
+"RESET": SubResource("Animation_37imd"),
+"lightning_fade_anim": SubResource("Animation_nfegg")
+}
+
+[node name="Lightning" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0)
+z_index = -2
+position = Vector2(-6833, 1654)
+sprite_frames = SubResource("SpriteFrames_dks6w")
+animation = &"lightning_strike_anim"
+script = ExtResource("6_lmp7j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ugc7h")
+}
+
+[node name="Lightning_sfx" type="AudioStreamPlayer" parent="."]

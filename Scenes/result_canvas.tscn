@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ua73pd60mipx"]
+[gd_scene load_steps=5 format=3 uid="uid://ua73pd60mipx"]
 
 [ext_resource type="Script" path="res://Scripts/result_canvas.gd" id="1_aokoe"]
 [ext_resource type="AudioStream" uid="uid://bwcr8vbn028ej" path="res://Sound/menu_select.wav" id="2_p0aqc"]
 [ext_resource type="AudioStream" uid="uid://cag6q83465tvl" path="res://Sound/menu_confirm.wav" id="3_krt06"]
+[ext_resource type="AudioStream" uid="uid://4yenixu72mn2" path="res://Sound/can_sizzle.wav" id="4_stwsn"]
 
 [node name="Result_canvas" type="CanvasLayer"]
 visible = false
@@ -139,6 +140,9 @@ stream = ExtResource("2_p0aqc")
 
 [node name="confirm_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_krt06")
+
+[node name="sizzle_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_stwsn")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="focus_entered" from="VBoxContainer/HBoxContainer/Continue_button" to="." method="_on_select_sfx"]

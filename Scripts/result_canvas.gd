@@ -15,6 +15,7 @@ var score: int = 0
 
 @onready var select_sfx: AudioStreamPlayer = $select_sfx
 @onready var confirm_sfx: AudioStreamPlayer = $confirm_sfx
+@onready var sizzle_sfx: AudioStreamPlayer = $sizzle_sfx
 
 
 
@@ -22,6 +23,7 @@ func _on_visibility_changed() -> void:
 	player.controllable = !player.controllable
 	player.velocity = Vector2.ZERO
 	if visible:
+		sizzle_sfx.play()
 		get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").stop_timer()
 		if PlayerStats.cursed_mode:
 			cursed_orb.speed = 0

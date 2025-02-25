@@ -3,7 +3,7 @@ class_name Tool_state_handler
 
 @onready var cancel_timer: Timer = $Cancel_timer
 
-
+var cursor_offset_red_tool = DisplayServer.window_get_size().y/4
 var current_tool_state
 
 
@@ -18,7 +18,8 @@ func _init():
 	current_tool_state = tool_states.NO_TOOL
 	
 func next_state(is_on_floor:bool) -> tool_states:
-	#print(tool_states.keys()[current_tool_state])
+	print(DisplayServer.window_get_size().y)
+	print(cursor_offset_red_tool)
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			if Input.is_action_pressed("place_simple_tool"):
@@ -26,7 +27,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked and cancel_timer.is_stopped():
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.NO_TOOL
@@ -40,7 +41,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.NO_TOOL
@@ -65,7 +66,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 				return tool_states.RAD_MENU
 			if not is_on_floor:
 				if PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 				else:
 					return tool_states.CANCEL
@@ -97,7 +98,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
@@ -111,7 +112,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.WALL_TOOL_PLACE
@@ -125,7 +126,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600)
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool)
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.ROPE_TOOL_PLACE
@@ -139,7 +140,7 @@ func next_state(is_on_floor:bool) -> tool_states:
 					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 200)
 					return tool_states.FLOOR_TOOL_PREVIEW
 				if not is_on_floor and PlayerStats.block_tool_unlocked:
-					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * 600) 
+					Input.warp_mouse(get_viewport().get_window().size/2 + Vector2i.DOWN * cursor_offset_red_tool) 
 					return tool_states.BLOCK_TOOL_PREVIEW
 			if not Input.is_action_pressed("place_special_tool"):
 				return tool_states.SPRING_TOOL_PLACE

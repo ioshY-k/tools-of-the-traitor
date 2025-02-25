@@ -11,6 +11,7 @@ signal faded
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_child(intro_scene.instantiate())
+	MusicManager.play_menu_music()
 	
 
 
@@ -23,6 +24,10 @@ func fade_to_scene(scene):
 		await get_tree().create_timer(0.5).timeout
 		add_child(testlevel_scene.instantiate())
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		if PlayerStats.cursed_mode:
+			MusicManager.play_cursed_music()
+		else:
+			MusicManager.play_level_music()
 		blend_fade_in()
 	if scene == "Main_menu":
 		get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
@@ -32,6 +37,7 @@ func fade_to_scene(scene):
 		await get_tree().create_timer(0.5).timeout
 		add_child(main_menu_scene.instantiate())
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
+		MusicManager.play_menu_music()
 		blend_fade_in()
 	if scene == "Main_menu_initial":
 		get_child(1).queue_free()
