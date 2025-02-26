@@ -2496,6 +2496,9 @@ frame_progress = 1.0
 
 [node name="Lightning7" parent="." instance=ExtResource("91_5ipp4")]
 position = Vector2(3788, 5481)
+
+[node name="Lightning9" parent="." instance=ExtResource("91_5ipp4")]
+position = Vector2(4184, 2947)
 frame = 4
 frame_progress = 1.0
 
@@ -2546,3 +2549,4 @@ max_wait_time = 20.0
 [connection signal="timeout" from="Lightning_sfx/Lightning_timer" to="Lightning7" method="_on_lightning_strike"]
 [connection signal="timeout" from="Lightning_sfx/Lightning_timer" to="Lightning8" method="_on_lightning_strike"]
 [connection signal="timeout" from="Lightning_sfx/Lightning_timer" to="Lightning_sfx" method="_on_lightning_timer_timeout"]
+[connection signal="timeout" from="Lightning_sfx/Lightning_timer" to="Lightning9" method="_on_lightning_timer_timeout"]
