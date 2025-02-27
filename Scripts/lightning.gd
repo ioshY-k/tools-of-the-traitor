@@ -6,7 +6,6 @@ extends AnimatedSprite2D
 func _on_lightning_strike() -> void: 
 	play("lightning_strike_anim")
 	animation_player.play("lightning_fade_anim")
-	print("strike!")
 
 
 func _on_lightning_timer_timeout() -> void:

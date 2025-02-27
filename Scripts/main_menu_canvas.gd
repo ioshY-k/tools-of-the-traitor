@@ -78,7 +78,6 @@ func _ready() -> void:
 		var counter = 0;
 		while file_r.get_position() < file_r.get_length():
 			PlayerStats.orb_list[counter] = (file_r.get_line() == "true")
-			print(PlayerStats.orb_list[counter])
 			counter += 1
 	file_r.close()
 	

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx2y48vv0bf14"]
+
+[ext_resource type="Texture2D" uid="uid://dgnhrcgvf1ge8" path="res://Sprites/Decoration/drop.png" id="1_qvrxy"]
+
+[sub_resource type="Curve" id="Curve_lpk0w"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0922131, 4.36896), 0.0, 0.0, 0, 0, Vector2(0.997951, 200), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Drips" type="CPUParticles2D"]
+z_index = 8
+position = Vector2(-186, -5)
+amount = 1
+lifetime = 6.45
+speed_scale = 2.34
+texture = ExtResource("1_qvrxy")
+linear_accel_min = -59.23
+linear_accel_max = 100.0
+linear_accel_curve = SubResource("Curve_lpk0w")
+scale_amount_min = 1.5
+scale_amount_max = 1.5

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://whtll3r77j0g"]
+
+[ext_resource type="Texture2D" uid="uid://cpd4h68hlmpg0" path="res://Sprites/Decoration/Crates.png" id="1_d8iuc"]
+[ext_resource type="Script" path="res://Scripts/destroy_debris.gd" id="2_osjdh"]
+[ext_resource type="AudioStream" uid="uid://ben8mfuuquads" path="res://Sound/crate break.wav" id="3_igr3e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w75fc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d8iuc")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ts3r"]
+size = Vector2(29, 38)
+
+[node name="Crate" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_w75fc")
+script = ExtResource("2_osjdh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 41
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_2ts3r")
+
+[node name="Crate_break_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_igr3e")
+volume_db = -9.151

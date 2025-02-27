@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvkix0ne5arug"]
+
+[ext_resource type="Script" path="res://Scripts/debris.gd" id="1_2ipoc"]
+[ext_resource type="Texture2D" uid="uid://cd3tnyistw6tw" path="res://Sprites/Decoration/Crate_piece.png" id="1_q3p3u"]
+[ext_resource type="AudioStream" uid="uid://clqy6nmsvmrxd" path="res://Sound/debris_sfx.wav" id="3_e6dd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1ijg"]
+size = Vector2(26, 9)
+
+[node name="Debris" type="RigidBody2D"]
+collision_layer = 256
+collision_mask = 258
+script = ExtResource("1_2ipoc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.5, 6)
+polygon = PackedVector2Array(6.5, -5, -13.5, -5, -13.5, 3, 13.5, 3, 13.5, -16, 6.5, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q3p3u")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_p1ijg")
+
+[node name="Debris_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_e6dd0")
+volume_db = -14.591
+pitch_scale = 0.7
+
+[node name="Initial_timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

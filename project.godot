@@ -29,7 +29,6 @@ MusicManager="*res://Scripts/Singletons/music_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/size/initial_position_type=2
 window/size/resizable=false
 window/stretch/mode="viewport"
@@ -220,6 +219,7 @@ interact={
 2d_physics/layer_6="Spring_tool"
 2d_physics/layer_7="Floor_tool_overlap"
 2d_physics/layer_8="Cursed_Orb"
+2d_physics/layer_9="Debris"
 2d_physics/layer_10="Followpoint1"
 2d_physics/layer_11="Followpoint2"
 2d_physics/layer_12="Followpoint3"

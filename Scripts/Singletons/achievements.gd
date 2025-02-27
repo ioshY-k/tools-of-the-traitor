@@ -45,7 +45,6 @@ func play_animations():
 	print_debug("animations are playing")
 	while (len(animation_queue) > 0):
 		var current_achievement = animation_queue.pop_front()
-		print(animation_queue)
 		var achievement_panel = get_parent().get_node("/root/Scene_loader/Testlevel/Misc_canvas/new_achievement_panel")
 		var achievement_sprite : AnimatedSprite2D = achievement_panel.get_child(0)
 		achievement_sprite.set_frame(current_achievement)

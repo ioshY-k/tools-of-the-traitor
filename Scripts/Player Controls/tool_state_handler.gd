@@ -18,8 +18,6 @@ func _init():
 	current_tool_state = tool_states.NO_TOOL
 	
 func next_state(is_on_floor:bool) -> tool_states:
-	print(DisplayServer.window_get_size().y)
-	print(cursor_offset_red_tool)
 	match current_tool_state:
 		tool_states.NO_TOOL:
 			if Input.is_action_pressed("place_simple_tool"):
