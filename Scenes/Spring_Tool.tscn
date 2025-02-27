@@ -34,7 +34,7 @@ texture = ExtResource("2_45mbx")
 [node name="Center" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("4_1hn1i")
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
+[node name="Area2D" type="Area2D" parent="Node2D" groups=["debris_destroyer"]]
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]

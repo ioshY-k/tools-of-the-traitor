@@ -869,7 +869,7 @@ shape = SubResource("CircleShape2D_2jk2y")
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, 253)
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["debris_destroyer"]]
 z_index = 8
 scale = Vector2(0.809, 0.809)
 collision_mask = 16

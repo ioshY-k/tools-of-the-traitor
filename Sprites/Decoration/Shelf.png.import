@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmkw85gsh0ivc"
-path="res://.godot/imported/Crates_broken.png-145a4204ad39070b3f15e9056eaa8c1a.ctex"
+uid="uid://dc6hafykdy57n"
+path="res://.godot/imported/Shelf.png-2066a304185b3c594af96f8c0d09ed8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Decoration/Crates_broken.png"
-dest_files=["res://.godot/imported/Crates_broken.png-145a4204ad39070b3f15e9056eaa8c1a.ctex"]
+source_file="res://Sprites/Decoration/Shelf.png"
+dest_files=["res://.godot/imported/Shelf.png-2066a304185b3c594af96f8c0d09ed8e.ctex"]
 
 [params]
 

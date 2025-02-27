@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://do13wwolq61um"]
+
+[ext_resource type="Texture2D" uid="uid://ehc0j8hp87dv" path="res://Sprites/Decoration/Lantern.png" id="1_gnlw2"]
+[ext_resource type="Script" path="res://Scripts/destroy_debris.gd" id="2_j0xy0"]
+[ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="3_br070"]
+[ext_resource type="AudioStream" uid="uid://ct0jy26355rjc" path="res://Sound/glass_break.wav" id="4_hptnb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6l6jg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gnlw2")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_gnlw2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyuex"]
+size = Vector2(51, 23)
+
+[node name="Lantern" type="AnimatedSprite2D"]
+scale = Vector2(2.585, 2.585)
+sprite_frames = SubResource("SpriteFrames_6l6jg")
+script = ExtResource("2_j0xy0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 41
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 2.5)
+shape = SubResource("RectangleShape2D_oyuex")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+color = Color(0.58, 0.32364, 0.1276, 1)
+texture = ExtResource("3_br070")
+
+[node name="break_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hptnb")
+volume_db = -9.151
