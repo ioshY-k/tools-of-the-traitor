@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://br4uutv7pwdd"]
+
+[ext_resource type="Texture2D" uid="uid://cr6ap7t2g1qk5" path="res://Sprites/Decoration/Bird_stand.png" id="1_vpuoy"]
+[ext_resource type="Texture2D" uid="uid://brssyxbihgi8l" path="res://Sprites/Decoration/Bird_fly1.png" id="2_s6c7x"]
+[ext_resource type="Texture2D" uid="uid://cmu8ofu1nu7xn" path="res://Sprites/Decoration/Bird_fly2.png" id="3_cv2fe"]
+[ext_resource type="Script" path="res://Scripts/bird.gd" id="4_w7umn"]
+[ext_resource type="AudioStream" uid="uid://w0qoar45pbi0" path="res://Sound/bird_flap.wav" id="5_saxsa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8wf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vpuoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s6c7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cv2fe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ut0uw"]
+radius = 35.0571
+
+[node name="Bird" type="AnimatedSprite2D"]
+z_index = 3
+position = Vector2(-3866, 1957)
+sprite_frames = SubResource("SpriteFrames_l8wf8")
+script = ExtResource("4_w7umn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ut0uw")
+
+[node name="Bird_flap_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_saxsa")
+volume_db = -13.468
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

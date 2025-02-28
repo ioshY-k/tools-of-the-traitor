@@ -49,6 +49,8 @@ var sliding_on_right_wall: bool
 @onready var placespring_sfx: AudioStreamPlayer = $Placespring_sfx
 @onready var callback_sfx: AudioStreamPlayer = $Callback_sfx
 @onready var died_sfx: AudioStreamPlayer = $Died_sfx
+@onready var walk_sfx: AudioStreamPlayer = $Walk_sfx
+
 
 #Tool placement
 @onready var cursor: Sprite2D = $Cursor
@@ -106,7 +108,6 @@ enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
 	ROPE_TOOL_PREVIEW, ROPE_TOOL_PLACE,
 	SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE}
 
-
 func _ready() -> void:
 	#important since queue cant specify blendtimes
 	animations.set_blend_time("Land_anim","Idle_anim",0.3)
@@ -124,7 +125,7 @@ func _ready() -> void:
 	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
 	last_spawnpoint = position
 	
-	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	cursor.hide()
 
 
@@ -242,6 +243,7 @@ func on_idle_state(delta):
 			animations.queue("Idle_anim")
 		else:
 			animations.play("Idle_anim" ,0.3)
+			#handle_run_sfx(states.IDLE)
 	eyes_blinking()
 
 
@@ -259,6 +261,7 @@ func on_walk_state(delta):
 			animations.queue("Walk_anim")
 		else:
 			animations.play("Walk_anim" ,0.3)
+	#handle_run_sfx(states.WALK)
 	eyes_blinking()
 
 
@@ -394,7 +397,7 @@ func on_no_tool_state():
 
 func on_rad_menu_state():
 	if not rad_menu.visible:
-		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+		
 		cursor.hide()
 		
 		if PlayerStats.wall_tool_unlocked:
@@ -417,7 +420,7 @@ func on_rad_menu_state():
 
 
 func on_cancel_state():
-	floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	set_tool_visibilities(null, false)
 	cursor.hide()
 	while Engine.time_scale != 1:
@@ -523,7 +526,7 @@ func set_tool_visibilities(current_tool, is_right):
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
-		floortool_placement_zone.process_mode = Node.PROCESS_MODE_DISABLED
+		
 		cursor.hide()
 		if not floor_overlapping:
 			var floor_tool = get_parent().get_node("%Floor_tool")
@@ -804,6 +807,10 @@ func kill_player():
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
 	controllable = true
+
+#func handle_run_sfx(current_state):
+	#if not walk_sfx.playing:
+		#walk_sfx.play()
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
 	PlayerStats.floor_tool_unlocked = true

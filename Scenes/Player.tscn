@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=46 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://cvmk2yepgf5ck" path="res://Sound/callback_tool.wav" id="23_3qy3x"]
 [ext_resource type="AudioStream" uid="uid://cqb17d6f5cbdc" path="res://Sound/place_spring.wav" id="23_nfg8a"]
 [ext_resource type="AudioStream" uid="uid://brudfatphcojr" path="res://Sound/died.wav" id="25_fs5uv"]
+[ext_resource type="AudioStream" uid="uid://blao310o2f52o" path="res://Sound/Walk.wav" id="27_u82m4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4bv2"]
 animations = [{
@@ -707,11 +708,11 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
-load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_twub3"]
 radius = 111.841
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
+load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 102
@@ -903,6 +904,18 @@ position = Vector2(-634, 3)
 rotation = -0.357706
 rotates = false
 
+[node name="Floortool_placement_zone" type="Area2D" parent="."]
+z_index = 8
+scale = Vector2(1.22943, 1.35343)
+collision_layer = 8
+collision_mask = 260
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floortool_placement_zone"]
+position = Vector2(-17, 24)
+rotation = 1.57079
+scale = Vector2(2.31608, 5.61879)
+shape = SubResource("CircleShape2D_twub3")
+
 [node name="Sprite_block_tool" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
@@ -963,16 +976,9 @@ stream = ExtResource("23_3qy3x")
 [node name="Died_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_fs5uv")
 
-[node name="Floortool_placement_zone" type="Area2D" parent="."]
-scale = Vector2(1.22943, 1.35343)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floortool_placement_zone"]
-position = Vector2(-17, 24)
-rotation = 1.57079
-scale = Vector2(2.31608, 5.61879)
-shape = SubResource("CircleShape2D_twub3")
+[node name="Walk_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_u82m4")
+volume_db = 13.468
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
