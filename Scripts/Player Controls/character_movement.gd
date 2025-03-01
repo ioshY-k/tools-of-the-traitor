@@ -50,6 +50,8 @@ var sliding_on_right_wall: bool
 @onready var callback_sfx: AudioStreamPlayer = $Callback_sfx
 @onready var died_sfx: AudioStreamPlayer = $Died_sfx
 @onready var walk_sfx: AudioStreamPlayer = $Walk_sfx
+@onready var run_sfx: AudioStreamPlayer = $Run_sfx
+@onready var rocket_cycle_sfx: AudioStreamPlayer = $Rocket_cycle_sfx
 
 
 #Tool placement
@@ -135,6 +137,7 @@ func _physics_process(delta: float) -> void:
 		sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
 		current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 		state_handler.set("current_state", current_state)
+		handle_run_sfx(current_state)
 		current_tool_state = tool_state_handler.next_state(is_on_floor())
 		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
@@ -142,7 +145,10 @@ func _physics_process(delta: float) -> void:
 		
 		if p_speed_is_active:
 			rocket_animations.play("Rocket_on")
+			if not rocket_cycle_sfx.playing:
+				rocket_cycle_sfx.play()
 		else:
+			rocket_cycle_sfx.stop()
 			rocket_animations.play("Rocket_off")
 		
 		match current_state:
@@ -243,7 +249,6 @@ func on_idle_state(delta):
 			animations.queue("Idle_anim")
 		else:
 			animations.play("Idle_anim" ,0.3)
-			#handle_run_sfx(states.IDLE)
 	eyes_blinking()
 
 
@@ -261,7 +266,8 @@ func on_walk_state(delta):
 			animations.queue("Walk_anim")
 		else:
 			animations.play("Walk_anim" ,0.3)
-	#handle_run_sfx(states.WALK)
+	if not walk_sfx.playing:
+		walk_sfx.play()
 	eyes_blinking()
 
 
@@ -309,7 +315,7 @@ func on_jump_state():
 			animations.play("Pjump_anim", 0.3)
 		else:
 			animations.play("Jump_anim", 0.1)
-	jump_sfx.pitch_scale = randf_range(0.9, 1.1)
+	jump_sfx.pitch_scale = randf_range(1.5, 2.0)
 	jump_sfx.play()
 
 
@@ -379,8 +385,8 @@ func on_walljump_state(left: int):
 	animations.play("Pjump_anim")
 	if launched:
 		launched = false
-	walljump_sfx.pitch_scale = randf_range(0.9, 1.1)
-	walljump_sfx.play()
+	jump_sfx.pitch_scale = randf_range(3, 4)
+	jump_sfx.play()
 	
 
 
@@ -808,9 +814,20 @@ func kill_player():
 	await animations.animation_finished
 	controllable = true
 
-#func handle_run_sfx(current_state):
-	#if not walk_sfx.playing:
-		#walk_sfx.play()
+func handle_run_sfx(current_state):
+	match current_state:
+		states.WALK:
+			run_sfx.stop()
+			if not walk_sfx.playing:
+				walk_sfx.play()
+		states.RUN:
+			walk_sfx.stop()
+			if not run_sfx.playing:
+				run_sfx.play()
+		_:
+			walk_sfx.stop()
+			run_sfx.stop()
+			
 
 func _on_ally1_body_entered(_body: Node2D) -> void:
 	PlayerStats.floor_tool_unlocked = true
