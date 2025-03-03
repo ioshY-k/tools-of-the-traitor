@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=49 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -716,6 +716,9 @@ radius = 111.841
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6eruv"]
 load_path = "res://.godot/imported/Spring2.png-2f71089867870563a8437a31c6b687c8.ctex"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e04xm"]
+polygon = PackedVector2Array(43, -78, 41, -52, 25, -44, 44, -27, 31, 15, 1, 24, -15, 12, -24, -40, 4, -48, 3, -79)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 102
 script = ExtResource("1_ac4tx")
@@ -993,6 +996,9 @@ pitch_scale = 0.55
 stream = ExtResource("30_2wpfl")
 volume_db = -23.194
 pitch_scale = 1.74
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_e04xm")
 
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]

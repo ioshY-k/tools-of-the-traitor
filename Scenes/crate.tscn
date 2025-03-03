@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://whtll3r77j0g"]
+[gd_scene load_steps=7 format=3 uid="uid://whtll3r77j0g"]
 
 [ext_resource type="Texture2D" uid="uid://cpd4h68hlmpg0" path="res://Sprites/Decoration/Crates.png" id="1_d8iuc"]
 [ext_resource type="Script" path="res://Scripts/destroy_debris.gd" id="2_osjdh"]
@@ -24,6 +24,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ts3r"]
 size = Vector2(29, 38)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ul0e4"]
+polygon = PackedVector2Array(-22, -24, 21, -24, 21, 25, -22, 25)
+
 [node name="Crate" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_w75fc")
 script = ExtResource("2_osjdh")
@@ -39,3 +42,6 @@ shape = SubResource("RectangleShape2D_2ts3r")
 [node name="break_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_igr3e")
 volume_db = -9.151
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ul0e4")

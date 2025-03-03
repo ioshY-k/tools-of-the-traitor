@@ -28,13 +28,15 @@ func destroy(area):
 		
 		if name.contains("Lantern"):
 			$PointLight2D.visible = false
+		else:
+			$LightOccluder2D.visible = false
 		
 		area_2d.set_collision_mask_value(1,false)
 		area_2d.set_collision_mask_value(4,false)
 		area_2d.set_collision_mask_value(6,false)
 
 func light_flicker():
-	var lightscale = randf_range(0.5,0.9)
+	var lightscale = randf_range(0.9,1.2)
 	await get_tree().create_tween().tween_property($PointLight2D, "scale", Vector2(lightscale,lightscale), 0.4).set_trans(Tween.TRANS_SINE).finished
 	light_intensity_change.emit()
 

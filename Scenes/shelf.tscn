@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkg5ue021ihkg"]
+[gd_scene load_steps=8 format=3 uid="uid://bkg5ue021ihkg"]
 
 [ext_resource type="Texture2D" uid="uid://dc6hafykdy57n" path="res://Sprites/Decoration/Shelf.png" id="1_kpa15"]
 [ext_resource type="Script" path="res://Scripts/destroy_debris.gd" id="2_ga58t"]
@@ -25,6 +25,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmx3s"]
 size = Vector2(51, 23)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3eugr"]
+polygon = PackedVector2Array(-22.8916, -3.61446, 24.0964, -3.61446, 24.0964, 4.81928, -22.8916, 4.81928)
+
 [node name="Shelf" type="AnimatedSprite2D"]
 scale = Vector2(1.66, 1.66)
 sprite_frames = SubResource("SpriteFrames_xn5bl")
@@ -41,3 +44,7 @@ shape = SubResource("RectangleShape2D_jmx3s")
 [node name="break_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3p814")
 volume_db = -9.151
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(1, 1)
+occluder = SubResource("OccluderPolygon2D_3eugr")
