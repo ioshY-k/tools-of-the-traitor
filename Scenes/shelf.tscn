@@ -46,5 +46,5 @@ stream = ExtResource("3_3p814")
 volume_db = -9.151
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-scale = Vector2(1, 1)
 occluder = SubResource("OccluderPolygon2D_3eugr")
+occluder_light_mask = 8

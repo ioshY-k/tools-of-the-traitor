@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/ally_followpoints.gd" id="1_kpi3r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vca7"]
+radius = 23.6811
 
 [node name="Ally_followpoints" type="Node2D"]
 script = ExtResource("1_kpi3r")

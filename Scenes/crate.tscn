@@ -45,3 +45,4 @@ volume_db = -9.151
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_ul0e4")
+occluder_light_mask = 8

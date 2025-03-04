@@ -40,9 +40,11 @@ shape = SubResource("RectangleShape2D_oyuex")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 modulate = Color(1, 1, 1, 0)
+light_mask = 11
 color = Color(0.58, 0.32364, 0.1276, 1)
 energy = 4.51
 shadow_enabled = true
+shadow_item_cull_mask = 11
 texture = ExtResource("3_0fwgg")
 offset = Vector2(0, -28.35)
 
