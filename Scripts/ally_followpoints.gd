@@ -63,23 +63,23 @@ func _physics_process(delta: float) -> void:
 	for index in range(len(allies)):
 		#every ally follows their corresponding follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
-		allies[index].scale = allies[index].scale.lerp(Vector2(0.2,0.2), 6 * delta )
+		allies[index].scale = allies[index].scale.lerp(Vector2(1,1), 6 * delta )
 	
 	if floor_ally_gone:
 		floor_ally.position = floor_ally.position.move_toward(floor_tool.position, 2500 * get_physics_process_delta_time())
-		floor_ally.scale = floor_ally.scale.move_toward(Vector2(0.12,0.12), 2500 * get_physics_process_delta_time())
+		floor_ally.scale = floor_ally.scale.move_toward(Vector2(0.5,0.5), 2500 * get_physics_process_delta_time())
 	if block_ally_gone:
 		block_ally.position = block_ally.position.move_toward(block_tool.position, 2500 * get_physics_process_delta_time())
-		block_ally.scale = block_ally.scale.move_toward(Vector2(0.08,0.08), 2500 * get_physics_process_delta_time())
+		block_ally.scale = block_ally.scale.move_toward(Vector2(0.7,0.7), 2500 * get_physics_process_delta_time())
 	if wall_ally_gone:
-		wall_ally.position = wall_ally.position.move_toward(wall_tool.position, 2500 * get_physics_process_delta_time())
-		wall_ally.scale = wall_ally.scale.move_toward(Vector2(0.07,0.07), 2500 * get_physics_process_delta_time())
+		wall_ally.position = wall_ally.position.move_toward(wall_tool.position + Vector2.DOWN * 60, 2500 * get_physics_process_delta_time())
+		wall_ally.scale = wall_ally.scale.move_toward(Vector2(0.4,0.4), 2500 * get_physics_process_delta_time())
 	if spring_ally_gone:
-		spring_ally.position = spring_ally.position.move_toward(spring_tool.position, 2500 * get_physics_process_delta_time())
-		spring_ally.scale = spring_ally.scale.move_toward(Vector2(0.09,0.09), 2500 * get_physics_process_delta_time())
+		spring_ally.position = spring_ally.position.move_toward(spring_tool.position + Vector2.DOWN * 20, 2500 * get_physics_process_delta_time())
+		spring_ally.scale = spring_ally.scale.move_toward(Vector2(0.4,0.4), 2500 * get_physics_process_delta_time())
 	if rope_ally_gone:
-		rope_ally.position = rope_ally.position.move_toward(rope_tool.position +Vector2.UP * 50 + Vector2.RIGHT * 5, 2500 * get_physics_process_delta_time())
-		rope_ally.scale = rope_ally.scale.move_toward(Vector2(0.07,0.07), 2500 * get_physics_process_delta_time())
+		rope_ally.position = rope_ally.position.move_toward(rope_tool.position +Vector2.UP * 60 + Vector2.RIGHT * 5, 2500 * get_physics_process_delta_time())
+		rope_ally.scale = rope_ally.scale.move_toward(Vector2(0.4,0.4), 2500 * get_physics_process_delta_time())
 	
 
 

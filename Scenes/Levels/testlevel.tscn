@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=4 uid="uid://2wgcsbefs01w"]
+[gd_scene load_steps=161 format=4 uid="uid://2wgcsbefs01w"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c2v3thd6x0gq" path="res://Sprites/Allies/Ally2.png" id="5_mpint"]
 [ext_resource type="Texture2D" uid="uid://c0bvuf6331m1y" path="res://Sprites/Allies/Ally3.png" id="6_mp0q4"]
 [ext_resource type="Texture2D" uid="uid://c3mgw8kabx51j" path="res://Sprites/Allies/Ally4.png" id="7_ycyir"]
+[ext_resource type="Texture2D" uid="uid://cp418rx1uhpmk" path="res://Sprites/Allies/Ally5.png" id="9_86hlg"]
 [ext_resource type="Texture2D" uid="uid://ev8xd3s4al53" path="res://Sprites/Tiles/cloudTexture.png" id="9_g4jyr"]
 [ext_resource type="Texture2D" uid="uid://dbma0kjst18li" path="res://Sprites/Tools/Floor_leftpart.png" id="10_7kiqq"]
 [ext_resource type="PackedScene" uid="uid://dxy636pajun4c" path="res://Scenes/checkpoint.tscn" id="11_3ikjp"]
@@ -1673,9 +1674,8 @@ position = Vector2(-6002, 2114)
 
 [node name="Ally1" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 4
-position = Vector2(-1315, 733)
-scale = Vector2(0.15, 0.15)
+z_index = 5
+position = Vector2(-1287, 647)
 texture = ExtResource("3_gf6wi")
 
 [node name="PointLight2D" type="PointLight2D" parent="Ally1"]
@@ -1684,13 +1684,11 @@ color = Color(0.998141, 1, 0.201567, 1)
 energy = 0.66
 texture = ExtResource("4_qmlu3")
 offset = Vector2(2.26, -104.5)
-texture_scale = 5.14
 
 [node name="Ally2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 4
-position = Vector2(-10470, 3429)
-scale = Vector2(0.15, 0.15)
+z_index = 5
+position = Vector2(-10434, 3372)
 texture = ExtResource("5_mpint")
 
 [node name="PointLight2D" type="PointLight2D" parent="Ally2"]
@@ -1699,15 +1697,13 @@ color = Color(0.82, 0.1066, 0.1066, 1)
 energy = 0.66
 texture = ExtResource("4_qmlu3")
 offset = Vector2(1.58, -82.615)
-texture_scale = 5.14
 
 [node name="Ally3" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 4
-position = Vector2(3307, 2122)
-scale = Vector2(0.15, 0.15)
+z_index = 5
+position = Vector2(3338, 2169)
 texture = ExtResource("6_mp0q4")
-offset = Vector2(0, -147.36)
+offset = Vector2(0, -46.35)
 
 [node name="PointLight2D" type="PointLight2D" parent="Ally3"]
 scale = Vector2(1.715, 1.715)
@@ -1715,14 +1711,13 @@ color = Color(0.2, 1, 0.213333, 1)
 energy = 0.66
 texture = ExtResource("4_qmlu3")
 offset = Vector2(-0.98, -78.935)
-texture_scale = 5.14
 
 [node name="Ally4" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 4
-position = Vector2(-1646, 4184)
-scale = Vector2(0.15, 0.15)
+z_index = 5
+position = Vector2(-1616, 4156)
 texture = ExtResource("7_ycyir")
+offset = Vector2(0, -17.285)
 
 [node name="PointLight2D" type="PointLight2D" parent="Ally4"]
 scale = Vector2(1.715, 1.715)
@@ -1730,15 +1725,13 @@ color = Color(0.2, 0.6, 1, 1)
 energy = 0.66
 texture = ExtResource("4_qmlu3")
 offset = Vector2(-0.98, -78.935)
-texture_scale = 5.14
 
 [node name="Ally5" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.41685, 0.000334894, 0.481623, 1)
-z_index = 4
-position = Vector2(-7178, 1783)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("7_ycyir")
+z_index = 5
+position = Vector2(-7149, 1770)
+texture = ExtResource("9_86hlg")
+offset = Vector2(0, -29.26)
 
 [node name="PointLight2D" type="PointLight2D" parent="Ally5"]
 scale = Vector2(1.715, 1.715)
@@ -1746,7 +1739,6 @@ color = Color(0.76, 0.2, 1, 1)
 energy = 0.66
 texture = ExtResource("4_qmlu3")
 offset = Vector2(-0.98, -78.935)
-texture_scale = 5.14
 
 [node name="Clouds" type="TextureRect" parent="."]
 modulate = Color(0.455817, 0.455817, 0.455817, 1)
@@ -2108,7 +2100,7 @@ randomness = 0.27
 [node name="Ally1_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = 6
-position = Vector2(-1319, 676)
+position = Vector2(-1292, 646)
 scale = Vector2(-0.205, -0.205)
 amount = 3
 speed_scale = 1.74
@@ -2118,8 +2110,8 @@ spread = 29.56
 gravity = Vector2(3, 3)
 initial_velocity_min = 1.95
 initial_velocity_max = 45.85
-scale_amount_min = 0.5
-scale_amount_max = 0.5
+scale_amount_min = 1.6
+scale_amount_max = 1.6
 hue_variation_min = 0.13
 hue_variation_max = 0.96
 script = ExtResource("18_ocae4")
@@ -2144,7 +2136,7 @@ texture_scale = 4.0
 [node name="Ally2_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = 6
-position = Vector2(-10469, 3384)
+position = Vector2(-10442, 3354)
 scale = Vector2(-0.205, -0.205)
 amount = 3
 speed_scale = 1.74
@@ -2154,8 +2146,8 @@ spread = 29.56
 gravity = Vector2(3, 3)
 initial_velocity_min = 1.95
 initial_velocity_max = 45.85
-scale_amount_min = 0.4
-scale_amount_max = 0.4
+scale_amount_min = 1.6
+scale_amount_max = 1.6
 hue_variation_min = 0.13
 hue_variation_max = 0.96
 script = ExtResource("18_ocae4")
@@ -2181,7 +2173,7 @@ texture_scale = 4.0
 [node name="Ally3_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = 6
-position = Vector2(3311, 2055)
+position = Vector2(3338, 2025)
 scale = Vector2(-0.205, -0.205)
 amount = 3
 speed_scale = 1.74
@@ -2191,8 +2183,8 @@ spread = 29.56
 gravity = Vector2(3, 3)
 initial_velocity_min = 1.95
 initial_velocity_max = 45.85
-scale_amount_min = 0.4
-scale_amount_max = 0.4
+scale_amount_min = 1.6
+scale_amount_max = 1.6
 hue_variation_min = 0.13
 hue_variation_max = 0.96
 script = ExtResource("18_ocae4")
@@ -2217,7 +2209,7 @@ texture_scale = 4.0
 [node name="Ally4_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = 6
-position = Vector2(-1636, 4128)
+position = Vector2(-1609, 4098)
 scale = Vector2(-0.205, -0.205)
 amount = 3
 speed_scale = 1.74
@@ -2227,8 +2219,8 @@ spread = 29.56
 gravity = Vector2(3, 3)
 initial_velocity_min = 1.95
 initial_velocity_max = 45.85
-scale_amount_min = 0.3
-scale_amount_max = 0.3
+scale_amount_min = 1.6
+scale_amount_max = 1.6
 hue_variation_min = 0.13
 hue_variation_max = 0.96
 script = ExtResource("18_ocae4")
@@ -2252,20 +2244,19 @@ texture_scale = 4.0
 
 [node name="Ally5_collect" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.415686, 0, 0.482353, 1)
 z_index = 6
-position = Vector2(-7177, 1736)
+position = Vector2(-7150, 1706)
 scale = Vector2(-0.205, -0.205)
 amount = 3
 speed_scale = 1.74
-texture = ExtResource("7_ycyir")
+texture = ExtResource("9_86hlg")
 direction = Vector2(1.58, 0.755)
 spread = 29.56
 gravity = Vector2(3, 3)
 initial_velocity_min = 1.95
 initial_velocity_max = 45.85
-scale_amount_min = 0.3
-scale_amount_max = 0.3
+scale_amount_min = 1.6
+scale_amount_max = 1.6
 hue_variation_min = 0.13
 hue_variation_max = 0.96
 script = ExtResource("18_ocae4")
