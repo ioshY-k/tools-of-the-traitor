@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		block_ally.position = block_ally.position.move_toward(block_tool.position, 2500 * get_physics_process_delta_time())
 		block_ally.scale = block_ally.scale.move_toward(Vector2(0.7,0.7), 2500 * get_physics_process_delta_time())
 	if wall_ally_gone:
-		wall_ally.position = wall_ally.position.move_toward(wall_tool.position + Vector2.DOWN * 60, 2500 * get_physics_process_delta_time())
+		wall_ally.position = wall_ally.position.move_toward(wall_tool.position + Vector2.DOWN * 15, 2500 * get_physics_process_delta_time())
 		wall_ally.scale = wall_ally.scale.move_toward(Vector2(0.4,0.4), 2500 * get_physics_process_delta_time())
 	if spring_ally_gone:
 		spring_ally.position = spring_ally.position.move_toward(spring_tool.position + Vector2.DOWN * 20, 2500 * get_physics_process_delta_time())

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cs06wm8lq756k" path="res://Sprites/Sign/sign_hide/Sign_hide7.png" id="17_wukct"]
 [ext_resource type="Texture2D" uid="uid://32l8an3vlbkp" path="res://Sprites/Sign/sign_hide/Sign_hide8.png" id="18_f5ywo"]
 [ext_resource type="Script" path="res://Scripts/floor_tool_sign.gd" id="19_4ps2h"]
-[ext_resource type="Texture2D" uid="uid://d2xu27aof2jxj" path="res://Sprites/UI/b_button_icon.png" id="20_6af1b"]
+[ext_resource type="Texture2D" uid="uid://dj7i5vffk3gbf" path="res://Sprites/UI/interact_icon.png" id="20_pvq5w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3m7xt"]
 animations = [{
@@ -114,9 +114,8 @@ shape = SubResource("RectangleShape2D_658ck")
 
 [node name="Interact_symbol" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-12, -186)
-scale = Vector2(1.56, 1.56)
-texture = ExtResource("20_6af1b")
+position = Vector2(-8.88, -216.04)
+texture = ExtResource("20_pvq5w")
 
 [connection signal="body_entered" from="Interact_area" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="Interact_area" to="." method="_on_interact_area_body_exited"]

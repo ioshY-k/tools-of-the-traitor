@@ -32,8 +32,8 @@ var dialog_sequences : Dictionary = {
 											["OHOO! Very sure! You know the drill by now:",
 											"Collect the Orbs, Reach the Goal.",
 											"And beat your Highscore while you're at it!",
-											"Jump is A and Sprint is X.",
-											"You can either hold X to Sprint, or toggle your Sprint by tapping X.",
+											"There's just Jumping and Running",
+											"You can either hold the Runbutton to Sprint, or toggle your Sprint by tapping it.",
 											"Which one is your Preference?"]
 										],
 
@@ -42,7 +42,7 @@ var dialog_sequences : Dictionary = {
 				"chose_hold_param" : 	{"yOffset" : 150},
 				"chose_hold_lines" : 	[
 											["What Kind of question is this?",
-											"I NEVER Toggle my X Buttons to sprint...",
+											"I NEVER Toggle my Buttons to sprint...",
 											"Can we just start now please?",
 											""],
 											["Fine fine, good luck then!",
@@ -54,7 +54,7 @@ var dialog_sequences : Dictionary = {
 				"chose_toggle_param" : 	{"yOffset" : 150},
 				"chose_toggle_lines" : 	[
 											["What Kind of question is this?",
-											"I NEVER Hold my X Buttons to sprint...",
+											"I NEVER Hold my Buttons to sprint...",
 											"Can we just start now please?",
 											""],
 											["Fine fine, good luck then!",
@@ -65,11 +65,11 @@ var dialog_sequences : Dictionary = {
 				"floor_tool_names" : 	["Sign_floor_tool"],
 				"floor_tool_param" : 	{"yOffset" : 150},
 				"floor_tool_lines": 		[
-											["Hold L to place the Yellow Tool.",
-											"Use the left Stick to choose a position",
+											["Hold L (Left Mouse) to place the Yellow Tool.",
+											"Use the left Stick (Mouse) to choose a position",
 											"You can only place this Tool while standing still.",
 											"",
-											"Press Y to call the Tool back when placed.",
+											"Press Y (Middle Mouse) to call the Tool back when placed.",
 											""]
 										],
 
@@ -77,7 +77,7 @@ var dialog_sequences : Dictionary = {
 				"cam_names" :			["Sign_cam"],
 				"cam_param" : 			{"yOffset" : 150},
 				"cam_lines" :			[
-											["The right stick controls your camera",
+											["The right stick (Arrow keys) controls your camera",
 											""],
 												
 										],
@@ -86,20 +86,20 @@ var dialog_sequences : Dictionary = {
 				"block_tool_names" :		["Sign_block_tool"],
 				"block_tool_param" : 	{"yOffset" : 150},
 				"block_tool_lines" :		[
-											["Hold L to place the Red Tool.",
-											"Use the left Stick to choose a position",
+											["Hold L (Left Mouse) to place the Red Tool.",
+											"Use the left Stick (Mouse) to choose a position",
 											"You can only place this Tool when airborne.",
 											"",
 											"(The default position is always downwards,",
-											"so tapping L will always position this tool beneath you)"],
+											"so tapping L (Left Mouse) will always position this tool beneath you)"],
 										],
 
 
 				"wall_tool_names" :		["Sign_wall_tool"],
 				"wall_tool_param" : 		{"yOffset" : 150},
 				"wall_tool_lines" :		[
-											["Hold R to open the special tool menu.",
-											"Tap left or right to choose the Wall tool.",
+											["Hold R (Right Mouse) to open the special tool menu.",
+											"Tap left or right (Move Mouse) to choose the Wall tool.",
 											"This Tool can only be placed to your left or right.",
 											"It can be placed while airborne and while grounded."],
 										],
@@ -108,8 +108,8 @@ var dialog_sequences : Dictionary = {
 				"spring_tool_names" :		["Sign_spring_tool"],
 				"spring_tool_param" : 		{"yOffset" : 150},
 				"spring_tool_lines" :		[
-											["Hold R to open the special tool menu.",
-											"Tap down to choose the Spring tool.",
+											["Hold R (Right Mouse) to open the special tool menu.",
+											"Tap down (Move Mouse) to choose the Spring tool.",
 											"While grounded, it will always be placed in front of you.",
 											"While airborn, it will always be placed right below you.",
 											"To get launched from the tool",
@@ -135,7 +135,7 @@ var dialog_sequences : Dictionary = {
 											["Are you done?",
 											""],
 											["Almost: Do you remember you can jump up walls?",
-											"Just hug a wall an press jump again!"],
+											"Just hug a wall and press jump again!"],
 											["...I actually DID forget about that.",
 											"Thanks!"]
 										],
@@ -170,7 +170,7 @@ var dialog_sequences : Dictionary = {
 											"if it makes me uncomfortable, right?"],
 											["I added the option to the menu.",
 											"Now don't thank me, let's see it in action!",
-											"Jump down into that pit while holding down LT!",
+											"Jump down into that pit while holding down the build button!",
 											"HOO!"],
 										],
 

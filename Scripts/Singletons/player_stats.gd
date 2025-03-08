@@ -71,6 +71,8 @@ func execute_all_options():
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").energy = 0.27
 			get_node("/root/Scene_loader/Testlevel/Clouds").modulate = Color(0.324, 0.324, 0.324)
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").blend_mode = Light2D.BLEND_MODE_SUB
+		for cursed_deco in get_tree().get_nodes_in_group("Cursed_mode_deco"):
+			cursed_deco.energy = 0.64
 	if no_dialog:
 		for triggerbox in get_tree().get_nodes_in_group("Dialog_trigger_group"):
 			triggerbox.queue_free()
