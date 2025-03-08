@@ -424,16 +424,19 @@ texture = ExtResource("1_8n6ir")
 position = Vector2(-172, -286.4)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_c8hdp")
+offset = Vector2(-77.225, 0)
 
 [node name="Ally3" type="Sprite2D" parent="."]
 position = Vector2(-342, -311.4)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_pko5e")
+offset = Vector2(0, -161.815)
 
 [node name="Ally4" type="Sprite2D" parent="."]
 position = Vector2(0, -330.4)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_4ajra")
+offset = Vector2(-119.145, 0)
 
 [node name="Options_animation_player" type="AnimationPlayer" parent="."]
 libraries = {

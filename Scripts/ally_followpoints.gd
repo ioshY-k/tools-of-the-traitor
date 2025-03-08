@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	for index in range(len(allies)):
 		#every ally follows their corresponding follow points
 		allies[index].position = allies[index].position.lerp(follow_points[index+1].position, 6 * delta )
-		allies[index].scale = allies[index].scale.lerp(Vector2(0.16,0.16), 6 * delta )
+		allies[index].scale = allies[index].scale.lerp(Vector2(0.2,0.2), 6 * delta )
 	
 	if floor_ally_gone:
 		floor_ally.position = floor_ally.position.move_toward(floor_tool.position, 2500 * get_physics_process_delta_time())
