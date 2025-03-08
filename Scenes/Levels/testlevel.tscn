@@ -1741,7 +1741,6 @@ texture = ExtResource("4_qmlu3")
 offset = Vector2(-0.98, -78.935)
 
 [node name="Clouds" type="TextureRect" parent="."]
-modulate = Color(0.455817, 0.455817, 0.455817, 1)
 z_index = -3
 z_as_relative = false
 anchors_preset = 15
@@ -2706,7 +2705,7 @@ color = Color(1, 0.713333, 0.6, 1)
 texture = ExtResource("4_qmlu3")
 texture_scale = 0.6
 
-[node name="Window_light" type="PointLight2D" parent="."]
+[node name="Window_light" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-6337.26, 1966.91)
 rotation = -0.434587
@@ -2718,7 +2717,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light7" type="PointLight2D" parent="."]
+[node name="Window_light7" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-4360, 56.9999)
 rotation = -0.434587
@@ -2730,7 +2729,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light8" type="PointLight2D" parent="."]
+[node name="Window_light8" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-3305, 1.00013)
 rotation = -0.434587
@@ -2742,7 +2741,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light24" type="PointLight2D" parent="."]
+[node name="Window_light24" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(6503, -1116)
 rotation = -0.434587
@@ -2754,7 +2753,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light25" type="PointLight2D" parent="."]
+[node name="Window_light25" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(6668, -563)
 rotation = -0.434587
@@ -2766,7 +2765,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light26" type="PointLight2D" parent="."]
+[node name="Window_light26" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7175, -493)
 rotation = -0.434587
@@ -2778,7 +2777,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light27" type="PointLight2D" parent="."]
+[node name="Window_light27" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7173, -872)
 rotation = -0.434587
@@ -2790,7 +2789,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light28" type="PointLight2D" parent="."]
+[node name="Window_light28" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3759, 2050)
 rotation = -0.434587
@@ -2802,7 +2801,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light31" type="PointLight2D" parent="."]
+[node name="Window_light31" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-3087, 4507)
 rotation = -0.434587
@@ -2814,7 +2813,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light32" type="PointLight2D" parent="."]
+[node name="Window_light32" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-2709, 4636)
 rotation = -0.434587
@@ -2826,7 +2825,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light33" type="PointLight2D" parent="."]
+[node name="Window_light33" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-2486, 4264)
 rotation = -0.434587
@@ -2838,7 +2837,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light34" type="PointLight2D" parent="."]
+[node name="Window_light34" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-1588, 4018)
 rotation = -0.434587
@@ -2850,7 +2849,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light29" type="PointLight2D" parent="."]
+[node name="Window_light29" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4481, 2181)
 rotation = -0.434587
@@ -2862,7 +2861,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light30" type="PointLight2D" parent="."]
+[node name="Window_light30" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(5707, 2024)
 rotation = -0.434587
@@ -2874,7 +2873,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 19.4
 
-[node name="Window_light9" type="PointLight2D" parent="."]
+[node name="Window_light9" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-1798, 127)
 rotation = -0.434587
@@ -2887,7 +2886,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(-3617.87, -150.773)
 texture_scale = 19.4
 
-[node name="Window_light2" type="PointLight2D" parent="."]
+[node name="Window_light2" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-4541, 1824)
 rotation = -0.434587
@@ -2899,7 +2898,7 @@ shadow_item_cull_mask = 6
 texture = ExtResource("95_4o57m")
 texture_scale = 8.25
 
-[node name="Window_light11" type="PointLight2D" parent="."]
+[node name="Window_light11" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-8350, -369)
 rotation = -0.434587
@@ -2912,7 +2911,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1094.77, 1580.96)
 texture_scale = 8.25
 
-[node name="Window_light12" type="PointLight2D" parent="."]
+[node name="Window_light12" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-8364, 174)
 rotation = -0.434587
@@ -2925,7 +2924,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1094.77, 1580.96)
 texture_scale = 8.25
 
-[node name="Window_light13" type="PointLight2D" parent="."]
+[node name="Window_light13" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-9066.45, 356.739)
 rotation = -0.434587
@@ -2938,7 +2937,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(338.938, 1558.82)
 texture_scale = 8.25
 
-[node name="Window_light35" type="PointLight2D" parent="."]
+[node name="Window_light35" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3509.58, 5894.55)
 rotation = -0.434587
@@ -2951,7 +2950,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1354.53, -254.596)
 texture_scale = 8.25
 
-[node name="Window_light36" type="PointLight2D" parent="."]
+[node name="Window_light36" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3857.06, 5973.44)
 rotation = -0.434587
@@ -2964,7 +2963,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(991.134, -488.614)
 texture_scale = 8.25
 
-[node name="Window_light38" type="PointLight2D" parent="."]
+[node name="Window_light38" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(5110, 6603)
 rotation = -0.434587
@@ -2977,7 +2976,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(991.134, -488.614)
 texture_scale = 8.25
 
-[node name="Window_light39" type="PointLight2D" parent="."]
+[node name="Window_light39" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(2162, 7132)
 rotation = -0.434587
@@ -2990,7 +2989,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(991.134, -488.614)
 texture_scale = 8.25
 
-[node name="Window_light40" type="PointLight2D" parent="."]
+[node name="Window_light40" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(2438, 7133)
 rotation = -0.434587
@@ -3003,7 +3002,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(155.524, 981.019)
 texture_scale = 8.25
 
-[node name="Window_light41" type="PointLight2D" parent="."]
+[node name="Window_light41" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(2830, 6739)
 rotation = -0.434587
@@ -3016,7 +3015,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(155.524, 981.019)
 texture_scale = 8.25
 
-[node name="Window_light42" type="PointLight2D" parent="."]
+[node name="Window_light42" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4101, 6722)
 rotation = -0.434587
@@ -3029,7 +3028,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(155.524, 981.019)
 texture_scale = 8.25
 
-[node name="Window_light43" type="PointLight2D" parent="."]
+[node name="Window_light43" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3498, 7049)
 rotation = -0.434587
@@ -3042,7 +3041,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(155.524, 981.019)
 texture_scale = 8.25
 
-[node name="Window_light44" type="PointLight2D" parent="."]
+[node name="Window_light44" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7329.29, 5830.33)
 rotation = -0.434587
@@ -3055,7 +3054,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light45" type="PointLight2D" parent="."]
+[node name="Window_light45" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(5573, 3833)
 rotation = -0.434587
@@ -3068,7 +3067,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light46" type="PointLight2D" parent="."]
+[node name="Window_light46" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(6347, 3855)
 rotation = -0.434587
@@ -3081,7 +3080,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light47" type="PointLight2D" parent="."]
+[node name="Window_light47" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(6777, 4040)
 rotation = -0.434587
@@ -3094,7 +3093,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light48" type="PointLight2D" parent="."]
+[node name="Window_light48" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(8052, 4385)
 rotation = -0.434587
@@ -3107,7 +3106,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light49" type="PointLight2D" parent="."]
+[node name="Window_light49" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7144, 4381)
 rotation = -0.434587
@@ -3120,7 +3119,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light50" type="PointLight2D" parent="."]
+[node name="Window_light50" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7311, 4428)
 rotation = -0.434587
@@ -3133,7 +3132,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light51" type="PointLight2D" parent="."]
+[node name="Window_light51" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7736, 4460)
 rotation = -0.434587
@@ -3146,7 +3145,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(449.544, 1213.07)
 texture_scale = 8.25
 
-[node name="Window_light52" type="PointLight2D" parent="."]
+[node name="Window_light52" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7882.54, 4340.46)
 rotation = -0.434587
@@ -3159,7 +3158,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(809.06, 1089.77)
 texture_scale = 8.25
 
-[node name="Window_light53" type="PointLight2D" parent="."]
+[node name="Window_light53" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(7633.49, 3984.95)
 rotation = -0.434587
@@ -3172,7 +3171,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(827.38, 1118.73)
 texture_scale = 8.25
 
-[node name="Window_light54" type="PointLight2D" parent="."]
+[node name="Window_light54" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(8019.86, 4829.94)
 rotation = -0.434587
@@ -3185,7 +3184,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(908.997, -1437.13)
 texture_scale = 8.25
 
-[node name="Window_light55" type="PointLight2D" parent="."]
+[node name="Window_light55" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(8053, 3533)
 rotation = -0.434587
@@ -3198,7 +3197,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(-385.659, 1308.99)
 texture_scale = 8.25
 
-[node name="Window_light37" type="PointLight2D" parent="."]
+[node name="Window_light37" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4129.12, 5963.6)
 rotation = -0.434587
@@ -3211,7 +3210,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1767.09, -1176.79)
 texture_scale = 8.25
 
-[node name="Window_light15" type="PointLight2D" parent="."]
+[node name="Window_light15" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-10625, 2882)
 rotation = -0.434587
@@ -3224,7 +3223,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(338.938, 1558.82)
 texture_scale = 8.25
 
-[node name="Window_light16" type="PointLight2D" parent="."]
+[node name="Window_light16" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(598, -331)
 rotation = -0.434587
@@ -3237,7 +3236,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(338.938, 1558.82)
 texture_scale = 8.25
 
-[node name="Window_light17" type="PointLight2D" parent="."]
+[node name="Window_light17" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(1894, -64)
 rotation = -0.434587
@@ -3250,7 +3249,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(338.938, 1558.82)
 texture_scale = 8.25
 
-[node name="Window_light18" type="PointLight2D" parent="."]
+[node name="Window_light18" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3073, -1261)
 rotation = -0.434587
@@ -3263,7 +3262,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(338.938, 1558.82)
 texture_scale = 8.25
 
-[node name="Window_light19" type="PointLight2D" parent="."]
+[node name="Window_light19" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4658, -1215)
 rotation = -0.434587
@@ -3276,7 +3275,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(-70.248, 459.265)
 texture_scale = 8.25
 
-[node name="Window_light22" type="PointLight2D" parent="."]
+[node name="Window_light22" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4854.14, 100.76)
 rotation = -0.434587
@@ -3289,7 +3288,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(80.4199, 125.606)
 texture_scale = 8.25
 
-[node name="Window_light23" type="PointLight2D" parent="."]
+[node name="Window_light23" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(5607, 5.34058e-05)
 rotation = -0.434587
@@ -3302,7 +3301,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(80.4199, 125.606)
 texture_scale = 8.25
 
-[node name="Window_light20" type="PointLight2D" parent="."]
+[node name="Window_light20" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(4557.69, -1696.93)
 rotation = -0.434587
@@ -3315,7 +3314,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(297.258, 647.487)
 texture_scale = 8.25
 
-[node name="Window_light21" type="PointLight2D" parent="."]
+[node name="Window_light21" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(3086, -1672)
 rotation = -0.434587
@@ -3328,7 +3327,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(297.258, 647.487)
 texture_scale = 8.25
 
-[node name="Window_light14" type="PointLight2D" parent="."]
+[node name="Window_light14" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-8462.76, 832.323)
 rotation = -0.434587
@@ -3341,7 +3340,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(448.492, 1142.05)
 texture_scale = 8.25
 
-[node name="Window_light3" type="PointLight2D" parent="."]
+[node name="Window_light3" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-2224.01, 1654.04)
 rotation = -0.434587
@@ -3354,7 +3353,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1193.32, 1459.02)
 texture_scale = 8.25
 
-[node name="Window_light4" type="PointLight2D" parent="."]
+[node name="Window_light4" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-198, 2089)
 rotation = -0.434587
@@ -3367,7 +3366,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(1193.32, 1459.02)
 texture_scale = 8.25
 
-[node name="Window_light5" type="PointLight2D" parent="."]
+[node name="Window_light5" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-5.82497, 1367.72)
 rotation = -0.434587
@@ -3380,7 +3379,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(-2446.23, 1678.54)
 texture_scale = 8.25
 
-[node name="Window_light6" type="PointLight2D" parent="."]
+[node name="Window_light6" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-12.8883, 866.24)
 rotation = -0.434587
@@ -3393,7 +3392,7 @@ texture = ExtResource("95_4o57m")
 offset = Vector2(-2324.19, 1424.14)
 texture_scale = 8.25
 
-[node name="Window_light10" type="PointLight2D" parent="."]
+[node name="Window_light10" type="PointLight2D" parent="." groups=["Cursed_mode_deco"]]
 light_mask = 0
 position = Vector2(-7581.91, 409.218)
 rotation = -0.434587
@@ -3750,10 +3749,10 @@ position = Vector2(3911, 6232)
 [node name="Bird12" parent="." instance=ExtResource("101_h1ywm")]
 position = Vector2(3794, 6233)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+[node name="Night_mode_light" type="DirectionalLight2D" parent="."]
 light_mask = 0
-energy = 0.27
-blend_mode = 1
+position = Vector2(1, 0)
+energy = 0.2
 
 [connection signal="visibility_changed" from="Floor_tool" to="Ally_followpoints" method="_on_floor_tool_visibility_changed"]
 [connection signal="visibility_changed" from="Block_tool" to="Ally_followpoints" method="_on_block_tool_visibility_changed"]

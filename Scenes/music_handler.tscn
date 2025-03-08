@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://burnn51wfnwvb" path="res://Sound/Anxiety_is_comfort.wav" id="1_gniwp"]
 [ext_resource type="Script" path="res://Scripts/music_looper.gd" id="1_v6fh8"]
-[ext_resource type="AudioStream" uid="uid://blrcrreri0e25" path="res://Sound/Sky Guitar.wav" id="2_ottni"]
+[ext_resource type="AudioStream" uid="uid://cjbe8uc2winwq" path="res://Sound/Sky Guitar.mp3" id="3_8naws"]
 [ext_resource type="AudioStream" uid="uid://de3hq0b182wy" path="res://Sound/B-Side.wav" id="3_ivmr4"]
 
 [node name="Music_handler" type="Node"]
@@ -12,7 +12,7 @@ script = ExtResource("1_v6fh8")
 stream = ExtResource("1_gniwp")
 
 [node name="Level_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ottni")
+stream = ExtResource("3_8naws")
 
 [node name="Cursed_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ivmr4")

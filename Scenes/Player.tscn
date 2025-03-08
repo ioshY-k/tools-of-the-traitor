@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://c8lwhih3bihrn"]
+[gd_scene load_steps=50 format=3 uid="uid://c8lwhih3bihrn"]
 
 [ext_resource type="Script" path="res://Scripts/Player Controls/character_movement.gd" id="1_ac4tx"]
 [ext_resource type="Script" path="res://addons/random_timers/RandomRangeTimer.gd" id="2_1vope"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Player Controls/tool_state_handler.gd" id="2_yocoj"]
 [ext_resource type="Texture2D" uid="uid://bkvbydih5iu0q" path="res://Sprites/UI/Radmenu_lockr.png" id="3_cxk5h"]
 [ext_resource type="Texture2D" uid="uid://c1exab73aj04w" path="res://Sprites/UI/Radmenu_wall.png" id="4_g4ovk"]
+[ext_resource type="Texture2D" uid="uid://b0t4mvdfvy84c" path="res://Sprites/UI/Radmenu_rope.png" id="4_t7wjo"]
 [ext_resource type="Texture2D" uid="uid://bma5h1h68wws1" path="res://Sprites/Tools/Block.png" id="5_8eind"]
 [ext_resource type="Texture2D" uid="uid://fbiada7uot8c" path="res://Sprites/UI/Radmenu_lockd.png" id="5_gjlip"]
 [ext_resource type="Texture2D" uid="uid://c6amleg4p5hrr" path="res://Sprites/Tools/Floor.png" id="6_03mwq"]
@@ -18,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dnxapwp7jekxw" path="res://Sprites/UI/Radmenu_lockl.png" id="7_ovj22"]
 [ext_resource type="Texture2D" uid="uid://bjqc8f8na21sm" path="res://Sprites/UI/Radmenu_wall2.png" id="8_x57gu"]
 [ext_resource type="Texture2D" uid="uid://pq5tdr4v7baj" path="res://Sprites/Tools/Spring1.png" id="10_28md6"]
-[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="18_erkq1"]
+[ext_resource type="Texture2D" uid="uid://mtsshggmfb7j" path="res://Sprites/Tools/Rope.png" id="19_mu1tg"]
 [ext_resource type="AudioStream" uid="uid://7wv3a6keurtv" path="res://Sound/jump.wav" id="20_2v6s7"]
 [ext_resource type="AudioStream" uid="uid://chg3r1u38xrwe" path="res://Sound/jumping4.wav" id="20_ic28e"]
 [ext_resource type="AudioStream" uid="uid://b6qprgh5auwdo" path="res://Sound/place_wall.wav" id="21_vnyd3"]
@@ -35,6 +36,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_qjws2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t7wjo")
 }],
 "loop": true,
 "name": &"default",
@@ -957,8 +961,9 @@ texture = ExtResource("10_28md6")
 visible = false
 modulate = Color(1, 1, 1, 0.34902)
 position = Vector2(4, -252)
-scale = Vector2(1.14441, 0.202363)
-texture = ExtResource("18_erkq1")
+scale = Vector2(0.635, 0.635)
+texture = ExtResource("19_mu1tg")
+offset = Vector2(0, 56.315)
 
 [node name="Jump_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2v6s7")
