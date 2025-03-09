@@ -11,6 +11,8 @@ var field_tool_unlocked: bool = false
 var toggle_to_sprint: bool = false
 var show_timer: bool = false
 var bullet_time_value: float = 1.0
+var sfx_volume: float = 0.0
+var music_volume: float = 0.0
 var cursed_mode: bool = true
 var no_dialog: bool = false
 const ORB_NUMBER = 12
@@ -63,16 +65,16 @@ func execute_all_options():
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").energy = 0.2
 			get_node("/root/Scene_loader/Testlevel/Clouds").modulate = Color(1, 1, 1)
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").blend_mode = Light2D.BLEND_MODE_ADD
-		for cursed_deco in get_tree().get_nodes_in_group("Cursed_mode_deco"):
-			cursed_deco.queue_free()
+			for cursed_deco in get_tree().get_nodes_in_group("Cursed_mode_deco"):
+				cursed_deco.queue_free()
 	else:
 		no_dialog = true
 		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Night_mode_light")):
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").energy = 0.27
 			get_node("/root/Scene_loader/Testlevel/Clouds").modulate = Color(0.324, 0.324, 0.324)
 			get_node("/root/Scene_loader/Testlevel/Night_mode_light").blend_mode = Light2D.BLEND_MODE_SUB
-		for cursed_deco in get_tree().get_nodes_in_group("Cursed_mode_deco"):
-			cursed_deco.energy = 0.64
+			for cursed_deco in get_tree().get_nodes_in_group("Cursed_mode_deco"):
+				cursed_deco.energy = 0.64
 	if no_dialog:
 		for triggerbox in get_tree().get_nodes_in_group("Dialog_trigger_group"):
 			triggerbox.queue_free()
@@ -83,6 +85,14 @@ func execute_all_options():
 	if bullet_time_value != 1.0:
 		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider")):
 			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer/Bullet_time_slider").value = 120 - (bullet_time_value * 100)
+	if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer3/Volume_music_slider")):
+		get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer3/Volume_music_slider").value = music_volume
+	if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer2/Volume_sfx_slider")):
+		get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer2/Volume_sfx_slider").value = sfx_volume
+		for audio_stream_node in get_tree().get_nodes_in_group("sfx"):
+			print(audio_stream_node.name, " changes volume from ", audio_stream_node.volume_db)
+			audio_stream_node.volume_db = sfx_volume
+			print("to ", audio_stream_node.volume_db)
 	if toggle_to_sprint:
 		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle")):
 			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle").button_pressed = true

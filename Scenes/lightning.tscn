@@ -79,4 +79,4 @@ libraries = {
 "": SubResource("AnimationLibrary_ugc7h")
 }
 
-[node name="Lightning_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Lightning_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]

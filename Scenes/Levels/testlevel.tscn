@@ -2526,8 +2526,10 @@ text = "000"
 horizontal_alignment = 2
 
 [node name="Pause_menu" parent="." instance=ExtResource("45_7vlik")]
+visible = false
 
 [node name="Sprint_question" type="Panel" parent="Pause_menu"]
+visible = false
 offset_left = 285.0
 offset_top = 291.0
 offset_right = 1604.0
@@ -3570,7 +3572,7 @@ position = Vector2(-7516, 1021)
 [node name="Crate42" parent="." instance=ExtResource("99_ppq0k")]
 position = Vector2(-7802, 992)
 
-[node name="Lightning_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Lightning_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("92_ekk5v")
 volume_db = -14.589
 pitch_scale = 0.73

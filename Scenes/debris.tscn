@@ -26,9 +26,8 @@ collision_layer = 256
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_p1ijg")
 
-[node name="Debris_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Debris_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("3_e6dd0")
-volume_db = -14.591
 pitch_scale = 0.7
 
 [node name="Initial_timer" type="Timer" parent="."]

@@ -135,13 +135,13 @@ focus_neighbor_right = NodePath("../Continue_button")
 theme_override_font_sizes/font_size = 40
 text = "Submit & Quit"
 
-[node name="select_sfx" type="AudioStreamPlayer" parent="."]
+[node name="select_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("2_p0aqc")
 
-[node name="confirm_sfx" type="AudioStreamPlayer" parent="."]
+[node name="confirm_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("3_krt06")
 
-[node name="sizzle_sfx" type="AudioStreamPlayer" parent="."]
+[node name="sizzle_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("4_stwsn")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

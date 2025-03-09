@@ -116,8 +116,12 @@ func _ready() -> void:
 	$Options_Container/Options_panel/VBoxContainer/Show_timer.button_pressed = PlayerStats.show_timer
 	$Options_Container/Options_panel/VBoxContainer/Skip_dialog.button_pressed = PlayerStats.no_dialog
 	$Options_Container/Options_panel/VBoxContainer/HBoxContainer/Bullet_time_slider.value = 120 - (PlayerStats.bullet_time_value * 100)
+	$Options_Container/Options_panel/VBoxContainer/HBoxContainer2/Volume_sfx_slider.value = PlayerStats.sfx_volume
+	$Options_Container/Options_panel/VBoxContainer/HBoxContainer3/Volume_music_slider.value = PlayerStats.music_volume
 	await get_node("/root/Scene_loader").faded
 	$Main_panel/MarginContainer/VBoxContainer/HBoxContainer/Play.grab_focus()
+	
+	
 func check_achievements():
 	var achievement_buttons = [	button_goal, button_goal_2, 
 								button_score, button_orbs,
@@ -528,3 +532,14 @@ func _on_return_sfx() -> void:
 
 func _on_select_sfx() -> void:
 	pass # Replace with function body.
+
+
+func _on_volume_music_slider_value_changed(value: float) -> void:
+	PlayerStats.music_volume = value
+	MusicManager.change_music_volume(value)
+
+
+func _on_volume_sfx_slider_value_changed(value: float) -> void:
+	PlayerStats.sfx_volume = value
+	for audio_stream_node in get_tree().get_nodes_in_group("sfx"):
+		audio_stream_node.volume_db = value

@@ -225,3 +225,14 @@ func _on_confirm_sfx() -> void:
 
 func _on_return_sfx() -> void:
 	return_sfx.play()
+
+
+func _on_volume_music_slider_value_changed(value: float) -> void:
+	PlayerStats.music_volume = value
+	MusicManager.change_music_volume(value)
+
+
+func _on_volume_sfx_slider_value_changed(value: float) -> void:
+	PlayerStats.sfx_volume = value
+	for audio_stream_node in get_tree().get_nodes_in_group("sfx"):
+		audio_stream_node.volume_db = value

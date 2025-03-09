@@ -62,7 +62,7 @@ position = Vector2(0, -1.42109e-14)
 scale = Vector2(0.68, 0.68)
 shape = SubResource("RectangleShape2D_m5rrh")
 
-[node name="spring_sfx" type="AudioStreamPlayer" parent="."]
+[node name="spring_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("5_qwpfp")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

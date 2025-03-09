@@ -965,39 +965,39 @@ scale = Vector2(0.635, 0.635)
 texture = ExtResource("19_mu1tg")
 offset = Vector2(0, 56.315)
 
-[node name="Jump_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Jump_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("20_2v6s7")
 pitch_scale = 2.85
 
-[node name="Walljump_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Walljump_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("20_ic28e")
 
-[node name="Placewall_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Placewall_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("21_vnyd3")
 
-[node name="Placefloor_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Placefloor_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("22_6mak1")
 
-[node name="Placespring_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Placespring_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("23_nfg8a")
 
-[node name="Callback_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Callback_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("23_3qy3x")
 
-[node name="Died_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Died_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("25_fs5uv")
 
-[node name="Walk_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Walk_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("27_cr32q")
 volume_db = -23.194
 pitch_scale = 0.49
 
-[node name="Run_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Run_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("28_qswfk")
 volume_db = -23.194
 pitch_scale = 0.55
 
-[node name="Rocket_cycle_sfx" type="AudioStreamPlayer" parent="."]
+[node name="Rocket_cycle_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("30_2wpfl")
 volume_db = -23.194
 pitch_scale = 1.74

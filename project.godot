@@ -49,6 +49,7 @@ enabled=PackedStringArray("res://addons/random_timers/plugin.cfg")
 [global_group]
 
 debris_destroyer="debris objects react to this"
+sfx=""
 
 [gui]
 

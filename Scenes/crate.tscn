@@ -39,7 +39,7 @@ collision_mask = 41
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_2ts3r")
 
-[node name="break_sfx" type="AudioStreamPlayer" parent="."]
+[node name="break_sfx" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("3_igr3e")
 volume_db = -9.151
 
