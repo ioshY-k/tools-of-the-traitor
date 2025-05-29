@@ -479,22 +479,6 @@ func _on_achievementbutton_focus_exited() -> void:
 	if not still_in_achievement_menu:
 		get_tree().create_tween().tween_property($Main_panel/Panel, "position:y", 870, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
-func _on_achievementbutton_mouse_entered() -> void:
-	panel_achievements.show()
-	for label in get_tree().get_nodes_in_group("Achievement_label"):
-		label.visible = false
-	
-	if button_goal.is_hovered(): label_goal.visible = true
-	if button_goal_2.is_hovered(): label_goal_2.visible = true
-	if button_score.is_hovered(): label_score.visible = true
-	if button_orbs.is_hovered(): label_orbs.visible = true
-	if button_cursed.is_hovered(): label_cursed.visible = true
-	if button_cursed_2.is_hovered(): label_cursed_2.visible = true
-	if button_time.is_hovered(): label_time.visible = true
-	if button_time_2.is_hovered(): label_time_2.visible = true
-	if button_tools.is_hovered(): label_tools.visible = true
-	if button_tools_2.is_hovered(): label_tools_2.visible = true
-
 
 func _on_reset_progress_pressed() -> void:
 	$Really_delete.show()

@@ -104,7 +104,7 @@ curve = SubResource("Curve2D_ftunl")
 
 [node name="PathFollow_ropetool" type="PathFollow2D" parent="Path_ropetool"]
 position = Vector2(-1438.61, 651.6)
-rotation = -0.000766407
+rotation = -0.000765567
 progress = 191.007
 
 [node name="Area2D" type="Area2D" parent="Path_ropetool/PathFollow_ropetool"]
@@ -116,11 +116,11 @@ position = Vector2(-0.515, -58.965)
 scale = Vector2(3.65, 6.275)
 shape = SubResource("RectangleShape2D_coiuh")
 
-[node name="Area2D" type="Area2D" parent="." groups=["debris_destroyer"]]
+[node name="Rope_area" type="Area2D" parent="." groups=["debris_destroyer"]]
 collision_layer = 8
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope_area"]
 position = Vector2(3.82477, -49.7218)
 shape = SubResource("RectangleShape2D_ykj1r")
 

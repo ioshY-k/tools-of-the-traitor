@@ -6,12 +6,15 @@ var current_state
 @onready var jump_buffer_timer: Timer = $Jump_buffer
 var inside_level = false
 
+var swinging = false
+
 
 var current_sprint_state: bool = false
 
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 				WALLSLIDE_L, WALLSLIDE_R,
-				WALLJUMP_L, WALLJUMP_R}
+				WALLJUMP_L, WALLJUMP_R,
+				SWINGING}
 
 func set_current_state(state):
 	current_state = state
@@ -27,9 +30,12 @@ func _enter_tree() -> void:
 	
 func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -> states:
 	
+	print(states.keys()[current_state])
 	match current_state:
 		states.IDLE:
 			#called so that the sprint toggle works in IDLE state
+			if swinging:
+				return states.SWINGING
 			sprints()
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
@@ -42,6 +48,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 				return states.FALL
 			return states.IDLE
 		states.WALK:
+			if swinging:
+				return states.SWINGING
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if sprints():
@@ -55,6 +63,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 				return states.PUSH
 			return states.WALK
 		states.RUN:
+			if swinging:
+				return states.SWINGING
 			if Input.is_action_just_pressed("jump") or jump_buffer_timer.time_left > 0:
 				return states.JUMP
 			if not sprints():
@@ -68,6 +78,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 				return states.PUSH
 			return states.RUN
 		states.PUSH:
+			if swinging:
+				return states.SWINGING
 			if not (is_on_left_wall or is_on_right_wall):
 				if sprints():
 					return states.RUN
@@ -84,6 +96,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 		states.JUMP:
 			return states.FALL
 		states.FALL:
+			if swinging:
+				return states.SWINGING
 			if Input.is_action_just_pressed("jump"):
 				if coyote_timer.time_left > 0:
 					return states.JUMP
@@ -105,6 +119,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 			else:
 				return states.IDLE
 		states.WALLSLIDE_L:
+			if swinging:
+				return states.SWINGING
 			if Input.is_action_just_pressed("jump"):
 				return states.WALLJUMP_L
 			if is_on_floor:
@@ -113,6 +129,8 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 				return states.FALL
 			return states.WALLSLIDE_L
 		states.WALLSLIDE_R:
+			if swinging:
+				return states.SWINGING
 			if Input.is_action_just_pressed("jump"):
 				return states.WALLJUMP_R
 			if is_on_floor:
@@ -124,6 +142,10 @@ func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -
 			return states.FALL
 		states.WALLJUMP_R:
 			return states.FALL
+		states.SWINGING:
+			if not swinging:
+				return states.FALL
+			return states.SWINGING
 		_:
 			print_debug("not in a valid State")
 			return states.IDLE

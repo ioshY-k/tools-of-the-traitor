@@ -90,9 +90,7 @@ func execute_all_options():
 	if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer2/Volume_sfx_slider")):
 		get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/HBoxContainer2/Volume_sfx_slider").value = sfx_volume
 		for audio_stream_node in get_tree().get_nodes_in_group("sfx"):
-			print(audio_stream_node.name, " changes volume from ", audio_stream_node.volume_db)
 			audio_stream_node.volume_db = sfx_volume
-			print("to ", audio_stream_node.volume_db)
 	if toggle_to_sprint:
 		if is_instance_valid(get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle")):
 			get_node("/root/Scene_loader/Testlevel/Pause_menu/Pause_menu/Sprint_toggle").button_pressed = true

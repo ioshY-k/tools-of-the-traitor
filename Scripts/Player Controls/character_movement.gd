@@ -64,6 +64,7 @@ var original_floor_tool_scale = Vector2(0.752,1.148)
 @onready var sprite_wall_tool: Sprite2D = $Sprite_wall_tool
 @onready var sprite_spring_tool: Sprite2D = $Sprite_spring_tool
 @onready var sprite_rope_tool = $Sprite_rope_tool
+@onready var rope_tool = get_node("../Rope_tool")
 @onready var follow_floor_tool: PathFollow2D = %Follow_floor_tool
 @onready var path_floor_tool: Path2D = $Path_floor_tool
 @onready var rad_menu: Node2D = $Rad_menu
@@ -100,7 +101,8 @@ var controllable: bool = true
 var current_state
 enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 	WALLSLIDE_L, WALLSLIDE_R,
-	WALLJUMP_L, WALLJUMP_R}
+	WALLJUMP_L, WALLJUMP_R,
+	SWINGING}
 @onready var tool_state_handler = $Tool_state_handler
 var current_tool_state
 enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
@@ -141,6 +143,7 @@ func _physics_process(delta: float) -> void:
 		current_tool_state = tool_state_handler.next_state(is_on_floor())
 		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
+	
 	if controllable:
 		
 		if p_speed_is_active:
@@ -174,6 +177,9 @@ func _physics_process(delta: float) -> void:
 				on_walljump_state(1)
 			states.WALLJUMP_R:
 				on_walljump_state(-1)
+			states.SWINGING:
+				on_swinging_state()
+				
 
 		match current_tool_state:
 			tool_states.NO_TOOL:
@@ -387,6 +393,10 @@ func on_walljump_state(left: int):
 		launched = false
 	jump_sfx.pitch_scale = randf_range(3, 4)
 	jump_sfx.play()
+
+
+func on_swinging_state():
+	rope_tool.swinging_behaviour()
 	
 
 
@@ -790,6 +800,8 @@ func kill_player():
 	if PlayerStats.cursed_mode:
 		$"../Cursed_Orb".player_got_hit()
 	controllable = false
+	state_handler.swinging = false
+	
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 	if sprite_block_tool.visible:
@@ -804,11 +816,13 @@ func kill_player():
 	animations.play("Death_anim")
 	died_sfx.play()
 	velocity = Vector2.ZERO
+	rope_tool.area_2d.process_mode = Node.PROCESS_MODE_DISABLED
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 	await animations.animation_finished
 	position = last_spawnpoint
+	rope_tool.area_2d.process_mode = Node.PROCESS_MODE_INHERIT
 	supercancel_timer.timeout.emit()
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished

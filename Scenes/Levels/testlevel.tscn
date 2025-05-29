@@ -1659,7 +1659,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(3866, 2159)
+position = Vector2(-8139, 2101)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)
@@ -1837,6 +1837,7 @@ position = Vector2(1688, 1093)
 
 [node name="Wall_tool" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 4
 scale = Vector2(1.728, 1.728)
 collision_layer = 4
