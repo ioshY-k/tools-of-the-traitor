@@ -351,7 +351,7 @@ func on_fall_state(delta):
 		velocity.y = min(velocity.y + GRAVITY_RISING * delta, MAX_FALLSPEED)
 		_ledge_corrections()
 	else:
-		#higher gravity on jumrelease and while descending
+		#higher gravity on jumprelease and while descending
 		velocity.y = min(velocity.y + GRAVITY_FALLING * delta, MAX_FALLSPEED)
 	eyes_blinking()
 

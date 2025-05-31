@@ -104,7 +104,7 @@ curve = SubResource("Curve2D_ftunl")
 
 [node name="PathFollow_ropetool" type="PathFollow2D" parent="Path_ropetool"]
 position = Vector2(-1438.61, 651.6)
-rotation = -0.000765567
+rotation = -0.000766407
 progress = 191.007
 
 [node name="Area2D" type="Area2D" parent="Path_ropetool/PathFollow_ropetool"]

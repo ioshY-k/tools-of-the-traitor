@@ -30,7 +30,7 @@ func _enter_tree() -> void:
 	
 func next_state(is_on_floor:bool, is_on_left_wall:bool, is_on_right_wall:bool) -> states:
 	
-	print(states.keys()[current_state])
+	#print(states.keys()[current_state])
 	match current_state:
 		states.IDLE:
 			#called so that the sprint toggle works in IDLE state

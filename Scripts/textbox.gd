@@ -17,7 +17,8 @@ signal finished_displaying()
 var firsttimetest = true
 
 func _ready() -> void:
-	talking_sfx.volume_db = db_to_linear(-20.0)
+	talking_sfx.volume_db = PlayerStats.sfx_volume
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("accept") or Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("place_simple_tool"):
@@ -60,7 +61,6 @@ func display_text(text_to_display: Array, xOffset, yOffset, char_pitch):
 	
 
 func display_letters(block1: String, block2: String):
-	
 	for current_block in [block1, block2]:
 		letter_index = 0
 		while letter_index < current_block.length()-1:
