@@ -35,7 +35,7 @@ func _spring_ledge_corrections():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	var player: CharacterBody2D = body
-	player.controllable = false
+	#player.controllable = false
 	#player.position = position + Vector2(0,-60)
 	player.velocity = Vector2.ZERO
 	
@@ -44,7 +44,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	await get_tree().create_timer(0.15).timeout
 	spring_sfx.play()
 	player.current_state = states.FALL
-	player.controllable = true
+	
+	if not player.controllable:
+		return
+	
+	#player.controllable = true
 	player.launched = true
 	if Input.is_action_pressed("jump"):
 		player.velocity = Vector2.UP * 2400

@@ -1659,7 +1659,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-2108, 3890)
+position = Vector2(-2170, 3966)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)

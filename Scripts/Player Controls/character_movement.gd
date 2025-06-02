@@ -143,7 +143,7 @@ func _physics_process(delta: float) -> void:
 		current_tool_state = tool_state_handler.next_state(is_on_floor())
 		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
-	
+	#print(controllable)
 	if controllable:
 		
 		if p_speed_is_active:
@@ -315,7 +315,7 @@ func on_push_state():
 
 
 func on_jump_state():
-	if not launched:
+	if not launched and not is_on_spring_tool:
 		velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
 		if p_speed_is_active:
 			animations.play("Pjump_anim", 0.3)
@@ -797,6 +797,9 @@ func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	kill_player()
 	
 func kill_player():
+	if not controllable:
+		return
+		
 	if PlayerStats.cursed_mode:
 		$"../Cursed_Orb".player_got_hit()
 	controllable = false
@@ -826,6 +829,7 @@ func kill_player():
 	supercancel_timer.timeout.emit()
 	animations.play_backwards("Death_anim")
 	await animations.animation_finished
+	launched = false
 	controllable = true
 
 func handle_run_sfx(current_state):
