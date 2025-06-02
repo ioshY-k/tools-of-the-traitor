@@ -21,6 +21,9 @@ var score: int = 0
 
 func _on_visibility_changed() -> void:
 	player.controllable = !player.controllable
+	player.rocket_cycle_sfx.stop()
+	player.walk_sfx.stop()
+	player.run_sfx.stop()
 	player.velocity = Vector2.ZERO
 	if visible:
 		sizzle_sfx.play()

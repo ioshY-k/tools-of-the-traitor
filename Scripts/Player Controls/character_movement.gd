@@ -113,6 +113,7 @@ enum tool_states {	NO_TOOL, CANCEL, RAD_MENU,
 	SPRING_TOOL_PREVIEW, SPRING_TOOL_PLACE}
 
 func _ready() -> void:
+	
 	#important since queue cant specify blendtimes
 	animations.set_blend_time("Land_anim","Idle_anim",0.3)
 	animations.set_blend_time("Land_anim","Walk_anim",0.3)

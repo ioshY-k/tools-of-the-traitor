@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=4 uid="uid://2wgcsbefs01w"]
+[gd_scene load_steps=165 format=4 uid="uid://2wgcsbefs01w"]
 
 [ext_resource type="PackedScene" uid="uid://c8lwhih3bihrn" path="res://Scenes/Player.tscn" id="1_uwjav"]
 [ext_resource type="PackedScene" uid="uid://c45ojno7rl6oe" path="res://Scenes/ally_followpoints.tscn" id="2_o4oti"]
@@ -33,7 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://d0lp05nloysvg" path="res://Sprites/Orbs/collected_frames/Orb_collected12.png" id="19_jpkef"]
 [ext_resource type="Texture2D" uid="uid://bixfw53nb4s3a" path="res://Sprites/Orbs/collected_frames/Orb_collected1.png" id="20_e3mdt"]
 [ext_resource type="Texture2D" uid="uid://d21ynwjluqn85" path="res://Sprites/Orbs/collected_frames/Orb_collected2.png" id="21_td2c5"]
-[ext_resource type="Texture2D" uid="uid://gcjeknlkcseb" path="res://icon.svg" id="22_0wsj2"]
 [ext_resource type="Texture2D" uid="uid://ckklyu3k67dgk" path="res://Sprites/Orbs/collected_frames/Orb_collected3.png" id="22_yc2xl"]
 [ext_resource type="Texture2D" uid="uid://ww5o0ywgo0p5" path="res://Sprites/Orbs/collected_frames/Orb_collected4.png" id="23_d00k7"]
 [ext_resource type="Texture2D" uid="uid://6iy8bwt6kd4q" path="res://Sprites/Orbs/collected_frames/Orb_collected5.png" id="24_m5ing"]
@@ -95,6 +94,8 @@
 [ext_resource type="Texture2D" uid="uid://3jc6aqm4l86c" path="res://Sprites/Rec_room/Record_room_monitor_talking3.png" id="59_nwgaa"]
 [ext_resource type="Texture2D" uid="uid://bryawa7iiwuvs" path="res://Sprites/Rec_room/Record_room_monitor_talking4.png" id="60_n4lqc"]
 [ext_resource type="PackedScene" uid="uid://upgieacxs5ly" path="res://Scenes/cursed_orb.tscn" id="64_fdfem"]
+[ext_resource type="Texture2D" uid="uid://qjscrh6ukibk" path="res://Sprites/Other/SubmitStation.png" id="80_8krqh"]
+[ext_resource type="Texture2D" uid="uid://b16f6jomftm0k" path="res://Sprites/Other/SubmitStationArrow.png" id="81_mcfgj"]
 [ext_resource type="PackedScene" uid="uid://cspby6grk7303" path="res://Scenes/lightning.tscn" id="91_5ipp4"]
 [ext_resource type="AudioStream" uid="uid://dw3bnu5j0d5va" path="res://Sound/thunder.mp3" id="92_ekk5v"]
 [ext_resource type="Script" path="res://Scripts/lightning_sfx.gd" id="92_qn0le"]
@@ -1602,7 +1603,69 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogu3q"]
-size = Vector2(118, 124)
+size = Vector2(202, 188)
+
+[sub_resource type="Animation" id="Animation_1pqao"]
+resource_name = "Arrow_bounce_anim"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(52, -98), Vector2(53, -119), Vector2(52, -98)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.215096, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_868ee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53, -119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.215096]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwc4b"]
+_data = {
+"Arrow_bounce_anim": SubResource("Animation_1pqao"),
+"RESET": SubResource("Animation_868ee")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lyuy7"]
 shader = ExtResource("50_y33b1")
@@ -1659,7 +1722,7 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_uwjav")]
 z_index = 3
-position = Vector2(-2108, 3890)
+position = Vector2(-1038, 4185)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, -132)
@@ -2576,17 +2639,31 @@ theme_override_font_sizes/font_size = 68
 text = "Toggle to Sprint"
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(8311, -972)
+position = Vector2(8326, -942)
 collision_layer = 8
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(23, 15)
 shape = SubResource("RectangleShape2D_ogu3q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal"]
-texture = ExtResource("22_0wsj2")
+position = Vector2(21, 15)
+texture = ExtResource("80_8krqh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal/Sprite2D"]
+position = Vector2(53, -119)
+rotation = 0.215096
+texture = ExtResource("81_mcfgj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goal/Sprite2D/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_mwc4b")
+}
+autoplay = "Arrow_bounce_anim"
 
 [node name="Goal2" type="Area2D" parent="."]
+z_index = 3
 position = Vector2(6161, 6650)
 collision_layer = 8
 metadata/_edit_group_ = true
@@ -2595,7 +2672,18 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_ogu3q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal2"]
-texture = ExtResource("22_0wsj2")
+texture = ExtResource("80_8krqh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal2/Sprite2D"]
+position = Vector2(53, -119)
+rotation = 0.215096
+texture = ExtResource("81_mcfgj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goal2/Sprite2D/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_mwc4b")
+}
+autoplay = "Arrow_bounce_anim"
 
 [node name="Sign_floor_tool" parent="." instance=ExtResource("48_kf1qq")]
 position = Vector2(-1652, 737)
