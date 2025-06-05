@@ -6,7 +6,7 @@ const DECELERATION = 6500 #How long until Player stops after moving
 const AIR_ACCELERATION = 4250
 const GRAVITY_RISING = 4250 #How fast Player falls with holding jump
 const GRAVITY_FALLING = 3800 * 2.5 #How much stronger  gravity pulls in falling state vs. rising state
-const MAX_FALLSPEED = 700 * 2.5 #The point where gravity doesn't accelerate fallspeed enymore
+const MAX_FALLSPEED = 1750 #The point where gravity doesn't accelerate fallspeed enymore
 const JUMPFORCE = 1600 #How high Player gets send when jumping
 const JUMPFORCE_INCREASE = 5 #How much runspeed influences jump height
 const MAX_WALK_SPEED = 250 * 2.5 #Player walk speed
@@ -40,6 +40,8 @@ var sliding_on_right_wall: bool
 @onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
 @onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
 @onready var blink_timer: Timer = $Blink_timer
+var acceleration_y: float
+var last_vel_y: float
 
 #Sound
 @onready var jump_sfx: AudioStreamPlayer = $Jump_sfx
@@ -211,6 +213,7 @@ func _physics_process(delta: float) -> void:
 				on_spring_tool_preview_state()
 			tool_states.SPRING_TOOL_PLACE:
 				on_spring_tool_place_state()
+				
 	
 	move_and_slide() #Player movement
 
@@ -546,6 +549,7 @@ func on_floortool_place_state():
 		
 		cursor.hide()
 		if not floor_overlapping:
+			floor_tool_available = false
 			var floor_tool = get_parent().get_node("%Floor_tool")
 			floor_tool.set_process_mode(PROCESS_MODE_INHERIT)
 			floor_tool.visible = true
@@ -558,7 +562,6 @@ func on_floortool_place_state():
 			floor_tool_freezeframes = false
 			Engine.time_scale = 1
 			
-			floor_tool_available = false
 			last_placed_tools.push_back(get_parent().get_node("%Floor_tool"))
 			PlayerStats.tool_count += 1
 
@@ -589,6 +592,7 @@ func floortool_place_animation(floor_tool: StaticBody2D):
 
 func on_blocktool_place_state():
 	if sprite_block_tool.visible:
+		block_tool_available = false
 		sprite_block_tool.visible = false
 		var block_tool = get_parent().get_node("%Block_tool")
 		block_tool.set_process_mode(PROCESS_MODE_INHERIT)
@@ -596,7 +600,6 @@ func on_blocktool_place_state():
 		block_tool.position = sprite_block_tool.global_position
 		blocktool_place_animation(block_tool)
 		cursor.hide()
-		block_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -619,6 +622,7 @@ func blocktool_place_animation(block_tool):
 
 func on_wall_tool_place_state():
 	if sprite_wall_tool.visible:
+		wall_tool_available = false
 		sprite_wall_tool.visible = false
 		var wall_tool = get_parent().get_node("%Wall_tool")
 		wall_tool.set_process_mode(PROCESS_MODE_INHERIT)
@@ -626,7 +630,6 @@ func on_wall_tool_place_state():
 		wall_tool.position = sprite_wall_tool.global_position
 		walltool_place_animation(wall_tool)
 		placewall_sfx.play()
-		wall_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Wall_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -654,12 +657,12 @@ func walltool_place_animation(wall_tool):
 
 func on_rope_tool_place_state():
 	if sprite_rope_tool.visible:
+		rope_tool_available = false
 		sprite_rope_tool.visible = false
 		var rope_tool = get_parent().get_node("%Rope_tool")
 		rope_tool.set_process_mode(PROCESS_MODE_INHERIT)
 		rope_tool.visible = true
 		rope_tool.position = sprite_rope_tool.global_position
-		rope_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Rope_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -668,6 +671,7 @@ func on_rope_tool_place_state():
 
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
+		spring_tool_available = false
 		sprite_spring_tool.visible = false
 		var spring_tool = get_parent().get_node("%Spring_tool")
 		spring_tool.set_process_mode(PROCESS_MODE_INHERIT)
@@ -675,7 +679,6 @@ func on_spring_tool_place_state():
 		spring_tool.position = sprite_spring_tool.global_position
 		spring_tool.bounce_animation()
 		placespring_sfx.play()
-		spring_tool_available = false
 		last_placed_tools.push_back(get_parent().get_node("%Spring_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
