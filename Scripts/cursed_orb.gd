@@ -122,9 +122,9 @@ func orb_respawn_check() -> void:
 	if (player.position - position).length() > 10000:
 		speed = 0
 		position = player.last_spawnpoint
-		$Sprite_cursedorb.visible = false
+		$Cursed_particles.visible = false
 		$Light.scale = Vector2.ZERO
 		await get_tree().create_tween().tween_property($Light, "scale", Vector2(1,1), 0.7).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT_IN).finished
-		$Sprite_cursedorb.visible = true
+		$Cursed_particles.visible = true
 		await get_tree().create_tween().tween_property($Light, "scale", Vector2(0,0), 0.7).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT_IN).finished
 		speed = 350

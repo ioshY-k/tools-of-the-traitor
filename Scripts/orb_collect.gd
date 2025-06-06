@@ -5,6 +5,8 @@ var hair: AnimatedSprite2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var area_2d: Area2D = $Area2D
 @onready var orb_sprite: AnimatedSprite2D = get_node("..")
+@onready var orb_collect_sfx: AudioStreamPlayer = $Orb_collect_sfx
+
 var orb_title_number: int
 
 func _ready() -> void:
@@ -23,6 +25,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	rotation_anim_timer.stop()
 	orb_sprite.play("collected_anim")
 	cpu_particles_2d.emitting = false
+	orb_collect_sfx.play()
 	var collection_tester = Collection_tester.new(body, self)
 	add_child(collection_tester)
 	hair = body.get_node("Model_position/Player_cutout/Player_hip/Player_torso/Player_head/Player_hair")

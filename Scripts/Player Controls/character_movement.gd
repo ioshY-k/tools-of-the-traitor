@@ -122,7 +122,8 @@ func _ready() -> void:
 	animations.set_blend_time("Land_anim","Run_anim",0.3)
 	animations.set_blend_time("Land_anim","P_speed_anim",0.3)
 	animations.set_blend_time("Jump_anim", "Fall_anim", 0.3)
-	blink_timer.timeout.connect(func(): if not eyes.is_playing(): eyes.play("blink_anim"))
+	blink_timer.timeout.connect(func(): if not (eyes.animation == "blink_anim" and eyes.get_frame() == 8)\
+	and not eyes.get_frame() == 6: eyes.play("blink_anim"))
 	supercancel_timer.timeout.connect(func():
 		for toolnum in range(len(last_placed_tools)):
 			callback_tool(last_placed_tools.pop_back())
@@ -214,7 +215,6 @@ func _physics_process(delta: float) -> void:
 			tool_states.SPRING_TOOL_PLACE:
 				on_spring_tool_place_state()
 				
-	
 	move_and_slide() #Player movement
 
 
@@ -447,6 +447,7 @@ func on_cancel_state():
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 	disable_callback = true
+	eyes.play("default")
 	
 
 
@@ -467,6 +468,8 @@ func on_floortool_preview_state(delta):
 		else:
 			left_arm.rotation = Vector2(-xAxis, -yAxis).angle() + 1
 	if floor_tool_available:
+		if not eyes.animation == "floor_preview_eye_anim":
+			eyes.play("floor_preview_eye_anim")
 		#Floor Tool Preview
 		sprite_floor_tool.visible = true
 		determine_floortool_position(Vector2(xAxis, yAxis).length(), Vector2(xAxis, yAxis).angle(), delta)
@@ -475,6 +478,8 @@ func on_floortool_preview_state(delta):
 func on_blocktool_preview_state():
 	set_tool_visibilities(sprite_block_tool, false)
 	if block_tool_available:
+		if not eyes.animation == "block_preview_eye_anim":
+			eyes.play("block_preview_eye_anim")
 		var xAxis
 		var yAxis
 		sprite_block_tool.visible = true
@@ -492,6 +497,8 @@ func on_blocktool_preview_state():
 func on_right_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,true)
 	if wall_tool_available:
+		if not eyes.animation == "wall_preview_eye_anim":
+			eyes.play("wall_preview_eye_anim")
 		sprite_wall_tool.visible = true
 		determine_walltool_position()
 		set_bullet_time(true)
@@ -499,6 +506,8 @@ func on_right_wall_tool_preview_state():
 func on_left_wall_tool_preview_state():
 	set_tool_visibilities(sprite_wall_tool,false)
 	if wall_tool_available:
+		if not eyes.animation == "wall_preview_eye_anim":
+			eyes.play("wall_preview_eye_anim")
 		sprite_wall_tool.visible = true
 		determine_walltool_position()
 		set_bullet_time(true)
@@ -507,6 +516,8 @@ func on_left_wall_tool_preview_state():
 func on_rope_tool_preview_state():
 	set_tool_visibilities(sprite_rope_tool, false)
 	if rope_tool_available:
+		if not eyes.animation == "rope_preview_eye_anim":
+			eyes.play("rope_preview_eye_anim")
 		sprite_rope_tool.visible = true
 		#no position determine bc position is always the same
 		set_bullet_time(true)
@@ -515,6 +526,8 @@ func on_rope_tool_preview_state():
 func on_spring_tool_preview_state():
 	set_tool_visibilities(sprite_spring_tool, false)
 	if spring_tool_available:
+		if not eyes.animation == "spring_preview_eye_anim":
+			eyes.play("spring_preview_eye_anim")
 		sprite_spring_tool.visible = true
 		determine_springtool_position()
 		set_bullet_time(true)
@@ -546,7 +559,6 @@ func set_tool_visibilities(current_tool, is_right):
 func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
-		
 		cursor.hide()
 		if not floor_overlapping:
 			floor_tool_available = false
@@ -561,9 +573,9 @@ func on_floortool_place_state():
 			await get_tree().create_timer(0.031).timeout
 			floor_tool_freezeframes = false
 			Engine.time_scale = 1
-			
 			last_placed_tools.push_back(get_parent().get_node("%Floor_tool"))
 			PlayerStats.tool_count += 1
+	eyes.play("default")
 
 func floortool_place_animation(floor_tool: StaticBody2D):
 	
@@ -605,6 +617,7 @@ func on_blocktool_place_state():
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+	eyes.play("default")
 			
 func blocktool_place_animation(block_tool):
 	block_tool.get_child(3).scale = Vector2(0.38,0.38)
@@ -635,6 +648,7 @@ func on_wall_tool_place_state():
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+	eyes.play("default")
 			
 func walltool_place_animation(wall_tool):
 	wall_tool.get_child(2).scale = Vector2(0.711,0.27)
@@ -668,6 +682,7 @@ func on_rope_tool_place_state():
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+	eyes.play("default")
 
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
@@ -684,6 +699,7 @@ func on_spring_tool_place_state():
 		while Engine.time_scale != 1:
 			set_bullet_time(false)
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
+	eyes.play("default")
 
 
 func _ledge_corrections():

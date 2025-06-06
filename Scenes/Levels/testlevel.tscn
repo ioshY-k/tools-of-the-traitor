@@ -2652,6 +2652,7 @@ position = Vector2(21, 15)
 texture = ExtResource("80_8krqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal/Sprite2D"]
+z_index = 3
 position = Vector2(53, -119)
 rotation = 0.215096
 texture = ExtResource("81_mcfgj")
