@@ -39,6 +39,7 @@ var sliding_on_right_wall: bool
 @onready var left_arm: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm")
 @onready var left_hand: Sprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_leftarm/Player_lefthand")
 @onready var eyes: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Player_eyes")
+@onready var eye_flash: AnimatedSprite2D = player_cutout.get_node("Player_hip/Player_torso/Player_head/Eye_flash")
 @onready var blink_timer: Timer = $Blink_timer
 var acceleration_y: float
 var last_vel_y: float
@@ -248,6 +249,7 @@ func callback_tool(tool: Node):
 		"Rope_tool":
 			rope_tool_available = true
 	callback_sfx.play()
+	eye_flash.play("flash_anim")
 
 
 func on_idle_state(delta):
@@ -516,6 +518,7 @@ func on_left_wall_tool_preview_state():
 func on_rope_tool_preview_state():
 	set_tool_visibilities(sprite_rope_tool, false)
 	if rope_tool_available:
+		print(eyes.animation)
 		if not eyes.animation == "rope_preview_eye_anim":
 			eyes.play("rope_preview_eye_anim")
 		sprite_rope_tool.visible = true
@@ -677,6 +680,7 @@ func on_rope_tool_place_state():
 		rope_tool.set_process_mode(PROCESS_MODE_INHERIT)
 		rope_tool.visible = true
 		rope_tool.position = sprite_rope_tool.global_position
+		rope_tool_place_animation(rope_tool)
 		last_placed_tools.push_back(get_parent().get_node("%Rope_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -684,6 +688,16 @@ func on_rope_tool_place_state():
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 	eyes.play("default")
 
+func rope_tool_place_animation(rope_tool: StaticBody2D):
+	var knots = rope_tool.find_children("Knot?*")
+	for knot in knots:
+		knot.position.y = 0
+		get_tree().create_tween() \
+		.tween_property(knot, "position:y", 30, 0.4) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+	
+	
 func on_spring_tool_place_state():
 	if sprite_spring_tool.visible:
 		spring_tool_available = false

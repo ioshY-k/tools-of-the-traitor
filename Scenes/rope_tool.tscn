@@ -42,58 +42,58 @@ z_index = 1
 position = Vector2(0, -144.877)
 texture = ExtResource("3_4qv0w")
 
-[node name="Knot0" type="Sprite2D" parent="Rope_tool_platform"]
+[node name="Knot" type="Sprite2D" parent="Rope_tool_platform"]
 position = Vector2(-1.49, -142.49)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot" type="Sprite2D" parent="Rope_tool_platform/Knot0" groups=["Rope_rotor"]]
+[node name="Knot1" type="Sprite2D" parent="Rope_tool_platform/Knot" groups=["Rope_rotor"]]
 z_as_relative = false
 position = Vector2(0, 28.32)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot2" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot" groups=["Rope_rotor"]]
+[node name="Knot2" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot3" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2" groups=["Rope_rotor"]]
+[node name="Knot3" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot4" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3" groups=["Rope_rotor"]]
+[node name="Knot4" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot5" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4" groups=["Rope_rotor"]]
+[node name="Knot5" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot6" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5" groups=["Rope_rotor"]]
+[node name="Knot6" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4/Knot5" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot7" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6" groups=["Rope_rotor"]]
+[node name="Knot7" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4/Knot5/Knot6" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot8" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7" groups=["Rope_rotor"]]
+[node name="Knot8" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot10" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8" groups=["Rope_rotor"]]
+[node name="Knot10" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("4_fvi33")
 offset = Vector2(0, 16)
 
-[node name="Knot_end" type="Sprite2D" parent="Rope_tool_platform/Knot0/Knot/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8/Knot10" groups=["Rope_rotor"]]
+[node name="Knot_end" type="Sprite2D" parent="Rope_tool_platform/Knot/Knot1/Knot2/Knot3/Knot4/Knot5/Knot6/Knot7/Knot8/Knot10" groups=["Rope_rotor"]]
 position = Vector2(0.034, 30)
 texture = ExtResource("5_sqh5o")
 offset = Vector2(0, 16)

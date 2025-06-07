@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://dpynb1w5bp435"]
+[gd_scene load_steps=93 format=3 uid="uid://dpynb1w5bp435"]
 
 [ext_resource type="Texture2D" uid="uid://cgsbstlybw7sw" path="res://Sprites/Player/Hip.png" id="1_kyuqh"]
 [ext_resource type="Texture2D" uid="uid://nx5ifbc8t1ie" path="res://Sprites/Player/Player_hair/Holding_orb_anim/Player_hair_loaded1.png" id="2_i6458"]
@@ -70,6 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://tu6tla7px3ov" path="res://Sprites/Player/Player_eyes/preview_floor/Eye_previewWall5.png" id="63_53hae"]
 [ext_resource type="Texture2D" uid="uid://c7wxo8pwa6opy" path="res://Sprites/Player/Player_eyes/preview_floor/Eye_previewWall6.png" id="64_lfda4"]
 [ext_resource type="Texture2D" uid="uid://vxy2umrye2g6" path="res://Sprites/Player/Player_eyes/preview_floor/Eye_previewWall7.png" id="65_q5var"]
+[ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="66_fhg83"]
 
 [sub_resource type="Animation" id="Animation_k0fxd"]
 length = 0.001
@@ -256,7 +257,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("30_pj3ad")
 }],
-"loop": true,
+"loop": false,
 "name": &"block_preview_eye_anim",
 "speed": 24.0
 }, {
@@ -316,9 +317,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("44_3elvi")
 }],
-"loop": true,
-"name": &"rope_preview_eye_abin",
-"speed": 5.0
+"loop": false,
+"name": &"rope_preview_eye_anim",
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -342,7 +343,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("51_bgbpf")
 }],
-"loop": true,
+"loop": false,
 "name": &"spring_preview_eye_anim",
 "speed": 24.0
 }, {
@@ -400,9 +401,26 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("65_q5var")
 }],
-"loop": true,
+"loop": false,
 "name": &"wall_preview_eye_anim",
 "speed": 24.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2bqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 2.0,
+"texture": ExtResource("66_fhg83")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"flash_anim",
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_jq52f"]
@@ -4032,8 +4050,17 @@ z_index = 7
 z_as_relative = false
 position = Vector2(-0.249996, -58.5833)
 sprite_frames = SubResource("SpriteFrames_trrci")
-animation = &"rope_preview_eye_abin"
+animation = &"wall_preview_eye_anim"
 autoplay = "default"
+
+[node name="Eye_flash" type="AnimatedSprite2D" parent="Player_hip/Player_torso/Player_head"]
+modulate = Color(1, 1, 1, 0.670588)
+position = Vector2(8.08334, -75.25)
+scale = Vector2(0.536092, 0.238335)
+sprite_frames = SubResource("SpriteFrames_r2bqe")
+animation = &"flash_anim"
+frame = 2
+frame_progress = 0.416615
 
 [node name="Player_axle" type="Sprite2D" parent="Player_hip"]
 z_index = 5

@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://upgieacxs5ly"]
+[gd_scene load_steps=8 format=3 uid="uid://upgieacxs5ly"]
 
 [ext_resource type="Script" path="res://Scripts/cursed_orb.gd" id="1_v1hvt"]
 [ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="3_aiidw"]
+[ext_resource type="Texture2D" uid="uid://t6jtkocltbf8" path="res://Sprites/Other/cursed_orb.png" id="3_b22ng"]
+
+[sub_resource type="Curve" id="Curve_gdy8s"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.304348, 3), 0.0, 0.0, 0, 0, Vector2(0.688406, 3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_jnu2n"]
 
@@ -12,7 +18,7 @@ radius = 47.0
 radius = 62.0
 
 [node name="Cursed_Orb" type="CharacterBody2D"]
-z_index = 5
+z_index = 100
 collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_v1hvt")
@@ -22,10 +28,19 @@ scale = Vector2(0.29, 0.29)
 texture = ExtResource("3_aiidw")
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 173.3
-initial_velocity_max = 186.35
+initial_velocity_min = 348.19
+initial_velocity_max = 348.19
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_gdy8s")
 color = Color(0.12128, 0.1152, 0.48, 1)
 color_ramp = SubResource("Gradient_jnu2n")
+
+[node name="Cursed_orb" type="Sprite2D" parent="Cursed_particles"]
+modulate = Color(1, 1, 1, 0.541176)
+z_index = 1
+scale = Vector2(3.44828, 3.44828)
+texture = ExtResource("3_b22ng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jnipg")
@@ -74,7 +89,8 @@ shape = SubResource("CircleShape2D_d7eiw")
 one_shot = true
 
 [node name="Light" type="Sprite2D" parent="."]
-modulate = Color(0.16784, 0.1416, 0.24, 1)
+modulate = Color(0.261267, 0.224812, 0.362131, 1)
+scale = Vector2(4.88, 4.88)
 texture = ExtResource("3_aiidw")
 
 [connection signal="area_entered" from="Collision_detection_up" to="." method="_on_collision_detection_up_area_entered"]
