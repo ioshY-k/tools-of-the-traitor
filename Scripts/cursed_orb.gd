@@ -18,10 +18,14 @@ var inside_wall: bool = false
 @onready var point_light_2d: PointLight2D = $PointLight2D
 
 var wall_slowdown = 1.0
+var scene_loaded = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_got_hit()
+	visible = true
+	await get_tree().create_timer(0.3).timeout
+	scene_loaded = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -119,7 +123,9 @@ func player_got_hit():
 
 #called when exiting checkpoint zone
 func orb_respawn_check() -> void:
-	if (player.position - position).length() > 10000:
+	print("respawn check")
+	if (player.position - position).length() > 10000 and scene_loaded:
+		print("respawn check in progress")
 		speed = 0
 		position = player.last_spawnpoint
 		$Cursed_particles.visible = false
