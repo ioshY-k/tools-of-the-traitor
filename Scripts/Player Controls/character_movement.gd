@@ -126,9 +126,10 @@ func _ready() -> void:
 	blink_timer.timeout.connect(func(): if not (eyes.animation == "blink_anim" and eyes.get_frame() == 8)\
 	and not eyes.get_frame() == 6: eyes.play("blink_anim"))
 	supercancel_timer.timeout.connect(func():
-		for toolnum in range(len(last_placed_tools)):
-			callback_tool(last_placed_tools.pop_back())
-			await get_tree().create_timer(0.05).timeout
+		if is_on_floor():
+			for toolnum in range(len(last_placed_tools)):
+				callback_tool(last_placed_tools.pop_back())
+				await get_tree().create_timer(0.05).timeout
 		)
 	PlayerStats.execute_all_options()
 	position = Vector2(PlayerStats.xPosition, PlayerStats.yPosition)
@@ -149,6 +150,9 @@ func _physics_process(delta: float) -> void:
 		current_tool_state = tool_state_handler.next_state(is_on_floor())
 		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
+	
+	if (just_cancled):
+		print(just_cancled)
 	
 	if controllable:
 		
@@ -233,6 +237,7 @@ func check_supercancel():
 		eyes.stop()
 
 
+var just_cancled = false
 func callback_tool(tool: Node):
 	if tool == null:
 		return
@@ -251,6 +256,8 @@ func callback_tool(tool: Node):
 			rope_tool_available = true
 	callback_sfx.play()
 	eye_flash.play("flash_anim")
+	just_cancled = true
+	just_called_back_timer.start()
 
 
 func on_idle_state(delta):
@@ -319,17 +326,19 @@ func on_push_state():
 	var direction = sign(Input.get_axis("walk_left", "walk_right"))
 	velocity.x = direction
 	animations.play("Push_anim", 0.2)
-
-
+	
+@onready var just_called_back_timer: Timer = $Just_called_back_timer
 func on_jump_state():
-	if not launched and not is_on_spring_tool:
+	if not launched and not is_on_spring_tool and not just_cancled:
 		velocity.y = -(JUMPFORCE + JUMPFORCE_INCREASE * int(abs(velocity.x) / 30))
 		if p_speed_is_active:
 			animations.play("Pjump_anim", 0.3)
+			jump_sfx.pitch_scale = randf_range(1.5, 2.0)
+			jump_sfx.play()
 		else:
 			animations.play("Jump_anim", 0.1)
-	jump_sfx.pitch_scale = randf_range(1.5, 2.0)
-	jump_sfx.play()
+			jump_sfx.pitch_scale = randf_range(1.5, 2.0)
+			jump_sfx.play()
 
 
 func on_fall_state(delta):
@@ -441,7 +450,6 @@ func on_rad_menu_state():
 		
 		rad_menu.visible = true
 		rad_menu_anim.play("appear_anim")
-
 
 func on_cancel_state():
 	
@@ -923,3 +931,7 @@ func _on_floortool_placement_zone_mouse_crossed(inside: bool) -> void:
 		cursor_inside_area = true
 	else:
 		cursor_inside_area = false # Replace with function body.
+
+
+func _on_just_called_back_timer_timeout() -> void:
+	just_cancled = false

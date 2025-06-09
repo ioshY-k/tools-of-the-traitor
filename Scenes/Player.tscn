@@ -782,7 +782,7 @@ one_shot = true
 script = ExtResource("2_asryv")
 
 [node name="Coyote" type="Timer" parent="State_handler"]
-wait_time = 0.1
+wait_time = 0.08
 one_shot = true
 
 [node name="Jump_buffer" type="Timer" parent="State_handler"]
@@ -1005,6 +1005,9 @@ pitch_scale = 1.74
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_e04xm")
 
+[node name="Just_called_back_timer" type="Timer" parent="."]
+wait_time = 0.08
+
 [connection signal="timeout" from="P_speed_timer" to="." method="_on_p_speed_timer_timeout"]
 [connection signal="body_entered" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_entered"]
 [connection signal="body_exited" from="Floor_typecheck" to="." method="_on_floor_typecheck_body_exited"]
@@ -1014,3 +1017,4 @@ occluder = SubResource("OccluderPolygon2D_e04xm")
 [connection signal="body_exited" from="Sprite_floor_tool/Overlap_check" to="." method="_on_overlap_check_body_exited"]
 [connection signal="mouse_entered" from="Floortool_placement_zone" to="." method="_on_floortool_placement_zone_mouse_crossed" binds= [true]]
 [connection signal="mouse_exited" from="Floortool_placement_zone" to="." method="_on_floortool_placement_zone_mouse_crossed" binds= [false]]
+[connection signal="timeout" from="Just_called_back_timer" to="." method="_on_just_called_back_timer_timeout"]

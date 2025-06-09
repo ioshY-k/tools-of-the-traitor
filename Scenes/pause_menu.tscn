@@ -572,10 +572,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_xpa1o")
 theme_override_font_sizes/font_size = 70
-text = "Your Floor Tool
-can be placed in front of walls, letting you use it
-as a platform
-in two different places at once!"
+text = "Taking a look at shelfes and
+windows
+might help when searching for
+lower tool count or faster times"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
