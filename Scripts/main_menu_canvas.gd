@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var highscore_animation_player: AnimationPlayer = highscore_animations.get_node("Highscore_anim_player")
 @onready var playgame_animation_player: AnimationPlayer = $"../Player_rig/Playgame_animation_player"
 @onready var player_rig: Node2D = $"../Player_rig"
-@onready var cursed_orb: Sprite2D = $"../Cursed_Orb"
+@onready var cursed_orb: CPUParticles2D = $"../Cursed_Orb"
 @onready var highscore_table: VBoxContainer = $Highscore_Container/Highscore_panel/MarginContainer/Highscore_table
 @onready var sort_options: OptionButton = $Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Sort_options
 @onready var cursed_mode: CheckButton = $Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Cursed_mode
@@ -137,12 +137,10 @@ func check_achievements():
 func _process(delta: float) -> void:
 	match current_player_pos:
 		player_keypositions.OFF:
-			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,2), 8 * delta)
-			cursed_orb.scale = cursed_orb.scale.lerp(Vector2(0.8,0.8), 8 * delta)
+			cursed_orb.position = cursed_orb.position.lerp(Vector2(2756,-529), 8 * delta)
 			player_rig.position = player_rig.position.lerp(Vector2(2358,600), 8 * delta)
 		player_keypositions.PLAY:
-			cursed_orb.position = cursed_orb.position.lerp(Vector2(2016,2), 8 * delta)
-			cursed_orb.scale = cursed_orb.scale.lerp(Vector2(0.8,0.8), 8 * delta)
+			cursed_orb.position = cursed_orb.position.lerp(Vector2(2756,-529), 8 * delta)
 			player_rig.position = player_rig.position.lerp(Vector2(1415,600), 8 * delta)
 		player_keypositions.PLAY_CURSED:
 			cursed_orb.position = cursed_orb.position.lerp(Vector2(1662,300), 8 * delta)

@@ -136,6 +136,7 @@ func _ready() -> void:
 	
 	
 	cursor.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _physics_process(delta: float) -> void:
@@ -144,7 +145,7 @@ func _physics_process(delta: float) -> void:
 		sliding_on_right_wall = is_on_wall() and (caster_right_wall.is_colliding() or caster_right_wall_2.is_colliding())
 		current_state = state_handler.next_state(is_on_floor(), sliding_on_left_wall, sliding_on_right_wall)
 		state_handler.set("current_state", current_state)
-		handle_run_sfx(current_state)
+		handle_run_sfx()
 		current_tool_state = tool_state_handler.next_state(is_on_floor())
 		tool_state_handler.set("current_tool_state", current_tool_state)
 	check_supercancel()
@@ -421,6 +422,7 @@ func on_rad_menu_state():
 	if not rad_menu.visible:
 		
 		cursor.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		
 		if PlayerStats.wall_tool_unlocked:
 			bubble_left.frame = 1
@@ -445,6 +447,7 @@ func on_cancel_state():
 	
 	set_tool_visibilities(null, false)
 	cursor.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	while Engine.time_scale != 1:
 		set_bullet_time(false)
 		await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
@@ -485,7 +488,7 @@ func on_blocktool_preview_state():
 		var xAxis
 		var yAxis
 		sprite_block_tool.visible = true
-		if Input.is_mouse_button_pressed(1):
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			cursor.show()
 			xAxis = (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin()).x
 			yAxis = (get_viewport().get_mouse_position() - get_global_transform_with_canvas().get_origin()).y
@@ -563,6 +566,7 @@ func on_floortool_place_state():
 	if sprite_floor_tool.visible:
 		sprite_floor_tool.visible = false
 		cursor.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		if not floor_overlapping:
 			floor_tool_available = false
 			var floor_tool = get_parent().get_node("%Floor_tool")
@@ -615,6 +619,7 @@ func on_blocktool_place_state():
 		block_tool.position = sprite_block_tool.global_position
 		blocktool_place_animation(block_tool)
 		cursor.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		last_placed_tools.push_back(get_parent().get_node("%Block_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -676,11 +681,10 @@ func on_rope_tool_place_state():
 	if sprite_rope_tool.visible:
 		rope_tool_available = false
 		sprite_rope_tool.visible = false
-		var rope_tool = get_parent().get_node("%Rope_tool")
 		rope_tool.set_process_mode(PROCESS_MODE_INHERIT)
 		rope_tool.visible = true
 		rope_tool.position = sprite_rope_tool.global_position
-		rope_tool_place_animation(rope_tool)
+		rope_tool_place_animation()
 		last_placed_tools.push_back(get_parent().get_node("%Rope_tool"))
 		PlayerStats.tool_count += 1
 		while Engine.time_scale != 1:
@@ -688,7 +692,7 @@ func on_rope_tool_place_state():
 			await get_tree().create_timer(0.5/Engine.get_frames_per_second()).timeout
 	eyes.play("default")
 
-func rope_tool_place_animation(rope_tool: StaticBody2D):
+func rope_tool_place_animation():
 	var knots = rope_tool.find_children("Knot?*")
 	for knot in knots:
 		knot.position.y = 0
@@ -734,7 +738,7 @@ var cursor_inside_area
 
 func determine_floortool_position(inputstrength, controllerangle, delta):
 	#Control stick Deadzone
-	if Input.is_mouse_button_pressed(1):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		
 		cursor.show()
 		floortool_placement_zone.process_mode = Node.PROCESS_MODE_INHERIT
@@ -866,7 +870,7 @@ func kill_player():
 	launched = false
 	controllable = true
 
-func handle_run_sfx(current_state):
+func handle_run_sfx():
 	match current_state:
 		states.WALK:
 			run_sfx.stop()

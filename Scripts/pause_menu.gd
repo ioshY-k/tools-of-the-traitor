@@ -1,5 +1,6 @@
 extends CanvasLayer
 @onready var show_timer: CheckButton = $Pause_menu/Show_timer
+@onready var scene_loader = get_node("/root/Scene_loader")
 
 #to determine the tip focused on calling the tip menu. Tip 1 per default
 var last_grabbed_orb : int = 0
@@ -53,19 +54,31 @@ func _ready() -> void:
 	
 	
 	show_timer.toggled.connect(func(on):
-		get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").visible = on)
+		get_node("/root/Scene_loader/Testlevel/Misc_canvas/Timer").visible = on
+		PlayerStats.show_timer = on)
 
-
+var pause_time = Time.get_unix_time_from_system() + 2
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	
-	
-	if Input.is_action_just_pressed("pause"):
-		if not $"../Result_canvas".visible:
-				toggle_pause_menu()
+	if Input.is_action_just_pressed("pause") and \
+			Time.get_unix_time_from_system() - pause_time > 0.7 and\
+			not $"../Result_canvas".visible:
+		pause_time = Time.get_unix_time_from_system()
+		toggle_pause_menu()
+			
+				
+				
 	
 func toggle_pause_menu():
 	if paused:
+		var debris_objects = []
+		debris_objects.append_array(get_parent().find_children("Crate*"))
+		debris_objects.append_array(get_parent().find_children("Shelf*"))
+		debris_objects.append_array(get_parent().find_children("Mirrored_shelf*"))
+		debris_objects.append_array(get_parent().find_children("Lantern*"))
+		for debris_obj in debris_objects:
+			debris_obj.visible = true
+			debris_obj.process_mode = Node.PROCESS_MODE_INHERIT
 		if not is_in_death_anim:
 			player.controllable = true
 		Engine.time_scale = 1
@@ -80,6 +93,18 @@ func toggle_pause_menu():
 		#hides all tools when the preview was held down while entering menu
 		player.on_cancel_state()
 	else:
+		player.rocket_cycle_sfx.stop()
+		player.walk_sfx.stop()
+		player.run_sfx.stop()
+		var debris_objects = []
+		debris_objects.append_array(get_parent().find_children("Crate*"))
+		debris_objects.append_array(get_parent().find_children("Shelf*"))
+		debris_objects.append_array(get_parent().find_children("Mirrored_shelf*"))
+		debris_objects.append_array(get_parent().find_children("Lantern*"))
+		for debris_obj in debris_objects:
+			debris_obj.visible = false
+			debris_obj.process_mode = Node.PROCESS_MODE_DISABLED
+		
 		if not player.controllable:
 			is_in_death_anim = true
 		else:

@@ -13,7 +13,7 @@ enum states {	IDLE, WALK, RUN, PUSH, JUMP, FALL, LAND,
 	WALLJUMP_L, WALLJUMP_R,
 	SWINGING}
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not player_body == null:
 		if player_body.velocity.y <= 0 and (Input.is_action_pressed("jump")):
 			#Rising while holding jump

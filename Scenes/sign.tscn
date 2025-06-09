@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_658ck"]
-size = Vector2(254, 214)
+size = Vector2(101, 78)
 
 [node name="Sign" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_3m7xt")
@@ -109,7 +109,7 @@ script = ExtResource("19_4ps2h")
 [node name="Interact_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_area"]
-position = Vector2(-12, -20)
+position = Vector2(-10, 0)
 shape = SubResource("RectangleShape2D_658ck")
 
 [node name="Interact_symbol" type="Sprite2D" parent="."]

@@ -8,7 +8,7 @@ func _ready() -> void:
 	
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	apply_impulse(Vector2.UP.rotated(randf_range(-1,1)) * 300)
 	if initial_timer.is_stopped():
 		debris_sfx.volume_db = PlayerStats.sfx_volume

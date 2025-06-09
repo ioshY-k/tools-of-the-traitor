@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://3etdrjgb1unq"]
+[gd_scene load_steps=74 format=3 uid="uid://3etdrjgb1unq"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu_canvas.gd" id="1_w03fo"]
 [ext_resource type="Texture2D" uid="uid://nhkcchoa5fki" path="res://Sprites/UI/Popup_darker.png" id="2_5lqhp"]
@@ -32,9 +32,12 @@
 [ext_resource type="Texture2D" uid="uid://cqrue04hiieqr" path="res://Sprites/Orbs/Orb_pastelgreen.png" id="14_jn6qh"]
 [ext_resource type="Texture2D" uid="uid://8ukb252js1l2" path="res://Sprites/Orbs/Orb_pink.png" id="15_2fcde"]
 [ext_resource type="Texture2D" uid="uid://b2xmlbc64l6y6" path="res://Sprites/Orbs/Orb_melon.png" id="17_odse5"]
+[ext_resource type="Texture2D" uid="uid://bi4a7bqix7v2i" path="res://Sprites/UI/Menu_theme_panel.png" id="18_7skmp"]
 [ext_resource type="FontFile" uid="uid://b387lt1j5oxyt" path="res://MADE Tommy Soft ExtraBold PERSONAL USE.otf" id="18_fsh2a"]
 [ext_resource type="PackedScene" uid="uid://gxhg6fc7slat" path="res://Scenes/highscore_animations.tscn" id="20_pc3qj"]
 [ext_resource type="Texture2D" uid="uid://b2es21a1u1bi3" path="res://Sprites/UI/blueground_as_texture.png" id="22_60ltw"]
+[ext_resource type="Texture2D" uid="uid://bgawm8hu1rl2j" path="res://Sprites/Allies/bulblight.png" id="35_ogwgt"]
+[ext_resource type="Texture2D" uid="uid://t6jtkocltbf8" path="res://Sprites/Other/cursed_orb.png" id="36_d62sr"]
 [ext_resource type="AudioStream" uid="uid://cag6q83465tvl" path="res://Sound/menu_confirm.wav" id="36_vmenc"]
 [ext_resource type="AudioStream" uid="uid://blh6gx24jms57" path="res://Sound/menu_return.wav" id="37_0l80q"]
 [ext_resource type="AudioStream" uid="uid://bwcr8vbn028ej" path="res://Sound/menu_select.wav" id="38_tgjbl"]
@@ -86,6 +89,13 @@ action = &"ui_cancel"
 
 [sub_resource type="Shortcut" id="Shortcut_oyxq5"]
 events = [SubResource("InputEventAction_lbuy4")]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_17vw0"]
+texture = ExtResource("18_7skmp")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
 
 [sub_resource type="InputEventAction" id="InputEventAction_0ti2d"]
 action = &"ui_cancel"
@@ -466,6 +476,13 @@ _data = {
 "player_hover": SubResource("Animation_41kbq"),
 "player_hover_cursed": SubResource("Animation_stfw7")
 }
+
+[sub_resource type="Curve" id="Curve_24u4s"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.304348, 3), 0.0, 0.0, 0, 0, Vector2(0.688406, 3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_q5f7s"]
 
 [sub_resource type="Animation" id="Animation_7otpp"]
 length = 0.001
@@ -1208,6 +1225,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer4/Tip_button4")
 focus_neighbor_top = NodePath("../../../Return_button")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("5_m8tyy")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1"]
@@ -1226,6 +1244,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button2" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("7_3hway")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2"]
@@ -1244,6 +1263,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button3" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("8_apcnp")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3"]
@@ -1263,6 +1283,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Return_button")
 focus_neighbor_right = NodePath("../../MarginContainer1/Tip_button1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("9_82522")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4"]
@@ -1281,6 +1302,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button5" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer8/Tip_button8")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("10_g1ohf")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5"]
@@ -1298,6 +1320,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button6" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("11_utctt")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6"]
@@ -1315,6 +1338,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button7" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("12_7uqmu")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7"]
@@ -1333,6 +1357,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button8" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer5/Tip_button5")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("13_mqbjc")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8"]
@@ -1351,6 +1376,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button9" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer12/Tip_button12")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("14_jn6qh")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9"]
@@ -1368,6 +1394,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button10" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("15_2fcde")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10"]
@@ -1385,6 +1412,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Tip_button11" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("7_0l8mh")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11"]
@@ -1403,6 +1431,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Tip_button12" type="Button" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer9/Tip_button9")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_17vw0")
 icon = ExtResource("17_odse5")
 
 [node name="new_icon" type="Sprite2D" parent="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12"]
@@ -1897,10 +1926,25 @@ libraries = {
 "": SubResource("AnimationLibrary_yawtq")
 }
 
-[node name="Cursed_Orb" type="Sprite2D" parent="."]
-position = Vector2(2016, 42)
-scale = Vector2(0.805, 0.805)
-texture = ExtResource("7_0l8mh")
+[node name="Cursed_Orb" type="CPUParticles2D" parent="."]
+position = Vector2(2756, -529)
+scale = Vector2(0.23345, 0.23345)
+amount = 15
+texture = ExtResource("35_ogwgt")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 348.19
+initial_velocity_max = 348.19
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_24u4s")
+color = Color(0.12128, 0.1152, 0.48, 1)
+color_ramp = SubResource("Gradient_q5f7s")
+
+[node name="Cursed_orb" type="Sprite2D" parent="Cursed_Orb"]
+modulate = Color(1, 1, 1, 0.862745)
+z_index = 1
+texture = ExtResource("36_d62sr")
 
 [node name="Background_scroll" type="AnimationPlayer" parent="."]
 root_node = NodePath("../TextureRect")
@@ -1955,8 +1999,8 @@ stream = ExtResource("38_tgjbl")
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_options_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Options" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_quit_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Main_panel/MarginContainer/VBoxContainer/Quit" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_focus_entered"]
 [connection signal="focus_entered" from="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="focus_exited" from="Main_menu_canvas/Main_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button_goal" to="Main_menu_canvas" method="_on_achievementbutton_focus_exited"]
@@ -2000,8 +2044,8 @@ stream = ExtResource("38_tgjbl")
 [connection signal="pressed" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Cursed_mode" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="toggled" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Cursed_mode" to="Main_menu_canvas" method="_on_cursed_mode_toggled"]
 [connection signal="focus_entered" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Return_from_hs" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Return_from_hs" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Return_from_hs" to="Main_menu_canvas" method="_on_return_from_hs_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Highscore_Container/Highscore_panel/MarginContainer2/VBoxContainer/Return_from_hs" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Show_tips" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Show_tips" to="Main_menu_canvas" method="_on_show_tips_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Show_tips" to="Main_menu_canvas" method="_on_confirmed_sfx"]
@@ -2024,50 +2068,50 @@ stream = ExtResource("38_tgjbl")
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_reset_progress_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/Reset_progress" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Options_Container/Options_panel/VBoxContainer/MarginContainer/Return" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_yes_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/Yes" to="Main_menu_canvas" method="_on_confirmed_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_no_pressed"]
+[connection signal="pressed" from="Main_menu_canvas/Really_delete/No" to="Main_menu_canvas" method="_on_return_sfx"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="Main_menu_canvas" method="_on_tip_button_1_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer1/Tip_button1" to="Main_menu_canvas" method="_on_tip_button_1_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="Main_menu_canvas" method="_on_tip_button_2_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer2/Tip_button2" to="Main_menu_canvas" method="_on_tip_button_2_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="Main_menu_canvas" method="_on_tip_button_3_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer3/Tip_button3" to="Main_menu_canvas" method="_on_tip_button_3_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="Main_menu_canvas" method="_on_tip_button_4_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer4/Tip_button4" to="Main_menu_canvas" method="_on_tip_button_4_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="Main_menu_canvas" method="_on_tip_button_5_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer5/Tip_button5" to="Main_menu_canvas" method="_on_tip_button_5_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="Main_menu_canvas" method="_on_tip_button_6_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer6/Tip_button6" to="Main_menu_canvas" method="_on_tip_button_6_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="Main_menu_canvas" method="_on_tip_button_7_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer7/Tip_button7" to="Main_menu_canvas" method="_on_tip_button_7_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="Main_menu_canvas" method="_on_tip_button_8_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer8/Tip_button8" to="Main_menu_canvas" method="_on_tip_button_8_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="Main_menu_canvas" method="_on_tip_button_9_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer9/Tip_button9" to="Main_menu_canvas" method="_on_tip_button_9_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="Main_menu_canvas" method="_on_tip_button_10_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer10/Tip_button10" to="Main_menu_canvas" method="_on_tip_button_10_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="Main_menu_canvas" method="_on_tip_button_11_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer11/Tip_button11" to="Main_menu_canvas" method="_on_tip_button_11_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
-[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="Main_menu_canvas" method="_on_tip_button_12_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="Main_menu_canvas" method="_on_confirmed_sfx"]
+[connection signal="pressed" from="Main_menu_canvas/Tip_menu/Tip_grid/MarginContainer12/Tip_button12" to="Main_menu_canvas" method="_on_tip_button_12_pressed"]
 [connection signal="focus_entered" from="Main_menu_canvas/Tip_menu/Return_button" to="Main_menu_canvas" method="_on_focus_entered_sfx"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Return_button" to="Main_menu_canvas" method="_on_return_button_pressed"]
 [connection signal="pressed" from="Main_menu_canvas/Tip_menu/Return_button" to="Main_menu_canvas" method="_on_return_sfx"]

@@ -41,5 +41,5 @@ func light_flicker():
 	light_intensity_change.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

@@ -33,7 +33,7 @@ var dialog_sequences : Dictionary = {
 											"Collect the Orbs, Reach the Goal.",
 											"And beat your Highscore while you're at it!",
 											"There's just Jumping and Running",
-											"You can either hold the Runbutton to Sprint, or toggle your Sprint by tapping it.",
+											"You can either hold the Run button to Sprint, or toggle your Sprint by tapping it.",
 											"Which one is your Preference?"]
 										],
 

@@ -10,11 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Tools of the Traitor"
+config/name="Tools of the Traitor DEMO"
 run/main_scene="res://Scenes/scene_loader.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
-config/windows_native_icon="res://Sprites/Other/Game_logo_icon.ico"
+boot_splash/bg_color=Color(0.294311, 0.515412, 0.706888, 1)
+config/icon="res://Sprites/Other/Rastergrafik.svg"
+config/windows_native_icon="res://Sprites/Other/TotT.ico"
 
 [autoload]
 
@@ -29,6 +30,7 @@ MusicManager="*res://Scripts/Singletons/music_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
