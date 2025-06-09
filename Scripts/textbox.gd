@@ -61,12 +61,10 @@ func display_letters(block1: String, block2: String):
 	
 	
 	var letter_number = round(120/min(Engine.get_frames_per_second(),120))
-	print("Letter number: " + str(letter_number))
 	
 	for current_block in [block1, block2]:
 		letter_index = 0
 		while letter_index < current_block.length() - letter_number:
-			print("hallooo")
 			for current_letter_number in range(letter_number):
 				print(str(letter_index) + ": " + str(current_block[current_letter_number + letter_index]) )
 				label.text += current_block[current_letter_number + letter_index]
@@ -80,15 +78,10 @@ func display_letters(block1: String, block2: String):
 				
 			await get_tree().process_frame
 			letter_index += letter_number
-		print("raus aus der schleife")
 		for last_letters in range(current_block.length() - letter_index):
-			print("in last letters")
 			label.text += current_block[letter_index + last_letters]
-		print("raus aus last letters")
 		label.text += "\n"
 		
 	
 	await get_tree().process_frame
 	finished_textblock.emit()
-	print("emittedd")
-	

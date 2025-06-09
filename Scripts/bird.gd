@@ -14,7 +14,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("entered")
 	if body.name == "Player":
 		play("default")
 		get_tree().create_tween().tween_property($".", "position", Vector2(1000,1000), 5).set_trans(Tween.TRANS_CUBIC)

@@ -123,9 +123,7 @@ func player_got_hit():
 
 #called when exiting checkpoint zone
 func orb_respawn_check() -> void:
-	print("respawn check")
 	if (player.position - position).length() > 10000 and scene_loaded:
-		print("respawn check in progress")
 		speed = 0
 		position = player.last_spawnpoint
 		$Cursed_particles.visible = false

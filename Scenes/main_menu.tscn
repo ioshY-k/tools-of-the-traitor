@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://3etdrjgb1unq"]
+[gd_scene load_steps=76 format=3 uid="uid://3etdrjgb1unq"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu_canvas.gd" id="1_w03fo"]
 [ext_resource type="Texture2D" uid="uid://nhkcchoa5fki" path="res://Sprites/UI/Popup_darker.png" id="2_5lqhp"]
@@ -102,6 +102,12 @@ action = &"ui_cancel"
 
 [sub_resource type="Shortcut" id="Shortcut_dvv8k"]
 events = [SubResource("InputEventAction_0ti2d")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_5n68l"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_m813l"]
+events = [SubResource("InputEventAction_5n68l")]
 
 [sub_resource type="Animation" id="Animation_c75ar"]
 length = 0.001
@@ -824,7 +830,7 @@ custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Reach the second Goal in under 2 minutes"
+text = "Reach the second Goal in under 2:30 minutes"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -1909,6 +1915,7 @@ offset_bottom = -128.31
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
+shortcut = SubResource("Shortcut_m813l")
 text = "Close"
 
 [node name="Options_animations" parent="." instance=ExtResource("5_4klwa")]

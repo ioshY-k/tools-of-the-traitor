@@ -21,7 +21,6 @@ func _ready() -> void:
 		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	#print("collect")
 	rotation_anim_timer.stop()
 	orb_sprite.play("collected_anim")
 	cpu_particles_2d.emitting = false
@@ -81,7 +80,6 @@ func _on_collected_decision(collected: bool):
 		cpu_particles_2d.emitting = true
 		orb_sprite.frame = 0
 		rotation_anim_timer.start()
-		#print("died... orbcount: " + str(PlayerStats.orb_count))
 
 class Collection_tester extends Node:
 	

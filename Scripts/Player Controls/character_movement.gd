@@ -521,7 +521,6 @@ func on_left_wall_tool_preview_state():
 func on_rope_tool_preview_state():
 	set_tool_visibilities(sprite_rope_tool, false)
 	if rope_tool_available:
-		print(eyes.animation)
 		if not eyes.animation == "rope_preview_eye_anim":
 			eyes.play("rope_preview_eye_anim")
 		sprite_rope_tool.visible = true
